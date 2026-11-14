@@ -15,6 +15,8 @@ fi
 BEFORE_PID=$(systemctl show junction-spread.service -p MainPID --value)
 BEFORE_STATE=$(systemctl show junction-spread.service -p ActiveState --value)
 [ "$BEFORE_STATE" = active ] || { echo 'Spread is not active; stop and report'; exit 1; }
+CERT_RESOLVER=$(docker inspect traefik-traefik-1 --format '{{json .Config.Cmd}}' | python3 -c 'import json,re,sys; names=sorted(set(m.group(1) for v in json.load(sys.stdin) if (m:=re.match(r"--certificatesresolvers\.([A-Za-z0-9_-]+)\.acme\.",v,re.I)))); assert len(names)==1,"Expected exactly one existing certificate resolver"; print(names[0])')
+printf 'Using existing certificate resolver %s\n' "$CERT_RESOLVER"
 docker build --pull=false --tag "fact-weight:$FACT_WEIGHT_SHA" .
 docker run -d --name fact-weight --restart unless-stopped --network bridge \
   --cpus 0.5 --memory 384m --pids-limit 64 \
@@ -25,7 +27,7 @@ docker run -d --name fact-weight --restart unless-stopped --network bridge \
   --label 'traefik.http.routers.factweight.rule=Host(`fact-weight.72.61.22.106.sslip.io`)' \
   --label traefik.http.routers.factweight.entrypoints=websecure \
   --label traefik.http.routers.factweight.tls=true \
-  --label traefik.http.routers.factweight.tls.certresolver=letsencrypt \
+  --label "traefik.http.routers.factweight.tls.certresolver=$CERT_RESOLVER" \
   --label traefik.http.routers.factweight.service=factweight \
   --label traefik.http.services.factweight.loadbalancer.server.port=4320 \
   "fact-weight:$FACT_WEIGHT_SHA"
