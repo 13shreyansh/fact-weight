@@ -1,0 +1,207 @@
+{
+  "id": "retrieval-failure-probe-missing-article-source-reorder",
+  "slice": "retrieval-failure-probe",
+  "familyId": "missing-article",
+  "publisher": "NATO",
+  "sourceKey": "nato",
+  "variant": "source-reorder",
+  "post": "Finland joined NATO on 4 April 2023.",
+  "reference": {
+    "expectedStatus": "unsupported",
+    "expectedClaimCount": 1,
+    "meaning": {
+      "subject": "Finland",
+      "event": "NATO accession",
+      "date": "2023-04-04",
+      "intendedArticleStatus": "supported",
+      "suppliedModalStatus": "unsupported"
+    },
+    "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+  },
+  "inputSources": [
+    {
+      "key": "nato",
+      "id": "S1",
+      "url": "https://www.nato.int/en/news-and-events/articles/news/2023/04/04/finland-joins-nato-as-31st-ally",
+      "title": "Finland joins NATO as 31st Ally",
+      "canonicalUrl": "https://www.nato.int/en/news-and-events/articles/news/2023/04/04/finland-joins-nato-as-31st-ally",
+      "bodySha256": "158c6b458bd387ed66de89e5209bc025d45b31b45e1d4f6c1204505d5ba51cfc"
+    }
+  ],
+  "primaryInputId": "S1",
+  "manifestSha256": "8ad4b5122417dd98df25a8ea85fc91166b93df8de058a10462d3728202a5adc9",
+  "completedAt": "2026-11-14T16:19:29.620Z",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The source confirms Finland joined NATO as the 31st ally but does not specify the exact date of joining as 4 April 2023."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 37,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.059616,
+      "prompt_tokens": 1094,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1131
+    },
+    "latencyMs": 303,
+    "requestId": "chatcmpl-EkAkqe1GjCyQ8copV2yCLz5ihQ1q8"
+  },
+  "baselineError": null,
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Finland joined NATO on 4 April 2023.",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [],
+        "explanation": "The source is an official NATO article titled 'Finland joins NATO as 31st Ally' dated 4 April 2023, indicating that Finland joined NATO on that date. The text explicitly confirms the event of Finland joining NATO on 4 April 2023.",
+        "missing": "The source text provided is truncated and does not contain a full narrative or explicit sentence stating the exact date within the visible excerpt, but the article title and URL date strongly imply the event occurred on 4 April 2023.",
+        "postQuote": "Finland joined NATO on 4 April 2023."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.nato.int/en/news-and-events/articles/news/2023/04/04/finland-joins-nato-as-31st-ally",
+        "title": "Finland joins NATO as 31st Ally",
+        "fetchedAt": "2026-11-14T16:06:39.224Z",
+        "publishedAt": null,
+        "hash": "158c6b458bd387ed66de89e5209bc025d45b31b45e1d4f6c1204505d5ba51cfc",
+        "requestId": "87df9770-e451-4994-9fab-7c41b4a4b905",
+        "extractedCharacters": 3933,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "publisher": "NATO",
+        "family": "Finland accession",
+        "articleCoverage": "wrong-content account modal",
+        "canonicalUrl": "https://www.nato.int/en/news-and-events/articles/news/2023/04/04/finland-joins-nato-as-31st-ally",
+        "auditSourceKey": "nato",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 1,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1623,
+      "completion_tokens": 228,
+      "total_tokens": 1851,
+      "credits_charged": 0.12168
+    },
+    "inferenceMs": 2273,
+    "extractionMs": 1495,
+    "comparisonMs": 778,
+    "verificationMs": 0,
+    "verifierModel": null,
+    "verificationRequestId": null,
+    "syntaxRetries": 0,
+    "requestId": "chatcmpl-EkAktgYYPTl9fqk9zluMmZfxdpoUA",
+    "extractionRequestId": "chatcmpl-EkAj1PT0SwzlwR0ZKn5QR8oDXsS88"
+  },
+  "pipelineError": null,
+  "checks": {
+    "expectedClaimCount": 1,
+    "returnedClaimCount": 1,
+    "countPass": true,
+    "anchorsPass": true,
+    "quotes": []
+  },
+  "calls": [
+    {
+      "method": "baseline",
+      "requestedModel": "gpt-4.1-mini",
+      "systemSha256": "b3783f8e7c0bae14e811887ccb58fb0cd58110916d06f9649d7ea570f4ce11e7",
+      "inputSha256": "679f84b0d7be99562622d748f8485adb2475b8b692b5f59dd820a9c529d1dcac",
+      "queuedMs": 0,
+      "at": "2026-11-14T16:19:27.045Z",
+      "httpStatus": 200,
+      "responseId": "chatcmpl-EkAkqe1GjCyQ8copV2yCLz5ihQ1q8",
+      "returnedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 37,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "credits_charged": 0.059616,
+        "prompt_tokens": 1094,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 1131
+      },
+      "responseBodySha256": "4b4084cd6cc7039f8ffb7512794350906e0baa542f164eab7d9c7a40aef02c59",
+      "wireMs": 302
+    },
+    {
+      "method": "pipeline",
+      "requestedModel": "gpt-4.1-mini",
+      "systemSha256": "b43f1f0d160d9f5b48ce9d675cee3121a0ebfc57242c1a9c4c1f8f93464df677",
+      "inputSha256": "d78a966c1e03f252e1762985a8f9b34e2ef0038e6f19df201156c1e551b2fc6f",
+      "queuedMs": 1197,
+      "at": "2026-11-14T16:19:28.546Z",
+      "httpStatus": 200,
+      "responseId": "chatcmpl-EkAj1PT0SwzlwR0ZKn5QR8oDXsS88",
+      "returnedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 39,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "credits_charged": 0.0144,
+        "prompt_tokens": 144,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 183
+      },
+      "responseBodySha256": "826c993fa10febc700b2b1f30a9dd36767041ec90860de1472097703bd4ba519",
+      "wireMs": 296
+    },
+    {
+      "method": "pipeline",
+      "requestedModel": "gpt-4.1-mini",
+      "systemSha256": "f85bb0c61b551f733b50da9488f1de8796c2bbcdcbc7321874446d1fe6320ae4",
+      "inputSha256": "d6655734325330de6a79df2a112a26f77629675b36f75acaac4ef940dabf14ca",
+      "queuedMs": 452,
+      "at": "2026-11-14T16:19:29.295Z",
+      "httpStatus": 200,
+      "responseId": "chatcmpl-EkAktgYYPTl9fqk9zluMmZfxdpoUA",
+      "returnedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 189,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "credits_charged": 0.10728,
+        "prompt_tokens": 1479,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 1668
+      },
+      "responseBodySha256": "d0dfd00f2c205591b5b61ae9f0336d36ab1a93d053b4f6f68b43d175c33b7898",
+      "wireMs": 325
+    }
+  ],
+  "elapsedMs": 2576
+}

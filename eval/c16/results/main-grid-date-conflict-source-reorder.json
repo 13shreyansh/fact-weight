@@ -1,0 +1,282 @@
+{
+  "id": "main-grid-date-conflict-source-reorder",
+  "slice": "main",
+  "familyId": "grid-date-conflict",
+  "publisher": "ENTSO-E",
+  "sourceKey": "entsoe",
+  "variant": "source-reorder",
+  "post": "Estonia, Latvia and Lithuania synchronised their electricity grids with continental Europe on 10 February 2025.",
+  "reference": {
+    "expectedStatus": "contradicted",
+    "expectedClaimCount": 1,
+    "meaning": {
+      "subject": "Estonia, Latvia, Lithuania",
+      "event": "grid synchronisation with continental Europe",
+      "date": "2025-02-10"
+    },
+    "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+  },
+  "inputSources": [
+    {
+      "key": "nato-act",
+      "id": "S2",
+      "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+      "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+      "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+      "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+    },
+    {
+      "key": "entsoe",
+      "id": "S1",
+      "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+      "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+      "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+      "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+    }
+  ],
+  "primaryInputId": "S1",
+  "manifestSha256": "8ad4b5122417dd98df25a8ea85fc91166b93df8de058a10462d3728202a5adc9",
+  "completedAt": "2026-11-14T16:15:08.112Z",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The source from ENTSO-E states that Estonia, Latvia, and Lithuania synchronized their electricity grids with Continental Europe on 09 February 2025, not on 10 February 2025 as claimed in the post."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 54,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.113568,
+      "prompt_tokens": 2150,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 2204
+    },
+    "latencyMs": 1357,
+    "requestId": "chatcmpl-EkAgz9dXJUtUkZWba0BXWLCOrUjm3"
+  },
+  "baselineError": null,
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Estonia, Latvia and Lithuania synchronised their electricity grids with continental Europe on 10 February 2025.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "Estonia, Latvia, and Lithuania have successfully synchronized their electricity grids with the Continental Europe Synchronous Area (CESA) on 09 February 2025 at 14:05 EET, marking a historic milestone",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The source directly records the synchronization event occurring on 09 February 2025, not 10 February 2025 as claimed.",
+            "group": "G2",
+            "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+            "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+            "fetchedAt": "2026-11-14T16:06:38.348Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source S1 states that the synchronization occurred on 09 February 2025 at 14:05 EET, which is one day earlier than the claimed date of 10 February 2025. There is no evidence supporting the claim of synchronization on 10 February 2025. The source provides a direct record of the event with precise timing and details, confirming the synchronization but on 9 February, not 10 February. Source S2 is unrelated to this claim as it discusses NATO membership and does not mention electricity grid synchronization.",
+        "missing": "Evidence confirming synchronization specifically on 10 February 2025 is missing; the exact date is contradicted by the available source.",
+        "postQuote": "Estonia, Latvia and Lithuania synchronised their electricity grids with continental Europe on 10 February 2025."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "fetchedAt": "2026-11-14T16:08:39.275Z",
+        "publishedAt": "2023-09-15T16:23:40+00:00",
+        "hash": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7",
+        "requestId": "e049a65c-805b-4e48-960a-2aec86c72269",
+        "extractedCharacters": 3471,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S2",
+        "publisher": "NATO",
+        "family": "Finland accession",
+        "articleCoverage": "target article present",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "auditSourceKey": "nato-act",
+        "group": "G1"
+      },
+      {
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "fetchedAt": "2026-11-14T16:06:38.348Z",
+        "publishedAt": null,
+        "hash": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720",
+        "requestId": "2e53c03c-3927-4784-b29c-090b4ffc0d2b",
+        "extractedCharacters": 4439,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "publisher": "ENTSO-E",
+        "family": "Baltic grid synchronisation",
+        "articleCoverage": "target article present",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "auditSourceKey": "entsoe",
+        "group": "G2"
+      }
+    ],
+    "rejectedCitations": 1,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 2508,
+      "completion_tokens": 781,
+      "total_tokens": 6536,
+      "credits_charged": 5.856912
+    },
+    "inferenceMs": 9311,
+    "extractionMs": 469,
+    "comparisonMs": 4139,
+    "verificationMs": 4703,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch37pyfk8pWgQNxJ38oXw",
+    "syntaxRetries": 0,
+    "requestId": "chatcmpl-EkAh25MfcAGWQGH0lNieaEdOs0zKX",
+    "extractionRequestId": "chatcmpl-EkAgea7G27R4v7gFS0PdM5iInvvEm"
+  },
+  "pipelineError": null,
+  "checks": {
+    "expectedClaimCount": 1,
+    "returnedClaimCount": 1,
+    "countPass": true,
+    "anchorsPass": true,
+    "quotes": [
+      {
+        "sourceId": "S1",
+        "relation": "contradicts",
+        "exactMatch": true
+      }
+    ]
+  },
+  "calls": [
+    {
+      "method": "baseline",
+      "requestedModel": "gpt-4.1-mini",
+      "systemSha256": "b3783f8e7c0bae14e811887ccb58fb0cd58110916d06f9649d7ea570f4ce11e7",
+      "inputSha256": "c08f8962a346811b01897ccea908173b849fa7d2d2bc32f47e57a3d4e11c9a11",
+      "queuedMs": 0,
+      "at": "2026-11-14T16:14:57.445Z",
+      "httpStatus": 200,
+      "responseId": "chatcmpl-EkAgz9dXJUtUkZWba0BXWLCOrUjm3",
+      "returnedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 54,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "credits_charged": 0.113568,
+        "prompt_tokens": 2150,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 2204
+      },
+      "responseBodySha256": "7d37c72008d635e32c557148e1b70f5bf15626ed7be27263709cdb55b9660ac4",
+      "wireMs": 1355
+    },
+    {
+      "method": "pipeline",
+      "requestedModel": "gpt-4.1-mini",
+      "systemSha256": "b43f1f0d160d9f5b48ce9d675cee3121a0ebfc57242c1a9c4c1f8f93464df677",
+      "inputSha256": "96d1c7a5eda7b1716239f4e6fcc1eaf2ab24b95fc17d163a3bb44548c644ac5f",
+      "queuedMs": 143,
+      "at": "2026-11-14T16:14:58.944Z",
+      "httpStatus": 200,
+      "responseId": "chatcmpl-EkAgea7G27R4v7gFS0PdM5iInvvEm",
+      "returnedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 59,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "credits_charged": 0.01872,
+        "prompt_tokens": 154,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 213
+      },
+      "responseBodySha256": "524540897133b4bcac1fcaaa9fd34bb8456609bf9dd0e68d858c501b724e6460",
+      "wireMs": 325
+    },
+    {
+      "method": "pipeline",
+      "requestedModel": "gpt-4.1-mini",
+      "systemSha256": "f85bb0c61b551f733b50da9488f1de8796c2bbcdcbc7321874446d1fe6320ae4",
+      "inputSha256": "df6410b39f46ba615729e2e83ae0697252d4743d14ce8815d7c22d3f8027822c",
+      "queuedMs": 424,
+      "at": "2026-11-14T16:14:59.694Z",
+      "httpStatus": 200,
+      "responseId": "chatcmpl-EkAh25MfcAGWQGH0lNieaEdOs0zKX",
+      "returnedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 356,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "credits_charged": 0.181152,
+        "prompt_tokens": 2350,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 2706
+      },
+      "responseBodySha256": "586427c84abbc7adf866f6b9a8c3ad65453ea13b71291328775068eb9f74f4cb",
+      "wireMs": 3714
+    },
+    {
+      "method": "pipeline",
+      "requestedModel": "claude-fable-5.2",
+      "systemSha256": "75f5d9c0d704c68d389c8bfcc77a8ae17ba27185ba432d45cb10ad753caf6204",
+      "inputSha256": "ecf9d950d1d430b1549109d4b4968f146012046f5a0206f1a71f4917c0b64153",
+      "queuedMs": 0,
+      "at": "2026-11-14T16:15:03.409Z",
+      "httpStatus": 200,
+      "responseId": "msg_vrtx_011Ch37pyfk8pWgQNxJ38oXw",
+      "returnedModel": "claude-fable-5.2",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 366,
+        "completion_tokens_details": {
+          "reasoning_tokens": 199
+        },
+        "credits_charged": 5.65704,
+        "prompt_tokens": 4,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 3617
+      },
+      "responseBodySha256": "c0b999d6db7b85dfbb0e71106a280faaa203a6c72e923df6f534eddd569a66c8",
+      "wireMs": 4703
+    }
+  ],
+  "elapsedMs": 10669
+}

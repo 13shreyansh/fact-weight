@@ -1,0 +1,536 @@
+{
+  "audit": "C16-publisher-nuisance-v1",
+  "manifestSha256": "8ad4b5122417dd98df25a8ea85fc91166b93df8de058a10462d3728202a5adc9",
+  "completedAt": "2026-11-14T16:19:33.575Z",
+  "main": {
+    "families": 8,
+    "cases": 48,
+    "pipeline": {
+      "n": 48,
+      "correct": 42,
+      "accuracy": 0.875,
+      "tp": 12,
+      "fp": 0,
+      "tn": 36,
+      "fn": 0,
+      "positives": 12,
+      "negatives": 36,
+      "errors": 0,
+      "precision": 1,
+      "recall": 1,
+      "fpr": 0
+    },
+    "baseline": {
+      "n": 48,
+      "correct": 41,
+      "accuracy": 0.8541666666666666,
+      "tp": 11,
+      "fp": 0,
+      "tn": 36,
+      "fn": 1,
+      "positives": 12,
+      "negatives": 36,
+      "errors": 0,
+      "precision": 1,
+      "recall": 0.9166666666666666,
+      "fpr": 0
+    },
+    "nuisance": {
+      "pairs": 40,
+      "completed": 40,
+      "failed": 0,
+      "flips": 2,
+      "byVariant": {
+        "neutral-wrapper": {
+          "pairs": 8,
+          "completed": 8,
+          "failed": 0,
+          "flips": 1
+        },
+        "publisher-redacted": {
+          "pairs": 8,
+          "completed": 8,
+          "failed": 0,
+          "flips": 0
+        },
+        "rephrased": {
+          "pairs": 8,
+          "completed": 8,
+          "failed": 0,
+          "flips": 1
+        },
+        "source-rename": {
+          "pairs": 8,
+          "completed": 8,
+          "failed": 0,
+          "flips": 0
+        },
+        "source-reorder": {
+          "pairs": 8,
+          "completed": 8,
+          "failed": 0,
+          "flips": 0
+        }
+      },
+      "failures": [
+        {
+          "familyId": "flag-opinion",
+          "publisher": "NATO",
+          "variant": "rephrased",
+          "base": "unsupported",
+          "changed": "supported",
+          "failed": false,
+          "flip": true
+        },
+        {
+          "familyId": "grid-count-gap",
+          "publisher": "ENTSO-E",
+          "variant": "neutral-wrapper",
+          "base": "MULTI:unsupported,unsupported",
+          "changed": "unsupported",
+          "failed": false,
+          "flip": true
+        }
+      ]
+    },
+    "baselineNuisance": {
+      "pairs": 40,
+      "completed": 40,
+      "failed": 0,
+      "flips": 1,
+      "byVariant": {
+        "neutral-wrapper": {
+          "pairs": 8,
+          "completed": 8,
+          "failed": 0,
+          "flips": 0
+        },
+        "publisher-redacted": {
+          "pairs": 8,
+          "completed": 8,
+          "failed": 0,
+          "flips": 0
+        },
+        "rephrased": {
+          "pairs": 8,
+          "completed": 8,
+          "failed": 0,
+          "flips": 1
+        },
+        "source-rename": {
+          "pairs": 8,
+          "completed": 8,
+          "failed": 0,
+          "flips": 0
+        },
+        "source-reorder": {
+          "pairs": 8,
+          "completed": 8,
+          "failed": 0,
+          "flips": 0
+        }
+      },
+      "failures": [
+        {
+          "familyId": "grid-date-conflict",
+          "publisher": "ENTSO-E",
+          "variant": "rephrased",
+          "base": "contradicted",
+          "changed": "supported",
+          "failed": false,
+          "flip": true
+        }
+      ]
+    }
+  },
+  "byPublisher": {
+    "ENTSO-E": {
+      "n": 24,
+      "pipeline": {
+        "n": 24,
+        "correct": 19,
+        "accuracy": 0.7916666666666666,
+        "tp": 6,
+        "fp": 0,
+        "tn": 18,
+        "fn": 0,
+        "positives": 6,
+        "negatives": 18,
+        "errors": 0,
+        "precision": 1,
+        "recall": 1,
+        "fpr": 0
+      },
+      "baseline": {
+        "n": 24,
+        "correct": 17,
+        "accuracy": 0.7083333333333334,
+        "tp": 5,
+        "fp": 0,
+        "tn": 18,
+        "fn": 1,
+        "positives": 6,
+        "negatives": 18,
+        "errors": 0,
+        "precision": 1,
+        "recall": 0.8333333333333334,
+        "fpr": 0
+      },
+      "nuisance": {
+        "pairs": 20,
+        "completed": 20,
+        "failed": 0,
+        "flips": 1,
+        "byVariant": {
+          "neutral-wrapper": {
+            "pairs": 4,
+            "completed": 4,
+            "failed": 0,
+            "flips": 1
+          },
+          "publisher-redacted": {
+            "pairs": 4,
+            "completed": 4,
+            "failed": 0,
+            "flips": 0
+          },
+          "rephrased": {
+            "pairs": 4,
+            "completed": 4,
+            "failed": 0,
+            "flips": 0
+          },
+          "source-rename": {
+            "pairs": 4,
+            "completed": 4,
+            "failed": 0,
+            "flips": 0
+          },
+          "source-reorder": {
+            "pairs": 4,
+            "completed": 4,
+            "failed": 0,
+            "flips": 0
+          }
+        },
+        "failures": [
+          {
+            "familyId": "grid-count-gap",
+            "publisher": "ENTSO-E",
+            "variant": "neutral-wrapper",
+            "base": "MULTI:unsupported,unsupported",
+            "changed": "unsupported",
+            "failed": false,
+            "flip": true
+          }
+        ]
+      }
+    },
+    "NATO": {
+      "n": 24,
+      "pipeline": {
+        "n": 24,
+        "correct": 23,
+        "accuracy": 0.9583333333333334,
+        "tp": 6,
+        "fp": 0,
+        "tn": 18,
+        "fn": 0,
+        "positives": 6,
+        "negatives": 18,
+        "errors": 0,
+        "precision": 1,
+        "recall": 1,
+        "fpr": 0
+      },
+      "baseline": {
+        "n": 24,
+        "correct": 24,
+        "accuracy": 1,
+        "tp": 6,
+        "fp": 0,
+        "tn": 18,
+        "fn": 0,
+        "positives": 6,
+        "negatives": 18,
+        "errors": 0,
+        "precision": 1,
+        "recall": 1,
+        "fpr": 0
+      },
+      "nuisance": {
+        "pairs": 20,
+        "completed": 20,
+        "failed": 0,
+        "flips": 1,
+        "byVariant": {
+          "neutral-wrapper": {
+            "pairs": 4,
+            "completed": 4,
+            "failed": 0,
+            "flips": 0
+          },
+          "publisher-redacted": {
+            "pairs": 4,
+            "completed": 4,
+            "failed": 0,
+            "flips": 0
+          },
+          "rephrased": {
+            "pairs": 4,
+            "completed": 4,
+            "failed": 0,
+            "flips": 1
+          },
+          "source-rename": {
+            "pairs": 4,
+            "completed": 4,
+            "failed": 0,
+            "flips": 0
+          },
+          "source-reorder": {
+            "pairs": 4,
+            "completed": 4,
+            "failed": 0,
+            "flips": 0
+          }
+        },
+        "failures": [
+          {
+            "familyId": "flag-opinion",
+            "publisher": "NATO",
+            "variant": "rephrased",
+            "base": "unsupported",
+            "changed": "supported",
+            "failed": false,
+            "flip": true
+          }
+        ]
+      }
+    }
+  },
+  "retrievalFailureProbes": {
+    "cases": 6,
+    "pipeline": {
+      "n": 6,
+      "correct": 6,
+      "accuracy": 1,
+      "tp": 0,
+      "fp": 0,
+      "tn": 6,
+      "fn": 0,
+      "positives": 0,
+      "negatives": 6,
+      "errors": 0,
+      "precision": null,
+      "recall": null,
+      "fpr": 0
+    },
+    "baseline": {
+      "n": 6,
+      "correct": 5,
+      "accuracy": 0.8333333333333334,
+      "tp": 0,
+      "fp": 0,
+      "tn": 6,
+      "fn": 0,
+      "positives": 0,
+      "negatives": 6,
+      "errors": 0,
+      "precision": null,
+      "recall": null,
+      "fpr": 0
+    },
+    "nuisance": {
+      "pairs": 5,
+      "completed": 5,
+      "failed": 0,
+      "flips": 0,
+      "byVariant": {
+        "neutral-wrapper": {
+          "pairs": 1,
+          "completed": 1,
+          "failed": 0,
+          "flips": 0
+        },
+        "publisher-redacted": {
+          "pairs": 1,
+          "completed": 1,
+          "failed": 0,
+          "flips": 0
+        },
+        "rephrased": {
+          "pairs": 1,
+          "completed": 1,
+          "failed": 0,
+          "flips": 0
+        },
+        "source-rename": {
+          "pairs": 1,
+          "completed": 1,
+          "failed": 0,
+          "flips": 0
+        },
+        "source-reorder": {
+          "pairs": 1,
+          "completed": 1,
+          "failed": 0,
+          "flips": 0
+        }
+      },
+      "failures": []
+    }
+  },
+  "deterministicChecks": {
+    "claimCountAndAnchorPass": 39,
+    "cases": 54,
+    "acceptedQuotes": 48,
+    "exactQuotes": 48
+  },
+  "provider": {
+    "httpResponses": 199,
+    "uniqueResponseIds": 151,
+    "reusedResponseIds": 48,
+    "reportedResponseCredits": 215.44142399999996,
+    "callsWithoutUsage": 0,
+    "note": "Reported usage per HTTP response, not verified billing or unique inference. Includes intentional request-start throttling. No cold-latency claim."
+  },
+  "failures": [
+    {
+      "id": "main-flag-opinion-neutral-wrapper",
+      "slice": "main",
+      "expected": "unsupported",
+      "actual": "unsupported",
+      "extractionCount": false,
+      "anchor": true,
+      "error": null
+    },
+    {
+      "id": "main-flag-opinion-original",
+      "slice": "main",
+      "expected": "unsupported",
+      "actual": "unsupported",
+      "extractionCount": false,
+      "anchor": true,
+      "error": null
+    },
+    {
+      "id": "main-flag-opinion-publisher-redacted",
+      "slice": "main",
+      "expected": "unsupported",
+      "actual": "unsupported",
+      "extractionCount": false,
+      "anchor": true,
+      "error": null
+    },
+    {
+      "id": "main-flag-opinion-rephrased",
+      "slice": "main",
+      "expected": "unsupported",
+      "actual": "supported",
+      "extractionCount": false,
+      "anchor": true,
+      "error": null
+    },
+    {
+      "id": "main-flag-opinion-source-rename",
+      "slice": "main",
+      "expected": "unsupported",
+      "actual": "unsupported",
+      "extractionCount": false,
+      "anchor": true,
+      "error": null
+    },
+    {
+      "id": "main-flag-opinion-source-reorder",
+      "slice": "main",
+      "expected": "unsupported",
+      "actual": "unsupported",
+      "extractionCount": false,
+      "anchor": true,
+      "error": null
+    },
+    {
+      "id": "main-grid-count-gap-original",
+      "slice": "main",
+      "expected": "unsupported",
+      "actual": "MULTI:unsupported,unsupported",
+      "extractionCount": false,
+      "anchor": true,
+      "error": null
+    },
+    {
+      "id": "main-grid-count-gap-publisher-redacted",
+      "slice": "main",
+      "expected": "unsupported",
+      "actual": "MULTI:unsupported,unsupported",
+      "extractionCount": false,
+      "anchor": true,
+      "error": null
+    },
+    {
+      "id": "main-grid-count-gap-rephrased",
+      "slice": "main",
+      "expected": "unsupported",
+      "actual": "MULTI:unsupported,unsupported",
+      "extractionCount": false,
+      "anchor": true,
+      "error": null
+    },
+    {
+      "id": "main-grid-count-gap-source-rename",
+      "slice": "main",
+      "expected": "unsupported",
+      "actual": "MULTI:unsupported,unsupported",
+      "extractionCount": false,
+      "anchor": true,
+      "error": null
+    },
+    {
+      "id": "main-grid-count-gap-source-reorder",
+      "slice": "main",
+      "expected": "unsupported",
+      "actual": "MULTI:unsupported,unsupported",
+      "extractionCount": false,
+      "anchor": true,
+      "error": null
+    },
+    {
+      "id": "main-grid-opinion-original",
+      "slice": "main",
+      "expected": "unsupported",
+      "actual": "unsupported",
+      "extractionCount": false,
+      "anchor": true,
+      "error": null
+    },
+    {
+      "id": "main-grid-opinion-publisher-redacted",
+      "slice": "main",
+      "expected": "unsupported",
+      "actual": "unsupported",
+      "extractionCount": false,
+      "anchor": true,
+      "error": null
+    },
+    {
+      "id": "main-grid-opinion-source-rename",
+      "slice": "main",
+      "expected": "unsupported",
+      "actual": "unsupported",
+      "extractionCount": false,
+      "anchor": true,
+      "error": null
+    },
+    {
+      "id": "main-grid-opinion-source-reorder",
+      "slice": "main",
+      "expected": "unsupported",
+      "actual": "unsupported",
+      "extractionCount": false,
+      "anchor": true,
+      "error": null
+    }
+  ],
+  "semanticGrades": "Pending fresh-context spec/evidence-only reviewer, not human gold."
+}

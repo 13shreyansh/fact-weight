@@ -1,0 +1,676 @@
+{
+  "scope": "Real source URLs in saved pre-C16 evaluation outputs. Does not prove absence from unlogged activity or model pretraining. Synthetic example.org/example.net fixtures excluded.",
+  "publisherGroups": {
+    "Council of the EU": [
+      "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+      "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+    ]
+  },
+  "recordFiles": [
+    {
+      "path": "eval/runs/v5-json-repair-regression/fresh-source-heldout/fresh-unsupported-8.json",
+      "sha256": "fc8af333f981eb4d4d2cb325bb5a46763bbe31fd36e7c9ac27ccd3b8ed22702d",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-json-repair-regression/fresh-source-heldout/fresh-unsupported-4.json",
+      "sha256": "a06fa920017e5b3c1a4fb976f4a8faf1c30da2a8fb8d2d72707972309f171eaa",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-json-repair-regression/fresh-source-heldout/fresh-unsupported-5.json",
+      "sha256": "8d7623a58e5d5503b3933656b25598d71dc9698432fabe1a940855c00e7cb034",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-json-repair-regression/fresh-source-heldout/fresh-unsupported-9.json",
+      "sha256": "e2e8d6f2c3db57439df1fd20095c6862872914d2f965421abb8b50a57865887e",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-json-repair-regression/fresh-source-heldout/fresh-supported-1.json",
+      "sha256": "e8b626cbae159d850c15103059abd6acd9710c7a6d8398bc8e9d2594d8b5a0b9",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-json-repair-regression/fresh-source-heldout/fresh-contradicted-6.json",
+      "sha256": "b6f717ad55f66607907418545f5ba19cc03b239de71bfeda7b2ed7b04a1daa77",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-json-repair-regression/fresh-source-heldout/fresh-unsupported-12.json",
+      "sha256": "57cc3593f23ca728628e9bce9e9c76c76458cc576dedf7f815b5c47ca9cfd1fe",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-json-repair-regression/fresh-source-heldout/fresh-unsupported-2.json",
+      "sha256": "c591b293d4bc078f2090b36a7fde1ca7f8e0586e48785ffbcaf3a243a44a8957",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-json-repair-regression/fresh-source-heldout/fresh-contradicted-1.json",
+      "sha256": "50767f80e0104cd8ccc7eae71489d0a472890b24da9de7b3941fb663d5805187",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-json-repair-regression/fresh-source-heldout/fresh-supported-6.json",
+      "sha256": "e7b1df94cf840e9526d687f3a453f5dd8d26c60c19c48a67c280d2627c170f81",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-json-repair-regression/fresh-source-heldout/fresh-unsupported-3.json",
+      "sha256": "eb009325dd77031ed388718cb0d6cadf82ef25c798cd5f300bd0a7809d34c8fe",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-json-repair-regression/fresh-source-heldout/fresh-supported-4.json",
+      "sha256": "e5e259ec2a3a952bb8dfd2a72df09fafdfe8f2e81d6c1693202269677c28d8e6",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-json-repair-regression/fresh-source-heldout/fresh-contradicted-3.json",
+      "sha256": "183598147d7ccdc24960210d68453d1fcae20ff87e91607364d4f6a731d12240",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-json-repair-regression/fresh-source-heldout/fresh-contradicted-2.json",
+      "sha256": "55a0c39ee64c9b50c9281dcd614f70b53288b9340224d06b2aa4e93d5717f8dc",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-json-repair-regression/fresh-source-heldout/fresh-supported-5.json",
+      "sha256": "6b3228d04f16010c59a2d318f56007ac106a295c98e62c7dc72ffe35675eb5ef",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-json-repair-regression/fresh-source-heldout/fresh-unsupported-1.json",
+      "sha256": "5461eb81a22d7afba9aa2b4c13d3b3700bcf27b7e196f2ab6ae61e021295317b",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-json-repair-regression/fresh-source-heldout/fresh-supported-2.json",
+      "sha256": "49cd945f4a5f9c6493ee107c7696b32e90cfef09f6bc2e24bc76cfacdeb5960b",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-json-repair-regression/fresh-source-heldout/fresh-contradicted-5.json",
+      "sha256": "c0173b4625e2d6e96ea1571f4604daab713f2f9291f16ac0b090004d606119d1",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-json-repair-regression/fresh-source-heldout/fresh-unsupported-11.json",
+      "sha256": "e4d57b91142d1f375d069e7da176e4b83f3c96265c41918bf3d133242223d244",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-json-repair-regression/fresh-source-heldout/fresh-unsupported-6.json",
+      "sha256": "e42a5f8f1560b4484f6628beb0c78105cea942731cf4e0fa66cfa366da707beb",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-json-repair-regression/fresh-source-heldout/fresh-unsupported-7.json",
+      "sha256": "cd84f44b7c2f7a0f03597ef3256ed033f87a0a2be86a9e321ab64ec6a197bca0",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-json-repair-regression/fresh-source-heldout/fresh-unsupported-10.json",
+      "sha256": "34c748f31fdc74c4c68350590b7f1c8efc37ada48452193d1dbbf811e2255aa8",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-json-repair-regression/fresh-source-heldout/fresh-contradicted-4.json",
+      "sha256": "e718d805752a3fdfb69db27e689630e778a169b3a49cd536f28f5d3c0acc50f3",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-json-repair-regression/fresh-source-heldout/fresh-supported-3.json",
+      "sha256": "592691efae460fce7cc95461ae4b668f1e2438540496ba7bdd98bf93fa1f8a0b",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-source-regression/source-heldout/source-unsupported-8.json",
+      "sha256": "f40e4b28cc2683d487c993e9afd9c6b7c2048c11de6d69a2c2ed1320b09f3864",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-source-regression/source-heldout/source-supported-5.json",
+      "sha256": "acf5c3f4b27141cf1945f367f68e6962a58f8bf5eeaa5c24f0c9c4f562631fc4",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-source-regression/source-heldout/source-contradicted-4.json",
+      "sha256": "d33790d8792e99c38c9a7ee4120fd849382133adaff18ecf6d91a8bf9e0cc961",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-source-regression/source-heldout/source-unsupported-4.json",
+      "sha256": "865b07802fa5b743c0079e2660d967f65337a3da3da4af1107f47e017d5ef277",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-source-regression/source-heldout/source-unsupported-10.json",
+      "sha256": "9bffd66cdc6ac45a5ee1e192f0bb712f2a20308fa9dc834e5275969d88339b04",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-source-regression/source-heldout/source-unsupported-11.json",
+      "sha256": "8e6e2b17e9a6f69ec52bacefed0072d44e31f1d79b6cccfa73cc921e14780088",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-source-regression/source-heldout/source-unsupported-5.json",
+      "sha256": "f407340a823b1cd845092407f6d69716bb93df911e35caca16a5ae025b5c2c78",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-source-regression/source-heldout/source-contradicted-5.json",
+      "sha256": "31a9d6326d61f3be512701f86c50ff88e6593ef058c52e9dc55b95105d6b34fc",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-source-regression/source-heldout/source-supported-4.json",
+      "sha256": "d32f1d4ced251420e1cd2c241295ef67833f47122291d76f824cabbe0f5ebef3",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-source-regression/source-heldout/source-unsupported-9.json",
+      "sha256": "6ad1ec5e9843b1861c89f9170732fd23c738bfbb611d4214fc4b529cb7a89a01",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-source-regression/source-heldout/source-supported-3.json",
+      "sha256": "07b4afa3c6b2f4f6720df289a176b3c2c9d0b2ddde0d33ccaf7dac4742a013dc",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-source-regression/source-heldout/source-contradicted-2.json",
+      "sha256": "cee405f6ea72c53aab41db77dc3e04718deb617d19ee55466799c4fa07f88d92",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-source-regression/source-heldout/source-unsupported-2.json",
+      "sha256": "8a3c33b21a375498942e8128c9f9344b99c218e081d6699b9731d8de374899ce",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-source-regression/source-heldout/source-unsupported-3.json",
+      "sha256": "29f81ebb38b56b0eb0dd1d8181b7cd9ec6549e97d62714ea773cc37804e6b069",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-source-regression/source-heldout/source-contradicted-3.json",
+      "sha256": "6222cccafaa01591856716920b2287cc82a242267bf9e4bddd57da5d421052e0",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-source-regression/source-heldout/source-supported-2.json",
+      "sha256": "0a38b75628bd7b60c85a49761269f260c5339c617c35964ea66ae90c19226440",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-source-regression/source-heldout/source-supported-1.json",
+      "sha256": "8c24b70fa91b18fe5fac606c3b6da2460faf96114283e4c77ed1c5845ba9efe0",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-source-regression/source-heldout/source-contradicted-1.json",
+      "sha256": "5fb8f9b506456f55ee6374c1fb2886da116df7f12c832ab58de0e9af7d94c92e",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-source-regression/source-heldout/source-unsupported-1.json",
+      "sha256": "ed0ac60bb1b911a191351f97b9d171832490883bdf6f12b2759c4e5ece9454a0",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-source-regression/source-heldout/source-unsupported-12.json",
+      "sha256": "5b4ab06edc532fd1ca76066d6de4ff336abf68ec1c63550023269d43f48382a2",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-source-regression/source-heldout/source-unsupported-6.json",
+      "sha256": "1f6db7a9960310056e172844b5c5681664f737abb9bf82ed5b42b37d66ec3147",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-source-regression/source-heldout/source-contradicted-6.json",
+      "sha256": "6975180b22a9c015c6b603020a6e42bd86a570418eb2b35549e1496e8ffb222a",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-source-regression/source-heldout/source-supported-6.json",
+      "sha256": "ee15b570a1675ac7d0b6fcf83bb41681e9130ac219270fb84800ba597ce6769e",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-source-regression/source-heldout/source-unsupported-7.json",
+      "sha256": "62d6a7c435a1a58775c4802c9daca9c50544b847e098ee39d121acbb3d89ab9a",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-final/fresh-source-heldout/fresh-unsupported-8.json",
+      "sha256": "fc46b399676d1bde1caf364c5a507d0810ebe7bbb578557878e7ffcf2504970c",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-final/fresh-source-heldout/fresh-unsupported-4.json",
+      "sha256": "a4e1f3d887e44c6672b1af11c357d611d506daeaf5a385bc842c6d1d58f38bdd",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-final/fresh-source-heldout/fresh-unsupported-5.json",
+      "sha256": "d25d835665bc83a466eeeb2db7ef156dee86d03edcbc877b0bb27b13b5dd01b2",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-final/fresh-source-heldout/fresh-unsupported-9.json",
+      "sha256": "faa627e1bafea4c247862598cfb18acfc111e1b364ae1c0ea016def78a03e37e",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-final/fresh-source-heldout/fresh-supported-1.json",
+      "sha256": "cfaf630e085452cbc468b5cb7a289d0b81fcac8cdeee3c897efa68fba6f69ed5",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-final/fresh-source-heldout/fresh-contradicted-6.json",
+      "sha256": "15dc9f8b632f78ec8f760bd12ab466009bfac0310d921a79d91555a2e58feba4",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-final/fresh-source-heldout/fresh-unsupported-12.json",
+      "sha256": "fd2bb7e0ed3b2cf5e1362035fec97abc1933ecfb652e3a9549472fc1125c0525",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-final/fresh-source-heldout/fresh-unsupported-2.json",
+      "sha256": "996736bd927781a4b2fdb915a6e67fed8847a417bf38631e6fac274f72af9ec8",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-final/fresh-source-heldout/fresh-contradicted-1.json",
+      "sha256": "c517118ee47a97a5f09f1b18224232815342f5b216893e4295082417805a9eff",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-final/fresh-source-heldout/fresh-supported-6.json",
+      "sha256": "11b15896ec99f166b35316972d9b8ec664ba2ee71f8b0514de0166955f96ef0c",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-final/fresh-source-heldout/fresh-unsupported-3.json",
+      "sha256": "9bf3022ea1bde2924d5cff615ba2f22cfe5b2cceb98f0c9502a06518f31d3668",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-final/fresh-source-heldout/fresh-supported-4.json",
+      "sha256": "fdd87b3cc3527aea3f508a9c34b9708410b47369bd59b2f687e89757b9453ae0",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-final/fresh-source-heldout/fresh-contradicted-3.json",
+      "sha256": "11de75802e9a6638cd1c60c470695c8611c076bedf882cc237a849e2d2f979d2",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-final/fresh-source-heldout/fresh-supported-5.json",
+      "sha256": "a459d6412e7a207601d1e7d5be9f8783b4f990bf15bc7022f54001ecfc1c7fa1",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-final/fresh-source-heldout/fresh-unsupported-1.json",
+      "sha256": "b59fd01be8aac2bf051f313c0aff08a376d58bff16a7b5ffebe41e1a120395cd",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-final/fresh-source-heldout/fresh-supported-2.json",
+      "sha256": "2443bfbad90142b57875f2cb70fd40524d2c951e1b73b2048a8e68862e8360b7",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-final/fresh-source-heldout/fresh-contradicted-5.json",
+      "sha256": "51ab4ebc9b57b8578d1374d90680fa295454f400f1b7d5a41022ffd5a00816da",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-final/fresh-source-heldout/fresh-unsupported-11.json",
+      "sha256": "c45955a8907c78909dfe723f98435c3fcc5d6a4eae63ca55d9df327db36b87f8",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-final/fresh-source-heldout/fresh-unsupported-6.json",
+      "sha256": "833279a4c4512307ced39707d4a1ba178cf7078b611db5f9ee3b644180da3013",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-final/fresh-source-heldout/fresh-unsupported-7.json",
+      "sha256": "8847206eee73fa3ad360e75f995248b636ac351b01486a4b8c3dc602559de67f",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-final/fresh-source-heldout/fresh-unsupported-10.json",
+      "sha256": "c12944e8120c2a83bc2c127a44487183389045bdd7e19f94fc29285bb731f935",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-final/fresh-source-heldout/fresh-contradicted-4.json",
+      "sha256": "800851ee0e676b3053239f64ad220290c788c0cb333ad31d3df3f3810fc595d8",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v5-final/fresh-source-heldout/fresh-supported-3.json",
+      "sha256": "e7e7aaf5f09845dd2170abf448a955274a58abdc5bae041e285cffb19c4d22e1",
+      "sourceUrls": [
+        "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/"
+      ]
+    },
+    {
+      "path": "eval/runs/v4-final/source-heldout/source-unsupported-8.json",
+      "sha256": "25f4bf7de4b344fe5a0108fab2bdf9369e2673bd7f50c721c13540d5831e599d",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v4-final/source-heldout/source-supported-5.json",
+      "sha256": "c07baa4e1d4f5a2b178837dc9825a6de15e7bc7a6a6671e5dec7bbacc77f04a2",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v4-final/source-heldout/source-contradicted-4.json",
+      "sha256": "95c4d22d8c8e1d794924a3e159f31636ad00ae17f1b12e14e789cc00ba1b47dc",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v4-final/source-heldout/source-unsupported-4.json",
+      "sha256": "6720b99ba82fd86aa2e38e62a80cab42d84dae73dd83567bf1a9d101d9b04257",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v4-final/source-heldout/source-unsupported-10.json",
+      "sha256": "d30738fb3d8df5a8b3c736b3493177d50e46d2eac6849f55c0e3a85f2e5a529a",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v4-final/source-heldout/source-unsupported-11.json",
+      "sha256": "2441bc099a1d99af182c469fa46e04b353de295c82312c48fd0d4de917ab29fd",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v4-final/source-heldout/source-unsupported-5.json",
+      "sha256": "ba9a354ec02594a89d2eee4e39042613fe450197a8d759f1dca22691aaa45558",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v4-final/source-heldout/source-contradicted-5.json",
+      "sha256": "4d7d2255e0ceb5d2e334c2272a1e10e60de605bc1c8db125be2808aeae715f01",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v4-final/source-heldout/source-supported-4.json",
+      "sha256": "8f7e0c460c72a82977623aa3833b58275148411ef112c67dddb628a4e6307ddd",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v4-final/source-heldout/source-unsupported-9.json",
+      "sha256": "ea50a998f8e06e783323f2a9ed599b49f0ff1602e4e0126a2b590e1894d2ecf8",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v4-final/source-heldout/source-supported-3.json",
+      "sha256": "e1b69d61c01d92fbd9451be0589a7236d2351503a0f69d2da23fba1276e4a089",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v4-final/source-heldout/source-contradicted-2.json",
+      "sha256": "91a9ec104a6c8707c5f38e875d10ce2a0d2b329012d425ac2975bd4faf302e25",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v4-final/source-heldout/source-unsupported-2.json",
+      "sha256": "91581d54584c200c2fbc38e50f36e1776fc4120291ea60853ccdc9f9ff009319",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v4-final/source-heldout/source-unsupported-3.json",
+      "sha256": "c3a240697623e0ca2ff881b21dc38eebe6f6468b4a8692dfea8dc917d9f9097f",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v4-final/source-heldout/source-contradicted-3.json",
+      "sha256": "8be8835d1d98b54ec78dbe81083b25de8ebbfbee4416b4aae865f7f2dc3d0e95",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v4-final/source-heldout/source-supported-2.json",
+      "sha256": "1d22af41ef308bec9abc27ae70348f4b050a8ec5404f6375c64d47e07f06312d",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v4-final/source-heldout/source-supported-1.json",
+      "sha256": "50cc0f24b95fbc1937fff1342cdf6e5115f2f870f0e7ce9d77a46637d2fc2e02",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v4-final/source-heldout/source-contradicted-1.json",
+      "sha256": "5508dcec33be39bdc7efbd20d86953f11e5754f9dbc3c46fdca3831174878e34",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v4-final/source-heldout/source-unsupported-1.json",
+      "sha256": "84daac1ddac98922147a899d8589dcd8afc60c15598371a60dc6c6836df4979e",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v4-final/source-heldout/source-unsupported-12.json",
+      "sha256": "f755a03f43c783eccdabae91bdffb4ee1959c83a10236a2ef86d56af2ddc7a75",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v4-final/source-heldout/source-unsupported-6.json",
+      "sha256": "9b1a1c06230e789dba53859a44aa78913eddda2a8f27dcee8653c08d812023da",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v4-final/source-heldout/source-contradicted-6.json",
+      "sha256": "026fc2645b720b1dbda5e12c328103ef0c7a948e3b9e28e8256faa8abd5dc28b",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v4-final/source-heldout/source-supported-6.json",
+      "sha256": "283c9579f6f650a12b27320ba536fbcb1a62198fc35ce3f0c14cd4a30cb8f750",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    },
+    {
+      "path": "eval/runs/v4-final/source-heldout/source-unsupported-7.json",
+      "sha256": "56f01af0fa3d195324b4d3000683d66a2edd51171b582e20875376a94ef203ec",
+      "sourceUrls": [
+        "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf"
+      ]
+    }
+  ]
+}

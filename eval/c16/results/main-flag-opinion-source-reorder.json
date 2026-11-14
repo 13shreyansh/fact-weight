@@ -1,0 +1,254 @@
+{
+  "id": "main-flag-opinion-source-reorder",
+  "slice": "main",
+  "familyId": "flag-opinion",
+  "publisher": "NATO",
+  "sourceKey": "nato-act",
+  "variant": "source-reorder",
+  "post": "I personally like the design of the Finnish flag.",
+  "reference": {
+    "expectedStatus": "unsupported",
+    "expectedClaimCount": 0,
+    "meaning": {
+      "opinion": true
+    },
+    "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+  },
+  "inputSources": [
+    {
+      "key": "entsoe",
+      "id": "S2",
+      "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+      "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+      "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+      "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+    },
+    {
+      "key": "nato-act",
+      "id": "S1",
+      "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+      "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+      "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+      "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+    }
+  ],
+  "primaryInputId": "S1",
+  "manifestSha256": "8ad4b5122417dd98df25a8ea85fc91166b93df8de058a10462d3728202a5adc9",
+  "completedAt": "2026-11-14T16:18:52.939Z",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The provided sources discuss Finland's NATO membership and the synchronization of Baltic electricity systems but do not mention or provide information about the design of the Finnish flag or personal opinions about it."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 43,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.11088,
+      "prompt_tokens": 2138,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 2181
+    },
+    "latencyMs": 1586,
+    "requestId": "chatcmpl-EkAkiAYY6OBhlvkRZwQsOoAOtIUHt"
+  },
+  "baselineError": null,
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The user personally likes the design of the Finnish flag.",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "Finland’s national flag is also flying proudly at Headquarters, Supreme Allied Commander Transformation in Norfolk, Virginia as NATO’s 31st ally.",
+            "relation": "context",
+            "basis": "direct_record",
+            "reason": "Mentions the Finnish flag flying at NATO headquarters but does not express any personal liking or opinion about its design.",
+            "group": "G2",
+            "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+            "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+            "fetchedAt": "2026-11-14T16:08:39.275Z",
+            "publishedAt": "2023-09-15T16:23:40+00:00"
+          }
+        ],
+        "explanation": "The claim is a personal preference statement about liking the design of the Finnish flag. Neither of the provided sources mention any personal opinions or preferences about the Finnish flag's design. The sources focus on Finland's NATO membership and European electricity grid synchronization, with no reference to the Finnish flag's design or personal opinions about it.",
+        "missing": "No evidence about personal opinions or preferences regarding the Finnish flag's design is present in the provided sources.",
+        "postQuote": "I personally like the design of the Finnish flag."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "fetchedAt": "2026-11-14T16:06:38.348Z",
+        "publishedAt": null,
+        "hash": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720",
+        "requestId": "2e53c03c-3927-4784-b29c-090b4ffc0d2b",
+        "extractedCharacters": 4439,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S2",
+        "publisher": "ENTSO-E",
+        "family": "Baltic grid synchronisation",
+        "articleCoverage": "target article present",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "auditSourceKey": "entsoe",
+        "group": "G1"
+      },
+      {
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "fetchedAt": "2026-11-14T16:08:39.275Z",
+        "publishedAt": "2023-09-15T16:23:40+00:00",
+        "hash": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7",
+        "requestId": "e049a65c-805b-4e48-960a-2aec86c72269",
+        "extractedCharacters": 3471,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "publisher": "NATO",
+        "family": "Finland accession",
+        "articleCoverage": "target article present",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "auditSourceKey": "nato-act",
+        "group": "G2"
+      }
+    ],
+    "rejectedCitations": 1,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 2470,
+      "completion_tokens": 289,
+      "total_tokens": 2759,
+      "credits_charged": 0.17404799999999998
+    },
+    "inferenceMs": 3596,
+    "extractionMs": 524,
+    "comparisonMs": 3072,
+    "verificationMs": 0,
+    "verifierModel": null,
+    "verificationRequestId": null,
+    "syntaxRetries": 0,
+    "requestId": "chatcmpl-EkAkkkzbgFUZeXlslWrCVt5N8fTBy",
+    "extractionRequestId": "chatcmpl-EkAkOAvkD3EUObMSn5Uf0eB5ldhws"
+  },
+  "pipelineError": null,
+  "checks": {
+    "expectedClaimCount": 0,
+    "returnedClaimCount": 1,
+    "countPass": false,
+    "anchorsPass": true,
+    "quotes": [
+      {
+        "sourceId": "S1",
+        "relation": "context",
+        "exactMatch": true
+      }
+    ]
+  },
+  "calls": [
+    {
+      "method": "baseline",
+      "requestedModel": "gpt-4.1-mini",
+      "systemSha256": "b3783f8e7c0bae14e811887ccb58fb0cd58110916d06f9649d7ea570f4ce11e7",
+      "inputSha256": "255f2e84ecad4ca01eb3384f15054f5c66df900b8dce7b631bf07c5cf8539978",
+      "queuedMs": 0,
+      "at": "2026-11-14T16:18:47.758Z",
+      "httpStatus": 200,
+      "responseId": "chatcmpl-EkAkiAYY6OBhlvkRZwQsOoAOtIUHt",
+      "returnedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 43,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "credits_charged": 0.11088,
+        "prompt_tokens": 2138,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 2181
+      },
+      "responseBodySha256": "6e50bd0c0c41fbfc6a5db6ba59fa3b08f5ef89224bfb33d499cf8b1b1e1c64ac",
+      "wireMs": 1584
+    },
+    {
+      "method": "pipeline",
+      "requestedModel": "gpt-4.1-mini",
+      "systemSha256": "b43f1f0d160d9f5b48ce9d675cee3121a0ebfc57242c1a9c4c1f8f93464df677",
+      "inputSha256": "fb197132abc427e2c05729184eae848601b77ffbf912a836ec3371d513d825b9",
+      "queuedMs": 0,
+      "at": "2026-11-14T16:18:49.344Z",
+      "httpStatus": 200,
+      "responseId": "chatcmpl-EkAkOAvkD3EUObMSn5Uf0eB5ldhws",
+      "returnedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 37,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "credits_charged": 0.01392,
+        "prompt_tokens": 142,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 179
+      },
+      "responseBodySha256": "7a5c955c302066fb2790586ccad8c1e16539ddf8fb8998eb52a0241ef10f0d2f",
+      "wireMs": 522
+    },
+    {
+      "method": "pipeline",
+      "requestedModel": "gpt-4.1-mini",
+      "systemSha256": "f85bb0c61b551f733b50da9488f1de8796c2bbcdcbc7321874446d1fe6320ae4",
+      "inputSha256": "4cd690257eb62d7db00b85d6fbc776e928c2f1d5b704b1628171bb1ec8301ec2",
+      "queuedMs": 226,
+      "at": "2026-11-14T16:18:50.093Z",
+      "httpStatus": 200,
+      "responseId": "chatcmpl-EkAkkkzbgFUZeXlslWrCVt5N8fTBy",
+      "returnedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 252,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "credits_charged": 0.160128,
+        "prompt_tokens": 2328,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 2580
+      },
+      "responseBodySha256": "5b999bdff11dfba7e83d41b5626a7e299474e2d58e7816c2af0fe7cbf1b8f642",
+      "wireMs": 2845
+    }
+  ],
+  "elapsedMs": 5182
+}

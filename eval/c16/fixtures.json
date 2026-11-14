@@ -1,0 +1,2006 @@
+[
+  {
+    "id": "main-grid-date-support-original",
+    "slice": "main",
+    "familyId": "grid-date-support",
+    "publisher": "ENTSO-E",
+    "sourceKey": "entsoe",
+    "variant": "original",
+    "post": "Estonia, Latvia and Lithuania synchronised their electricity grids with continental Europe on 9 February 2025.",
+    "reference": {
+      "expectedStatus": "supported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Estonia, Latvia, Lithuania",
+        "event": "grid synchronisation with continental Europe",
+        "date": "2025-02-09"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "entsoe",
+        "id": "S1",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      },
+      {
+        "key": "nato-act",
+        "id": "S2",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-grid-date-support-rephrased",
+    "slice": "main",
+    "familyId": "grid-date-support",
+    "publisher": "ENTSO-E",
+    "sourceKey": "entsoe",
+    "variant": "rephrased",
+    "post": "On 9 February 2025, the electricity grids of Estonia, Latvia and Lithuania joined the Continental Europe Synchronous Area.",
+    "reference": {
+      "expectedStatus": "supported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Estonia, Latvia, Lithuania",
+        "event": "grid synchronisation with continental Europe",
+        "date": "2025-02-09"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "entsoe",
+        "id": "S1",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      },
+      {
+        "key": "nato-act",
+        "id": "S2",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-grid-date-support-neutral-wrapper",
+    "slice": "main",
+    "familyId": "grid-date-support",
+    "publisher": "ENTSO-E",
+    "sourceKey": "entsoe",
+    "variant": "neutral-wrapper",
+    "post": "Statement to inspect against the supplied documents: Estonia, Latvia and Lithuania synchronised their electricity grids with continental Europe on 9 February 2025.",
+    "reference": {
+      "expectedStatus": "supported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Estonia, Latvia, Lithuania",
+        "event": "grid synchronisation with continental Europe",
+        "date": "2025-02-09"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "entsoe",
+        "id": "S1",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      },
+      {
+        "key": "nato-act",
+        "id": "S2",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-grid-date-support-source-rename",
+    "slice": "main",
+    "familyId": "grid-date-support",
+    "publisher": "ENTSO-E",
+    "sourceKey": "entsoe",
+    "variant": "source-rename",
+    "post": "Estonia, Latvia and Lithuania synchronised their electricity grids with continental Europe on 9 February 2025.",
+    "reference": {
+      "expectedStatus": "supported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Estonia, Latvia, Lithuania",
+        "event": "grid synchronisation with continental Europe",
+        "date": "2025-02-09"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "entsoe",
+        "id": "EVIDENCE_41",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "Evidence file 1",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      },
+      {
+        "key": "nato-act",
+        "id": "EVIDENCE_72",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Evidence file 2",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      }
+    ],
+    "primaryInputId": "EVIDENCE_41"
+  },
+  {
+    "id": "main-grid-date-support-source-reorder",
+    "slice": "main",
+    "familyId": "grid-date-support",
+    "publisher": "ENTSO-E",
+    "sourceKey": "entsoe",
+    "variant": "source-reorder",
+    "post": "Estonia, Latvia and Lithuania synchronised their electricity grids with continental Europe on 9 February 2025.",
+    "reference": {
+      "expectedStatus": "supported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Estonia, Latvia, Lithuania",
+        "event": "grid synchronisation with continental Europe",
+        "date": "2025-02-09"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato-act",
+        "id": "S2",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      },
+      {
+        "key": "entsoe",
+        "id": "S1",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-grid-date-support-publisher-redacted",
+    "slice": "main",
+    "familyId": "grid-date-support",
+    "publisher": "ENTSO-E",
+    "sourceKey": "entsoe",
+    "variant": "publisher-redacted",
+    "post": "Estonia, Latvia and Lithuania synchronised their electricity grids with continental Europe on 9 February 2025.",
+    "reference": {
+      "expectedStatus": "supported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Estonia, Latvia, Lithuania",
+        "event": "grid synchronisation with continental Europe",
+        "date": "2025-02-09"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "entsoe",
+        "id": "S1",
+        "url": "https://document-1.example.org/record",
+        "title": "Document 1",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      },
+      {
+        "key": "nato-act",
+        "id": "S2",
+        "url": "https://document-2.example.net/record",
+        "title": "Document 2",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-grid-date-conflict-original",
+    "slice": "main",
+    "familyId": "grid-date-conflict",
+    "publisher": "ENTSO-E",
+    "sourceKey": "entsoe",
+    "variant": "original",
+    "post": "Estonia, Latvia and Lithuania synchronised their electricity grids with continental Europe on 10 February 2025.",
+    "reference": {
+      "expectedStatus": "contradicted",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Estonia, Latvia, Lithuania",
+        "event": "grid synchronisation with continental Europe",
+        "date": "2025-02-10"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "entsoe",
+        "id": "S1",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      },
+      {
+        "key": "nato-act",
+        "id": "S2",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-grid-date-conflict-rephrased",
+    "slice": "main",
+    "familyId": "grid-date-conflict",
+    "publisher": "ENTSO-E",
+    "sourceKey": "entsoe",
+    "variant": "rephrased",
+    "post": "The Baltic countries Estonia, Latvia and Lithuania completed their grid synchronisation with continental Europe on 10 February 2025.",
+    "reference": {
+      "expectedStatus": "contradicted",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Estonia, Latvia, Lithuania",
+        "event": "grid synchronisation with continental Europe",
+        "date": "2025-02-10"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "entsoe",
+        "id": "S1",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      },
+      {
+        "key": "nato-act",
+        "id": "S2",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-grid-date-conflict-neutral-wrapper",
+    "slice": "main",
+    "familyId": "grid-date-conflict",
+    "publisher": "ENTSO-E",
+    "sourceKey": "entsoe",
+    "variant": "neutral-wrapper",
+    "post": "Statement to inspect against the supplied documents: Estonia, Latvia and Lithuania synchronised their electricity grids with continental Europe on 10 February 2025.",
+    "reference": {
+      "expectedStatus": "contradicted",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Estonia, Latvia, Lithuania",
+        "event": "grid synchronisation with continental Europe",
+        "date": "2025-02-10"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "entsoe",
+        "id": "S1",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      },
+      {
+        "key": "nato-act",
+        "id": "S2",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-grid-date-conflict-source-rename",
+    "slice": "main",
+    "familyId": "grid-date-conflict",
+    "publisher": "ENTSO-E",
+    "sourceKey": "entsoe",
+    "variant": "source-rename",
+    "post": "Estonia, Latvia and Lithuania synchronised their electricity grids with continental Europe on 10 February 2025.",
+    "reference": {
+      "expectedStatus": "contradicted",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Estonia, Latvia, Lithuania",
+        "event": "grid synchronisation with continental Europe",
+        "date": "2025-02-10"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "entsoe",
+        "id": "EVIDENCE_41",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "Evidence file 1",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      },
+      {
+        "key": "nato-act",
+        "id": "EVIDENCE_72",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Evidence file 2",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      }
+    ],
+    "primaryInputId": "EVIDENCE_41"
+  },
+  {
+    "id": "main-grid-date-conflict-source-reorder",
+    "slice": "main",
+    "familyId": "grid-date-conflict",
+    "publisher": "ENTSO-E",
+    "sourceKey": "entsoe",
+    "variant": "source-reorder",
+    "post": "Estonia, Latvia and Lithuania synchronised their electricity grids with continental Europe on 10 February 2025.",
+    "reference": {
+      "expectedStatus": "contradicted",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Estonia, Latvia, Lithuania",
+        "event": "grid synchronisation with continental Europe",
+        "date": "2025-02-10"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato-act",
+        "id": "S2",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      },
+      {
+        "key": "entsoe",
+        "id": "S1",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-grid-date-conflict-publisher-redacted",
+    "slice": "main",
+    "familyId": "grid-date-conflict",
+    "publisher": "ENTSO-E",
+    "sourceKey": "entsoe",
+    "variant": "publisher-redacted",
+    "post": "Estonia, Latvia and Lithuania synchronised their electricity grids with continental Europe on 10 February 2025.",
+    "reference": {
+      "expectedStatus": "contradicted",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Estonia, Latvia, Lithuania",
+        "event": "grid synchronisation with continental Europe",
+        "date": "2025-02-10"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "entsoe",
+        "id": "S1",
+        "url": "https://document-1.example.org/record",
+        "title": "Document 1",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      },
+      {
+        "key": "nato-act",
+        "id": "S2",
+        "url": "https://document-2.example.net/record",
+        "title": "Document 2",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-grid-count-gap-original",
+    "slice": "main",
+    "familyId": "grid-count-gap",
+    "publisher": "ENTSO-E",
+    "sourceKey": "entsoe",
+    "variant": "original",
+    "post": "Exactly 47 electrical substations in Lithuania were replaced on 9 February 2025 as part of the Baltic synchronisation.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Lithuanian electrical substations",
+        "event": "replacement in Baltic synchronisation",
+        "quantity": 47,
+        "date": "2025-02-09"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "entsoe",
+        "id": "S1",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      },
+      {
+        "key": "nato-act",
+        "id": "S2",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-grid-count-gap-rephrased",
+    "slice": "main",
+    "familyId": "grid-count-gap",
+    "publisher": "ENTSO-E",
+    "sourceKey": "entsoe",
+    "variant": "rephrased",
+    "post": "The Baltic grid synchronisation involved replacing precisely 47 Lithuanian electrical substations on 9 February 2025.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Lithuanian electrical substations",
+        "event": "replacement in Baltic synchronisation",
+        "quantity": 47,
+        "date": "2025-02-09"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "entsoe",
+        "id": "S1",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      },
+      {
+        "key": "nato-act",
+        "id": "S2",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-grid-count-gap-neutral-wrapper",
+    "slice": "main",
+    "familyId": "grid-count-gap",
+    "publisher": "ENTSO-E",
+    "sourceKey": "entsoe",
+    "variant": "neutral-wrapper",
+    "post": "Statement to inspect against the supplied documents: Exactly 47 electrical substations in Lithuania were replaced on 9 February 2025 as part of the Baltic synchronisation.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Lithuanian electrical substations",
+        "event": "replacement in Baltic synchronisation",
+        "quantity": 47,
+        "date": "2025-02-09"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "entsoe",
+        "id": "S1",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      },
+      {
+        "key": "nato-act",
+        "id": "S2",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-grid-count-gap-source-rename",
+    "slice": "main",
+    "familyId": "grid-count-gap",
+    "publisher": "ENTSO-E",
+    "sourceKey": "entsoe",
+    "variant": "source-rename",
+    "post": "Exactly 47 electrical substations in Lithuania were replaced on 9 February 2025 as part of the Baltic synchronisation.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Lithuanian electrical substations",
+        "event": "replacement in Baltic synchronisation",
+        "quantity": 47,
+        "date": "2025-02-09"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "entsoe",
+        "id": "EVIDENCE_41",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "Evidence file 1",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      },
+      {
+        "key": "nato-act",
+        "id": "EVIDENCE_72",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Evidence file 2",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      }
+    ],
+    "primaryInputId": "EVIDENCE_41"
+  },
+  {
+    "id": "main-grid-count-gap-source-reorder",
+    "slice": "main",
+    "familyId": "grid-count-gap",
+    "publisher": "ENTSO-E",
+    "sourceKey": "entsoe",
+    "variant": "source-reorder",
+    "post": "Exactly 47 electrical substations in Lithuania were replaced on 9 February 2025 as part of the Baltic synchronisation.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Lithuanian electrical substations",
+        "event": "replacement in Baltic synchronisation",
+        "quantity": 47,
+        "date": "2025-02-09"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato-act",
+        "id": "S2",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      },
+      {
+        "key": "entsoe",
+        "id": "S1",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-grid-count-gap-publisher-redacted",
+    "slice": "main",
+    "familyId": "grid-count-gap",
+    "publisher": "ENTSO-E",
+    "sourceKey": "entsoe",
+    "variant": "publisher-redacted",
+    "post": "Exactly 47 electrical substations in Lithuania were replaced on 9 February 2025 as part of the Baltic synchronisation.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Lithuanian electrical substations",
+        "event": "replacement in Baltic synchronisation",
+        "quantity": 47,
+        "date": "2025-02-09"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "entsoe",
+        "id": "S1",
+        "url": "https://document-1.example.org/record",
+        "title": "Document 1",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      },
+      {
+        "key": "nato-act",
+        "id": "S2",
+        "url": "https://document-2.example.net/record",
+        "title": "Document 2",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-grid-opinion-original",
+    "slice": "main",
+    "familyId": "grid-opinion",
+    "publisher": "ENTSO-E",
+    "sourceKey": "entsoe",
+    "variant": "original",
+    "post": "I think the Baltic grid synchronisation was a wonderful idea.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 0,
+      "meaning": {
+        "opinion": true
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "entsoe",
+        "id": "S1",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      },
+      {
+        "key": "nato-act",
+        "id": "S2",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-grid-opinion-rephrased",
+    "slice": "main",
+    "familyId": "grid-opinion",
+    "publisher": "ENTSO-E",
+    "sourceKey": "entsoe",
+    "variant": "rephrased",
+    "post": "In my opinion, synchronising the Baltic electricity grids was an excellent idea.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 0,
+      "meaning": {
+        "opinion": true
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "entsoe",
+        "id": "S1",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      },
+      {
+        "key": "nato-act",
+        "id": "S2",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-grid-opinion-neutral-wrapper",
+    "slice": "main",
+    "familyId": "grid-opinion",
+    "publisher": "ENTSO-E",
+    "sourceKey": "entsoe",
+    "variant": "neutral-wrapper",
+    "post": "Statement to inspect against the supplied documents: I think the Baltic grid synchronisation was a wonderful idea.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 0,
+      "meaning": {
+        "opinion": true
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "entsoe",
+        "id": "S1",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      },
+      {
+        "key": "nato-act",
+        "id": "S2",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-grid-opinion-source-rename",
+    "slice": "main",
+    "familyId": "grid-opinion",
+    "publisher": "ENTSO-E",
+    "sourceKey": "entsoe",
+    "variant": "source-rename",
+    "post": "I think the Baltic grid synchronisation was a wonderful idea.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 0,
+      "meaning": {
+        "opinion": true
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "entsoe",
+        "id": "EVIDENCE_41",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "Evidence file 1",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      },
+      {
+        "key": "nato-act",
+        "id": "EVIDENCE_72",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Evidence file 2",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      }
+    ],
+    "primaryInputId": "EVIDENCE_41"
+  },
+  {
+    "id": "main-grid-opinion-source-reorder",
+    "slice": "main",
+    "familyId": "grid-opinion",
+    "publisher": "ENTSO-E",
+    "sourceKey": "entsoe",
+    "variant": "source-reorder",
+    "post": "I think the Baltic grid synchronisation was a wonderful idea.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 0,
+      "meaning": {
+        "opinion": true
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato-act",
+        "id": "S2",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      },
+      {
+        "key": "entsoe",
+        "id": "S1",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-grid-opinion-publisher-redacted",
+    "slice": "main",
+    "familyId": "grid-opinion",
+    "publisher": "ENTSO-E",
+    "sourceKey": "entsoe",
+    "variant": "publisher-redacted",
+    "post": "I think the Baltic grid synchronisation was a wonderful idea.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 0,
+      "meaning": {
+        "opinion": true
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "entsoe",
+        "id": "S1",
+        "url": "https://document-1.example.org/record",
+        "title": "Document 1",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      },
+      {
+        "key": "nato-act",
+        "id": "S2",
+        "url": "https://document-2.example.net/record",
+        "title": "Document 2",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-accession-date-support-original",
+    "slice": "main",
+    "familyId": "accession-date-support",
+    "publisher": "NATO",
+    "sourceKey": "nato-act",
+    "variant": "original",
+    "post": "Finland joined NATO on 4 April 2023.",
+    "reference": {
+      "expectedStatus": "supported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Finland",
+        "event": "NATO accession",
+        "date": "2023-04-04"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato-act",
+        "id": "S1",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      },
+      {
+        "key": "entsoe",
+        "id": "S2",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-accession-date-support-rephrased",
+    "slice": "main",
+    "familyId": "accession-date-support",
+    "publisher": "NATO",
+    "sourceKey": "nato-act",
+    "variant": "rephrased",
+    "post": "Finland became a member of NATO on 4 April 2023.",
+    "reference": {
+      "expectedStatus": "supported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Finland",
+        "event": "NATO accession",
+        "date": "2023-04-04"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato-act",
+        "id": "S1",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      },
+      {
+        "key": "entsoe",
+        "id": "S2",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-accession-date-support-neutral-wrapper",
+    "slice": "main",
+    "familyId": "accession-date-support",
+    "publisher": "NATO",
+    "sourceKey": "nato-act",
+    "variant": "neutral-wrapper",
+    "post": "Statement to inspect against the supplied documents: Finland joined NATO on 4 April 2023.",
+    "reference": {
+      "expectedStatus": "supported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Finland",
+        "event": "NATO accession",
+        "date": "2023-04-04"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato-act",
+        "id": "S1",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      },
+      {
+        "key": "entsoe",
+        "id": "S2",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-accession-date-support-source-rename",
+    "slice": "main",
+    "familyId": "accession-date-support",
+    "publisher": "NATO",
+    "sourceKey": "nato-act",
+    "variant": "source-rename",
+    "post": "Finland joined NATO on 4 April 2023.",
+    "reference": {
+      "expectedStatus": "supported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Finland",
+        "event": "NATO accession",
+        "date": "2023-04-04"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato-act",
+        "id": "EVIDENCE_41",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Evidence file 1",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      },
+      {
+        "key": "entsoe",
+        "id": "EVIDENCE_72",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "Evidence file 2",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      }
+    ],
+    "primaryInputId": "EVIDENCE_41"
+  },
+  {
+    "id": "main-accession-date-support-source-reorder",
+    "slice": "main",
+    "familyId": "accession-date-support",
+    "publisher": "NATO",
+    "sourceKey": "nato-act",
+    "variant": "source-reorder",
+    "post": "Finland joined NATO on 4 April 2023.",
+    "reference": {
+      "expectedStatus": "supported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Finland",
+        "event": "NATO accession",
+        "date": "2023-04-04"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "entsoe",
+        "id": "S2",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      },
+      {
+        "key": "nato-act",
+        "id": "S1",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-accession-date-support-publisher-redacted",
+    "slice": "main",
+    "familyId": "accession-date-support",
+    "publisher": "NATO",
+    "sourceKey": "nato-act",
+    "variant": "publisher-redacted",
+    "post": "Finland joined NATO on 4 April 2023.",
+    "reference": {
+      "expectedStatus": "supported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Finland",
+        "event": "NATO accession",
+        "date": "2023-04-04"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato-act",
+        "id": "S1",
+        "url": "https://document-1.example.org/record",
+        "title": "Document 1",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      },
+      {
+        "key": "entsoe",
+        "id": "S2",
+        "url": "https://document-2.example.net/record",
+        "title": "Document 2",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-accession-date-conflict-original",
+    "slice": "main",
+    "familyId": "accession-date-conflict",
+    "publisher": "NATO",
+    "sourceKey": "nato-act",
+    "variant": "original",
+    "post": "Finland joined NATO on 5 April 2023.",
+    "reference": {
+      "expectedStatus": "contradicted",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Finland",
+        "event": "NATO accession",
+        "date": "2023-04-05"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato-act",
+        "id": "S1",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      },
+      {
+        "key": "entsoe",
+        "id": "S2",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-accession-date-conflict-rephrased",
+    "slice": "main",
+    "familyId": "accession-date-conflict",
+    "publisher": "NATO",
+    "sourceKey": "nato-act",
+    "variant": "rephrased",
+    "post": "Finland became a member of NATO on 5 April 2023.",
+    "reference": {
+      "expectedStatus": "contradicted",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Finland",
+        "event": "NATO accession",
+        "date": "2023-04-05"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato-act",
+        "id": "S1",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      },
+      {
+        "key": "entsoe",
+        "id": "S2",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-accession-date-conflict-neutral-wrapper",
+    "slice": "main",
+    "familyId": "accession-date-conflict",
+    "publisher": "NATO",
+    "sourceKey": "nato-act",
+    "variant": "neutral-wrapper",
+    "post": "Statement to inspect against the supplied documents: Finland joined NATO on 5 April 2023.",
+    "reference": {
+      "expectedStatus": "contradicted",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Finland",
+        "event": "NATO accession",
+        "date": "2023-04-05"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato-act",
+        "id": "S1",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      },
+      {
+        "key": "entsoe",
+        "id": "S2",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-accession-date-conflict-source-rename",
+    "slice": "main",
+    "familyId": "accession-date-conflict",
+    "publisher": "NATO",
+    "sourceKey": "nato-act",
+    "variant": "source-rename",
+    "post": "Finland joined NATO on 5 April 2023.",
+    "reference": {
+      "expectedStatus": "contradicted",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Finland",
+        "event": "NATO accession",
+        "date": "2023-04-05"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato-act",
+        "id": "EVIDENCE_41",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Evidence file 1",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      },
+      {
+        "key": "entsoe",
+        "id": "EVIDENCE_72",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "Evidence file 2",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      }
+    ],
+    "primaryInputId": "EVIDENCE_41"
+  },
+  {
+    "id": "main-accession-date-conflict-source-reorder",
+    "slice": "main",
+    "familyId": "accession-date-conflict",
+    "publisher": "NATO",
+    "sourceKey": "nato-act",
+    "variant": "source-reorder",
+    "post": "Finland joined NATO on 5 April 2023.",
+    "reference": {
+      "expectedStatus": "contradicted",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Finland",
+        "event": "NATO accession",
+        "date": "2023-04-05"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "entsoe",
+        "id": "S2",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      },
+      {
+        "key": "nato-act",
+        "id": "S1",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-accession-date-conflict-publisher-redacted",
+    "slice": "main",
+    "familyId": "accession-date-conflict",
+    "publisher": "NATO",
+    "sourceKey": "nato-act",
+    "variant": "publisher-redacted",
+    "post": "Finland joined NATO on 5 April 2023.",
+    "reference": {
+      "expectedStatus": "contradicted",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Finland",
+        "event": "NATO accession",
+        "date": "2023-04-05"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato-act",
+        "id": "S1",
+        "url": "https://document-1.example.org/record",
+        "title": "Document 1",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      },
+      {
+        "key": "entsoe",
+        "id": "S2",
+        "url": "https://document-2.example.net/record",
+        "title": "Document 2",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-accession-fee-gap-original",
+    "slice": "main",
+    "familyId": "accession-fee-gap",
+    "publisher": "NATO",
+    "sourceKey": "nato-act",
+    "variant": "original",
+    "post": "Finland paid exactly 13 million euros as an accession fee on 4 April 2023.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Finland",
+        "event": "NATO accession fee payment",
+        "quantity": "13 million euros",
+        "date": "2023-04-04"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato-act",
+        "id": "S1",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      },
+      {
+        "key": "entsoe",
+        "id": "S2",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-accession-fee-gap-rephrased",
+    "slice": "main",
+    "familyId": "accession-fee-gap",
+    "publisher": "NATO",
+    "sourceKey": "nato-act",
+    "variant": "rephrased",
+    "post": "On 4 April 2023, Finland paid a NATO entry fee of precisely 13 million euros.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Finland",
+        "event": "NATO accession fee payment",
+        "quantity": "13 million euros",
+        "date": "2023-04-04"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato-act",
+        "id": "S1",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      },
+      {
+        "key": "entsoe",
+        "id": "S2",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-accession-fee-gap-neutral-wrapper",
+    "slice": "main",
+    "familyId": "accession-fee-gap",
+    "publisher": "NATO",
+    "sourceKey": "nato-act",
+    "variant": "neutral-wrapper",
+    "post": "Statement to inspect against the supplied documents: Finland paid exactly 13 million euros as an accession fee on 4 April 2023.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Finland",
+        "event": "NATO accession fee payment",
+        "quantity": "13 million euros",
+        "date": "2023-04-04"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato-act",
+        "id": "S1",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      },
+      {
+        "key": "entsoe",
+        "id": "S2",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-accession-fee-gap-source-rename",
+    "slice": "main",
+    "familyId": "accession-fee-gap",
+    "publisher": "NATO",
+    "sourceKey": "nato-act",
+    "variant": "source-rename",
+    "post": "Finland paid exactly 13 million euros as an accession fee on 4 April 2023.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Finland",
+        "event": "NATO accession fee payment",
+        "quantity": "13 million euros",
+        "date": "2023-04-04"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato-act",
+        "id": "EVIDENCE_41",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Evidence file 1",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      },
+      {
+        "key": "entsoe",
+        "id": "EVIDENCE_72",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "Evidence file 2",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      }
+    ],
+    "primaryInputId": "EVIDENCE_41"
+  },
+  {
+    "id": "main-accession-fee-gap-source-reorder",
+    "slice": "main",
+    "familyId": "accession-fee-gap",
+    "publisher": "NATO",
+    "sourceKey": "nato-act",
+    "variant": "source-reorder",
+    "post": "Finland paid exactly 13 million euros as an accession fee on 4 April 2023.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Finland",
+        "event": "NATO accession fee payment",
+        "quantity": "13 million euros",
+        "date": "2023-04-04"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "entsoe",
+        "id": "S2",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      },
+      {
+        "key": "nato-act",
+        "id": "S1",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-accession-fee-gap-publisher-redacted",
+    "slice": "main",
+    "familyId": "accession-fee-gap",
+    "publisher": "NATO",
+    "sourceKey": "nato-act",
+    "variant": "publisher-redacted",
+    "post": "Finland paid exactly 13 million euros as an accession fee on 4 April 2023.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Finland",
+        "event": "NATO accession fee payment",
+        "quantity": "13 million euros",
+        "date": "2023-04-04"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato-act",
+        "id": "S1",
+        "url": "https://document-1.example.org/record",
+        "title": "Document 1",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      },
+      {
+        "key": "entsoe",
+        "id": "S2",
+        "url": "https://document-2.example.net/record",
+        "title": "Document 2",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-flag-opinion-original",
+    "slice": "main",
+    "familyId": "flag-opinion",
+    "publisher": "NATO",
+    "sourceKey": "nato-act",
+    "variant": "original",
+    "post": "I personally like the design of the Finnish flag.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 0,
+      "meaning": {
+        "opinion": true
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato-act",
+        "id": "S1",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      },
+      {
+        "key": "entsoe",
+        "id": "S2",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-flag-opinion-rephrased",
+    "slice": "main",
+    "familyId": "flag-opinion",
+    "publisher": "NATO",
+    "sourceKey": "nato-act",
+    "variant": "rephrased",
+    "post": "The Finnish flag has a design that I personally find appealing.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 0,
+      "meaning": {
+        "opinion": true
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato-act",
+        "id": "S1",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      },
+      {
+        "key": "entsoe",
+        "id": "S2",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-flag-opinion-neutral-wrapper",
+    "slice": "main",
+    "familyId": "flag-opinion",
+    "publisher": "NATO",
+    "sourceKey": "nato-act",
+    "variant": "neutral-wrapper",
+    "post": "Statement to inspect against the supplied documents: I personally like the design of the Finnish flag.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 0,
+      "meaning": {
+        "opinion": true
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato-act",
+        "id": "S1",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      },
+      {
+        "key": "entsoe",
+        "id": "S2",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-flag-opinion-source-rename",
+    "slice": "main",
+    "familyId": "flag-opinion",
+    "publisher": "NATO",
+    "sourceKey": "nato-act",
+    "variant": "source-rename",
+    "post": "I personally like the design of the Finnish flag.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 0,
+      "meaning": {
+        "opinion": true
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato-act",
+        "id": "EVIDENCE_41",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Evidence file 1",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      },
+      {
+        "key": "entsoe",
+        "id": "EVIDENCE_72",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "Evidence file 2",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      }
+    ],
+    "primaryInputId": "EVIDENCE_41"
+  },
+  {
+    "id": "main-flag-opinion-source-reorder",
+    "slice": "main",
+    "familyId": "flag-opinion",
+    "publisher": "NATO",
+    "sourceKey": "nato-act",
+    "variant": "source-reorder",
+    "post": "I personally like the design of the Finnish flag.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 0,
+      "meaning": {
+        "opinion": true
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "entsoe",
+        "id": "S2",
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      },
+      {
+        "key": "nato-act",
+        "id": "S1",
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "main-flag-opinion-publisher-redacted",
+    "slice": "main",
+    "familyId": "flag-opinion",
+    "publisher": "NATO",
+    "sourceKey": "nato-act",
+    "variant": "publisher-redacted",
+    "post": "I personally like the design of the Finnish flag.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 0,
+      "meaning": {
+        "opinion": true
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato-act",
+        "id": "S1",
+        "url": "https://document-1.example.org/record",
+        "title": "Document 1",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+      },
+      {
+        "key": "entsoe",
+        "id": "S2",
+        "url": "https://document-2.example.net/record",
+        "title": "Document 2",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "retrieval-failure-probe-missing-article-original",
+    "slice": "retrieval-failure-probe",
+    "familyId": "missing-article",
+    "publisher": "NATO",
+    "sourceKey": "nato",
+    "variant": "original",
+    "post": "Finland joined NATO on 4 April 2023.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Finland",
+        "event": "NATO accession",
+        "date": "2023-04-04",
+        "intendedArticleStatus": "supported",
+        "suppliedModalStatus": "unsupported"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato",
+        "id": "S1",
+        "url": "https://www.nato.int/en/news-and-events/articles/news/2023/04/04/finland-joins-nato-as-31st-ally",
+        "title": "Finland joins NATO as 31st Ally",
+        "canonicalUrl": "https://www.nato.int/en/news-and-events/articles/news/2023/04/04/finland-joins-nato-as-31st-ally",
+        "bodySha256": "158c6b458bd387ed66de89e5209bc025d45b31b45e1d4f6c1204505d5ba51cfc"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "retrieval-failure-probe-missing-article-rephrased",
+    "slice": "retrieval-failure-probe",
+    "familyId": "missing-article",
+    "publisher": "NATO",
+    "sourceKey": "nato",
+    "variant": "rephrased",
+    "post": "Finland became a member of NATO on 4 April 2023.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Finland",
+        "event": "NATO accession",
+        "date": "2023-04-04",
+        "intendedArticleStatus": "supported",
+        "suppliedModalStatus": "unsupported"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato",
+        "id": "S1",
+        "url": "https://www.nato.int/en/news-and-events/articles/news/2023/04/04/finland-joins-nato-as-31st-ally",
+        "title": "Finland joins NATO as 31st Ally",
+        "canonicalUrl": "https://www.nato.int/en/news-and-events/articles/news/2023/04/04/finland-joins-nato-as-31st-ally",
+        "bodySha256": "158c6b458bd387ed66de89e5209bc025d45b31b45e1d4f6c1204505d5ba51cfc"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "retrieval-failure-probe-missing-article-neutral-wrapper",
+    "slice": "retrieval-failure-probe",
+    "familyId": "missing-article",
+    "publisher": "NATO",
+    "sourceKey": "nato",
+    "variant": "neutral-wrapper",
+    "post": "Statement to inspect against the supplied documents: Finland joined NATO on 4 April 2023.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Finland",
+        "event": "NATO accession",
+        "date": "2023-04-04",
+        "intendedArticleStatus": "supported",
+        "suppliedModalStatus": "unsupported"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato",
+        "id": "S1",
+        "url": "https://www.nato.int/en/news-and-events/articles/news/2023/04/04/finland-joins-nato-as-31st-ally",
+        "title": "Finland joins NATO as 31st Ally",
+        "canonicalUrl": "https://www.nato.int/en/news-and-events/articles/news/2023/04/04/finland-joins-nato-as-31st-ally",
+        "bodySha256": "158c6b458bd387ed66de89e5209bc025d45b31b45e1d4f6c1204505d5ba51cfc"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "retrieval-failure-probe-missing-article-source-rename",
+    "slice": "retrieval-failure-probe",
+    "familyId": "missing-article",
+    "publisher": "NATO",
+    "sourceKey": "nato",
+    "variant": "source-rename",
+    "post": "Finland joined NATO on 4 April 2023.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Finland",
+        "event": "NATO accession",
+        "date": "2023-04-04",
+        "intendedArticleStatus": "supported",
+        "suppliedModalStatus": "unsupported"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato",
+        "id": "EVIDENCE_41",
+        "url": "https://www.nato.int/en/news-and-events/articles/news/2023/04/04/finland-joins-nato-as-31st-ally",
+        "title": "Evidence file 1",
+        "canonicalUrl": "https://www.nato.int/en/news-and-events/articles/news/2023/04/04/finland-joins-nato-as-31st-ally",
+        "bodySha256": "158c6b458bd387ed66de89e5209bc025d45b31b45e1d4f6c1204505d5ba51cfc"
+      }
+    ],
+    "primaryInputId": "EVIDENCE_41"
+  },
+  {
+    "id": "retrieval-failure-probe-missing-article-source-reorder",
+    "slice": "retrieval-failure-probe",
+    "familyId": "missing-article",
+    "publisher": "NATO",
+    "sourceKey": "nato",
+    "variant": "source-reorder",
+    "post": "Finland joined NATO on 4 April 2023.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Finland",
+        "event": "NATO accession",
+        "date": "2023-04-04",
+        "intendedArticleStatus": "supported",
+        "suppliedModalStatus": "unsupported"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato",
+        "id": "S1",
+        "url": "https://www.nato.int/en/news-and-events/articles/news/2023/04/04/finland-joins-nato-as-31st-ally",
+        "title": "Finland joins NATO as 31st Ally",
+        "canonicalUrl": "https://www.nato.int/en/news-and-events/articles/news/2023/04/04/finland-joins-nato-as-31st-ally",
+        "bodySha256": "158c6b458bd387ed66de89e5209bc025d45b31b45e1d4f6c1204505d5ba51cfc"
+      }
+    ],
+    "primaryInputId": "S1"
+  },
+  {
+    "id": "retrieval-failure-probe-missing-article-publisher-redacted",
+    "slice": "retrieval-failure-probe",
+    "familyId": "missing-article",
+    "publisher": "NATO",
+    "sourceKey": "nato",
+    "variant": "publisher-redacted",
+    "post": "Finland joined NATO on 4 April 2023.",
+    "reference": {
+      "expectedStatus": "unsupported",
+      "expectedClaimCount": 1,
+      "meaning": {
+        "subject": "Finland",
+        "event": "NATO accession",
+        "date": "2023-04-04",
+        "intendedArticleStatus": "supported",
+        "suppliedModalStatus": "unsupported"
+      },
+      "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+    },
+    "inputSources": [
+      {
+        "key": "nato",
+        "id": "S1",
+        "url": "https://document-1.example.org/record",
+        "title": "Document 1",
+        "canonicalUrl": "https://www.nato.int/en/news-and-events/articles/news/2023/04/04/finland-joins-nato-as-31st-ally",
+        "bodySha256": "158c6b458bd387ed66de89e5209bc025d45b31b45e1d4f6c1204505d5ba51cfc"
+      }
+    ],
+    "primaryInputId": "S1"
+  }
+]

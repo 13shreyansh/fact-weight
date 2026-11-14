@@ -1,0 +1,300 @@
+{
+  "id": "main-accession-fee-gap-source-reorder",
+  "slice": "main",
+  "familyId": "accession-fee-gap",
+  "publisher": "NATO",
+  "sourceKey": "nato-act",
+  "variant": "source-reorder",
+  "post": "Finland paid exactly 13 million euros as an accession fee on 4 April 2023.",
+  "reference": {
+    "expectedStatus": "unsupported",
+    "expectedClaimCount": 1,
+    "meaning": {
+      "subject": "Finland",
+      "event": "NATO accession fee payment",
+      "quantity": "13 million euros",
+      "date": "2023-04-04"
+    },
+    "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+  },
+  "inputSources": [
+    {
+      "key": "entsoe",
+      "id": "S2",
+      "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+      "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+      "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+      "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+    },
+    {
+      "key": "nato-act",
+      "id": "S1",
+      "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+      "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+      "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+      "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+    }
+  ],
+  "primaryInputId": "S1",
+  "manifestSha256": "8ad4b5122417dd98df25a8ea85fc91166b93df8de058a10462d3728202a5adc9",
+  "completedAt": "2026-11-14T16:18:26.401Z",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The provided sources discuss Finland's accession to NATO on April 4, 2023, and the synchronization of Baltic electricity systems with Continental Europe, but neither source mentions Finland paying an accession fee of exactly 13 million euros on that date."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 56,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.113856,
+      "prompt_tokens": 2148,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 2204
+    },
+    "latencyMs": 1571,
+    "requestId": "chatcmpl-EkAkCVRTFpPd3e5oNKShbzB6rlZJi"
+  },
+  "baselineError": null,
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Finland paid exactly 13 million euros as an accession fee on 4 April 2023.",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "On April 4, 2023, NATO’s Headquarters in Brussels, Belgium raised a white flag with sea blue Nordic cross, and Finland became the newest member to the North Atlantic Treaty Organization (NATO).",
+            "relation": "context",
+            "basis": "direct_record",
+            "reason": "The quote only establishes that Finland joined NATO on April 4, 2023. It mentions no accession fee, payment or 13 million euro amount, so the claimed count and event are not evidenced.",
+            "group": "G2",
+            "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+            "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+            "fetchedAt": "2026-11-14T16:08:39.275Z",
+            "publishedAt": "2023-09-15T16:23:40+00:00"
+          },
+          {
+            "sourceId": "S1",
+            "quote": "This spring, when Finland flew its flag on NATO grounds and played its national anthem —it was a historic experience for the attendees.",
+            "relation": "context",
+            "basis": "attribution",
+            "reason": "Describes accession ceremony but no mention of payment.",
+            "group": "G2",
+            "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+            "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+            "fetchedAt": "2026-11-14T16:08:39.275Z",
+            "publishedAt": "2023-09-15T16:23:40+00:00"
+          }
+        ],
+        "explanation": "Some proposed relations did not pass a second model check. The accepted passages below determine this evidence label.",
+        "missing": "Direct evidence or official records confirming Finland paid an accession fee of exactly 13 million euros on 4 April 2023.",
+        "postQuote": "Finland paid exactly 13 million euros as an accession fee on 4 April 2023."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "fetchedAt": "2026-11-14T16:06:38.348Z",
+        "publishedAt": null,
+        "hash": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720",
+        "requestId": "2e53c03c-3927-4784-b29c-090b4ffc0d2b",
+        "extractedCharacters": 4439,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S2",
+        "publisher": "ENTSO-E",
+        "family": "Baltic grid synchronisation",
+        "articleCoverage": "target article present",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "auditSourceKey": "entsoe",
+        "group": "G1"
+      },
+      {
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "fetchedAt": "2026-11-14T16:08:39.275Z",
+        "publishedAt": "2023-09-15T16:23:40+00:00",
+        "hash": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7",
+        "requestId": "e049a65c-805b-4e48-960a-2aec86c72269",
+        "extractedCharacters": 3471,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "publisher": "NATO",
+        "family": "Finland accession",
+        "articleCoverage": "target article present",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "auditSourceKey": "nato-act",
+        "group": "G2"
+      }
+    ],
+    "rejectedCitations": 1,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 2502,
+      "completion_tokens": 787,
+      "total_tokens": 6591,
+      "credits_charged": 5.817792
+    },
+    "inferenceMs": 9235,
+    "extractionMs": 310,
+    "comparisonMs": 4283,
+    "verificationMs": 4642,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch385bbMvXZLCy4dneswr",
+    "syntaxRetries": 0,
+    "requestId": "chatcmpl-EkAkESrwahkWw4rkl7e8zRqCBNxsP",
+    "extractionRequestId": "chatcmpl-EkAju332PkiVjU4quMT23lkDF4qKB"
+  },
+  "pipelineError": null,
+  "checks": {
+    "expectedClaimCount": 1,
+    "returnedClaimCount": 1,
+    "countPass": true,
+    "anchorsPass": true,
+    "quotes": [
+      {
+        "sourceId": "S1",
+        "relation": "context",
+        "exactMatch": true
+      },
+      {
+        "sourceId": "S1",
+        "relation": "context",
+        "exactMatch": true
+      }
+    ]
+  },
+  "calls": [
+    {
+      "method": "baseline",
+      "requestedModel": "gpt-4.1-mini",
+      "systemSha256": "b3783f8e7c0bae14e811887ccb58fb0cd58110916d06f9649d7ea570f4ce11e7",
+      "inputSha256": "04f7e14f5c56c38e1ef7c0e2492c3528f66f1597f0fccea55000e7dc413b833f",
+      "queuedMs": 0,
+      "at": "2026-11-14T16:18:15.595Z",
+      "httpStatus": 200,
+      "responseId": "chatcmpl-EkAkCVRTFpPd3e5oNKShbzB6rlZJi",
+      "returnedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 56,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "credits_charged": 0.113856,
+        "prompt_tokens": 2148,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 2204
+      },
+      "responseBodySha256": "70c39dc1b13f66f3301c44924b4c3e33905c99febce9180c63760003bd76939a",
+      "wireMs": 1569
+    },
+    {
+      "method": "pipeline",
+      "requestedModel": "gpt-4.1-mini",
+      "systemSha256": "b43f1f0d160d9f5b48ce9d675cee3121a0ebfc57242c1a9c4c1f8f93464df677",
+      "inputSha256": "ad3335f4e17ecd5740ab2d2627f7013dc4e495bd8b708d209b7c641b1cc3aa69",
+      "queuedMs": 0,
+      "at": "2026-11-14T16:18:17.166Z",
+      "httpStatus": 200,
+      "responseId": "chatcmpl-EkAju332PkiVjU4quMT23lkDF4qKB",
+      "returnedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 55,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "credits_charged": 0.017856,
+        "prompt_tokens": 152,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 207
+      },
+      "responseBodySha256": "86f03a0e0533be0ac5ffd6c55d308e327f9b69ae0748017728f6b981e3e26638",
+      "wireMs": 308
+    },
+    {
+      "method": "pipeline",
+      "requestedModel": "gpt-4.1-mini",
+      "systemSha256": "f85bb0c61b551f733b50da9488f1de8796c2bbcdcbc7321874446d1fe6320ae4",
+      "inputSha256": "dc503786cad5ca78e01a819ce5166721940f52b79ecd488eae064c046f25018a",
+      "queuedMs": 440,
+      "at": "2026-11-14T16:18:17.917Z",
+      "httpStatus": 200,
+      "responseId": "chatcmpl-EkAkESrwahkWw4rkl7e8zRqCBNxsP",
+      "returnedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 389,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "credits_charged": 0.187296,
+        "prompt_tokens": 2346,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 2735
+      },
+      "responseBodySha256": "af4d70165e0831ff1bb60af32b441014036a11c78e7e1aa63080ec336c36babe",
+      "wireMs": 3841
+    },
+    {
+      "method": "pipeline",
+      "requestedModel": "claude-fable-5.2",
+      "systemSha256": "75f5d9c0d704c68d389c8bfcc77a8ae17ba27185ba432d45cb10ad753caf6204",
+      "inputSha256": "4391803bf97806044041cc6fcf0a7b030be9d7ffa2ebb6680de8be0c92257632",
+      "queuedMs": 0,
+      "at": "2026-11-14T16:18:21.761Z",
+      "httpStatus": 200,
+      "responseId": "msg_vrtx_011Ch385bbMvXZLCy4dneswr",
+      "returnedModel": "claude-fable-5.2",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 343,
+        "completion_tokens_details": {
+          "reasoning_tokens": 144
+        },
+        "credits_charged": 5.61264,
+        "prompt_tokens": 4,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 3649
+      },
+      "responseBodySha256": "2e6a8d481973eb0e18978503511bbcba082195b62f96171aedcaa9bdef522aba",
+      "wireMs": 4640
+    }
+  ],
+  "elapsedMs": 10808
+}

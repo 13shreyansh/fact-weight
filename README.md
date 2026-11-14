@@ -1,5 +1,17 @@
 # Fact Weight
 
+## Judge quick path
+
+| Criterion                                              | Evidence to open                                                                                                                                                                                             | What it establishes and limits                                                                                                                                                            |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Hostinger detection quality, 40%                       | [Frozen C-16 audit](eval/c16/REPORT.md), [raw cases](eval/c16/results/), [historical ledger](eval/LEDGER.md)                                                                                                 | Publisher/source slices, nuisance flips and separate stage grades. Agent-authored references, no human gold labels or broad misinformation accuracy.                                      |
+| Technical execution and live Hostinger deployment, 25% | [Live app](https://fact-weight.72.61.22.106.sslip.io), [public verification](eval/LIVE_CHECKS.md), [deployment isolation](deploy/README.md)                                                                  | Actual public source retrieval, cited analysis, export and re-fetch; pinned c465b5f on Hostinger. No production uptime or compliance claim.                                               |
+| Originality and real-world impact, 20%                 | [Claim/evidence engine](engine.mjs), [known failures](eval/LEDGER.md), [scope and limits](HANDOFF.md)                                                                                                        | Inspectable claim-first comparison, quote checks and source groups. Originality and user impact have not been independently established. Multiple links do not prove independent sources. |
+| Demo clarity, 15%                                      | [Constructed live example](https://fact-weight.72.61.22.106.sslip.io), [two-minute script](DEMO_SCRIPT.md), [five-minute pitch](PEER_REVIEW.md), [actual screenshots](.impeccable/review/public-desktop.jpg) | A demonstrated interaction and recording plan. No public video or final submission yet; script times are planned, not video evidence timestamps.                                          |
+| Context.dev technology-prize integration               | [Retrieval code](retrieval.mjs), [live request IDs](eval/LIVE_CHECKS.md), [C-16 collection coverage](eval/c16/sources.json)                                                                                  | Search, extraction and fresh re-fetch are real API paths. Wrong-content and unavailable retrievals remain failures. This is not the Context.dev main entry.                               |
+
+C-09 build delivery is complete. C-16 is a separate audit/documentation improvement; it does not silently replace the deployed app or its earlier headline. The C-16 protocol is frozen in [SPEC.md](eval/c16/SPEC.md) and [manifest.json](eval/c16/manifest.json).
+
 A claim-versus-evidence desk for Baltic readers. Paste a post, find or choose source articles, and inspect supporting, conflicting and missing evidence with passages, source groups and retrieval timestamps.
 
 Built during Junction 2026 by Shreyansh, solo team The CS Guy. Main challenge: Hostinger. Technology prize: Context.dev, not its main challenge.
@@ -38,6 +50,8 @@ No label is a truth probability or a judgment about author intent. Search is lim
 
 ## Evaluation
 
+C-16 adds a [frozen publisher/nuisance audit](eval/c16/REPORT.md): 48 main cases from eight families, plus six wrong-content probes. A rephrase changes a personal opinion into a supported factual prefix. The independent agent review separates extraction faithfulness, passage relevance and support status, and refuses broader claims. Strict signature counts include decomposition differences and must not be called broad accuracy. The original site headline and runtime remain unchanged.
+
 The easiest synthetic result is not our headline. A real document exposed problems that the synthetic cases missed.
 
 | Test                                       |     Baseline |                          Fact Weight |
@@ -58,7 +72,7 @@ node eval/run.mjs --split=source-heldout --version=my-electricity-run
 node eval/run.mjs --split=fresh-source-heldout --version=my-second-document-run
 ```
 
-There are 13 local contract tests. Model outputs, request IDs, source metadata and hashes are retained in evaluation records. Preparing sources uses live Context.dev calls; source content may drift. Full external documents are kept only in ignored `work/`, not committed. Historical model versions are under `eval/versions/`.
+There are 16 local contract/scoring tests. Model outputs, request IDs, source metadata and hashes are retained in evaluation records. Preparing sources uses live Context.dev calls; source content may drift. Full external documents are kept only in ignored `work/`, not committed. Historical model versions are under `eval/versions/`.
 
 ## Deployment and demo
 

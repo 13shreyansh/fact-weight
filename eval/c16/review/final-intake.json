@@ -1,0 +1,15 @@
+{
+  "purpose": "Final independent C16 spec and evidence review; no builder conversation or README",
+  "providedAt": "2026-11-14T16:20:08.548932+00:00",
+  "files": {
+    "SPEC.md": "ae6280ed74ce5f803272c3d5775e679788cb1001cad2bcf7360d46831fb398a7",
+    "manifest.json": "8ad4b5122417dd98df25a8ea85fc91166b93df8de058a10462d3728202a5adc9",
+    "fixtures.json": "e0bbe89fc1bb024d76f20f5ffea33b363815a29a8010afe3f2cd63614e92b0b1",
+    "source-snapshots.json": "1cdad053f4c6de0d93c7f4edf95e0953bfde21fd2874863699da255494186cc4",
+    "scoring.mjs": "280bfb429ac02dd8f1e92e4581aa562c5282e2c00d7ead3f822495c6371e6314",
+    "run.mjs": "f5ce240894caedb4dedd3d0a7d7935fc78b68035686cee331e5890662e39421b",
+    "prior-source-inventory.json": "bd423dcc2d7faf77cbf22fc26b7af7443fcf5adbd55772963816ea919124f336",
+    "review-evidence.json": "1e4b58e8196585e6783a646505d8627ab6746e3351065f617bf88f89bf832560",
+    "run-summary.json": "be89268bfa278b9fb878dbece7abeda824fb2ae41b84e86bc7d14ecbd532ce27"
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "id": "main-grid-date-conflict-publisher-redacted",
+  "slice": "main",
+  "familyId": "grid-date-conflict",
+  "publisher": "ENTSO-E",
+  "sourceKey": "entsoe",
+  "variant": "publisher-redacted",
+  "post": "Estonia, Latvia and Lithuania synchronised their electricity grids with continental Europe on 10 February 2025.",
+  "reference": {
+    "expectedStatus": "contradicted",
+    "expectedClaimCount": 1,
+    "meaning": {
+      "subject": "Estonia, Latvia, Lithuania",
+      "event": "grid synchronisation with continental Europe",
+      "date": "2025-02-10"
+    },
+    "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+  },
+  "inputSources": [
+    {
+      "key": "entsoe",
+      "id": "S1",
+      "url": "https://document-1.example.org/record",
+      "title": "Document 1",
+      "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+      "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+    },
+    {
+      "key": "nato-act",
+      "id": "S2",
+      "url": "https://document-2.example.net/record",
+      "title": "Document 2",
+      "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+      "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+    }
+  ],
+  "primaryInputId": "S1",
+  "manifestSha256": "8ad4b5122417dd98df25a8ea85fc91166b93df8de058a10462d3728202a5adc9",
+  "completedAt": "2026-11-14T16:15:04.562Z",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The source states that Estonia, Latvia, and Lithuania synchronized their electricity grids with continental Europe on 9 February 2025, not on 10 February 2025 as claimed in the post."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 49,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.108864,
+      "prompt_tokens": 2072,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 2121
+    },
+    "latencyMs": 1942,
+    "requestId": "chatcmpl-EkAh0MQrVEkeGgRzrKJR5dA2sa3W1"
+  },
+  "baselineError": null,
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Estonia, Latvia and Lithuania synchronised their electricity grids with continental Europe on 10 February 2025.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "Estonia, Latvia, and Lithuania have successfully synchronized their electricity grids with the Continental Europe Synchronous Area (CESA) on 09 February 2025 at 14:05 EET, marking a historic milestone",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The source states the synchronization occurred on 9 February 2025, not 10 February 2025 as claimed.",
+            "group": "G1",
+            "url": "https://document-1.example.org/record",
+            "title": "Document 1",
+            "fetchedAt": "2026-11-14T16:06:38.348Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source confirms that Estonia, Latvia, and Lithuania successfully synchronized their electricity grids with the Continental Europe Synchronous Area on 9 February 2025 at 14:05 EET, which is one day earlier than the claimed date of 10 February 2025. The evidence establishes the event and the participants but contradicts the exact date given in the claim.",
+        "missing": "No evidence supports the synchronization occurring on 10 February 2025; the exact date is contradicted by the source.",
+        "postQuote": "Estonia, Latvia and Lithuania synchronised their electricity grids with continental Europe on 10 February 2025."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://document-1.example.org/record",
+        "title": "Document 1",
+        "fetchedAt": "2026-11-14T16:06:38.348Z",
+        "publishedAt": null,
+        "hash": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720",
+        "requestId": "2e53c03c-3927-4784-b29c-090b4ffc0d2b",
+        "extractedCharacters": 4439,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "publisher": "ENTSO-E",
+        "family": "Baltic grid synchronisation",
+        "articleCoverage": "target article present",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "auditSourceKey": "entsoe",
+        "group": "G1"
+      },
+      {
+        "url": "https://document-2.example.net/record",
+        "title": "Document 2",
+        "fetchedAt": "2026-11-14T16:08:39.275Z",
+        "publishedAt": "2023-09-15T16:23:40+00:00",
+        "hash": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7",
+        "requestId": "e049a65c-805b-4e48-960a-2aec86c72269",
+        "extractedCharacters": 3471,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S2",
+        "publisher": "NATO",
+        "family": "Finland accession",
+        "articleCoverage": "target article present",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "auditSourceKey": "nato-act",
+        "group": "G2"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 2430,
+      "completion_tokens": 730,
+      "total_tokens": 6407,
+      "credits_charged": 6.15672
+    },
+    "inferenceMs": 5174,
+    "extractionMs": 1391,
+    "comparisonMs": 3478,
+    "verificationMs": 305,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch37oJu5KYEkXT7GzHZmE",
+    "syntaxRetries": 0,
+    "requestId": "chatcmpl-EkAh3gToUlwpM6EaWdBUs6CPw7s2f",
+    "extractionRequestId": "chatcmpl-EkAgea7G27R4v7gFS0PdM5iInvvEm"
+  },
+  "pipelineError": null,
+  "checks": {
+    "expectedClaimCount": 1,
+    "returnedClaimCount": 1,
+    "countPass": true,
+    "anchorsPass": true,
+    "quotes": [
+      {
+        "sourceId": "S1",
+        "relation": "contradicts",
+        "exactMatch": true
+      }
+    ]
+  },
+  "calls": [
+    {
+      "method": "baseline",
+      "requestedModel": "gpt-4.1-mini",
+      "systemSha256": "b3783f8e7c0bae14e811887ccb58fb0cd58110916d06f9649d7ea570f4ce11e7",
+      "inputSha256": "a9c5a324b71ff98aad7b047372eedf749460de2ad54318987a4518df49156e37",
+      "queuedMs": 749,
+      "at": "2026-11-14T16:14:58.194Z",
+      "httpStatus": 200,
+      "responseId": "chatcmpl-EkAh0MQrVEkeGgRzrKJR5dA2sa3W1",
+      "returnedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 49,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "credits_charged": 0.108864,
+        "prompt_tokens": 2072,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 2121
+      },
+      "responseBodySha256": "11593a72e87ef5baa1624cc29dd01adbfa25c95a397695d07dfb6e5bd528bcb2",
+      "wireMs": 1192
+    },
+    {
+      "method": "pipeline",
+      "requestedModel": "gpt-4.1-mini",
+      "systemSha256": "b43f1f0d160d9f5b48ce9d675cee3121a0ebfc57242c1a9c4c1f8f93464df677",
+      "inputSha256": "96d1c7a5eda7b1716239f4e6fcc1eaf2ab24b95fc17d163a3bb44548c644ac5f",
+      "queuedMs": 1057,
+      "at": "2026-11-14T16:15:00.443Z",
+      "httpStatus": 200,
+      "responseId": "chatcmpl-EkAgea7G27R4v7gFS0PdM5iInvvEm",
+      "returnedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 59,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "credits_charged": 0.01872,
+        "prompt_tokens": 154,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 213
+      },
+      "responseBodySha256": "524540897133b4bcac1fcaaa9fd34bb8456609bf9dd0e68d858c501b724e6460",
+      "wireMs": 334
+    },
+    {
+      "method": "pipeline",
+      "requestedModel": "gpt-4.1-mini",
+      "systemSha256": "f85bb0c61b551f733b50da9488f1de8796c2bbcdcbc7321874446d1fe6320ae4",
+      "inputSha256": "9d8017fbe79c9bc93ea51570594d3d4779ce017bf374d83ef47f26940fa16706",
+      "queuedMs": 415,
+      "at": "2026-11-14T16:15:01.194Z",
+      "httpStatus": 200,
+      "responseId": "chatcmpl-EkAh3gToUlwpM6EaWdBUs6CPw7s2f",
+      "returnedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 237,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "credits_charged": 0.15456,
+        "prompt_tokens": 2272,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 2509
+      },
+      "responseBodySha256": "ce2d5f7116245582d8a77499eb9da9ac96b111fd05867a8e80dd5040c9ab839b",
+      "wireMs": 3061
+    },
+    {
+      "method": "pipeline",
+      "requestedModel": "claude-fable-5.2",
+      "systemSha256": "75f5d9c0d704c68d389c8bfcc77a8ae17ba27185ba432d45cb10ad753caf6204",
+      "inputSha256": "999fc9da19a18865a7df5967c5b7ef2faa72dd21c1ddb80f717ed064d0f41517",
+      "queuedMs": 0,
+      "at": "2026-11-14T16:15:04.257Z",
+      "httpStatus": 200,
+      "responseId": "msg_vrtx_011Ch37oJu5KYEkXT7GzHZmE",
+      "returnedModel": "claude-fable-5.2",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 434,
+        "completion_tokens_details": {
+          "reasoning_tokens": 279
+        },
+        "credits_charged": 5.98344,
+        "prompt_tokens": 4,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 3685
+      },
+      "responseBodySha256": "45168453cab0d3691a732c0f56772f87c1f18748d4627dc53cce0bfb0ed70fad",
+      "wireMs": 304
+    }
+  ],
+  "elapsedMs": 7118
+}

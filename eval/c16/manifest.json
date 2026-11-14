@@ -1,0 +1,63 @@
+{
+  "audit": "C16-publisher-nuisance-v1",
+  "sealedAt": "2026-11-14T16:14:08.171Z",
+  "runtimeRelease": "c465b5ffd39022c7e08af038087b7a6033372074",
+  "models": {
+    "proposer": "gpt-4.1-mini",
+    "veto": "claude-fable-5.2"
+  },
+  "developmentPublishers": [
+    "Council of the EU"
+  ],
+  "heldoutPublishers": [
+    "ENTSO-E",
+    "NATO"
+  ],
+  "claimFamilyUnit": 8,
+  "mainCases": 48,
+  "retrievalFailureProbeCases": 6,
+  "hashes": {
+    "engine.mjs": "82b280cbce7964ef3b7e18bb9434246428c13e22ce82a1082abdb698684c2017",
+    "retrieval.mjs": "27959bf4f5415dab12fa931c3520136a2f646a52f69ec3a0dda327488cdc46e6",
+    "eval/c16/SPEC.md": "ae6280ed74ce5f803272c3d5775e679788cb1001cad2bcf7360d46831fb398a7",
+    "eval/c16/fixtures.json": "e0bbe89fc1bb024d76f20f5ffea33b363815a29a8010afe3f2cd63614e92b0b1",
+    "eval/c16/sources.json": "2b564dcbbf7e1fffdbb7408a4995070f6c6e8d3595d348a7855b89f0b171d6ce",
+    "eval/c16/build-fixtures.mjs": "e6ba32e023376e0bb5b7f97a0f1ff98152306112322c6da2fde2e6d74155bd5c",
+    "eval/c16/run.mjs": "f5ce240894caedb4dedd3d0a7d7935fc78b68035686cee331e5890662e39421b",
+    "eval/c16/scoring.mjs": "280bfb429ac02dd8f1e92e4581aa562c5282e2c00d7ead3f822495c6371e6314"
+  },
+  "sources": [
+    {
+      "id": "entsoe",
+      "publisher": "ENTSO-E",
+      "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+      "hash": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720",
+      "requestId": "2e53c03c-3927-4784-b29c-090b4ffc0d2b",
+      "articleCoverage": "target article present"
+    },
+    {
+      "id": "nato",
+      "publisher": "NATO",
+      "url": "https://www.nato.int/en/news-and-events/articles/news/2023/04/04/finland-joins-nato-as-31st-ally",
+      "hash": "158c6b458bd387ed66de89e5209bc025d45b31b45e1d4f6c1204505d5ba51cfc",
+      "requestId": "87df9770-e451-4994-9fab-7c41b4a4b905",
+      "articleCoverage": "wrong-content account modal"
+    },
+    {
+      "id": "nato-act",
+      "publisher": "NATO",
+      "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+      "hash": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7",
+      "requestId": "e049a65c-805b-4e48-960a-2aec86c72269",
+      "articleCoverage": "target article present"
+    }
+  ],
+  "limits": [
+    "No human gold labels",
+    "Publisher holdout is from this project, not model pretraining",
+    "ENTSO-E shares the development grid event and potentially upstream information",
+    "NATO and NATO ACT are one publisher",
+    "Source independence is not established",
+    "Repeated variants are correlated"
+  ]
+}

@@ -1,0 +1,282 @@
+{
+  "id": "main-accession-date-conflict-neutral-wrapper",
+  "slice": "main",
+  "familyId": "accession-date-conflict",
+  "publisher": "NATO",
+  "sourceKey": "nato-act",
+  "variant": "neutral-wrapper",
+  "post": "Statement to inspect against the supplied documents: Finland joined NATO on 5 April 2023.",
+  "reference": {
+    "expectedStatus": "contradicted",
+    "expectedClaimCount": 1,
+    "meaning": {
+      "subject": "Finland",
+      "event": "NATO accession",
+      "date": "2023-04-05"
+    },
+    "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+  },
+  "inputSources": [
+    {
+      "key": "nato-act",
+      "id": "S1",
+      "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+      "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+      "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+      "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+    },
+    {
+      "key": "entsoe",
+      "id": "S2",
+      "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+      "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+      "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+      "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+    }
+  ],
+  "primaryInputId": "S1",
+  "manifestSha256": "8ad4b5122417dd98df25a8ea85fc91166b93df8de058a10462d3728202a5adc9",
+  "completedAt": "2026-11-14T16:17:41.543Z",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The source from NATO states that Finland became a NATO member on April 4, 2023, not April 5, 2023 as claimed in the post."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 44,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.111504,
+      "prompt_tokens": 2147,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 2191
+    },
+    "latencyMs": 1242,
+    "requestId": "chatcmpl-EkAjZOFhzKrMLZPaEWc06RkDsZxqV"
+  },
+  "baselineError": null,
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Finland joined NATO on 5 April 2023.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "On April 4, 2023, NATO’s Headquarters in Brussels, Belgium raised a white flag with sea blue Nordic cross, and Finland became the newest member to the North Atlantic Treaty Organization (NATO).",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The source explicitly states Finland joined NATO on April 4, 2023, contradicting the claim of April 5, 2023.",
+            "group": "G1",
+            "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+            "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+            "fetchedAt": "2026-11-14T16:08:39.275Z",
+            "publishedAt": "2023-09-15T16:23:40+00:00"
+          }
+        ],
+        "explanation": "The source S1 states that Finland became the newest member of NATO on April 4, 2023, when NATO's Headquarters raised the Finnish flag. This directly relates to Finland joining NATO but gives the date as April 4, 2023, not April 5, 2023. There is no evidence in the provided sources supporting the claim that Finland joined NATO on April 5, 2023. No other sources address this claim or date.",
+        "missing": "Evidence confirming the exact date of Finland's accession as April 5, 2023, or clarifying if the accession date was April 4 or 5, 2023.",
+        "postQuote": "Finland joined NATO on 5 April 2023."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Allied Command Transformation Welcomes 31st Member: Finland - NATO's ACT",
+        "fetchedAt": "2026-11-14T16:08:39.275Z",
+        "publishedAt": "2023-09-15T16:23:40+00:00",
+        "hash": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7",
+        "requestId": "e049a65c-805b-4e48-960a-2aec86c72269",
+        "extractedCharacters": 3471,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "publisher": "NATO",
+        "family": "Finland accession",
+        "articleCoverage": "target article present",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "auditSourceKey": "nato-act",
+        "group": "G1"
+      },
+      {
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "ENTSO-E confirms successful synchronization of the Continental European electricity system with the systems of the Baltic countries",
+        "fetchedAt": "2026-11-14T16:06:38.348Z",
+        "publishedAt": null,
+        "hash": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720",
+        "requestId": "2e53c03c-3927-4784-b29c-090b4ffc0d2b",
+        "extractedCharacters": 4439,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S2",
+        "publisher": "ENTSO-E",
+        "family": "Baltic grid synchronisation",
+        "articleCoverage": "target article present",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "auditSourceKey": "entsoe",
+        "group": "G2"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 2485,
+      "completion_tokens": 574,
+      "total_tokens": 6260,
+      "credits_charged": 5.323104
+    },
+    "inferenceMs": 3639,
+    "extractionMs": 1654,
+    "comparisonMs": 1147,
+    "verificationMs": 838,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch381sZSMuyLELB7YbRvB",
+    "syntaxRetries": 0,
+    "requestId": "chatcmpl-EkAjQ7rNElBiyrq2yKfo6Ln0J8tOr",
+    "extractionRequestId": "chatcmpl-EkAjag3NDXGtFwHJk6FjMmc9ixIze"
+  },
+  "pipelineError": null,
+  "checks": {
+    "expectedClaimCount": 1,
+    "returnedClaimCount": 1,
+    "countPass": true,
+    "anchorsPass": true,
+    "quotes": [
+      {
+        "sourceId": "S1",
+        "relation": "contradicts",
+        "exactMatch": true
+      }
+    ]
+  },
+  "calls": [
+    {
+      "method": "baseline",
+      "requestedModel": "gpt-4.1-mini",
+      "systemSha256": "b3783f8e7c0bae14e811887ccb58fb0cd58110916d06f9649d7ea570f4ce11e7",
+      "inputSha256": "7ef77411e6e159028149a836c2e40fe15de5cd4abd50c7cfe6fa38a4c82aacb3",
+      "queuedMs": 0,
+      "at": "2026-11-14T16:17:36.662Z",
+      "httpStatus": 200,
+      "responseId": "chatcmpl-EkAjZOFhzKrMLZPaEWc06RkDsZxqV",
+      "returnedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 44,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "credits_charged": 0.111504,
+        "prompt_tokens": 2147,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 2191
+      },
+      "responseBodySha256": "8ff2cd0b96c631ffcd1b0425dad7866b9f57479fc9f1fa437435ba67772894dd",
+      "wireMs": 1241
+    },
+    {
+      "method": "pipeline",
+      "requestedModel": "gpt-4.1-mini",
+      "systemSha256": "b43f1f0d160d9f5b48ce9d675cee3121a0ebfc57242c1a9c4c1f8f93464df677",
+      "inputSha256": "5b2853fdf760e3a63b767d1df16df7228e5b27c1b8479ff5c375d9a2710403ee",
+      "queuedMs": 259,
+      "at": "2026-11-14T16:17:38.163Z",
+      "httpStatus": 200,
+      "responseId": "chatcmpl-EkAjag3NDXGtFwHJk6FjMmc9ixIze",
+      "returnedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 39,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "credits_charged": 0.014736,
+        "prompt_tokens": 151,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 190
+      },
+      "responseBodySha256": "e271a1ed854fe6a9de221a044afd461b07adee5e3897c08b39a60650a70e201b",
+      "wireMs": 1394
+    },
+    {
+      "method": "pipeline",
+      "requestedModel": "gpt-4.1-mini",
+      "systemSha256": "f85bb0c61b551f733b50da9488f1de8796c2bbcdcbc7321874446d1fe6320ae4",
+      "inputSha256": "3ef617830e1728cd2729c8d0d81ae733fd88a43b979ef0be2c35946d78316bf1",
+      "queuedMs": 855,
+      "at": "2026-11-14T16:17:40.414Z",
+      "httpStatus": 200,
+      "responseId": "chatcmpl-EkAjQ7rNElBiyrq2yKfo6Ln0J8tOr",
+      "returnedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 264,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "credits_charged": 0.162528,
+        "prompt_tokens": 2330,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 2594
+      },
+      "responseBodySha256": "a409c990170b6ba283028a4f1e278c0a1eef892912109d53ec13c07aa4666e09",
+      "wireMs": 290
+    },
+    {
+      "method": "pipeline",
+      "requestedModel": "claude-fable-5.2",
+      "systemSha256": "75f5d9c0d704c68d389c8bfcc77a8ae17ba27185ba432d45cb10ad753caf6204",
+      "inputSha256": "7db3865ee06652e7be7810d8ed869c8af538a255e25939be78af611d074b0252",
+      "queuedMs": 458,
+      "at": "2026-11-14T16:17:41.165Z",
+      "httpStatus": 200,
+      "responseId": "msg_vrtx_011Ch381sZSMuyLELB7YbRvB",
+      "returnedModel": "claude-fable-5.2",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 271,
+        "completion_tokens_details": {
+          "reasoning_tokens": 142
+        },
+        "credits_charged": 5.14584,
+        "prompt_tokens": 4,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 3476
+      },
+      "responseBodySha256": "80c52710a2f7e21d0ac64e87479e5c957f3cb75038c393ed0f26861ed92fabbc",
+      "wireMs": 378
+    }
+  ],
+  "elapsedMs": 4882
+}

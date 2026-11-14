@@ -1,0 +1,12 @@
+{
+  "purpose": "Independent C16 spec and evidence review; no builder conversation",
+  "contextBoundary": "fresh-context agent, not human review",
+  "files": {
+    "run.mjs": "f5ce240894caedb4dedd3d0a7d7935fc78b68035686cee331e5890662e39421b",
+    "manifest.json": "8ad4b5122417dd98df25a8ea85fc91166b93df8de058a10462d3728202a5adc9",
+    "source-snapshots.json": "1cdad053f4c6de0d93c7f4edf95e0953bfde21fd2874863699da255494186cc4",
+    "scoring.mjs": "280bfb429ac02dd8f1e92e4581aa562c5282e2c00d7ead3f822495c6371e6314",
+    "fixtures.json": "e0bbe89fc1bb024d76f20f5ffea33b363815a29a8010afe3f2cd63614e92b0b1",
+    "SPEC.md": "ae6280ed74ce5f803272c3d5775e679788cb1001cad2bcf7360d46831fb398a7"
+  }
+}

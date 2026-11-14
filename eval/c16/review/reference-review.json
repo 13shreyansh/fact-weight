@@ -1,0 +1,550 @@
+{
+  "audit": "C16-publisher-nuisance-v1",
+  "reviewPhase": "protocol-and-references-before-outputs",
+  "provenance": {
+    "reviewer": "fresh-context Codex computational agent",
+    "humanReview": false,
+    "exactUnderlyingModelIdentifier": null,
+    "modelIdentifierReason": "Exact underlying reviewer model identifier is not exposed.",
+    "evidenceBoundary": "Seven packet files only; no builder narrative, engine/deployment inspection, network, browser or model execution.",
+    "writingGuidanceNote": "The required local Unslop skill was read for writing style only, not as audit evidence."
+  },
+  "inputs": {
+    "run.mjs": {
+      "sha256": "f5ce240894caedb4dedd3d0a7d7935fc78b68035686cee331e5890662e39421b",
+      "matchesIntake": true
+    },
+    "manifest.json": {
+      "sha256": "8ad4b5122417dd98df25a8ea85fc91166b93df8de058a10462d3728202a5adc9",
+      "matchesIntake": true
+    },
+    "source-snapshots.json": {
+      "sha256": "1cdad053f4c6de0d93c7f4edf95e0953bfde21fd2874863699da255494186cc4",
+      "matchesIntake": true
+    },
+    "scoring.mjs": {
+      "sha256": "280bfb429ac02dd8f1e92e4581aa562c5282e2c00d7ead3f822495c6371e6314",
+      "matchesIntake": true
+    },
+    "fixtures.json": {
+      "sha256": "e0bbe89fc1bb024d76f20f5ffea33b363815a29a8010afe3f2cd63614e92b0b1",
+      "matchesIntake": true
+    },
+    "SPEC.md": {
+      "sha256": "ae6280ed74ce5f803272c3d5775e679788cb1001cad2bcf7360d46831fb398a7",
+      "matchesIntake": true
+    }
+  },
+  "outputsPresent": false,
+  "performanceConclusions": "refused",
+  "protocolDecision": "qualified source-relative audit; execution and output grades pending",
+  "integrityChecks": {
+    "intakeDigests": {
+      "status": "pass",
+      "count": 6
+    },
+    "suppliedManifestFileDigests": {
+      "status": "pass",
+      "count": 4
+    },
+    "sourceTextHashes": {
+      "status": "pass",
+      "count": 3
+    },
+    "fixtureSourceMappingsAndHashes": {
+      "status": "pass",
+      "cases": 54
+    },
+    "uniqueCaseIds": {
+      "status": "pass",
+      "count": 54
+    },
+    "bodySetsInvariantWithinFamily": {
+      "status": "pass",
+      "families": 9
+    },
+    "wrappersAndMetadataOnlyPostInvariance": {
+      "status": "pass",
+      "families": 9
+    }
+  },
+  "designCounts": {
+    "mainCases": 48,
+    "mainFamilies": 8,
+    "mainOriginalToVariantPairs": 40,
+    "probeCases": 6,
+    "probeFamilies": 1,
+    "mainReferenceLabels": {
+      "supported": 12,
+      "contradicted": 12,
+      "unsupported": 24
+    },
+    "mainOpinionCases": 12,
+    "mainFlagPositiveFamilies": 2,
+    "referenceContestedCases": 0
+  },
+  "sourceCoverage": [
+    {
+      "id": "entsoe",
+      "publisher": "ENTSO-E",
+      "targetArticlePresent": true,
+      "grade": "pass",
+      "reason": "Relevant target article body present.",
+      "evidence": [
+        "source-snapshots.json#/0/text"
+      ],
+      "scope": "Descriptive supplied-snapshot coverage only; retrieval provenance not independently authenticated."
+    },
+    {
+      "id": "nato",
+      "publisher": "NATO",
+      "targetArticlePresent": false,
+      "grade": "fail",
+      "reason": "Account modal only; target article body absent.",
+      "evidence": [
+        "source-snapshots.json#/1/text"
+      ],
+      "scope": "Descriptive supplied-snapshot coverage only; retrieval provenance not independently authenticated."
+    },
+    {
+      "id": "nato-act",
+      "publisher": "NATO",
+      "targetArticlePresent": true,
+      "grade": "pass",
+      "reason": "Relevant target article body present.",
+      "evidence": [
+        "source-snapshots.json#/2/text"
+      ],
+      "scope": "Descriptive supplied-snapshot coverage only; retrieval provenance not independently authenticated."
+    }
+  ],
+  "referenceFamilies": [
+    {
+      "familyId": "grid-date-support",
+      "slice": "main",
+      "publisher": "ENTSO-E",
+      "caseIds": [
+        "main-grid-date-support-original",
+        "main-grid-date-support-rephrased",
+        "main-grid-date-support-neutral-wrapper",
+        "main-grid-date-support-source-rename",
+        "main-grid-date-support-source-reorder",
+        "main-grid-date-support-publisher-redacted"
+      ],
+      "fixturePointers": [
+        "fixtures.json#/0",
+        "fixtures.json#/1",
+        "fixtures.json#/2",
+        "fixtures.json#/3",
+        "fixtures.json#/4",
+        "fixtures.json#/5"
+      ],
+      "expectedStatus": "supported",
+      "statusReviewGrade": "pass",
+      "expectedClaimCount": 1,
+      "countReviewGrade": "pass",
+      "countConvention": "One event assertion including all subjects and qualifiers; subjective preference/evaluation yields zero factual claims.",
+      "variantsMeaningReviewGrade": "pass",
+      "reason": "The ENTSO-E body explicitly dates synchronisation of Estonia, Latvia and Lithuania to 09 February 2025 at 14:05 EET.",
+      "evidence": [
+        "source-snapshots.json#/0/text"
+      ],
+      "outputGrades": null
+    },
+    {
+      "familyId": "grid-date-conflict",
+      "slice": "main",
+      "publisher": "ENTSO-E",
+      "caseIds": [
+        "main-grid-date-conflict-original",
+        "main-grid-date-conflict-rephrased",
+        "main-grid-date-conflict-neutral-wrapper",
+        "main-grid-date-conflict-source-rename",
+        "main-grid-date-conflict-source-reorder",
+        "main-grid-date-conflict-publisher-redacted"
+      ],
+      "fixturePointers": [
+        "fixtures.json#/6",
+        "fixtures.json#/7",
+        "fixtures.json#/8",
+        "fixtures.json#/9",
+        "fixtures.json#/10",
+        "fixtures.json#/11"
+      ],
+      "expectedStatus": "contradicted",
+      "statusReviewGrade": "pass",
+      "expectedClaimCount": 1,
+      "countReviewGrade": "pass",
+      "countConvention": "One event assertion including all subjects and qualifiers; subjective preference/evaluation yields zero factual claims.",
+      "variantsMeaningReviewGrade": "pass",
+      "reason": "The same event is dated 09 February 2025 in ENTSO-E, conflicting with the post date 10 February 2025.",
+      "evidence": [
+        "source-snapshots.json#/0/text"
+      ],
+      "outputGrades": null
+    },
+    {
+      "familyId": "grid-count-gap",
+      "slice": "main",
+      "publisher": "ENTSO-E",
+      "caseIds": [
+        "main-grid-count-gap-original",
+        "main-grid-count-gap-rephrased",
+        "main-grid-count-gap-neutral-wrapper",
+        "main-grid-count-gap-source-rename",
+        "main-grid-count-gap-source-reorder",
+        "main-grid-count-gap-publisher-redacted"
+      ],
+      "fixturePointers": [
+        "fixtures.json#/12",
+        "fixtures.json#/13",
+        "fixtures.json#/14",
+        "fixtures.json#/15",
+        "fixtures.json#/16",
+        "fixtures.json#/17"
+      ],
+      "expectedStatus": "unsupported",
+      "statusReviewGrade": "pass",
+      "expectedClaimCount": 1,
+      "countReviewGrade": "pass",
+      "countConvention": "One event assertion including all subjects and qualifiers; subjective preference/evaluation yields zero factual claims.",
+      "variantsMeaningReviewGrade": "pass",
+      "reason": "ENTSO-E mentions infrastructure upgrades but no count of 47 replaced Lithuanian substations or replacement on the specified date. The NATO ACT distractor adds no such evidence.",
+      "evidence": [
+        "source-snapshots.json#/0/text",
+        "source-snapshots.json#/2/text"
+      ],
+      "outputGrades": null
+    },
+    {
+      "familyId": "grid-opinion",
+      "slice": "main",
+      "publisher": "ENTSO-E",
+      "caseIds": [
+        "main-grid-opinion-original",
+        "main-grid-opinion-rephrased",
+        "main-grid-opinion-neutral-wrapper",
+        "main-grid-opinion-source-rename",
+        "main-grid-opinion-source-reorder",
+        "main-grid-opinion-publisher-redacted"
+      ],
+      "fixturePointers": [
+        "fixtures.json#/18",
+        "fixtures.json#/19",
+        "fixtures.json#/20",
+        "fixtures.json#/21",
+        "fixtures.json#/22",
+        "fixtures.json#/23"
+      ],
+      "expectedStatus": "unsupported",
+      "statusReviewGrade": "pass",
+      "expectedClaimCount": 0,
+      "countReviewGrade": "pass",
+      "countConvention": "One event assertion including all subjects and qualifiers; subjective preference/evaluation yields zero factual claims.",
+      "variantsMeaningReviewGrade": "pass",
+      "reason": "Personal evaluation, with zero factual claims under SPEC.md. Unsupported is a zero-claim reporting convention, not an opinion truth judgment.",
+      "evidence": [
+        "SPEC.md:28",
+        "scoring.mjs:4-7"
+      ],
+      "outputGrades": null
+    },
+    {
+      "familyId": "accession-date-support",
+      "slice": "main",
+      "publisher": "NATO",
+      "caseIds": [
+        "main-accession-date-support-original",
+        "main-accession-date-support-rephrased",
+        "main-accession-date-support-neutral-wrapper",
+        "main-accession-date-support-source-rename",
+        "main-accession-date-support-source-reorder",
+        "main-accession-date-support-publisher-redacted"
+      ],
+      "fixturePointers": [
+        "fixtures.json#/24",
+        "fixtures.json#/25",
+        "fixtures.json#/26",
+        "fixtures.json#/27",
+        "fixtures.json#/28",
+        "fixtures.json#/29"
+      ],
+      "expectedStatus": "supported",
+      "statusReviewGrade": "pass",
+      "expectedClaimCount": 1,
+      "countReviewGrade": "pass",
+      "countConvention": "One event assertion including all subjects and qualifiers; subjective preference/evaluation yields zero factual claims.",
+      "variantsMeaningReviewGrade": "pass",
+      "reason": "The ACT body explicitly says Finland became the newest member on April 4, 2023. September 15 is the article date.",
+      "evidence": [
+        "source-snapshots.json#/2/text"
+      ],
+      "outputGrades": null
+    },
+    {
+      "familyId": "accession-date-conflict",
+      "slice": "main",
+      "publisher": "NATO",
+      "caseIds": [
+        "main-accession-date-conflict-original",
+        "main-accession-date-conflict-rephrased",
+        "main-accession-date-conflict-neutral-wrapper",
+        "main-accession-date-conflict-source-rename",
+        "main-accession-date-conflict-source-reorder",
+        "main-accession-date-conflict-publisher-redacted"
+      ],
+      "fixturePointers": [
+        "fixtures.json#/30",
+        "fixtures.json#/31",
+        "fixtures.json#/32",
+        "fixtures.json#/33",
+        "fixtures.json#/34",
+        "fixtures.json#/35"
+      ],
+      "expectedStatus": "contradicted",
+      "statusReviewGrade": "pass",
+      "expectedClaimCount": 1,
+      "countReviewGrade": "pass",
+      "countConvention": "One event assertion including all subjects and qualifiers; subjective preference/evaluation yields zero factual claims.",
+      "variantsMeaningReviewGrade": "pass",
+      "reason": "ACT dates the accession to April 4, 2023, conflicting with April 5 in the post.",
+      "evidence": [
+        "source-snapshots.json#/2/text"
+      ],
+      "outputGrades": null
+    },
+    {
+      "familyId": "accession-fee-gap",
+      "slice": "main",
+      "publisher": "NATO",
+      "caseIds": [
+        "main-accession-fee-gap-original",
+        "main-accession-fee-gap-rephrased",
+        "main-accession-fee-gap-neutral-wrapper",
+        "main-accession-fee-gap-source-rename",
+        "main-accession-fee-gap-source-reorder",
+        "main-accession-fee-gap-publisher-redacted"
+      ],
+      "fixturePointers": [
+        "fixtures.json#/36",
+        "fixtures.json#/37",
+        "fixtures.json#/38",
+        "fixtures.json#/39",
+        "fixtures.json#/40",
+        "fixtures.json#/41"
+      ],
+      "expectedStatus": "unsupported",
+      "statusReviewGrade": "pass",
+      "expectedClaimCount": 1,
+      "countReviewGrade": "pass",
+      "countConvention": "One event assertion including all subjects and qualifiers; subjective preference/evaluation yields zero factual claims.",
+      "variantsMeaningReviewGrade": "pass",
+      "reason": "Neither main source body establishes a NATO accession fee, payment of 13 million euros, or payment on April 4. This is insufficient evidence rather than a proved falsehood.",
+      "evidence": [
+        "source-snapshots.json#/0/text",
+        "source-snapshots.json#/2/text"
+      ],
+      "outputGrades": null
+    },
+    {
+      "familyId": "flag-opinion",
+      "slice": "main",
+      "publisher": "NATO",
+      "caseIds": [
+        "main-flag-opinion-original",
+        "main-flag-opinion-rephrased",
+        "main-flag-opinion-neutral-wrapper",
+        "main-flag-opinion-source-rename",
+        "main-flag-opinion-source-reorder",
+        "main-flag-opinion-publisher-redacted"
+      ],
+      "fixturePointers": [
+        "fixtures.json#/42",
+        "fixtures.json#/43",
+        "fixtures.json#/44",
+        "fixtures.json#/45",
+        "fixtures.json#/46",
+        "fixtures.json#/47"
+      ],
+      "expectedStatus": "unsupported",
+      "statusReviewGrade": "pass",
+      "expectedClaimCount": 0,
+      "countReviewGrade": "pass",
+      "countConvention": "One event assertion including all subjects and qualifiers; subjective preference/evaluation yields zero factual claims.",
+      "variantsMeaningReviewGrade": "pass",
+      "reason": "Personal preference, with zero factual claims under the declared extraction convention. Unsupported encodes no claims.",
+      "evidence": [
+        "SPEC.md:28",
+        "scoring.mjs:4-7"
+      ],
+      "outputGrades": null
+    },
+    {
+      "familyId": "missing-article",
+      "slice": "retrieval-failure-probe",
+      "publisher": "NATO",
+      "caseIds": [
+        "retrieval-failure-probe-missing-article-original",
+        "retrieval-failure-probe-missing-article-rephrased",
+        "retrieval-failure-probe-missing-article-neutral-wrapper",
+        "retrieval-failure-probe-missing-article-source-rename",
+        "retrieval-failure-probe-missing-article-source-reorder",
+        "retrieval-failure-probe-missing-article-publisher-redacted"
+      ],
+      "fixturePointers": [
+        "fixtures.json#/48",
+        "fixtures.json#/49",
+        "fixtures.json#/50",
+        "fixtures.json#/51",
+        "fixtures.json#/52",
+        "fixtures.json#/53"
+      ],
+      "expectedStatus": "unsupported",
+      "statusReviewGrade": "pass",
+      "expectedClaimCount": 1,
+      "countReviewGrade": "pass",
+      "countConvention": "One event assertion including all subjects and qualifiers; subjective preference/evaluation yields zero factual claims.",
+      "variantsMeaningReviewGrade": "pass",
+      "reason": "The extracted headquarters body is an account modal. Title and URL clues do not establish the accession date in a retrieved target-article passage. Unsupported is defensible for the body.",
+      "evidence": [
+        "source-snapshots.json#/1/text"
+      ],
+      "outputGrades": null
+    }
+  ],
+  "referenceAnnotationDisagreements": [
+    {
+      "field": "meaning.intendedArticleStatus",
+      "familyId": "missing-article",
+      "declaredValue": "supported",
+      "reviewGrade": "unjudgeable",
+      "reason": "The intended headquarters article body is absent. ACT corroborates the historical date, not the missing article contents.",
+      "evidence": [
+        "fixtures.json#/48/reference/meaning",
+        "source-snapshots.json#/1/text",
+        "source-snapshots.json#/2/text",
+        "SPEC.md:15"
+      ]
+    }
+  ],
+  "sourceIndependence": {
+    "established": false,
+    "reason": "NATO headquarters and ACT are one group. Development source bodies and history are absent. Different publisher names and different article topics do not establish independent information origins.",
+    "evidence": [
+      "SPEC.md:7-9",
+      "manifest.json#/limits",
+      "source-snapshots.json"
+    ]
+  },
+  "protocolLimitations": [
+    {
+      "id": "partial-publisher-redaction",
+      "grade": "fail",
+      "reason": "Title and URL change, while canonicalUrl, retained snapshot publisher metadata, auditSourceKey and body publisher clues remain. Candidate serialization is unavailable.",
+      "evidence": [
+        "fixtures.json#/5/inputSources",
+        "run.mjs:95-116",
+        "source-snapshots.json#/0/text",
+        "source-snapshots.json#/2/text"
+      ]
+    },
+    {
+      "id": "shared-deadline-method-confound",
+      "grade": "fail",
+      "reason": "Baseline always runs first; candidate receives the remainder of the same 120-second abort signal. Queueing and pair concurrency also affect scheduling.",
+      "evidence": [
+        "run.mjs:38-43",
+        "run.mjs:108-126",
+        "run.mjs:176-177"
+      ]
+    },
+    {
+      "id": "no-op-probe-order",
+      "grade": "fail",
+      "reason": "A one-source array is unchanged by reversal. This probe pair does not test source-order sensitivity.",
+      "evidence": [
+        "fixtures.json#/48/inputSources",
+        "fixtures.json#/52/inputSources"
+      ]
+    },
+    {
+      "id": "status-agreement-conflates-extraction",
+      "grade": "fail",
+      "reason": "No extracted claims becomes unsupported, allowing reference agreement for a missed factual evidence-gap claim. Opinions use that same label.",
+      "evidence": [
+        "scoring.mjs:4-14",
+        "run.mjs:128-156"
+      ]
+    },
+    {
+      "id": "mechanical-check-limits",
+      "grade": "fail",
+      "reason": "Normalized substrings do not prove semantic faithfulness or relevance. Empty quotes can pass includes; empty evidence supplies no coverage. normalize implementation is absent.",
+      "evidence": [
+        "run.mjs:133-148"
+      ]
+    },
+    {
+      "id": "unvalidated-label-scoring",
+      "grade": "fail",
+      "reason": "Runner has no visible baseline label allowlist; non-ERROR non-flag strings become TN on negative tasks even when invalid. Non-string labels can throw. Engine-side validation is absent.",
+      "evidence": [
+        "run.mjs:155",
+        "scoring.mjs:1-3",
+        "scoring.mjs:25-40"
+      ]
+    },
+    {
+      "id": "incomplete-promised-summary",
+      "grade": "fail",
+      "reason": "No family-level any-failure rate, structured semantic grades/unjudgeable denominators, per-source retrieval table, or per-publisher baseline nuisance table. Candidate failures list excludes baseline/quote failures.",
+      "evidence": [
+        "SPEC.md:25-34",
+        "scoring.mjs:58-96",
+        "run.mjs:189-260"
+      ]
+    },
+    {
+      "id": "runtime-provenance-unverified",
+      "grade": "unjudgeable",
+      "reason": "Engine, retrieval implementation, deployment evidence, development history and actual calls are absent. Source text is checked but runtime source metadata comes from another path.",
+      "evidence": [
+        "manifest.json#/hashes",
+        "run.mjs:4",
+        "run.mjs:12-29",
+        "run.mjs:95-102"
+      ]
+    },
+    {
+      "id": "limited-sampling-and-constructs",
+      "grade": "fail",
+      "reason": "Eight correlated main families from two institutional publisher groups, the same two bodies in every main case, no contested references, no explicit negation/attribution test, combined ID/title rename. Publisher slices concern target family, not exclusive input evidence.",
+      "evidence": [
+        "fixtures.json",
+        "SPEC.md:7-19"
+      ]
+    }
+  ],
+  "refusals": [
+    "No performance, accuracy, FPR, recall, request-success, nuisance-stability or baseline-superiority conclusion without outputs.",
+    "No human-review, human-agreement or human-gold-label claim.",
+    "No broad real-world accuracy or calibrated-probability claim.",
+    "No proven source independence, pretraining exclusion or publisher representativeness claim.",
+    "No verified development holdout, deployed runtime identity, retry behavior, actual returned model, billing or cold-latency claim.",
+    "No exact reviewer model identifier is invented.",
+    "No recommendation to tune the frozen engine, alter cases or silently repair labels after outcomes."
+  ],
+  "pendingOutputGrading": {
+    "extractionFaithfulness": null,
+    "evidenceRelevance": null,
+    "relevantEvidenceCoverage": null,
+    "supportStatusForExtractedClaim": null,
+    "originalPostEndToEndRelation": null,
+    "allowedGrades": [
+      "pass",
+      "fail",
+      "unjudgeable"
+    ],
+    "requiredAccounting": "Separate dimensions and reasons; explicit missing-output/API-error/unjudgeable denominators; keep family and publisher slices."
+  }
+}

@@ -80,3 +80,7 @@ This is a runtime repair after the fresh holdout, not a new semantic prompt vers
 ## JSON-repair regression result
 
 Repeated24-case source set, not untouched:23/24 labels,6/7 flag precision,6/6 recall,1/18 false flags,0 request errors. Baseline23/24,5/5 precision,5/6 recall,0/18 false flags.25 accepted quotations matched,1 rejected. Provider-reported75.913248 credits for both methods. Measured median total inference1,489ms, p95 2,056ms on repeated requests; this is not verified cold latency and may benefit from provider caching. The fresh22/24 result remains the headline.
+
+## C-16 documentation/evaluation audit, runtime unchanged
+
+See [frozen final report](c16/REPORT.md).54 first outcomes,48 main cases across8 underlying families and2 publisher groups plus6 wrong-content probes. Strict signatures42/48 vs baseline41/48 are not semantic accuracy:5 count-gap outputs have faithful multi-claim decomposition. Independent context-separated agent grades extraction44/54 faithful, passages45/48 relevant; no human labels or calibration. One rephrasing turns a personal flag-design opinion into a supported factual prefix. Neutral-wrapper signature change is decomposition only. All failures and reviewer refusals are published. No runtime update, no silent site-headline change.

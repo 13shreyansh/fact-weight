@@ -29,3 +29,7 @@ Record the public video using DEMO_SCRIPT.md, at most2:00. Use PEER_REVIEW.md fo
 ## Safe maintenance
 
 The initial installer aborts if the own container already exists. Do not rerun it as an update strategy. Prepare a reviewed release and an own-app-only update separately if needed. Never inspect or dump Docker Env or the ACME private JSON. Read-only checks: own container status/health, public /api/health and Spread ActiveState/SubState/MainPID. No automated final submission or account change is configured.
+
+## C-16 follow-up
+
+C-16 adds a judge quick-path index, publisher-held-out/source-aware audit, paired nuisance checks and a fresh-context spec/evidence-only agent review. See eval/c16/REPORT.md and its immutable artifacts. C-09 remains DONE and deployed c465b5f is unchanged. One real rephrase-driven opinion-extraction failure and wrong-content retrieval/rationale failures remain documented; no runtime fix is claimed. Reviewer provenance is computational, not human or calibrated.

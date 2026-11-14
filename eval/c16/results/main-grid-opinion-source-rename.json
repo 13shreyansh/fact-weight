@@ -1,0 +1,277 @@
+{
+  "id": "main-grid-opinion-source-rename",
+  "slice": "main",
+  "familyId": "grid-opinion",
+  "publisher": "ENTSO-E",
+  "sourceKey": "entsoe",
+  "variant": "source-rename",
+  "post": "I think the Baltic grid synchronisation was a wonderful idea.",
+  "reference": {
+    "expectedStatus": "unsupported",
+    "expectedClaimCount": 0,
+    "meaning": {
+      "opinion": true
+    },
+    "labelProvenance": "agent-authored source-derived reference; independent review pending; no human labels"
+  },
+  "inputSources": [
+    {
+      "key": "entsoe",
+      "id": "EVIDENCE_41",
+      "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+      "title": "Evidence file 1",
+      "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+      "bodySha256": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720"
+    },
+    {
+      "key": "nato-act",
+      "id": "EVIDENCE_72",
+      "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+      "title": "Evidence file 2",
+      "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+      "bodySha256": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7"
+    }
+  ],
+  "primaryInputId": "EVIDENCE_41",
+  "manifestSha256": "8ad4b5122417dd98df25a8ea85fc91166b93df8de058a10462d3728202a5adc9",
+  "completedAt": "2026-11-14T16:16:52.158Z",
+  "baselineLabel": "supported",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The ENTSO-E press release confirms the successful synchronization of the Baltic electricity grids with Continental Europe, describing it as a historic milestone that strengthens energy resilience, independence, and security for the Baltic states. This aligns with the positive sentiment expressed in the post that the Baltic grid synchronization was a wonderful idea."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 68,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.114768,
+      "prompt_tokens": 2119,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 2187
+    },
+    "latencyMs": 2476,
+    "requestId": "chatcmpl-EkAii8gYxQ3cCLZAOkOzFtGAqgUp6"
+  },
+  "baselineError": null,
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Baltic grid synchronisation was a wonderful idea.",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "EVIDENCE_41",
+            "quote": "The synchronization of the Baltic states with the Continental Europe Synchronous Area is an important step towards strengthening the energy independence and security of Estonia, Latvia, and Lithuania. It also underlines the power of European solidarity and cooperation in building a resilient and interconnected energy future.",
+            "relation": "context",
+            "basis": "attribution",
+            "reason": "The independent relation check did not establish direct support or contradiction.",
+            "group": "G1",
+            "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+            "title": "Evidence file 1",
+            "fetchedAt": "2026-11-14T16:06:38.348Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The post anchor is an opinion or does not establish this as a faithful checkable assertion.",
+        "missing": "A direct statement or attribution explicitly calling the Baltic grid synchronization a 'wonderful idea' is missing.",
+        "postQuote": "the Baltic grid synchronisation was a wonderful idea"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "title": "Evidence file 1",
+        "fetchedAt": "2026-11-14T16:06:38.348Z",
+        "publishedAt": null,
+        "hash": "f331bbc6621fbce8c4ac2655eaf82a26db1d55ffc23c5d13fe2053d77abb3720",
+        "requestId": "2e53c03c-3927-4784-b29c-090b4ffc0d2b",
+        "extractedCharacters": 4439,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "EVIDENCE_41",
+        "publisher": "ENTSO-E",
+        "family": "Baltic grid synchronisation",
+        "articleCoverage": "target article present",
+        "canonicalUrl": "https://www.entsoe.eu/news/2025/02/09/entso-e-confirms-successful-synchronization-of-the-continental-european-electricity-system-with-the-systems-of-the-baltic-countries/",
+        "auditSourceKey": "entsoe",
+        "group": "G1"
+      },
+      {
+        "url": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "title": "Evidence file 2",
+        "fetchedAt": "2026-11-14T16:08:39.275Z",
+        "publishedAt": "2023-09-15T16:23:40+00:00",
+        "hash": "3f07fbe9f7c57a566da5c4a813ffa730c3c842cdbb3e71eb9d5d728ea0ca82a7",
+        "requestId": "e049a65c-805b-4e48-960a-2aec86c72269",
+        "extractedCharacters": 3471,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "EVIDENCE_72",
+        "publisher": "NATO",
+        "family": "Finland accession",
+        "articleCoverage": "target article present",
+        "canonicalUrl": "https://www.act.nato.int/article/act-welcomes-31st-member-finland/",
+        "auditSourceKey": "nato-act",
+        "group": "G2"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 2454,
+      "completion_tokens": 475,
+      "total_tokens": 6175,
+      "credits_charged": 4.941888
+    },
+    "inferenceMs": 6721,
+    "extractionMs": 562,
+    "comparisonMs": 2953,
+    "verificationMs": 3206,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch37xnbxePFfYGG3Lz9Fe",
+    "syntaxRetries": 0,
+    "requestId": "chatcmpl-EkAikS5oZ8Qw7ycvnrQdneHm5w9UL",
+    "extractionRequestId": "chatcmpl-EkAibv2oA7Kragzi3QXyt52rezlUI"
+  },
+  "pipelineError": null,
+  "checks": {
+    "expectedClaimCount": 0,
+    "returnedClaimCount": 1,
+    "countPass": false,
+    "anchorsPass": true,
+    "quotes": [
+      {
+        "sourceId": "EVIDENCE_41",
+        "relation": "context",
+        "exactMatch": true
+      }
+    ]
+  },
+  "calls": [
+    {
+      "method": "baseline",
+      "requestedModel": "gpt-4.1-mini",
+      "systemSha256": "b3783f8e7c0bae14e811887ccb58fb0cd58110916d06f9649d7ea570f4ce11e7",
+      "inputSha256": "d4113660b5f5f08c9ce4c4cd70386add6fa8933d30bef47cfd4bdf81b6630419",
+      "queuedMs": 750,
+      "at": "2026-11-14T16:16:43.712Z",
+      "httpStatus": 200,
+      "responseId": "chatcmpl-EkAii8gYxQ3cCLZAOkOzFtGAqgUp6",
+      "returnedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 68,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "credits_charged": 0.114768,
+        "prompt_tokens": 2119,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 2187
+      },
+      "responseBodySha256": "93d157e944d14173c0c1612ae1b0f94e7bb5aa12f2c18244c24dddeffc7f2d2b",
+      "wireMs": 1724
+    },
+    {
+      "method": "pipeline",
+      "requestedModel": "gpt-4.1-mini",
+      "systemSha256": "b43f1f0d160d9f5b48ce9d675cee3121a0ebfc57242c1a9c4c1f8f93464df677",
+      "inputSha256": "f7c016a7bc181ffa8f0e49094dd5220352e1674bc58c75ee265b9a3da1cb62df",
+      "queuedMs": 0,
+      "at": "2026-11-14T16:16:45.438Z",
+      "httpStatus": 200,
+      "responseId": "chatcmpl-EkAibv2oA7Kragzi3QXyt52rezlUI",
+      "returnedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 36,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "credits_charged": 0.013824,
+        "prompt_tokens": 144,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 180
+      },
+      "responseBodySha256": "48afbc9881cbe77ce3fef37ab8eabb9f59a4cfb94590792ecaaa37b1e5e7dbe7",
+      "wireMs": 561
+    },
+    {
+      "method": "pipeline",
+      "requestedModel": "gpt-4.1-mini",
+      "systemSha256": "f85bb0c61b551f733b50da9488f1de8796c2bbcdcbc7321874446d1fe6320ae4",
+      "inputSha256": "227a692eae2ede6caad0fc627a8f668b6056a40982103236ae8d41e49b2991d5",
+      "queuedMs": 188,
+      "at": "2026-11-14T16:16:46.188Z",
+      "httpStatus": 200,
+      "responseId": "chatcmpl-EkAikS5oZ8Qw7ycvnrQdneHm5w9UL",
+      "returnedModel": "gpt-4.1-mini",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 258,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "credits_charged": 0.160224,
+        "prompt_tokens": 2306,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 2564
+      },
+      "responseBodySha256": "5e28ceea763c78b13a9d9e88fbb167e0209320cf6a3ccb1d8c41001c159152b7",
+      "wireMs": 2763
+    },
+    {
+      "method": "pipeline",
+      "requestedModel": "claude-fable-5.2",
+      "systemSha256": "75f5d9c0d704c68d389c8bfcc77a8ae17ba27185ba432d45cb10ad753caf6204",
+      "inputSha256": "160387cb695e9372e29bfe0df0039b4ed64d9db333f95465cb1fcaf77ab22b18",
+      "queuedMs": 0,
+      "at": "2026-11-14T16:16:48.953Z",
+      "httpStatus": 200,
+      "responseId": "msg_vrtx_011Ch37xnbxePFfYGG3Lz9Fe",
+      "returnedModel": "claude-fable-5.2",
+      "finishReason": "stop",
+      "usage": {
+        "completion_tokens": 181,
+        "credits_charged": 4.76784,
+        "prompt_tokens": 4,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "total_tokens": 3431
+      },
+      "responseBodySha256": "7a9b3d48c89e9eba183f7a3ef0710e8186dc9452c914afaf96cff0213540658e",
+      "wireMs": 3204
+    }
+  ],
+  "elapsedMs": 9198
+}

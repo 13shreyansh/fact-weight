@@ -1,0 +1,22 @@
+{
+  "reviewer": "fresh-context Codex computational agent",
+  "agentTask": "/root/c16_evidence_reviewer",
+  "forkTurns": "none",
+  "modelOverride": false,
+  "exactUnderlyingModelIdentifier": null,
+  "humanReview": false,
+  "humanCalibration": false,
+  "builderConversationProvided": false,
+  "builderReadmeProvided": false,
+  "protocol": "Only sealed specification and referenced source/code/output evidence; two evidence-only supplements, no reruns.",
+  "reviewFiles": {
+    "FINAL_REVIEW.md": "ae7eb1fd844bc0d543d712aa7db955c82901b4bbbc94d2ff0bb57c6fcfcef625",
+    "PROTOCOL_REVIEW.md": "e9a3df635196f5fc557c373b84da8fdc25a878df41272f3482347da33b999f7c",
+    "final-intake.json": "a66d5a993f321c65b6ca4cbf5c7c058adc01d5d64df8f09adb58601aae42a24f",
+    "initial-intake.json": "619ea7b08b1b85d7ffcf3ef982b7b7d314e950e774b9ec3150fcc7299e6d97b9",
+    "reference-review.json": "d87cb2726a7c4418d5f4480b5d1e7066986c101e71887a25e20095dcdbd8c596",
+    "semantic-grades.json": "7dc5cd6631b9c03502e8d0cc80e77979f52fb1e8f0c88efaf2a4efeeb5e2b291",
+    "supplement-intake.json": "b763d9d6a69a331ef6004c52f1867fb7a3c798a3152ee3173466f7db913db6e6"
+  },
+  "sourceBodyRetention": "Private work packet; public source metadata and normalized-body hashes remain inspectable. Full external articles are not relicensed or committed."
+}

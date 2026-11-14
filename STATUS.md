@@ -7,3 +7,7 @@ Live https://fact-weight.72.61.22.106.sslip.io. Public repo https://github.com/1
 Fresh source test22/24 vs baseline23/24,1/18 false flags,1 failed response before JSON repair. Repair regression23/24, no failed responses; false flag remains. No human labels or calibrated confidence. Full details in eval/LEDGER.md and eval/LIVE_CHECKS.md. See HANDOFF.md for access boundaries and maintenance.
 
 DEMO_SCRIPT.md and PEER_REVIEW.md are complete. Public video and final competition submission not performed. IAB only; never use personal Chrome. No Spread, Traefik, password, SSH or server-template changes.
+
+## C-16 follow-up
+
+C-16 adds a judge quick-path index, publisher-held-out/source-aware audit, paired nuisance checks and a fresh-context spec/evidence-only agent review. See eval/c16/REPORT.md and its immutable artifacts. C-09 remains DONE and deployed c465b5f is unchanged. One real rephrase-driven opinion-extraction failure and wrong-content retrieval/rationale failures remain documented; no runtime fix is claimed. Reviewer provenance is computational, not human or calibrated.
