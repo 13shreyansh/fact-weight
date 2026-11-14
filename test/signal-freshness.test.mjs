@@ -1,4 +1,64 @@
-import test from'node:test';import assert from'node:assert/strict';import fs from'node:fs';import os from'node:os';import path from'node:path';
-process.env.SIGNAL_DATA=fs.mkdtempSync(path.join(os.tmpdir(),'signal-provider-test-'));process.env.CONTEXT_DEV_API_KEY='test-key-used-only-in-mock';const{scrape}=await import('../signal/providers.mjs');
-test('scheduled scrape bypasses durable cache while normal reads reuse it',async()=>{let calls=0;const original=global.fetch;global.fetch=async()=>{calls++;return new Response(JSON.stringify({markdown:{success:true,data:'actual version '+calls},key_metadata:{credits_consumed:1}}),{status:200})};try{let a=await scrape('https://example.com/unit-only');let b=await scrape('https://example.com/unit-only');let c=await scrape('https://example.com/unit-only',null,{}, {fresh:true});assert.equal(a.markdown.data,b.markdown.data);assert.notEqual(a.markdown.data,c.markdown.data);assert.equal(calls,2)}finally{global.fetch=original}});
-test('failed retry attempts remain separate durable spend reservations',async()=>{const {db,spend}=await import('../signal/providers.mjs');const original=global.fetch;let attempts=0;global.fetch=async()=>{attempts++;return new Response(JSON.stringify({message:'rate limited'}),{status:429})};try{for(let i=0;i<3;i++)await assert.rejects(scrape('https://example.com/fail-only'));const rows=db.prepare("SELECT count(*) n,sum(reserved) reserved FROM calls WHERE status=429").get();assert.equal(attempts,3);assert.equal(rows.n,3);assert.equal(rows.reserved,30)}finally{global.fetch=original}});
+import test from "node:test";
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+process.env.SIGNAL_DATA = fs.mkdtempSync(
+  path.join(os.tmpdir(), "signal-provider-test-"),
+);
+process.env.CONTEXT_DEV_API_KEY = "test-key-used-only-in-mock";
+const { scrape } = await import("../signal/providers.mjs");
+test("scheduled scrape bypasses durable cache while normal reads reuse it", async () => {
+  let calls = 0;
+  const original = global.fetch;
+  global.fetch = async () => {
+    calls++;
+    return new Response(
+      JSON.stringify({
+        markdown: { success: true, data: "actual version " + calls },
+        key_metadata: { credits_consumed: 1 },
+      }),
+      { status: 200 },
+    );
+  };
+  try {
+    let a = await scrape("https://example.com/unit-only");
+    let b = await scrape("https://example.com/unit-only");
+    let c = await scrape(
+      "https://example.com/unit-only",
+      null,
+      {},
+      { fresh: true },
+    );
+    assert.equal(a.markdown.data, b.markdown.data);
+    assert.notEqual(a.markdown.data, c.markdown.data);
+    assert.equal(calls, 2);
+  } finally {
+    global.fetch = original;
+  }
+});
+test("failed retry attempts remain separate durable spend reservations", async () => {
+  const { db, spend } = await import("../signal/providers.mjs");
+  const original = global.fetch;
+  let attempts = 0;
+  global.fetch = async () => {
+    attempts++;
+    return new Response(JSON.stringify({ message: "rate limited" }), {
+      status: 429,
+    });
+  };
+  try {
+    for (let i = 0; i < 3; i++)
+      await assert.rejects(scrape("https://example.com/fail-only"));
+    const rows = db
+      .prepare(
+        "SELECT count(*) n,sum(reserved) reserved FROM calls WHERE status=429",
+      )
+      .get();
+    assert.equal(attempts, 3);
+    assert.equal(rows.n, 3);
+    assert.equal(rows.reserved, 30);
+  } finally {
+    global.fetch = original;
+  }
+});

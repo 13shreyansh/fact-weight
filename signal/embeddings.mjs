@@ -1,6 +1,49 @@
-import{pipeline,env}from'@huggingface/transformers';import{get,put,hash}from'./providers.mjs';
-env.cacheDir=(process.env.SIGNAL_DATA||'data')+'/models';let model;
-export const embeddingKey=text=>hash('sf-embed-v2:'+text);
-export async function embedPosts(posts){const relevant=posts.filter(p=>p.text.length>60);const missing=relevant.filter(p=>!get('embedding',embeddingKey(p.text)));if(missing.length&&!model)model=await pipeline('feature-extraction','Xenova/paraphrase-multilingual-MiniLM-L12-v2',{dtype:'q8',session_options:{intra_op_num_threads:2}});for(let i=0;i<missing.length;i+=16){const batch=missing.slice(i,i+16);const out=await model(batch.map(p=>p.text.slice(0,400)),{pooling:'mean',normalize:true});out.tolist().forEach((v,i)=>put('embedding',embeddingKey(batch[i].text),v))}return relevant.map(p=>({...p,embedding:get('embedding',embeddingKey(p.text))}));}
-export function similarity(a,b){return a.reduce((n,x,i)=>n+x*b[i],0)}
-export async function semanticGroups(posts,threshold=.88){const withVectors=await embedPosts(posts);let groups=[];for(const p of withVectors){let found=groups.find(g=>Math.abs(Date.parse(p.postedAt)-Date.parse(g[0].postedAt))<48*3600000&&similarity(p.embedding,g[0].embedding)>=threshold);found?found.push(p):groups.push([p])}return groups.filter(g=>g.length>=3).map(g=>g.map(({embedding,...p})=>p))}
+import { pipeline, env } from "@huggingface/transformers";
+import { get, put, hash } from "./providers.mjs";
+env.cacheDir = (process.env.SIGNAL_DATA || "data") + "/models";
+let model;
+export const embeddingKey = (text) => hash("sf-embed-v2:" + text);
+export async function embedPosts(posts) {
+  const relevant = posts.filter((p) => p.text.length > 60);
+  const missing = relevant.filter(
+    (p) => !get("embedding", embeddingKey(p.text)),
+  );
+  if (missing.length && !model)
+    model = await pipeline(
+      "feature-extraction",
+      "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+      { dtype: "q8", session_options: { intra_op_num_threads: 2 } },
+    );
+  for (let i = 0; i < missing.length; i += 16) {
+    const batch = missing.slice(i, i + 16);
+    const out = await model(
+      batch.map((p) => p.text.slice(0, 400)),
+      { pooling: "mean", normalize: true },
+    );
+    out
+      .tolist()
+      .forEach((v, i) => put("embedding", embeddingKey(batch[i].text), v));
+  }
+  return relevant.map((p) => ({
+    ...p,
+    embedding: get("embedding", embeddingKey(p.text)),
+  }));
+}
+export function similarity(a, b) {
+  return a.reduce((n, x, i) => n + x * b[i], 0);
+}
+export async function semanticGroups(posts, threshold = 0.88) {
+  const withVectors = await embedPosts(posts);
+  let groups = [];
+  for (const p of withVectors) {
+    let found = groups.find(
+      (g) =>
+        Math.abs(Date.parse(p.postedAt) - Date.parse(g[0].postedAt)) <
+          48 * 3600000 && similarity(p.embedding, g[0].embedding) >= threshold,
+    );
+    found ? found.push(p) : groups.push([p]);
+  }
+  return groups
+    .filter((g) => g.length >= 3)
+    .map((g) => g.map(({ embedding, ...p }) => p));
+}

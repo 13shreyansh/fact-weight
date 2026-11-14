@@ -10,3 +10,4 @@ __pycache__/
 data/
 artifacts/job02/docs/
 artifacts/e2e/local/
+.codex-job*.log

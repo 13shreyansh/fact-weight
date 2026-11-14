@@ -1,5 +1,48 @@
-import{chromium}from'playwright';import fs from'node:fs/promises';
-const base=process.env.SIGNAL_URL||'http://127.0.0.1:4321';await fs.mkdir('artifacts/e2e/local',{recursive:true});let browser=await chromium.launch({headless:true});let issues=[];
-for(const width of[1440,390]){const page=await browser.newPage({viewport:{width,height:width===390?844:900}});page.on('pageerror',e=>issues.push(e.message));page.on('console',m=>{if(m.type()==='error')issues.push(m.text())});
-for(const[path,name,selector]of[['/w/baltics','home','h1'],['/w/baltics?verdict=not-enough','small-clusters','tr[data-push]'],['/w/baltics/p/4551e298ca84','push','#burst'],['/w/baltics/p/4551e298ca84/trail','trail','.trail-chain'],['/w/baltics/p/4551e298ca84/pack','pack','.sheet'],['/method','method','#running'],['/watches/new','new-watch','#watch-form']]){await page.goto(base+path);await page.locator(selector).first().waitFor();await page.evaluate(()=>document.fonts.ready);const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth);const internals=await page.locator('body').innerText();if(overflow)issues.push(name+' '+width+' overflow');if(/\bnull\b|\bundefined\b|not supplied|‹|›/i.test(internals))issues.push(name+' '+width+' raw text');await page.screenshot({path:`artifacts/e2e/local/${name}-${width}.png`,fullPage:false});console.log(name,width,overflow?'OVERFLOW':'ok')}
-await page.close();}await browser.close();await fs.writeFile('artifacts/e2e/local/report.json',JSON.stringify({base,issues},null,2));console.log(issues);if(issues.length)process.exitCode=1;
+import { chromium } from "playwright";
+import fs from "node:fs/promises";
+const base = process.env.SIGNAL_URL || "http://127.0.0.1:4321";
+await fs.mkdir("artifacts/e2e/local", { recursive: true });
+let browser = await chromium.launch({ headless: true });
+let issues = [];
+for (const width of [1440, 390]) {
+  const page = await browser.newPage({
+    viewport: { width, height: width === 390 ? 844 : 900 },
+  });
+  page.on("pageerror", (e) => issues.push(e.message));
+  page.on("console", (m) => {
+    if (m.type() === "error") issues.push(m.text());
+  });
+  for (const [path, name, selector] of [
+    ["/w/baltics", "home", "h1"],
+    ["/w/baltics?verdict=not-enough", "small-clusters", "tr[data-push]"],
+    ["/w/baltics/p/4551e298ca84", "push", "#burst"],
+    ["/w/baltics/p/4551e298ca84/trail", "trail", ".trail-chain"],
+    ["/w/baltics/p/4551e298ca84/pack", "pack", ".sheet"],
+    ["/method", "method", "#running"],
+    ["/watches/new", "new-watch", "#watch-form"],
+  ]) {
+    await page.goto(base + path);
+    await page.locator(selector).first().waitFor();
+    await page.evaluate(() => document.fonts.ready);
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth > innerWidth,
+    );
+    const internals = await page.locator("body").innerText();
+    if (overflow) issues.push(name + " " + width + " overflow");
+    if (/\bnull\b|\bundefined\b|not supplied|‹|›/i.test(internals))
+      issues.push(name + " " + width + " raw text");
+    await page.screenshot({
+      path: `artifacts/e2e/local/${name}-${width}.png`,
+      fullPage: false,
+    });
+    console.log(name, width, overflow ? "OVERFLOW" : "ok");
+  }
+  await page.close();
+}
+await browser.close();
+await fs.writeFile(
+  "artifacts/e2e/local/report.json",
+  JSON.stringify({ base, issues }, null, 2),
+);
+console.log(issues);
+if (issues.length) process.exitCode = 1;

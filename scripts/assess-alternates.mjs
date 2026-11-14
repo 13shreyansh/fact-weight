@@ -1,5 +1,82 @@
-import{all,get,put,search,scrape,judge,spend}from'../signal/providers.mjs';import{finalize}from'../signal/store.mjs';
-const candidates=all('candidate').filter(c=>c.grouping?.method==='Publisher-declared language alternates'&&c.posts.length>=8).sort((a,b)=>b.posts.length-a.posts.length).slice(0,4);
-for(const c of candidates){try{const preliminary=await judge({posts:c.posts.filter(p=>p.language==='en').concat(c.posts).slice(0,5).map(p=>({id:p.id,text:p.text.slice(0,6000)})),sources:[],signals:c.signals});const query=preliminary.data.claim?.slice(0,220)||preliminary.data.title;let sources=[];for(const q of [query+' site:news.err.ee OR site:lrt.lt OR site:eng.lsm.lv OR site:yle.fi',query+' site:understandingwar.org OR site:nato.int OR site:euvsdisinfo.eu']){const d=await search(q,5);for(const r of d.results||[]){try{const s=await scrape(r.url,null,{formats:{markdown:true},sharedParams:{mainContentOnly:true}});if(s.markdown?.data?.length>300)sources.push({id:'s'+sources.length,name:r.title,url:r.url,text:s.markdown.data.slice(0,14000),call:s._call,publishedAt:s.metadata?.publishedTime});}catch{}}}
-Object.assign(c,get('candidate',c.id));const j=await judge({posts:c.posts.filter(p=>p.language==='en').concat(c.posts).slice(0,8).map(p=>({id:p.id,text:p.text.slice(0,6000)})),sources,signals:c.signals});const result={...c,judgement:j,sources};put('assessed',c.id,result);const p=finalize(result);console.log(c.id,p?.verdict,j.data.sameNarrative,j.data.title,j.usage?.credits_charged);}
-catch(e){console.log(c.id,e.message)}}console.log(spend());
+import {
+  all,
+  get,
+  put,
+  search,
+  scrape,
+  judge,
+  spend,
+} from "../signal/providers.mjs";
+import { finalize } from "../signal/store.mjs";
+const candidates = all("candidate")
+  .filter(
+    (c) =>
+      c.grouping?.method === "Publisher-declared language alternates" &&
+      c.posts.length >= 8,
+  )
+  .sort((a, b) => b.posts.length - a.posts.length)
+  .slice(0, 4);
+for (const c of candidates) {
+  try {
+    const preliminary = await judge({
+      posts: c.posts
+        .filter((p) => p.language === "en")
+        .concat(c.posts)
+        .slice(0, 5)
+        .map((p) => ({ id: p.id, text: p.text.slice(0, 6000) })),
+      sources: [],
+      signals: c.signals,
+    });
+    const query =
+      preliminary.data.claim?.slice(0, 220) || preliminary.data.title;
+    let sources = [];
+    for (const q of [
+      query +
+        " site:news.err.ee OR site:lrt.lt OR site:eng.lsm.lv OR site:yle.fi",
+      query +
+        " site:understandingwar.org OR site:nato.int OR site:euvsdisinfo.eu",
+    ]) {
+      const d = await search(q, 5);
+      for (const r of d.results || []) {
+        try {
+          const s = await scrape(r.url, null, {
+            formats: { markdown: true },
+            sharedParams: { mainContentOnly: true },
+          });
+          if (s.markdown?.data?.length > 300)
+            sources.push({
+              id: "s" + sources.length,
+              name: r.title,
+              url: r.url,
+              text: s.markdown.data.slice(0, 14000),
+              call: s._call,
+              publishedAt: s.metadata?.publishedTime,
+            });
+        } catch {}
+      }
+    }
+    Object.assign(c, get("candidate", c.id));
+    const j = await judge({
+      posts: c.posts
+        .filter((p) => p.language === "en")
+        .concat(c.posts)
+        .slice(0, 8)
+        .map((p) => ({ id: p.id, text: p.text.slice(0, 6000) })),
+      sources,
+      signals: c.signals,
+    });
+    const result = { ...c, judgement: j, sources };
+    put("assessed", c.id, result);
+    const p = finalize(result);
+    console.log(
+      c.id,
+      p?.verdict,
+      j.data.sameNarrative,
+      j.data.title,
+      j.usage?.credits_charged,
+    );
+  } catch (e) {
+    console.log(c.id, e.message);
+  }
+}
+console.log(spend());
