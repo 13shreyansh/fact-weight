@@ -48,20 +48,20 @@ Georgia headings and passages contrast with the compact system body text. Source
 
 ## Layout
 
-The content has a1320px maximum width. Desktop pairs a390px input column with the evidence area. At950px the input narrows to330px; at720px the workspace stacks in reading order. The first screen explains the user, task and action.
+The content has a 1320px maximum width. Desktop pairs a 390px input column with the evidence area. At 950px the input narrows to 330px; at 720px the workspace stacks in reading order. The first screen explains the user, task and action.
 
 ## Elevation & Depth
 
-Flat surfaces and1px rules. No shadows or decorative blur.
+Flat surfaces and 1px rules. No shadows or decorative blur.
 
 ## Shapes
 
-Controls use6px corners. Evidence is a plain white passage area, without nested cards.
+Controls use 6px corners. Evidence is a plain white passage area, without nested cards.
 
 ## Components
 
-Inputs retain labels and helper text. Results show the claim, relation, group counts, quotation, source and timestamp. Loading, error, empty and unavailable-source states have explicit explanations. Focus uses a3px teal outline with4px offset. A250ms result arrival is disabled under reduced motion.
+Inputs retain labels and helper text. Results show the claim, relation, group counts, quotation, source and timestamp. Loading, error, empty and unavailable-source states have explicit explanations. Focus uses a 3px teal outline with 4px offset. A 250ms result arrival is disabled under reduced motion.
 
 ## Do's and Don'ts
 
-Keep uncertainty visible. Keep source links beside quotations. Do not turn group counts into confidence probabilities, use a source as absolute truth, or invent evaluation claims. The detector's initial warm-palette warning was addressed with cool paper; its input-panel spacing warning awaits the single browser QA pass. No independent visual review is claimed.
+Keep uncertainty visible. Keep source links beside quotations. Do not turn group counts into confidence probabilities, use a source as absolute truth, or invent evaluation claims. The detector's initial warm-palette warning was addressed with cool paper. The Chief's final public IAB pass found usable desktop/mobile layouts, with a minor 2px mobile document overflow and no visibly clipped element. No calibrated independent visual study is claimed.

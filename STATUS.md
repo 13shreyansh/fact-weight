@@ -1,11 +1,9 @@
 # Fact Weight durable status
 
-Updated 2026-11-14T17:43+02:00. C-09 owner codex. Chat 01a1daa1-c2ba-78d3-96d4-ead3c534d7b2.
+Updated 2026-11-14T17:58+02:00, Helsinki. C-09 authorized build delivery DONE.
 
-Public repo https://github.com/13shreyansh/fact-weight . Implemented Context.dev search/extraction, fixed post-only claims, Hostinger Router comparison and different-family veto, quote validation, source grouping, change records, export, responsive UI and methods/evaluation.13 contract tests pass. Real two-claim flow passed twice after JSON-format retry repair, with a fresh unchanged-page comparison.
+Live https://fact-weight.72.61.22.106.sslip.io. Public repo https://github.com/13shreyansh/fact-weight . Pinned runtime `c465b5ffd39022c7e08af038087b7a6033372074`, version0.3.0. Public IAB analysis, exports, source opening, re-fetch, desktop/mobile and trusted HTTPS verified. Spread PID15545 unchanged and active.13 contract tests pass. No runtime code changed after the pinned deployment.
 
-Fresh v5 source-derived holdout22/24 vs baseline23/24,1/18 false flags,1 failed response. Syntax-repair regression23/24, no errors, false flag remains. Site headline deliberately retains the fresh result. Synthetic v3 had40/40 but is not the headline. No human labels, calibration or broad misinformation accuracy claim.
+Fresh source test22/24 vs baseline23/24,1/18 false flags,1 failed response before JSON repair. Repair regression23/24, no failed responses; false flag remains. No human labels or calibrated confidence. Full details in eval/LEDGER.md and eval/LIVE_CHECKS.md. See HANDOFF.md for access boundaries and maintenance.
 
-IAB only. This chat has no IAB; do not use personal Chrome or other external browser. Chief has the existing Hostinger web console. Planned public URL https://fact-weight.72.61.22.106.sslip.io . No VPS mutation by this chat. Spread active PID15545 at Chief preflight; its service, credentials and policy must remain untouched.
-
-Pending: Chief executes pinned isolated Docker release and secret-safe env setup, then public HTTPS/API/browser verification. Root IAB found and reported the pre-repair JSON failure; local focused repair is now verified. Exact reviewed commands will be in bridge/hostinger-deploy.md. Demo and pitch scripts are complete. C-09 remains OPEN until public deployment is verified.
+DEMO_SCRIPT.md and PEER_REVIEW.md are complete. Public video and final competition submission not performed. IAB only; never use personal Chrome. No Spread, Traefik, password, SSH or server-template changes.

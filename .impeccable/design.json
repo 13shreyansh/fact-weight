@@ -1,1 +1,86 @@
-{"version":1,"name":"Fact Weight","source":"public/style.css","tokens":{"paper":"#f1f5f3","white":"#ffffff","ink":"#172e30","muted":"#526562","accent":"#18564e","rule":"#c9d2c9"},"focus":{"outline":"3px solid #18564e","offset":"4px"},"motion":{"resultArrival":"250ms ease-out, opacity and translateY 4px","reducedMotion":"all animations disabled"},"layout":{"containerMax":"1320px","desktopColumns":"390px 1fr","mobileBreakpoint":"720px"}}
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-14T15:56:09.588729+00:00",
+  "title": "Design system: Fact Weight",
+  "extensions": {
+    "motion": [
+      {
+        "name": "result-arrival",
+        "value": "250ms ease-out, opacity and translateY 4px",
+        "purpose": "One brief result arrival. Disabled for reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "narrow-desktop",
+        "value": "950px"
+      },
+      {
+        "name": "mobile-stack",
+        "value": "720px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Start an evidence comparison.",
+      "html": "<button class=\"ds-primary\">Compare claim with evidence</button>",
+      "css": ".ds-primary{background:var(--accent,#18564e);color:var(--white,#fff);border:0;border-radius:6px;padding:15px;font:600 14px sans-serif;cursor:pointer}.ds-primary:hover{background:#103d37}.ds-primary:focus-visible{outline:3px solid #18564e;outline-offset:4px}.ds-primary:disabled{opacity:.6;cursor:wait}"
+    },
+    {
+      "name": "Secondary action",
+      "kind": "button",
+      "description": "Load an example or download the evidence record.",
+      "html": "<button class=\"ds-secondary\">Download evidence record</button>",
+      "css": ".ds-secondary{color:var(--accent,#18564e);background:transparent;border:1px solid #18564e;border-radius:6px;padding:10px 15px;font:14px sans-serif;cursor:pointer}.ds-secondary:hover{background:#e2ebe1}.ds-secondary:focus-visible{outline:3px solid #18564e;outline-offset:4px}"
+    },
+    {
+      "name": "Claim input",
+      "kind": "input",
+      "description": "Labelled multiline input with readable text.",
+      "html": "<label class=\"ds-label\">Post or claim<textarea class=\"ds-input\" rows=\"4\" placeholder=\"Paste a claim to inspect\"></textarea></label>",
+      "css": ".ds-label{display:block;color:#172e30;font:600 14px sans-serif}.ds-input{display:block;width:100%;margin-top:8px;border:1px solid #81938c;border-radius:6px;padding:13px 14px;background:#fff;color:#172e30;font:16px/1.5 sans-serif;caret-color:#18564e}.ds-input:focus-visible{outline:3px solid #18564e;outline-offset:4px}"
+    },
+    {
+      "name": "Source navigation",
+      "kind": "nav",
+      "description": "Compact source and methods links.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#method\">Method &amp; evaluation</a><a href=\"#code\">Code</a></nav>",
+      "css": ".ds-nav{display:flex;gap:28px;font:14px sans-serif;color:#172e30}.ds-nav a{color:inherit;text-underline-offset:4px}.ds-nav a:hover{color:#18564e}.ds-nav a:focus-visible{outline:3px solid #18564e;outline-offset:4px}"
+    },
+    {
+      "name": "Evidence relation",
+      "kind": "chip",
+      "description": "A relation label with a textual meaning, never a probability.",
+      "html": "<span class=\"ds-status\">Supported by retrieved evidence</span>",
+      "css": ".ds-status{display:inline-block;background:#e1edde;color:#226447;border-radius:4px;padding:5px 9px;font:650 12px/1.4 sans-serif}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Civic information notice",
+    "overview": "A reading workspace with a clear task, stable source labels and ruled passages. The evidence remains next to its source.",
+    "keyCharacteristics": [
+      "Readable source passages",
+      "Flat ruled surfaces",
+      "Explicit uncertainty"
+    ],
+    "rules": [
+      {
+        "name": "Keep sources beside quotations",
+        "body": "A passage links directly to its source and shows retrieval time.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Keep text labels with every status color.",
+      "Preserve source context and uncertainty."
+    ],
+    "donts": [
+      "Do not turn group counts into probabilities.",
+      "Do not present synthetic scores as real-world accuracy."
+    ]
+  }
+}

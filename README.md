@@ -6,7 +6,9 @@ Built during Junction 2026 by Shreyansh, solo team The CS Guy. Main challenge: H
 
 ## Status
 
-Public code and a working local flow. Genuine Context.dev search, article/PDF extraction and fresh re-fetch have passed with Hostinger AI Router inference. Public Hostinger deployment and final browser verification are coordinated through the Chief IAB chat. The planned URL is `https://fact-weight.72.61.22.106.sslip.io`; do not treat it as live until verification is recorded in [eval/LIVE_CHECKS.md](eval/LIVE_CHECKS.md).
+**Live on Hostinger:** [https://fact-weight.72.61.22.106.sslip.io](https://fact-weight.72.61.22.106.sslip.io). Pinned runtime release `c465b5ffd39022c7e08af038087b7a6033372074`, version `0.3.0`. Public desktop/mobile interaction, a real two-claim analysis, source opening, two parsed JSON exports and a fresh re-fetch passed in the Chief's inbuilt browser. The separate Spread service stayed active with the same PID before deployment and at the five-minute check. See [live verification](eval/LIVE_CHECKS.md).
+
+The final video and competition submission have not been performed. The recording and pitch scripts are ready.
 
 ## Run
 
