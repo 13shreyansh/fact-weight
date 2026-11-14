@@ -1,0 +1,3 @@
+import{all,get,put}from'../signal/providers.mjs';import{finalize,defaultWatch}from'../signal/store.mjs';import{enrich}from'../signal/enrich.mjs';
+for(const id of['a6b0d22b1d61','aa9426e2b5e6']){const c=get('candidate',id);if(!c)continue;try{const result=await enrich(c,defaultWatch);put('assessed',id,result);const p=finalize(result);console.log(id,p?.verdict,p?.title,p?.evidence.length,p?.seenBefore.length)}catch(e){console.log(id,e.message)}}
+for(const c of all('assessed').filter(c=>!['a6b0d22b1d61','aa9426e2b5e6'].includes(c.id))){const latest=get('candidate',c.id);const posts=c.posts.map(p=>({...p,...get('post',p.id)}));finalize({...c,...(latest||{}),posts});}

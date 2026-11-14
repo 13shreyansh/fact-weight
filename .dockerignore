@@ -3,3 +3,7 @@
 *.env
 work
 node_modules
+data
+artifacts
+screenshots
+.codex-job02.log

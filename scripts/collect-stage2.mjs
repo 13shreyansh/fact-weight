@@ -1,0 +1,10 @@
+import {get,put,all,call,search,scrape,spend} from '../signal/providers.mjs';
+let tasks=[];
+for(const lang of ['en','ru','et','lv','lt','uk'])tasks.push(['news-'+lang,()=>call('context','/news/search',{searchBy:{type:'natural_language',query:{en:'Ukraine war Baltic states Russia NATO',ru:'война Украина страны Балтии Россия НАТО',et:'Ukraina sõda Balti riigid Venemaa NATO',lv:'Ukraina karš Baltijas valstis Krievija NATO',lt:'Ukraina karas Baltijos šalys Rusija NATO',uk:'війна Україна країни Балтії Росія НАТО'}[lang]},filterBy:{articleLanguage:[lang],date:{from:Date.parse('2026-11-01T00:00:00Z'),to:Date.now()}},limit:50})]);
+for(const group of ['report-seeds','dfrlab-seeds','campaigns']){const d=get('discovery',group);for(const r of (d.results||[]).slice(0,5))tasks.push([r.url,()=>scrape(r.url)]);}
+for(const tag of ['ukrainewar','nato','lithuania','balticstates'])tasks.push(['tt-'+tag,()=>scrape('https://www.tiktok.com/tag/'+tag,'tiktok-feed')]);
+const tt=get('discovery','tt-hashtag').parsed.data.videos;for(const v of tt.slice(0,3)){tasks.push(['profile-'+v.author.username,()=>scrape('https://www.tiktok.com/@'+v.author.username,'tiktok-profile')]);tasks.push(['comments-'+v.id,()=>scrape(v.url,'tiktok-comments')]);}
+const ig=get('discovery','ig-hashtag').parsed.data.posts;for(const p of ig.slice(0,2))tasks.push([p.url,()=>scrape(p.url,'instagram-post')]);
+for(const r of get('discovery','youtube-search').results.slice(0,3))tasks.push([r.url,()=>scrape(r.url)]);
+for(const q of ['site:checkfirst.network Operation Overload data github','site:disinfo.eu Doppelganger domains list','site:justice.gov 2024 32 domains doppelganger affidavit','site:euvsdisinfo.eu/report Baltic Ukraine NATO November 2026','site:portal-kombat.com data github'])tasks.push([q,()=>search(q)]);
+for(let i=0;i<tasks.length;i+=6)await Promise.allSettled(tasks.slice(i,i+6).map(async([id,f])=>{try{const d=await f();put('discovery',id,d);console.log(id,JSON.stringify(d).length,d.key_metadata?.credits_consumed)}catch(e){put('failure',id,{error:e.message,at:new Date().toISOString()});console.log(id,e.message)}}));console.log(spend());

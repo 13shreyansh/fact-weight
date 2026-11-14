@@ -1,0 +1,2 @@
+// Development values. Freeze artifact records the selected values before held-out use.
+export default { minPosts: 8, minAccounts: 3, burstWindowMinutes: 10, burstRatio: 5, minBurstPosts: 6, newAccountDays: 30, newAccountShare: 0.6, newAccountRatio: 3, textJaccard: 0.72, minCopies: 6, minCopyShare: 0.5, minLinkedPosts: 6, minLinkShare: 0.6, minMutualAccounts: 6, minMutualRatio: 3, embeddingSimilarity: 0.88, seenClose: 0.88, seenLoose: 0.78 };

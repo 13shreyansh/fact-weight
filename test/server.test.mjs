@@ -11,7 +11,7 @@ test("landing, security headers and health route", async () => {
   const r = await fetch(base);
   assert.equal(r.status, 200);
   assert.match(r.headers.get("content-security-policy"), /default-src 'self'/);
-  assert.match(await r.text(), /Before you believe it/);
+  assert.match(await r.text(), /Signal Fire/);
   const h = await (await fetch(base + "/api/health")).json();
   assert.equal(h.app, "Fact Weight");
 });

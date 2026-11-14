@@ -1,0 +1,19 @@
+{
+  "content": {
+    "total": 18249,
+    "war": 4503,
+    "trustworthy": 1695,
+    "disinformation": 2808,
+    "url": "https://github.com/joaoaleite/euvsdisinfo",
+    "license": "CC-BY-SA-4.0",
+    "warFilter": "Keywords include Ukraine, War in Ukraine or Russian invasion",
+    "splitUnit": "debunk_id",
+    "dev": 1531,
+    "heldout": 2972
+  },
+  "status": "not measured",
+  "leadSubset": 0,
+  "limitations": [
+    "Content labels do not establish coordination. Campaign replay requires timestamped post corpora."
+  ]
+}

@@ -6,3 +6,7 @@ work/
 
 __pycache__/
 *.pyc
+.codex-job02.log
+data/
+artifacts/job02/docs/
+artifacts/e2e/local/

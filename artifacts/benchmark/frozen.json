@@ -1,0 +1,8 @@
+{
+  "at": "2026-11-14T22:42:04.758Z",
+  "promptVersion": "sf-content-v1",
+  "rule": "Binary model label; no threshold tuned",
+  "configHash": "b42ef597e1fde1ff815fea655b2273629e38dff58df531653d7c257ab1818801",
+  "devResultsHash": "ac2c7f98e7a8de47a159a6371fd98ee6546e1becff2d7b96c9fb8d269d8b2e37",
+  "note": "Coordination thresholds remain provisional; no campaign dev corpus was available."
+}
