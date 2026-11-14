@@ -1,0 +1,82 @@
+{
+  "id": "dev-0-explicit-negation",
+  "kind": "explicit-negation",
+  "expected": "contradicted",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The source explicitly states that the Northhaven ferry service did not stop on 12 March 2025 and continued its normal timetable throughout that day."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 39,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.01608,
+      "prompt_tokens": 179,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 218
+    },
+    "latencyMs": 1365,
+    "requestId": "chatcmpl-Ek9tvwEbrHvZjBeysKMKGoZwu8xjP"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Northhaven ferry service stopped on 12 March 2025.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The Northhaven operator states the ferry service did not stop on 12 March 2025. It continued its normal timetable throughout that day.",
+            "relation": "contradicts",
+            "reason": "The operator directly denies the ferry service stopped on the claimed date and confirms normal operation.",
+            "group": "G1",
+            "url": "https://register.example.org/dev-0-explicit-negation",
+            "title": "Synthetic Northhaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The claim states that the ferry service stopped on 12 March 2025. However, the source from the Northhaven operator explicitly states that the ferry service did not stop on that date and continued its normal timetable throughout the day.",
+        "missing": "Independent confirmation or additional sources verifying the ferry service stoppage on 12 March 2025."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/dev-0-explicit-negation",
+        "title": "Synthetic Northhaven record",
+        "text": "The Northhaven operator states the ferry service did not stop on 12 March 2025. It continued its normal timetable throughout that day.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 158,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.047712,
+      "prompt_tokens": 362,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 520
+    },
+    "inferenceMs": 1908,
+    "requestId": "chatcmpl-Ek9twCr1YLWxlZfjx8RPGjT2O0Qf3"
+  }
+}

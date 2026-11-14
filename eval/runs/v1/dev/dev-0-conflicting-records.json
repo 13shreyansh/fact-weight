@@ -1,0 +1,102 @@
+{
+  "id": "dev-0-conflicting-records",
+  "kind": "conflicting-records",
+  "expected": "contested",
+  "baselineLabel": "contested",
+  "pipelineLabel": "contested",
+  "baseline": {
+    "data": {
+      "label": "contested",
+      "reason": "Source S1 states Northhaven received 48 water pumps on 12 March 2025, supporting the post, but source S2 states Northhaven received 79 water pumps on the same date, indicating a disagreement between sources."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 55,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.023328,
+      "prompt_tokens": 266,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 321
+    },
+    "latencyMs": 1214,
+    "requestId": "chatcmpl-Ek9tugYWSM0JT4LlGx1EUTlXVLDyD"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Northhaven received 48 water pumps on 12 March 2025.",
+        "status": "contested",
+        "supportGroups": 1,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The municipal register states that Northhaven received exactly 48 water pumps on 12 March 2025.",
+            "relation": "supports",
+            "reason": "This source directly states the claim about the number and date of water pumps received.",
+            "group": "G1",
+            "url": "https://register.example.org/dev-0-conflicting-records",
+            "title": "Synthetic Northhaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          },
+          {
+            "sourceId": "S2",
+            "quote": "An independently compiled port register states that Northhaven received exactly 79 water pumps on 12 March 2025. The two registers disagree.",
+            "relation": "contradicts",
+            "reason": "This source provides a conflicting number of water pumps received on the same date, contradicting the claim.",
+            "group": "G2",
+            "url": "https://independent.example.net/dev-0-conflicting-records",
+            "title": "Synthetic Northhaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The municipal register states that Northhaven received exactly 48 water pumps on 12 March 2025, supporting the claim about the quantity and date of delivery. However, an independent port register contradicts this by stating the number received was 79 on the same date, indicating conflicting records about the quantity received.",
+        "missing": "Independent verification or reconciliation of the conflicting records to confirm the exact number of water pumps received by Northhaven on 12 March 2025."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/dev-0-conflicting-records",
+        "title": "Synthetic Northhaven record",
+        "text": "The municipal register states that Northhaven received exactly 48 water pumps on 12 March 2025.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      },
+      {
+        "id": "S2",
+        "url": "https://independent.example.net/dev-0-conflicting-records",
+        "title": "Synthetic Northhaven record",
+        "text": "An independently compiled port register states that Northhaven received exactly 79 water pumps on 12 March 2025. The two registers disagree.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G2"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 239,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.066576,
+      "prompt_tokens": 431,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 670
+    },
+    "inferenceMs": 2846,
+    "requestId": "chatcmpl-Ek9twMfM6pxmIM1KxwQZRyx3h09qB"
+  }
+}

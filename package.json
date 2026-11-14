@@ -1,0 +1,1 @@
+{"name":"fact-weight","version":"0.1.0","private":true,"type":"module","scripts":{"start":"node server.mjs","test":"node --test test/*.test.mjs","eval":"node eval/run.mjs"},"engines":{"node":">=22"},"license":"MIT"}

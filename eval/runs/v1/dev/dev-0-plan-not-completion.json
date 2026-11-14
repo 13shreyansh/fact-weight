@@ -1,0 +1,82 @@
+{
+  "id": "dev-0-plan-not-completion",
+  "kind": "plan-not-completion",
+  "expected": "unsupported",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The source states the repairs are planned to be completed on 12 March 2025 but does not confirm that the repairs were actually completed."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 36,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.015888,
+      "prompt_tokens": 187,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 223
+    },
+    "latencyMs": 959,
+    "requestId": "chatcmpl-Ek9tqJkNEc1inOojH4uuVLldtaQwK"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Northhaven bridge repairs were completed on 12 March 2025.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The Northhaven council plans to complete the bridge repairs on 12 March 2025. No completion certificate has been issued, and the work's actual status is not stated.",
+            "relation": "contradicts",
+            "reason": "The source only mentions a planned completion date and explicitly states no completion certificate or actual status, so it does not support the claim of completion on that date.",
+            "group": "G1",
+            "url": "https://register.example.org/dev-0-plan-not-completion",
+            "title": "Synthetic Northhaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The source states that the Northhaven council plans to complete the bridge repairs on 12 March 2025, but it does not confirm that the repairs were actually completed on that date. There is no completion certificate issued and the actual status of the work is not stated, so the claim of completion on that date is not supported by the source.",
+        "missing": "Evidence confirming that the repairs were actually completed on 12 March 2025, such as a completion certificate or official confirmation of completion."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/dev-0-plan-not-completion",
+        "title": "Synthetic Northhaven record",
+        "text": "The Northhaven council plans to complete the bridge repairs on 12 March 2025. No completion certificate has been issued, and the work's actual status is not stated.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 211,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.058272,
+      "prompt_tokens": 370,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 581
+    },
+    "inferenceMs": 2569,
+    "requestId": "chatcmpl-Ek9trCdKYIBtpKGyGnYsI3gJq0ut2"
+  }
+}

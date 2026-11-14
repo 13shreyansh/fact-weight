@@ -1,0 +1,24 @@
+[Unit]
+Description=Fact Weight evidence inspection
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+DynamicUser=yes
+WorkingDirectory=/opt/fact-weight/current
+ExecStart=/usr/bin/node server.mjs
+EnvironmentFile=/etc/fact-weight.env
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+MemoryMax=384M
+CPUQuota=50%
+TasksMax=64
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+
+[Install]
+WantedBy=multi-user.target

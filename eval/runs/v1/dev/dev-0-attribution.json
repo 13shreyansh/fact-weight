@@ -1,0 +1,82 @@
+{
+  "id": "dev-0-attribution",
+  "kind": "attribution",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The source directly quotes the Northhaven mayor stating the project would cost 48 million euros."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 26,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.01344,
+      "prompt_tokens": 176,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 202
+    },
+    "latencyMs": 1326,
+    "requestId": "chatcmpl-Ek9to1vV3astTlztEiyRrdImhZptG"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Northhaven mayor said the project would cost 48 million euros.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "In a press conference, the Northhaven mayor said the project would cost 48 million euros.",
+            "relation": "supports",
+            "reason": "The source explicitly reports the mayor's statement about the project cost.",
+            "group": "G1",
+            "url": "https://register.example.org/dev-0-attribution",
+            "title": "Synthetic Northhaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The source directly quotes the Northhaven mayor stating the project cost estimate as 48 million euros during a press conference.",
+        "missing": "Independent verification of the project cost estimate is missing."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/dev-0-attribution",
+        "title": "Synthetic Northhaven record",
+        "text": "In a press conference, the Northhaven mayor said the project would cost 48 million euros. The estimate has not been independently verified.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 111,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.038544,
+      "prompt_tokens": 359,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 470
+    },
+    "inferenceMs": 1483,
+    "requestId": "chatcmpl-Ek9tpemh53SMiZCjR0HdvXC2PMA2m"
+  }
+}

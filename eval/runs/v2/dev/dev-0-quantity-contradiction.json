@@ -1,0 +1,83 @@
+{
+  "id": "dev-0-quantity-contradiction",
+  "kind": "quantity-contradiction",
+  "expected": "contradicted",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The source states that exactly 48 generators arrived on 12 March 2025, contradicting the post's claim of 98 generators."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 38,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.016032,
+      "prompt_tokens": 182,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 220
+    },
+    "latencyMs": 689,
+    "requestId": "chatcmpl-Ek9thYLCm2PfK9VEOo3gqOk5dmpNo"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Northhaven received 98 generators on 12 March 2025.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The final Northhaven delivery register states: exactly 48 generators arrived on 12 March 2025. There were no other deliveries that day.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The official delivery register records only 48 generators arriving on that date, contradicting the claim of 98 generators.",
+            "group": "G1",
+            "url": "https://register.example.org/dev-0-quantity-contradiction",
+            "title": "Synthetic Northhaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The claim states that Northhaven received 98 generators on 12 March 2025. The source S1 provides a delivery register stating exactly 48 generators arrived on that date, with no other deliveries that day, which contradicts the claim.",
+        "missing": "Independent confirmation of the number of generators delivered to Northhaven on 12 March 2025 beyond the delivery register is missing."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/dev-0-quantity-contradiction",
+        "title": "Synthetic Northhaven record",
+        "text": "The final Northhaven delivery register states: exactly 48 generators arrived on 12 March 2025. There were no other deliveries that day.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 184,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.063648,
+      "prompt_tokens": 590,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 774
+    },
+    "inferenceMs": 2001,
+    "requestId": "chatcmpl-Ek9uQ1XiWsVVPNXiDAUGnrRraF97L"
+  }
+}

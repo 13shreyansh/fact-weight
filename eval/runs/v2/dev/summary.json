@@ -1,0 +1,56 @@
+{
+  "version": "v2",
+  "split": "dev",
+  "n": 20,
+  "at": "2026-11-14T15:25:17.862Z",
+  "datasetSha256": "c51f247ede1ddc25c97db8660b2fdbb012d70780a58899e943b5dd2bf71e2ed4",
+  "engineSha256": "c79c04c58a3a7d8a931360e627f984b4fc133fd943aa9f87235ff99f7ce9293b",
+  "labelProvenance": "synthetic construction rules; no human labels",
+  "baseline": {
+    "n": 20,
+    "correct": 19,
+    "errors": 0,
+    "accuracy": 0.95,
+    "tp": 8,
+    "fp": 1,
+    "tn": 11,
+    "fn": 0,
+    "precision": 0.8888888888888888,
+    "recall": 1,
+    "fpr": 0.08333333333333333
+  },
+  "pipeline": {
+    "n": 20,
+    "correct": 18,
+    "errors": 0,
+    "accuracy": 0.9,
+    "tp": 6,
+    "fp": 0,
+    "tn": 12,
+    "fn": 2,
+    "precision": 1,
+    "recall": 0.75,
+    "fpr": 0
+  },
+  "citations": {
+    "accepted": 24,
+    "verbatim": 24,
+    "rejected": 0
+  },
+  "medianInferenceMs": 2163,
+  "p95InferenceMs": 3501,
+  "creditsCharged": 1.5995520000000003,
+  "wallMs": 32706,
+  "failures": [
+    {
+      "id": "dev-0-explicit-negation",
+      "expected": "contradicted",
+      "actual": "unsupported"
+    },
+    {
+      "id": "dev-1-explicit-negation",
+      "expected": "contradicted",
+      "actual": "unsupported"
+    }
+  ]
+}

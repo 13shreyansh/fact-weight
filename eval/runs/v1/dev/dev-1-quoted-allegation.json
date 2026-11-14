@@ -1,0 +1,82 @@
+{
+  "id": "dev-1-quoted-allegation",
+  "kind": "quoted-allegation",
+  "expected": "unsupported",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The source states the 65 million euros cost is an unverified allegation and the final cost is unknown, so the claim is not confirmed."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 36,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.015408,
+      "prompt_tokens": 177,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 213
+    },
+    "latencyMs": 1573,
+    "requestId": "chatcmpl-Ek9u5O6l6SzOjIZk6ZkZOvgyeL9wC"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Eastmere project cost 65 million euros.",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "An anonymous post alleged that the Eastmere project cost 65 million euros. The newsroom has not verified that claim and the final cost is unknown.",
+            "relation": "context",
+            "reason": "The source reports the claim as an unverified allegation and states the final cost is unknown.",
+            "group": "G1",
+            "url": "https://register.example.org/dev-1-quoted-allegation",
+            "title": "Synthetic Eastmere record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The claim is that the Eastmere project cost 65 million euros. The source only reports that this figure was alleged anonymously and explicitly states that the newsroom has not verified it and that the final cost is unknown. Therefore, there is no verified evidence supporting the claim, only an unverified allegation.",
+        "missing": "Verified or official confirmation of the Eastmere project's final cost."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/dev-1-quoted-allegation",
+        "title": "Synthetic Eastmere record",
+        "text": "An anonymous post alleged that the Eastmere project cost 65 million euros. The newsroom has not verified that claim and the final cost is unknown.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 160,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.048,
+      "prompt_tokens": 360,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 520
+    },
+    "inferenceMs": 1974,
+    "requestId": "chatcmpl-Ek9u7Yaqb1Dg90QosCXFPpn8qEx1K"
+  }
+}

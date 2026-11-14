@@ -1,0 +1,82 @@
+{
+  "id": "dev-1-date-contradiction",
+  "kind": "date-contradiction",
+  "expected": "contradicted",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The source states the Eastmere power link was first connected on 12 March 2025, which contradicts the post's claim of 14 March 2025."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 44,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.017376,
+      "prompt_tokens": 186,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 230
+    },
+    "latencyMs": 1367,
+    "requestId": "chatcmpl-Ek9u2Mr3F6Tf6wHLa3de1pCiJWphN"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Eastmere power link was connected on 14 March 2025.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The grid operator's final event log says the Eastmere power link was first connected on 12 March 2025, not on 14 March 2025.",
+            "relation": "contradicts",
+            "reason": "The source directly contradicts the claim by providing an earlier connection date.",
+            "group": "G1",
+            "url": "https://register.example.org/dev-1-date-contradiction",
+            "title": "Synthetic Eastmere record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The claim states a specific date for the connection of the Eastmere power link. The source provides a different date for this event, indicating a contradiction.",
+        "missing": "Independent confirmation of the connection date or additional sources to verify the exact date of connection."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/dev-1-date-contradiction",
+        "title": "Synthetic Eastmere record",
+        "text": "The grid operator's final event log says the Eastmere power link was first connected on 12 March 2025, not on 14 March 2025.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 143,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.045168,
+      "prompt_tokens": 369,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 512
+    },
+    "inferenceMs": 1886,
+    "requestId": "chatcmpl-Ek9u30JHiu8EPy5vhKVDdn7eORTfM"
+  }
+}

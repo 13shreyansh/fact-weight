@@ -1,0 +1,61 @@
+{
+  "version": "v1",
+  "split": "dev",
+  "n": 20,
+  "at": "2026-11-14T15:24:36.252Z",
+  "datasetSha256": "c51f247ede1ddc25c97db8660b2fdbb012d70780a58899e943b5dd2bf71e2ed4",
+  "engineSha256": "7af25891735876305c84486745cce4625a55169321310eff71b3527ce11ff313",
+  "labelProvenance": "synthetic construction rules; no human labels",
+  "baseline": {
+    "n": 20,
+    "correct": 19,
+    "errors": 0,
+    "accuracy": 0.95,
+    "tp": 8,
+    "fp": 1,
+    "tn": 11,
+    "fn": 0,
+    "precision": 0.8888888888888888,
+    "recall": 1,
+    "fpr": 0.08333333333333333
+  },
+  "pipeline": {
+    "n": 20,
+    "correct": 17,
+    "errors": 0,
+    "accuracy": 0.85,
+    "tp": 8,
+    "fp": 2,
+    "tn": 10,
+    "fn": 0,
+    "precision": 0.8,
+    "recall": 1,
+    "fpr": 0.16666666666666666
+  },
+  "citations": {
+    "accepted": 24,
+    "verbatim": 24,
+    "rejected": 0
+  },
+  "medianInferenceMs": 2087,
+  "p95InferenceMs": 2630,
+  "creditsCharged": 1.355712,
+  "wallMs": 36180,
+  "failures": [
+    {
+      "id": "dev-0-quoted-allegation",
+      "expected": "unsupported",
+      "actual": "supported"
+    },
+    {
+      "id": "dev-0-plan-not-completion",
+      "expected": "unsupported",
+      "actual": "contradicted"
+    },
+    {
+      "id": "dev-1-plan-not-completion",
+      "expected": "unsupported",
+      "actual": "contradicted"
+    }
+  ]
+}

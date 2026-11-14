@@ -1,0 +1,104 @@
+{
+  "id": "dev-1-copied-report",
+  "kind": "copied-report",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "Both source passages explicitly state that Eastmere received 65 medical kits on 12 March 2025, confirming the post's claim."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 35,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.020208,
+      "prompt_tokens": 281,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 316
+    },
+    "latencyMs": 558,
+    "requestId": "chatcmpl-Ek9u9mkHv7pTG9ycOJQL5u6inBKrV"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Eastmere received 65 medical kits on 12 March 2025.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "According to the regional register, Eastmere received 65 medical kits on 12 March 2025. The register lists this as the only delivery for that date.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The source directly records the delivery event with specific quantity and date.",
+            "group": "G1",
+            "url": "https://register.example.org/dev-1-copied-report",
+            "title": "Synthetic Eastmere record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          },
+          {
+            "sourceId": "S2",
+            "quote": "According to the regional register, Eastmere received 65 medical kits on 12 March 2025. The register lists this as the only delivery for that date.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "This source repeats the same direct record confirming the delivery event.",
+            "group": "G1",
+            "url": "https://mirror.example.net/dev-1-copied-report",
+            "title": "Synthetic copied report",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "Both sources S1 and S2 directly state that according to the regional register, Eastmere received 65 medical kits on 12 March 2025, and that this was the only delivery for that date. This supports the claim as a recorded event.",
+        "missing": "No independent confirmation beyond the regional register is provided; the sources are duplicates of the same record, so no additional corroboration is present."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/dev-1-copied-report",
+        "title": "Synthetic Eastmere record",
+        "text": "According to the regional register, Eastmere received 65 medical kits on 12 March 2025. The register lists this as the only delivery for that date.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      },
+      {
+        "id": "S2",
+        "url": "https://mirror.example.net/dev-1-copied-report",
+        "title": "Synthetic copied report",
+        "text": "According to the regional register, Eastmere received 65 medical kits on 12 March 2025. The register lists this as the only delivery for that date.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 246,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.07944,
+      "prompt_tokens": 671,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 917
+    },
+    "inferenceMs": 2595,
+    "requestId": "chatcmpl-Ek9uqb042faGKtiOTwQsQbU0uzW6W"
+  }
+}
