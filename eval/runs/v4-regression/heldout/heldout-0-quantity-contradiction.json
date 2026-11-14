@@ -1,0 +1,82 @@
+{
+  "id": "heldout-0-quantity-contradiction",
+  "kind": "quantity-contradiction",
+  "expected": "contradicted",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The source states that exactly 173 generators arrived on 18 September 2025, contradicting the post's claim of 223 generators."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 38,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.016176,
+      "prompt_tokens": 185,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 223
+    },
+    "latencyMs": 380,
+    "requestId": "chatcmpl-Ek9wIPonnaQkIytuAIpwhGczlntMS"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Pinehaven received 223 generators on 18 September 2025.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The final Pinehaven delivery register states: exactly 173 generators arrived on 18 September 2025. There were no other deliveries that day.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The official delivery register directly records the quantity and date of generators received, contradicting the claim.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-0-quantity-contradiction",
+            "title": "Synthetic Pinehaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The delivery register for Pinehaven explicitly records that exactly 173 generators arrived on 18 September 2025, with no other deliveries that day. This directly contradicts the claim of 223 generators received on that date.",
+        "missing": "No evidence supports the claim of 223 generators; the official delivery register provides a different quantity.",
+        "postQuote": "Pinehaven received 223 generators on 18 September 2025."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-0-quantity-contradiction",
+        "title": "Synthetic Pinehaven record",
+        "text": "The final Pinehaven delivery register states: exactly 173 generators arrived on 18 September 2025. There were no other deliveries that day.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 888,
+      "completion_tokens": 221,
+      "total_tokens": 1109,
+      "credits_charged": 0.085056
+    },
+    "inferenceMs": 4017,
+    "extractionMs": 1490,
+    "comparisonMs": 2527,
+    "requestId": "chatcmpl-EkA1AYSOatq2cey4QnJqhkyTuRmzv",
+    "extractionRequestId": "chatcmpl-EkA18WtPTwDqccYQ6Nopg0pzPXWMc"
+  }
+}

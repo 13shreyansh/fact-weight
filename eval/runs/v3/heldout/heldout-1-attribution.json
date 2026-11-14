@@ -1,0 +1,83 @@
+{
+  "id": "heldout-1-attribution",
+  "kind": "attribution",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The source directly quotes the Westmere mayor stating the project would cost 190 million euros."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 26,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.013536,
+      "prompt_tokens": 178,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 204
+    },
+    "latencyMs": 1525,
+    "requestId": "chatcmpl-Ek9wiEtj9HYdJ3x00bcFInNvPWghT"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Westmere mayor said the project would cost 190 million euros.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "In a press conference, the Westmere mayor said the project would cost 190 million euros.",
+            "relation": "supports",
+            "basis": "attribution",
+            "reason": "The source directly attributes the cost estimate statement to the Westmere mayor.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-1-attribution",
+            "title": "Synthetic Westmere record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The source reports that the Westmere mayor stated the project cost estimate as 190 million euros during a press conference.",
+        "missing": "Independent verification of the project's cost estimate is not provided."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-1-attribution",
+        "title": "Synthetic Westmere record",
+        "text": "In a press conference, the Westmere mayor said the project would cost 190 million euros. The estimate has not been independently verified.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 124,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.056448,
+      "prompt_tokens": 680,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 804
+    },
+    "inferenceMs": 1687,
+    "requestId": "chatcmpl-Ek9wjfSXgD592lSgDHLU0Mo0Rfvoq"
+  }
+}

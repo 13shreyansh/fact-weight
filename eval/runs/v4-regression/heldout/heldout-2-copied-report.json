@@ -1,0 +1,103 @@
+{
+  "id": "heldout-2-copied-report",
+  "kind": "copied-report",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "Both source passages explicitly state that Lakehaven received 207 medical kits on 18 September 2025, confirming the post's claim."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 35,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.0204,
+      "prompt_tokens": 285,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 320
+    },
+    "latencyMs": 1339,
+    "requestId": "chatcmpl-EkA2EwTUuy3HgBEcGdWFy8aF0bcRl"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Lakehaven received 207 medical kits on 18 September 2025",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "According to the regional register, Lakehaven received 207 medical kits on 18 September 2025. The register lists this as the only delivery for that date.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The regional register directly records the receipt of 207 medical kits by Lakehaven on the specified date.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-2-copied-report",
+            "title": "Synthetic Lakehaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          },
+          {
+            "sourceId": "S2",
+            "quote": "According to the regional register, Lakehaven received 207 medical kits on 18 September 2025. The register lists this as the only delivery for that date.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "This source repeats the regional register's record confirming the delivery on the specified date.",
+            "group": "G1",
+            "url": "https://mirror.example.net/heldout-2-copied-report",
+            "title": "Synthetic copied report",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "Both sources S1 and S2 directly state that according to the regional register, Lakehaven received 207 medical kits on 18 September 2025, and that this was the only delivery for that date. This constitutes direct recorded evidence supporting the claim.",
+        "missing": "No information is missing regarding the receipt of the medical kits on that date; however, there is no additional detail about the delivery process or confirmation from Lakehaven itself.",
+        "postQuote": "Lakehaven received 207 medical kits on 18 September 2025"
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-2-copied-report",
+        "title": "Synthetic Lakehaven record",
+        "text": "According to the regional register, Lakehaven received 207 medical kits on 18 September 2025. The register lists this as the only delivery for that date.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      },
+      {
+        "id": "S2",
+        "url": "https://mirror.example.net/heldout-2-copied-report",
+        "title": "Synthetic copied report",
+        "text": "According to the regional register, Lakehaven received 207 medical kits on 18 September 2025. The register lists this as the only delivery for that date.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 970,
+      "completion_tokens": 314,
+      "total_tokens": 1284,
+      "credits_charged": 0.106848
+    },
+    "inferenceMs": 3845,
+    "extractionMs": 1273,
+    "comparisonMs": 2572,
+    "requestId": "chatcmpl-EkA2G7SOrpib0txxAO8VCG4RcwCpH",
+    "extractionRequestId": "chatcmpl-EkA2F7w1UQKvR3MYrxmCevW3NDkJz"
+  }
+}

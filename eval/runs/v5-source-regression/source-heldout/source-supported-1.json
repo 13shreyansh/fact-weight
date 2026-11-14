@@ -1,0 +1,141 @@
+{
+  "id": "source-supported-1",
+  "kind": "supported",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The source passage explicitly states that Estonia, Latvia, and Lithuania successfully synchronised their electricity systems with the Continental Europe Synchronous Area on 9 February 2025."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 41,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.070464,
+      "prompt_tokens": 1304,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1345
+    },
+    "latencyMs": 369,
+    "requestId": "chatcmpl-EkA2T2VwnQGYC4KfBH1R29a4NsI6S"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Estonia synchronised with continental Europe on 9 February 2025",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "Estonia, Latvia and Lithuania have successfully synchronised their electricity systems with the Continental Europe Synchronous Area via Poland on 9 February 2025",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The source explicitly confirms Estonia's synchronisation with continental Europe on 9 February 2025.",
+            "group": "G1",
+            "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+            "title": "data.consilium.europa.eu",
+            "fetchedAt": "2026-11-14T15:31:52.354Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source directly states that Estonia, along with Latvia and Lithuania, successfully synchronised their electricity systems with the Continental Europe Synchronous Area on 9 February 2025. This confirms the event for Estonia on that date.",
+        "missing": "No direct missing information for the event date and occurrence for Estonia.",
+        "postQuote": "Estonia, Latvia and Lithuania synchronised with continental Europe on 9 February 2025"
+      },
+      {
+        "claim": "Latvia synchronised with continental Europe on 9 February 2025",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "Estonia, Latvia and Lithuania have successfully synchronised their electricity systems with the Continental Europe Synchronous Area via Poland on 9 February 2025",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The source clearly states Latvia's synchronisation on the specified date.",
+            "group": "G1",
+            "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+            "title": "data.consilium.europa.eu",
+            "fetchedAt": "2026-11-14T15:31:52.354Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source explicitly confirms that Latvia synchronised its electricity system with the Continental Europe Synchronous Area on 9 February 2025, alongside Estonia and Lithuania.",
+        "missing": "No missing information regarding the date or event occurrence for Latvia.",
+        "postQuote": "Estonia, Latvia and Lithuania synchronised with continental Europe on 9 February 2025"
+      },
+      {
+        "claim": "Lithuania synchronised with continental Europe on 9 February 2025",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "Estonia, Latvia and Lithuania have successfully synchronised their electricity systems with the Continental Europe Synchronous Area via Poland on 9 February 2025",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The source explicitly confirms Lithuania's synchronisation on 9 February 2025.",
+            "group": "G1",
+            "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+            "title": "data.consilium.europa.eu",
+            "fetchedAt": "2026-11-14T15:31:52.354Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source confirms Lithuania's synchronisation with the Continental Europe Synchronous Area on 9 February 2025, together with Estonia and Latvia.",
+        "missing": "No missing information for Lithuania's synchronisation event or date.",
+        "postQuote": "Estonia, Latvia and Lithuania synchronised with continental Europe on 9 February 2025"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+        "title": "data.consilium.europa.eu",
+        "fetchedAt": "2026-11-14T15:31:52.354Z",
+        "publishedAt": null,
+        "hash": "6117a9a6fae5673d27f3e254533a8995414b0d721c656fa4b689a6713ff7a58e",
+        "requestId": "0ddddde5-06a5-4995-a77a-db20a1b0bd52",
+        "extractedCharacters": 5924,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 2004,
+      "completion_tokens": 927,
+      "total_tokens": 5754,
+      "credits_charged": 5.190672
+    },
+    "inferenceMs": 5542,
+    "extractionMs": 545,
+    "comparisonMs": 503,
+    "verificationMs": 4494,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch34rMTbcw1FLWf4sVsqM",
+    "requestId": "chatcmpl-EkA2WTWkV3FqP9naYJ2joB57JW9Nd",
+    "extractionRequestId": "chatcmpl-EkA2UBiQTKwArC8tHAzdSiN5by3M7"
+  }
+}

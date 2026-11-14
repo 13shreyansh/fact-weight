@@ -1,0 +1,29 @@
+{
+  "id": "heldout-1-plan-not-completion",
+  "kind": "plan-not-completion",
+  "expected": "unsupported",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "ERROR",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The source states the repairs are planned to be completed on 18 September 2025 but does not confirm actual completion or issuance of a completion certificate."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 38,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.016368,
+      "prompt_tokens": 189,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 227
+    },
+    "latencyMs": 2174,
+    "requestId": "chatcmpl-EkA1oqdmOm4GS2vtv263oSpQcWnnL"
+  },
+  "error": "Hostinger AI Router returned HTTP 500."
+}

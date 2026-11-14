@@ -1,0 +1,95 @@
+{
+  "id": "source-unsupported-3",
+  "kind": "unsupported",
+  "expected": "unsupported",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The source passage discusses the successful synchronization of the Baltic electricity systems with the Continental Europe Synchronous Area and mentions that consumers were not affected during the tests, but it does not provide any information about hospitals switching to backup generators or the number of hospitals involved."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 58,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.073488,
+      "prompt_tokens": 1299,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1357
+    },
+    "latencyMs": 571,
+    "requestId": "chatcmpl-EkA37qdy7QTk58Z9Rd0cakzmfmVNN"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Exactly 47 hospitals switched to backup generators during the Baltic grid tests.",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "Consumers were not affected during the frequency stability tests or when synchronous operation with the continental European grid started.",
+            "relation": "context",
+            "basis": "direct_record",
+            "reason": "The quote is a broad statement that consumers were not affected; it never mentions hospitals, backup generators or any count. Hospitals could have switched to generators as a precaution, so it is not mutually exclusive with the specific claim of 47.",
+            "group": "G1",
+            "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+            "title": "data.consilium.europa.eu",
+            "fetchedAt": "2026-11-14T15:31:52.354Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "Some proposed relations did not pass a second model check. The accepted passages below determine this evidence label.",
+        "missing": "Any specific information or data about hospitals switching to backup generators during the Baltic grid tests, including the number of hospitals involved.",
+        "postQuote": "Exactly 47 hospitals switched to backup generators during the Baltic grid tests."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+        "title": "data.consilium.europa.eu",
+        "fetchedAt": "2026-11-14T15:31:52.354Z",
+        "publishedAt": null,
+        "hash": "6117a9a6fae5673d27f3e254533a8995414b0d721c656fa4b689a6713ff7a58e",
+        "requestId": "0ddddde5-06a5-4995-a77a-db20a1b0bd52",
+        "extractedCharacters": 5924,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1892,
+      "completion_tokens": 510,
+      "total_tokens": 4849,
+      "credits_charged": 4.35912
+    },
+    "inferenceMs": 5346,
+    "extractionMs": 545,
+    "comparisonMs": 654,
+    "verificationMs": 4147,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch34u5YyJP9g16Qy1rUyw",
+    "requestId": "chatcmpl-EkA3Ae87nrE32DjJ066FiC27lma6D",
+    "extractionRequestId": "chatcmpl-EkA39W1c4vE7iXougePQxnL46p3Z0"
+  }
+}

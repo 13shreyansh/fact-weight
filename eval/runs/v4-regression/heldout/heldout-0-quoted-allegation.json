@@ -1,0 +1,82 @@
+{
+  "id": "heldout-0-quoted-allegation",
+  "kind": "quoted-allegation",
+  "expected": "unsupported",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The source states the cost claim is unverified and the final cost is unknown, so the post's claim is not confirmed."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 33,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.014928,
+      "prompt_tokens": 179,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 212
+    },
+    "latencyMs": 1366,
+    "requestId": "chatcmpl-EkA1HaWNOhnOUIn7NW9HVmmmIxwmL"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Pinehaven project cost 173 million euros.",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "An anonymous post alleged that the Pinehaven project cost 173 million euros. The newsroom has not verified that claim and the final cost is unknown.",
+            "relation": "context",
+            "basis": "allegation",
+            "reason": "The source presents the cost as an unverified anonymous allegation and states the final cost is unknown, so it does not support the claim as a confirmed event.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-0-quoted-allegation",
+            "title": "Synthetic Pinehaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The source reports an anonymous allegation that the Pinehaven project cost 173 million euros but explicitly states that this claim has not been verified and the final cost is unknown. Therefore, there is no direct or official evidence confirming the project's cost as 173 million euros.",
+        "missing": "Official or verified documentation confirming the final cost of the Pinehaven project.",
+        "postQuote": "The Pinehaven project cost 173 million euros."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-0-quoted-allegation",
+        "title": "Synthetic Pinehaven record",
+        "text": "An anonymous post alleged that the Pinehaven project cost 173 million euros. The newsroom has not verified that claim and the final cost is unknown.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 872,
+      "completion_tokens": 220,
+      "total_tokens": 1092,
+      "credits_charged": 0.084096
+    },
+    "inferenceMs": 3412,
+    "extractionMs": 1230,
+    "comparisonMs": 2182,
+    "requestId": "chatcmpl-EkA1KFr8LwwdwFKs4ZU4nnX7Kw5mN",
+    "extractionRequestId": "chatcmpl-EkA1J4J0qnErmsqeF7tHL8ra5tjkB"
+  }
+}

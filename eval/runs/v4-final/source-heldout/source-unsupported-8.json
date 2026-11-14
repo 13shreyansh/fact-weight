@@ -1,0 +1,104 @@
+{
+  "id": "source-unsupported-8",
+  "kind": "unsupported",
+  "expected": "unsupported",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The source passage mentions extensive infrastructure upgrades including transmission lines, substations, and synchronous compensators in the Baltic States, but does not specify the exact number of substations replaced in Lithuania on 8 February 2025."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 52,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.07248,
+      "prompt_tokens": 1302,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1354
+    },
+    "latencyMs": 1885,
+    "requestId": "chatcmpl-EkA3J2QmKmtqtwM7nNHhpVa2rxah4"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Exactly 24 substations were replaced in Lithuania on 8 February 2025.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "Estonian, Latvia and Lithuanian grid operators have upgraded and rebuilt more than 500 kilometres of high-voltage transmission lines, installed synchronous compensators and high-capacity battery systems.",
+            "relation": "context",
+            "basis": "direct_record",
+            "reason": "The source confirms infrastructure upgrades but does not mention the number of substations replaced.",
+            "group": "G1",
+            "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+            "title": "data.consilium.europa.eu",
+            "fetchedAt": "2026-11-14T15:31:52.354Z",
+            "publishedAt": null
+          },
+          {
+            "sourceId": "S1",
+            "quote": "on 8 February 2025, the transmission system operators of the Baltic States started the disconnection and desynchronisation of the Baltic electricity system from the Russian combined electricity system",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "Confirms the event date of disconnection and desynchronisation on 8 February 2025.",
+            "group": "G1",
+            "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+            "title": "data.consilium.europa.eu",
+            "fetchedAt": "2026-11-14T15:31:52.354Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source details the successful synchronisation of the Baltic electricity systems with Continental Europe on 8-9 February 2025, including infrastructure upgrades such as rebuilding transmission lines and installing synchronous compensators. However, it does not specify the exact number of substations replaced in Lithuania or any other Baltic state on 8 February 2025 or any other date.",
+        "missing": "Specific information on the number of substations replaced in Lithuania on 8 February 2025.",
+        "postQuote": "Exactly 24 substations were replaced in Lithuania on 8 February 2025."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+        "title": "data.consilium.europa.eu",
+        "fetchedAt": "2026-11-14T15:31:52.354Z",
+        "publishedAt": null,
+        "hash": "6117a9a6fae5673d27f3e254533a8995414b0d721c656fa4b689a6713ff7a58e",
+        "requestId": "0ddddde5-06a5-4995-a77a-db20a1b0bd52",
+        "extractedCharacters": 5924,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1897,
+      "completion_tokens": 332,
+      "total_tokens": 2229,
+      "credits_charged": 0.1548
+    },
+    "inferenceMs": 4354,
+    "extractionMs": 1187,
+    "comparisonMs": 3167,
+    "requestId": "chatcmpl-EkA3LiqVe7DZtCbNdoztcQpasEWda",
+    "extractionRequestId": "chatcmpl-EkA3KdpbhXw00Qzu0L8DrnKVx0qHL"
+  }
+}

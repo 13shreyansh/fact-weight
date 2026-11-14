@@ -1,0 +1,95 @@
+{
+  "id": "fresh-supported-5",
+  "kind": "supported",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The press release from 13 June 2025 explicitly lists medical assistance among the rights provided under temporary protection for Ukrainian refugees."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 33,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.06648,
+      "prompt_tokens": 1253,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1286
+    },
+    "latencyMs": 1102,
+    "requestId": "chatcmpl-EkA77CAh52QFi30hFvUALGCT6pMXX"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The 13 June 2025 press release lists medical assistance among temporary protection rights.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "People benefitting from temporary protection enjoy the same rights across the EU. These rights include: - residence - access to the labour market and housing - medical assistance - social welfare assistance - access to education for children",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The press release explicitly lists medical assistance among the rights under temporary protection.",
+            "group": "G1",
+            "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+            "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+            "fetchedAt": "2026-11-14T15:36:55.025Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The press release from 13 June 2025 explicitly lists 'medical assistance' as one of the rights enjoyed by people benefiting from temporary protection under the EU directive. This confirms that medical assistance is included among the temporary protection rights as stated in the claim.",
+        "missing": "The claim is fully supported by the source; no relevant information is missing regarding the inclusion of medical assistance in temporary protection rights.",
+        "postQuote": "The 13 June 2025 press release lists medical assistance among temporary protection rights."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+        "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+        "fetchedAt": "2026-11-14T15:36:55.025Z",
+        "publishedAt": null,
+        "hash": "d3942cd550624c787148985f439cb22c0b591e3b3f8798b65e3a8b7cf372212e",
+        "requestId": "1c8fe56c-312d-4c47-8e36-e13585f7926c",
+        "extractedCharacters": 4674,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1857,
+      "completion_tokens": 371,
+      "total_tokens": 4422,
+      "credits_charged": 3.372816
+    },
+    "inferenceMs": 6187,
+    "extractionMs": 1390,
+    "comparisonMs": 2226,
+    "verificationMs": 2571,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch34zwGYqQoncLaNRGyjk",
+    "requestId": "chatcmpl-EkA7AWtBDBpABkr38u9OupeZmpV3O",
+    "extractionRequestId": "chatcmpl-EkA78WeQmKTYhCsGuiS8scasaEqdI"
+  }
+}

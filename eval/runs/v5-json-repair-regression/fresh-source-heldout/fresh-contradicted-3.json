@@ -1,0 +1,96 @@
+{
+  "id": "fresh-contradicted-3",
+  "kind": "contradicted",
+  "expected": "contradicted",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The press release explicitly states that persons under temporary protection do not need to apply for asylum on an individual basis, contradicting the claim that they need to apply individually."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 43,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.06864,
+      "prompt_tokens": 1258,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1301
+    },
+    "latencyMs": 292,
+    "requestId": "chatcmpl-EkA7oPlBG3JeGPvu26q5qf6TjOuzW"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The 13 June 2025 press release states that people under temporary protection need to apply for asylum individually.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The temporary protection system alleviates the pressure on national asylum systems because persons falling under this type of protection do not need to apply for asylum on an individual basis. The extension until March 2027 is a signal to displaced people from Ukraine that is not necessary to apply for asylum.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The press release clearly states that people under temporary protection do not need to apply for asylum individually, contradicting the claim.",
+            "group": "G1",
+            "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+            "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+            "fetchedAt": "2026-11-14T15:36:55.025Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The press release explicitly states that the temporary protection system alleviates pressure on national asylum systems because persons under this protection do not need to apply for asylum individually. It also says the extension signals to displaced people from Ukraine that it is not necessary to apply for asylum. Therefore, the claim that people under temporary protection need to apply for asylum individually is contradicted by the press release.",
+        "missing": "No information in the source supports that people under temporary protection need to apply for asylum individually.",
+        "postQuote": "The 13 June 2025 press release states that people under temporary protection need to apply for asylum individually."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+        "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+        "fetchedAt": "2026-11-14T15:36:55.025Z",
+        "publishedAt": null,
+        "hash": "d3942cd550624c787148985f439cb22c0b591e3b3f8798b65e3a8b7cf372212e",
+        "requestId": "1c8fe56c-312d-4c47-8e36-e13585f7926c",
+        "extractedCharacters": 4674,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1873,
+      "completion_tokens": 564,
+      "total_tokens": 4667,
+      "credits_charged": 4.057488
+    },
+    "inferenceMs": 2056,
+    "extractionMs": 568,
+    "comparisonMs": 568,
+    "verificationMs": 920,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch3549b4LifFoG21zSf1U",
+    "syntaxRetries": 0,
+    "requestId": "chatcmpl-EkA7rxexSHis0y2lN72HfWhT9bkGa",
+    "extractionRequestId": "chatcmpl-EkA7pXRhxUQsmvqPCyhw0bkKVOVkv"
+  }
+}

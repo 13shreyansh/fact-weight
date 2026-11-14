@@ -1,0 +1,95 @@
+{
+  "id": "source-contradicted-5",
+  "kind": "contradicted",
+  "expected": "contradicted",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The source states that the Baltic electricity systems successfully synchronised with the Continental Europe Synchronous Area on 9 February 2025, directly contradicting the post's claim that they had not synchronised by that date."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 53,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.073104,
+      "prompt_tokens": 1311,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1364
+    },
+    "latencyMs": 1360,
+    "requestId": "chatcmpl-EkA2wPvjBLt8al9vs0ukXYE8PsM29"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Baltic electricity systems had not synchronised with the Continental Europe Synchronous Area by the end of 9 February 2025.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "Estonia, Latvia and Lithuania have successfully synchronised their electricity systems with the Continental Europe Synchronous Area via Poland on 9 February 2025",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The source explicitly states the synchronisation occurred on 9 February 2025, contradicting the claim that it had not happened by the end of that date.",
+            "group": "G1",
+            "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+            "title": "data.consilium.europa.eu",
+            "fetchedAt": "2026-11-14T15:31:52.354Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source directly states that the Baltic electricity systems successfully synchronised with the Continental Europe Synchronous Area on 9 February 2025. Therefore, the claim that they had not synchronised by the end of that date is contradicted by the source.",
+        "missing": "No information is missing to assess this claim as the source explicitly mentions the synchronisation date.",
+        "postQuote": "The Baltic electricity systems had not synchronised with the Continental Europe Synchronous Area by the end of 9 February 2025."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+        "title": "data.consilium.europa.eu",
+        "fetchedAt": "2026-11-14T15:31:52.354Z",
+        "publishedAt": null,
+        "hash": "6117a9a6fae5673d27f3e254533a8995414b0d721c656fa4b689a6713ff7a58e",
+        "requestId": "0ddddde5-06a5-4995-a77a-db20a1b0bd52",
+        "extractedCharacters": 5924,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1928,
+      "completion_tokens": 760,
+      "total_tokens": 5185,
+      "credits_charged": 5.482608
+    },
+    "inferenceMs": 6594,
+    "extractionMs": 280,
+    "comparisonMs": 280,
+    "verificationMs": 6034,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch34tLz8HcdZqiPS8aC63",
+    "requestId": "chatcmpl-EkA2z2WiTA5Le1Sc5r9xGI0LdiJs7",
+    "extractionRequestId": "chatcmpl-EkA2xcyGge2jxSOLThJ3zttlDA0ys"
+  }
+}

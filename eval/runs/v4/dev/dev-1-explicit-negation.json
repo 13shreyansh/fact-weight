@@ -1,0 +1,82 @@
+{
+  "id": "dev-1-explicit-negation",
+  "kind": "explicit-negation",
+  "expected": "contradicted",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The source explicitly states that the Eastmere ferry service did not stop on 12 March 2025 and continued its normal timetable throughout that day."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 39,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.01608,
+      "prompt_tokens": 179,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 218
+    },
+    "latencyMs": 1375,
+    "requestId": "chatcmpl-EkA0Ibwsxqn7EIyYGgrjNjpoUjbdX"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Eastmere ferry service stopped on 12 March 2025.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The Eastmere operator states the ferry service did not stop on 12 March 2025. It continued its normal timetable throughout that day.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The operator's statement is an official record directly addressing the operational status of the ferry service on the claimed date, contradicting the claim that it stopped.",
+            "group": "G1",
+            "url": "https://register.example.org/dev-1-explicit-negation",
+            "title": "Synthetic Eastmere record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The source is an official statement from the Eastmere operator explicitly stating that the ferry service did not stop on 12 March 2025 and continued its normal timetable throughout that day. This directly contradicts the claim that the service stopped on that date.",
+        "missing": "Independent or additional sources confirming the operational status of the ferry service on 12 March 2025 beyond the operator's statement.",
+        "postQuote": "The Eastmere ferry service stopped on 12 March 2025."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/dev-1-explicit-negation",
+        "title": "Synthetic Eastmere record",
+        "text": "The Eastmere operator states the ferry service did not stop on 12 March 2025. It continued its normal timetable throughout that day.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 880,
+      "completion_tokens": 240,
+      "total_tokens": 1120,
+      "credits_charged": 0.08832
+    },
+    "inferenceMs": 3331,
+    "extractionMs": 1233,
+    "comparisonMs": 2098,
+    "requestId": "chatcmpl-EkA0La5nS3m2pyRGn24Sh5TXULU8u",
+    "extractionRequestId": "chatcmpl-EkA0JRtqK1adfKrC84qIwRht2sm8b"
+  }
+}

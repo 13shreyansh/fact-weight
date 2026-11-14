@@ -1,0 +1,95 @@
+{
+  "id": "fresh-supported-3",
+  "kind": "supported",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The source states that the EU directive on temporary protection was adopted in 2001, confirming the post's claim."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 31,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.065856,
+      "prompt_tokens": 1248,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1279
+    },
+    "latencyMs": 1525,
+    "requestId": "chatcmpl-EkA70obPf7WTBC70tCkoSeDHDtY5s"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The EU temporary protection directive was adopted in 2001.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The EU directive on temporary protection was adopted in 2001, in the aftermath of the large-scale displacement due to the armed conflict in the Western Balkans",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The source directly states the adoption year of the EU temporary protection directive as 2001.",
+            "group": "G1",
+            "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+            "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+            "fetchedAt": "2026-11-14T15:36:55.025Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source explicitly states that the EU directive on temporary protection was adopted in 2001, providing direct confirmation of the claim.",
+        "missing": "No significant information is missing to verify the adoption year of the directive.",
+        "postQuote": "The EU temporary protection directive was adopted in 2001."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+        "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+        "fetchedAt": "2026-11-14T15:36:55.025Z",
+        "publishedAt": null,
+        "hash": "d3942cd550624c787148985f439cb22c0b591e3b3f8798b65e3a8b7cf372212e",
+        "requestId": "1c8fe56c-312d-4c47-8e36-e13585f7926c",
+        "extractedCharacters": 4674,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1842,
+      "completion_tokens": 303,
+      "total_tokens": 4312,
+      "credits_charged": 3.28056
+    },
+    "inferenceMs": 5898,
+    "extractionMs": 1551,
+    "comparisonMs": 1980,
+    "verificationMs": 2367,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch34zNgzQuk3Ux6cyDViM",
+    "requestId": "chatcmpl-EkA72zU7b5VyaDV4C8SWl6WRy1dKE",
+    "extractionRequestId": "chatcmpl-EkA71iUEtEmAne0FZ3l19yDZ9pRUx"
+  }
+}

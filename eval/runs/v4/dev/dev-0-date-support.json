@@ -1,0 +1,82 @@
+{
+  "id": "dev-0-date-support",
+  "kind": "date-support",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The source confirms the Northhaven power link was connected on 12 March 2025."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 26,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.01344,
+      "prompt_tokens": 176,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 202
+    },
+    "latencyMs": 1417,
+    "requestId": "chatcmpl-Ek9zbRYNpB3xVwbNYWGzlsj3KkzTJ"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Northhaven power link was connected on 12 March 2025.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The grid log confirms the Northhaven power link was connected on 12 March 2025, after its equipment tests were completed.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The grid log is an official operational record confirming the connection event on the claimed date.",
+            "group": "G1",
+            "url": "https://register.example.org/dev-0-date-support",
+            "title": "Synthetic Northhaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The source S1 provides a direct record from the grid log confirming the connection of the Northhaven power link on the specified date, 12 March 2025, after completion of equipment tests. This directly supports the claim as an event that occurred on that date.",
+        "missing": "No information is missing regarding the date or occurrence of the connection event itself. Additional details about the nature or impact of the connection are not provided but are not required to verify the claim.",
+        "postQuote": "The Northhaven power link was connected on 12 March 2025."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/dev-0-date-support",
+        "title": "Synthetic Northhaven record",
+        "text": "The grid log confirms the Northhaven power link was connected on 12 March 2025, after its equipment tests were completed.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 879,
+      "completion_tokens": 241,
+      "total_tokens": 1120,
+      "credits_charged": 0.088464
+    },
+    "inferenceMs": 3721,
+    "extractionMs": 1177,
+    "comparisonMs": 2544,
+    "requestId": "chatcmpl-Ek9zd5VVnZxAXr1Fc5qf9131foaU9",
+    "extractionRequestId": "chatcmpl-Ek9zcPPp8x1LlmYbuEmSCOAQ2HIjj"
+  }
+}

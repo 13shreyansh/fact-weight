@@ -1,0 +1,83 @@
+{
+  "id": "heldout-1-quantity-contradiction",
+  "kind": "quantity-contradiction",
+  "expected": "contradicted",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The source states that exactly 190 generators arrived on 18 September 2025, whereas the post claims 240 generators were received on that date."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 40,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.016512,
+      "prompt_tokens": 184,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 224
+    },
+    "latencyMs": 1721,
+    "requestId": "chatcmpl-Ek9wbZRv4FaYWyd59MRXBqx4t0Srg"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Westmere received 240 generators on 18 September 2025.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The final Westmere delivery register states: exactly 190 generators arrived on 18 September 2025. There were no other deliveries that day.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The official delivery register directly records 190 generators delivered on that date, contradicting the claim of 240.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-1-quantity-contradiction",
+            "title": "Synthetic Westmere record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The claim states a specific quantity of generators received on a specific date. The source provides an official delivery register stating exactly 190 generators arrived on that date with no other deliveries, directly contradicting the claim's quantity.",
+        "missing": "No evidence supports the claim of 240 generators; the exact number delivered is recorded as 190."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-1-quantity-contradiction",
+        "title": "Synthetic Westmere record",
+        "text": "The final Westmere delivery register states: exactly 190 generators arrived on 18 September 2025. There were no other deliveries that day.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 172,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.065952,
+      "prompt_tokens": 686,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 858
+    },
+    "inferenceMs": 1980,
+    "requestId": "chatcmpl-Ek9wchnUwR2qtg1VJ4WovDXBIMLBb"
+  }
+}

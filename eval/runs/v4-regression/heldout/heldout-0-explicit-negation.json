@@ -1,0 +1,82 @@
+{
+  "id": "heldout-0-explicit-negation",
+  "kind": "explicit-negation",
+  "expected": "contradicted",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The source explicitly states that the Pinehaven ferry service did not stop on 18 September 2025 and continued its normal timetable throughout that day."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 39,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.016176,
+      "prompt_tokens": 181,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 220
+    },
+    "latencyMs": 1144,
+    "requestId": "chatcmpl-EkA1Sf6crY40wxcnPa4jwoH34GaPt"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Pinehaven ferry service stopped on 18 September 2025.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The Pinehaven operator states the ferry service did not stop on 18 September 2025. It continued its normal timetable throughout that day.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The operator's official statement directly denies the ferry service stopped on the claimed date.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-0-explicit-negation",
+            "title": "Synthetic Pinehaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The source is an official operator statement directly recording that the ferry service did not stop on the claimed date and continued normally, which contradicts the claim that it stopped.",
+        "missing": "Independent confirmation or additional sources verifying the ferry service status on that date.",
+        "postQuote": "The Pinehaven ferry service stopped on 18 September 2025."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-0-explicit-negation",
+        "title": "Synthetic Pinehaven record",
+        "text": "The Pinehaven operator states the ferry service did not stop on 18 September 2025. It continued its normal timetable throughout that day.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 882,
+      "completion_tokens": 198,
+      "total_tokens": 1080,
+      "credits_charged": 0.08035199999999999
+    },
+    "inferenceMs": 3414,
+    "extractionMs": 1250,
+    "comparisonMs": 2164,
+    "requestId": "chatcmpl-EkA1V17eIpFSWZJNBmTQKfgrvlTbn",
+    "extractionRequestId": "chatcmpl-EkA1T0ZgFfVvhZ4gl7ICXh6ZH9qzs"
+  }
+}

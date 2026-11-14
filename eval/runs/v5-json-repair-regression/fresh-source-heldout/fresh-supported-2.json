@@ -1,0 +1,119 @@
+{
+  "id": "fresh-supported-2",
+  "kind": "supported",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The press release from 13 June 2025 explicitly states that the Council will formally adopt the decision to extend temporary protection at one of its upcoming sessions, directly supporting the post's claim."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 46,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.069264,
+      "prompt_tokens": 1259,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1305
+    },
+    "latencyMs": 601,
+    "requestId": "chatcmpl-EkA6ocymCoJsGmLg5oAp6SZsZr2g4"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Council will formally adopt the extension decision at an upcoming session.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The Council will formally adopt the decision to extend the temporary protection at one of its upcoming sessions.",
+            "relation": "supports",
+            "basis": "attribution",
+            "reason": "This sentence directly attributes the planned formal adoption of the extension decision to the Council at an upcoming session.",
+            "group": "G1",
+            "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+            "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+            "fetchedAt": "2026-11-14T15:36:55.025Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The press release states that the Council will formally adopt the decision to extend temporary protection at one of its upcoming sessions, attributing this as a planned future action by the Council.",
+        "missing": "Exact date or session details of the upcoming Council meeting where the adoption will occur are not provided.",
+        "postQuote": "The 13 June 2025 press release says the Council will formally adopt the extension decision at an upcoming session."
+      },
+      {
+        "claim": "There is a press release dated 13 June 2025.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "- Council of the EU - Press release - 13 June 2025 13:15 # EU member states agree to extend temporary protection for refugees from Ukraine",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The document is explicitly identified as a press release dated 13 June 2025.",
+            "group": "G1",
+            "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+            "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+            "fetchedAt": "2026-11-14T15:36:55.025Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source is a press release from the Council of the EU dated 13 June 2025, confirming the existence of such a press release on that date.",
+        "missing": "None relevant to the claim; the press release date is clearly stated.",
+        "postQuote": "The 13 June 2025 press release"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+        "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+        "fetchedAt": "2026-11-14T15:36:55.025Z",
+        "publishedAt": null,
+        "hash": "d3942cd550624c787148985f439cb22c0b591e3b3f8798b65e3a8b7cf372212e",
+        "requestId": "1c8fe56c-312d-4c47-8e36-e13585f7926c",
+        "extractedCharacters": 4674,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1905,
+      "completion_tokens": 793,
+      "total_tokens": 5008,
+      "credits_charged": 4.8579360000000005
+    },
+    "inferenceMs": 1675,
+    "extractionMs": 533,
+    "comparisonMs": 531,
+    "verificationMs": 611,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch34ycUvYxwV6xD2hsaDh",
+    "syntaxRetries": 0,
+    "requestId": "chatcmpl-EkA6rws4HMpclxI6TkzN34OXsseqi",
+    "extractionRequestId": "chatcmpl-EkA6qeVYHucz5friBnXU51yikvBmr"
+  }
+}

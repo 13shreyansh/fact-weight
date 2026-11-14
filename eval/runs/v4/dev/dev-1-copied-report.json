@@ -1,0 +1,103 @@
+{
+  "id": "dev-1-copied-report",
+  "kind": "copied-report",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "Both source passages explicitly state that Eastmere received 65 medical kits on 12 March 2025, confirming the post's claim."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 35,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.020208,
+      "prompt_tokens": 281,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 316
+    },
+    "latencyMs": 1090,
+    "requestId": "chatcmpl-EkA0DwLZUBGijju1YMxYFvT2WndAA"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Eastmere received 65 medical kits on 12 March 2025.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "According to the regional register, Eastmere received 65 medical kits on 12 March 2025. The register lists this as the only delivery for that date.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The regional register is an official record stating the delivery of 65 medical kits to Eastmere on the specified date.",
+            "group": "G1",
+            "url": "https://register.example.org/dev-1-copied-report",
+            "title": "Synthetic Eastmere record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          },
+          {
+            "sourceId": "S2",
+            "quote": "According to the regional register, Eastmere received 65 medical kits on 12 March 2025. The register lists this as the only delivery for that date.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "This source duplicates the official record confirming the delivery event.",
+            "group": "G1",
+            "url": "https://mirror.example.net/dev-1-copied-report",
+            "title": "Synthetic copied report",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "Both sources S1 and S2 directly state that according to the regional register, Eastmere received 65 medical kits on 12 March 2025, listing this as the only delivery for that date. This constitutes direct recorded evidence supporting the claim.",
+        "missing": "No information is provided about the exact time of delivery or confirmation from Eastmere itself, but the regional register is an official record source.",
+        "postQuote": "Eastmere received 65 medical kits on 12 March 2025."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/dev-1-copied-report",
+        "title": "Synthetic Eastmere record",
+        "text": "According to the regional register, Eastmere received 65 medical kits on 12 March 2025. The register lists this as the only delivery for that date.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      },
+      {
+        "id": "S2",
+        "url": "https://mirror.example.net/dev-1-copied-report",
+        "title": "Synthetic copied report",
+        "text": "According to the regional register, Eastmere received 65 medical kits on 12 March 2025. The register lists this as the only delivery for that date.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 966,
+      "completion_tokens": 305,
+      "total_tokens": 1271,
+      "credits_charged": 0.10492800000000001
+    },
+    "inferenceMs": 4297,
+    "extractionMs": 1828,
+    "comparisonMs": 2469,
+    "requestId": "chatcmpl-EkA0FXT0XRUgN4h8YMy5wtZHkmFEk",
+    "extractionRequestId": "chatcmpl-EkA0E5TdL207Pm23IL6ozwJM2Fvos"
+  }
+}

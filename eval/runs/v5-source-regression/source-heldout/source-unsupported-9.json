@@ -1,0 +1,95 @@
+{
+  "id": "source-unsupported-9",
+  "kind": "unsupported",
+  "expected": "unsupported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The source passage describes the successful synchronisation of the Baltic electricity systems with the Continental Europe Synchronous Area as a key milestone that strengthens energy resilience and independence, enhances regional and European energy security, and supports renewable energy integration, which aligns with the positive view expressed in the post that the grid synchronisation was a wonderful idea."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 72,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.076032,
+      "prompt_tokens": 1296,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1368
+    },
+    "latencyMs": 280,
+    "requestId": "chatcmpl-EkA3PXp1uzzcn27lZMBGNQ0zM9tpq"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The grid synchronisation was a wonderful idea.",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "This is the result of 15 years of careful planning, strong regional cooperation, huge efforts to modernise the Baltic States energy systems and a result of true European Unity.",
+            "relation": "context",
+            "basis": "direct_record",
+            "reason": "The claim is a subjective value judgment ('wonderful idea'), not a checkable fact. The passage describes planning and cooperation behind the project but cannot verify an opinion.",
+            "group": "G1",
+            "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+            "title": "data.consilium.europa.eu",
+            "fetchedAt": "2026-11-14T15:31:52.354Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The post anchor is an opinion or does not establish this as a faithful checkable assertion.",
+        "missing": "Direct attribution or statement that the grid synchronisation was a \"wonderful idea.\"",
+        "postQuote": "the grid synchronisation was a wonderful idea"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+        "title": "data.consilium.europa.eu",
+        "fetchedAt": "2026-11-14T15:31:52.354Z",
+        "publishedAt": null,
+        "hash": "6117a9a6fae5673d27f3e254533a8995414b0d721c656fa4b689a6713ff7a58e",
+        "requestId": "0ddddde5-06a5-4995-a77a-db20a1b0bd52",
+        "extractedCharacters": 5924,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1880,
+      "completion_tokens": 381,
+      "total_tokens": 4700,
+      "credits_charged": 3.651408
+    },
+    "inferenceMs": 3827,
+    "extractionMs": 535,
+    "comparisonMs": 529,
+    "verificationMs": 2763,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch34vbDwQxmyCXTQhr1dU",
+    "requestId": "chatcmpl-EkA3RY7RzlRmh4lGGSK3TbJcFH2so",
+    "extractionRequestId": "chatcmpl-EkA3Q8oQc30V42pqLyA1y5PmGECaG"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "id": "source-supported-5",
+  "kind": "supported",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The source explicitly states that the Baltic electricity systems synchronised with the Continental Europe Synchronous Area via Poland on 9 February 2025, confirming the post's claim."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 42,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.070512,
+      "prompt_tokens": 1301,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1343
+    },
+    "latencyMs": 2237,
+    "requestId": "chatcmpl-EkA2frrtg7furLeX2CuQjwlpBNUip"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Baltic electricity systems synchronised with the Continental Europe Synchronous Area via Poland.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "Estonia, Latvia and Lithuania have successfully synchronised their electricity systems with the Continental Europe Synchronous Area via Poland on 9 February 2025, ensuring their independence from Russia's and Belarus's electricity systems.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "This is an official note from the Council of the European Union reporting the successful synchronisation event on the specified date via Poland.",
+            "group": "G1",
+            "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+            "title": "data.consilium.europa.eu",
+            "fetchedAt": "2026-11-14T15:31:52.354Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source directly records that Estonia, Latvia, and Lithuania successfully synchronised their electricity systems with the Continental Europe Synchronous Area via Poland on 9 February 2025. It details the disconnection from the Russian-Belorussian system and the joining of the Continental Europe synchronous grid, confirming the event occurred as claimed.",
+        "missing": "No significant details about the exact technical process or operational data during synchronisation are provided, but the core event is fully documented.",
+        "postQuote": "The Baltic electricity systems synchronised with the Continental Europe Synchronous Area via Poland."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+        "title": "data.consilium.europa.eu",
+        "fetchedAt": "2026-11-14T15:31:52.354Z",
+        "publishedAt": null,
+        "hash": "6117a9a6fae5673d27f3e254533a8995414b0d721c656fa4b689a6713ff7a58e",
+        "requestId": "0ddddde5-06a5-4995-a77a-db20a1b0bd52",
+        "extractedCharacters": 5924,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1894,
+      "completion_tokens": 266,
+      "total_tokens": 2160,
+      "credits_charged": 0.141984
+    },
+    "inferenceMs": 3883,
+    "extractionMs": 1391,
+    "comparisonMs": 2492,
+    "requestId": "chatcmpl-EkA2j5WnE5LbH3W8dof0rXcc7Ns3a",
+    "extractionRequestId": "chatcmpl-EkA2hZ6bMe8RpdFLanA3U3flrwiPF"
+  }
+}

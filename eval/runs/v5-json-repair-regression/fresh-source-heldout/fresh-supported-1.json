@@ -1,0 +1,96 @@
+{
+  "id": "fresh-supported-1",
+  "kind": "supported",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The source passage from the EU Council press release dated 13 June 2025 explicitly states that the Council voiced unanimous support for a proposal to extend temporary protection for Ukrainian refugees until 4 March 2027, matching the claim in the post."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 57,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.071664,
+      "prompt_tokens": 1265,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1322
+    },
+    "latencyMs": 352,
+    "requestId": "chatcmpl-EkA6ooPZ1BYzPcKW71jS85SCPb4Mk"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "On 13 June 2025, the EU Council voiced unanimous support for a proposal to extend temporary protection until 4 March 2027.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "Today, the Council voiced its unanimous support for a proposal to extend the temporary protection for the more than 4 million Ukrainians fleeing from Russia’s war of aggression until 4 March 2027.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The press release directly records the Council's unanimous support on 13 June 2025 for extending temporary protection until 4 March 2027.",
+            "group": "G1",
+            "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+            "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+            "fetchedAt": "2026-11-14T15:36:55.025Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source is a press release from the Council of the EU dated 13 June 2025, stating that the Council voiced unanimous support for a proposal to extend temporary protection for Ukrainian refugees until 4 March 2027. It confirms the date, the unanimous support, and the extension period as claimed. The source also notes that the Council will formally adopt the decision at an upcoming session, indicating the support was voiced but the formal adoption was pending at the time of the release.",
+        "missing": "Formal adoption of the extension decision by the Council is not confirmed as completed on 13 June 2025; the claim does not specify this detail.",
+        "postQuote": "On 13 June 2025, the EU Council voiced unanimous support for a proposal to extend temporary protection until 4 March 2027."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+        "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+        "fetchedAt": "2026-11-14T15:36:55.025Z",
+        "publishedAt": null,
+        "hash": "d3942cd550624c787148985f439cb22c0b591e3b3f8798b65e3a8b7cf372212e",
+        "requestId": "1c8fe56c-312d-4c47-8e36-e13585f7926c",
+        "extractedCharacters": 4674,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1893,
+      "completion_tokens": 482,
+      "total_tokens": 4608,
+      "credits_charged": 3.497952
+    },
+    "inferenceMs": 1489,
+    "extractionMs": 582,
+    "comparisonMs": 306,
+    "verificationMs": 601,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch34yZwP65KNsteV7npYT",
+    "syntaxRetries": 0,
+    "requestId": "chatcmpl-EkA6rZgQFrYfOX8nDNbEP8tSbkuHB",
+    "extractionRequestId": "chatcmpl-EkA6pJWYrg5kRndtOE4ZsJ0RhylSO"
+  }
+}

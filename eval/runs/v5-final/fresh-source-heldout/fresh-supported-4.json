@@ -1,0 +1,95 @@
+{
+  "id": "fresh-supported-4",
+  "kind": "supported",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The press release explicitly states that the EU's temporary protection law sets minimum standards of protection and that the actual level of assistance can vary from one member state to another, confirming the post's claim."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 47,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.069408,
+      "prompt_tokens": 1258,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1305
+    },
+    "latencyMs": 1378,
+    "requestId": "chatcmpl-EkA702NhNH6CrlYB1y7cjuWDbVeM3"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The 13 June 2025 press release says the actual level of assistance can vary between EU member states.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The EU’s temporary protection law sets minimum standards of protection. The actual level of assistance can vary from one member state to another.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The press release explicitly states that the actual level of assistance can vary between EU member states, directly supporting the claim.",
+            "group": "G1",
+            "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+            "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+            "fetchedAt": "2026-11-14T15:36:55.025Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The press release from 13 June 2025 explicitly states that 'The EU’s temporary protection law sets minimum standards of protection. The actual level of assistance can vary from one member state to another.' This directly attributes the claim to the press release, confirming that it mentions variability in assistance levels among member states.",
+        "missing": "No information is missing for this claim as it is about what the press release states, which is fully covered.",
+        "postQuote": "The 13 June 2025 press release says the actual level of assistance can vary between EU member states."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+        "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+        "fetchedAt": "2026-11-14T15:36:55.025Z",
+        "publishedAt": null,
+        "hash": "d3942cd550624c787148985f439cb22c0b591e3b3f8798b65e3a8b7cf372212e",
+        "requestId": "1c8fe56c-312d-4c47-8e36-e13585f7926c",
+        "extractedCharacters": 4674,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1873,
+      "completion_tokens": 378,
+      "total_tokens": 4427,
+      "credits_charged": 3.3026400000000002
+    },
+    "inferenceMs": 6598,
+    "extractionMs": 1340,
+    "comparisonMs": 2895,
+    "verificationMs": 2363,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch34zQe52T2VxT2sBhZPi",
+    "requestId": "chatcmpl-EkA72oiFDPeKnEu5bEtBjQAqSuJnk",
+    "extractionRequestId": "chatcmpl-EkA71gU9VuduF9xgSPcTsr5jVpmQI"
+  }
+}

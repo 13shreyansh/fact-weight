@@ -1,0 +1,96 @@
+{
+  "id": "fresh-unsupported-1",
+  "kind": "unsupported",
+  "expected": "unsupported",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The source discusses the extension of temporary protection for Ukrainian refugees and plans for a gradual return but does not provide any specific statistic about the percentage of displaced Ukrainians who have decided to return by 13 June 2025."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 52,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.070272,
+      "prompt_tokens": 1256,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1308
+    },
+    "latencyMs": 522,
+    "requestId": "chatcmpl-EkA89pZ4ScO6eeXJXI8I5BWmDigEC"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Exactly 92 percent of displaced Ukrainians had decided to return by 13 June 2025.",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "In the near future, we will work towards common, EU-wide solutions in this area, including in the context of returns to Ukraine.",
+            "relation": "context",
+            "basis": "attribution",
+            "reason": "Mentions plans to work on return strategies but does not provide any statistic or confirmation about the percentage of displaced Ukrainians deciding to return.",
+            "group": "G1",
+            "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+            "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+            "fetchedAt": "2026-11-14T15:36:55.025Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The provided source from the Council of the EU press release dated 13 June 2025 discusses the extension of temporary protection for Ukrainian refugees and mentions plans to work towards common EU-wide solutions including returns to Ukraine. However, it does not provide any specific statistic or statement about 92 percent of displaced Ukrainians deciding to return by that date. Therefore, there is no direct or indirect evidence supporting this claim in the source.",
+        "missing": "Any specific data or official statement quantifying the percentage of displaced Ukrainians who had decided to return by 13 June 2025.",
+        "postQuote": "Exactly 92 percent of displaced Ukrainians had decided to return by 13 June 2025."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+        "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+        "fetchedAt": "2026-11-14T15:36:55.025Z",
+        "publishedAt": null,
+        "hash": "d3942cd550624c787148985f439cb22c0b591e3b3f8798b65e3a8b7cf372212e",
+        "requestId": "1c8fe56c-312d-4c47-8e36-e13585f7926c",
+        "extractedCharacters": 4674,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1862,
+      "completion_tokens": 288,
+      "total_tokens": 2150,
+      "credits_charged": 0.14467200000000002
+    },
+    "inferenceMs": 853,
+    "extractionMs": 526,
+    "comparisonMs": 327,
+    "verificationMs": 0,
+    "verifierModel": null,
+    "verificationRequestId": null,
+    "syntaxRetries": 0,
+    "requestId": "chatcmpl-EkA8COOY6oWpZR9otQLNq9x8OxqvF",
+    "extractionRequestId": "chatcmpl-EkA8AKeSArX02KKw2HzaWsJdNZZJE"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "id": "heldout-3-date-contradiction",
+  "kind": "date-contradiction",
+  "expected": "contradicted",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The source states the Southmere power link was first connected on 18 September 2025, which contradicts the post's claim of 21 September 2025."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 44,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.017472,
+      "prompt_tokens": 188,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 232
+    },
+    "latencyMs": 1263,
+    "requestId": "chatcmpl-EkA2UzKhCGyK2YcT6qH7M4x73OWZx"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Southmere power link was connected on 21 September 2025.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The grid operator's final event log says the Southmere power link was first connected on 18 September 2025, not on 21 September 2025.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The official event log directly records the connection date as 18 September 2025, contradicting the claim of 21 September 2025.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-3-date-contradiction",
+            "title": "Synthetic Southmere record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The source S1 provides a direct record from the grid operator's final event log stating the Southmere power link was first connected on 18 September 2025, which contradicts the claim that it was connected on 21 September 2025.",
+        "missing": "No evidence supports the connection date of 21 September 2025; the exact connection date according to the official log is 18 September 2025.",
+        "postQuote": "The Southmere power link was connected on 21 September 2025."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-3-date-contradiction",
+        "title": "Synthetic Southmere record",
+        "text": "The grid operator's final event log says the Southmere power link was first connected on 18 September 2025, not on 21 September 2025.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 891,
+      "completion_tokens": 253,
+      "total_tokens": 1144,
+      "credits_charged": 0.09134400000000001
+    },
+    "inferenceMs": 3597,
+    "extractionMs": 1273,
+    "comparisonMs": 2324,
+    "requestId": "chatcmpl-EkA2XhjEDcCL8kKjXLsUuVgONJZVb",
+    "extractionRequestId": "chatcmpl-EkA2VAGOmiNewSf2KQGg8T0FwHq1l"
+  }
+}

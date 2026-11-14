@@ -1,0 +1,45 @@
+{
+  "version": "v5-source-regression",
+  "split": "source-heldout",
+  "n": 24,
+  "at": "2026-11-14T15:37:03.379Z",
+  "datasetSha256": "f59f93ca13394f7e8940b99955fabbcef7c671d8965835ab27643fb52dc38374",
+  "engineSha256": "f7cf08a062e901d7b1041d7b8a3dc76f81072d5f9da9704262622f00e169b0db",
+  "labelProvenance": "agent-constructed source-derived assertions against one real Council document; no human labels",
+  "baseline": {
+    "n": 24,
+    "correct": 19,
+    "errors": 0,
+    "accuracy": 0.7916666666666666,
+    "tp": 5,
+    "fp": 1,
+    "tn": 17,
+    "fn": 1,
+    "precision": 0.8333333333333334,
+    "recall": 0.8333333333333334,
+    "fpr": 0.05555555555555555
+  },
+  "pipeline": {
+    "n": 24,
+    "correct": 24,
+    "errors": 0,
+    "accuracy": 1,
+    "tp": 6,
+    "fp": 0,
+    "tn": 18,
+    "fn": 0,
+    "precision": 1,
+    "recall": 1,
+    "fpr": 0
+  },
+  "citations": {
+    "accepted": 23,
+    "verbatim": 23,
+    "rejected": 4
+  },
+  "medianInferenceMs": 3663,
+  "p95InferenceMs": 6594,
+  "creditsCharged": 72.50006400000001,
+  "wallMs": 63899,
+  "failures": []
+}

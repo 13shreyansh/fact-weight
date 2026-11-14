@@ -1,0 +1,82 @@
+{
+  "id": "heldout-2-attribution",
+  "kind": "attribution",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The source directly quotes the Lakehaven mayor stating the project would cost 207 million euros."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 26,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.013536,
+      "prompt_tokens": 178,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 204
+    },
+    "latencyMs": 1107,
+    "requestId": "chatcmpl-EkA29Tyl3ZpH7aBPgUgOW2GhVvhzk"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Lakehaven mayor said the project would cost 207 million euros.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "In a press conference, the Lakehaven mayor said the project would cost 207 million euros.",
+            "relation": "supports",
+            "basis": "attribution",
+            "reason": "The source attributes the statement about the project cost directly to the Lakehaven mayor.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-2-attribution",
+            "title": "Synthetic Lakehaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The source directly reports that the Lakehaven mayor stated the project cost as 207 million euros in a press conference, matching the claim exactly.",
+        "missing": "No independent verification of the cost is provided in the source.",
+        "postQuote": "The Lakehaven mayor said the project would cost 207 million euros."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-2-attribution",
+        "title": "Synthetic Lakehaven record",
+        "text": "In a press conference, the Lakehaven mayor said the project would cost 207 million euros. The estimate has not been independently verified.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 880,
+      "completion_tokens": 182,
+      "total_tokens": 1062,
+      "credits_charged": 0.077184
+    },
+    "inferenceMs": 3128,
+    "extractionMs": 1233,
+    "comparisonMs": 1895,
+    "requestId": "chatcmpl-EkA2BWKFFRIPRU10aQDOne7N06Wuk",
+    "extractionRequestId": "chatcmpl-EkA2AcJAGTPDTT1fkMUwMz5suuvCx"
+  }
+}

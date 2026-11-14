@@ -1,0 +1,82 @@
+{
+  "id": "heldout-0-quantity-support",
+  "kind": "quantity-support",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The source states that 173 generators arrived in Pinehaven on 18 September 2025, which directly supports the post's claim."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 35,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.014976,
+      "prompt_tokens": 172,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 207
+    },
+    "latencyMs": 588,
+    "requestId": "chatcmpl-Ek9wIjDtcRAvhITDvT5h9luZrDWh7"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Pinehaven received 173 generators on 18 September 2025",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The Pinehaven delivery register records that 173 generators arrived on 18 September 2025.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The delivery register is an official record documenting the arrival of the generators on the claimed date.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-0-quantity-support",
+            "title": "Synthetic Pinehaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The delivery register explicitly records the arrival of 173 generators at Pinehaven on the specified date, confirming the event occurred as claimed.",
+        "missing": "No information about the source or origin of the generators, or any subsequent distribution or usage details.",
+        "postQuote": "Pinehaven received 173 generators on 18 September 2025"
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-0-quantity-support",
+        "title": "Synthetic Pinehaven record",
+        "text": "The Pinehaven delivery register records that 173 generators arrived on 18 September 2025.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 875,
+      "completion_tokens": 190,
+      "total_tokens": 1065,
+      "credits_charged": 0.07848000000000001
+    },
+    "inferenceMs": 3660,
+    "extractionMs": 1722,
+    "comparisonMs": 1938,
+    "requestId": "chatcmpl-EkA1AXQNn9t6WUDIeASJc5ARkx0qd",
+    "extractionRequestId": "chatcmpl-EkA19Gluf3hVXjftFfBHGr7B4en2l"
+  }
+}

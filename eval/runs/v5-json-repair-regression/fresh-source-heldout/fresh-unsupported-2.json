@@ -1,0 +1,83 @@
+{
+  "id": "fresh-unsupported-2",
+  "kind": "unsupported",
+  "expected": "unsupported",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The source passage discusses the extension of temporary protection for Ukrainian refugees and related policies but does not mention any specific funding amount, including 123 million euros, nor any earmarking for temporary protection offices in Latvia on 13 June 2025."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 56,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.071184,
+      "prompt_tokens": 1259,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1315
+    },
+    "latencyMs": 574,
+    "requestId": "chatcmpl-EkA88vW4Sn5vgBHg9DQP5hhthx0bU"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "On 13 June 2025 the EU earmarked exactly 123 million euros for temporary protection offices in Latvia.",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [],
+        "explanation": "The provided source from the Council of the EU press release dated 13 June 2025 discusses the extension of temporary protection for Ukrainian refugees and related policy matters but does not mention any specific financial allocation, let alone an earmarking of exactly 123 million euros for temporary protection offices in Latvia or elsewhere.",
+        "missing": "Any mention of a financial allocation or earmarking of funds, specifically 123 million euros, for temporary protection offices in Latvia on 13 June 2025 or any other date.",
+        "postQuote": "On 13 June 2025 the EU earmarked exactly 123 million euros for temporary protection offices in Latvia."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+        "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+        "fetchedAt": "2026-11-14T15:36:55.025Z",
+        "publishedAt": null,
+        "hash": "d3942cd550624c787148985f439cb22c0b591e3b3f8798b65e3a8b7cf372212e",
+        "requestId": "1c8fe56c-312d-4c47-8e36-e13585f7926c",
+        "extractedCharacters": 4674,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 1,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1871,
+      "completion_tokens": 342,
+      "total_tokens": 2213,
+      "credits_charged": 0.155472
+    },
+    "inferenceMs": 1122,
+    "extractionMs": 541,
+    "comparisonMs": 581,
+    "verificationMs": 0,
+    "verifierModel": null,
+    "verificationRequestId": null,
+    "syntaxRetries": 0,
+    "requestId": "chatcmpl-EkA8BORqRbpqUOFNk1vJQPoazVipa",
+    "extractionRequestId": "chatcmpl-EkA8A4QpqV4u34742baLiAaC537ky"
+  }
+}

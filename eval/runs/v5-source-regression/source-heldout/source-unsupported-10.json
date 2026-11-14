@@ -1,0 +1,82 @@
+{
+  "id": "source-unsupported-10",
+  "kind": "unsupported",
+  "expected": "unsupported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The source describes the successful synchronisation of the Baltic electricity systems with the Continental Europe Synchronous Area as a key milestone that strengthens energy resilience and independence, enhances regional and European energy security, and results from 15 years of careful planning and cooperation. This positive framing supports the user's feeling of optimism about the grid decision."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 71,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.075696,
+      "prompt_tokens": 1293,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1364
+    },
+    "latencyMs": 380,
+    "requestId": "chatcmpl-EkA3P8upO5vN8vW4AyThiKTEGH093"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "This grid decision makes the user feel optimistic",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [],
+        "explanation": "The source describes the successful synchronisation of the Baltic electricity systems with the Continental Europe Synchronous Area as a key milestone, strengthening energy resilience and independence, and highlights extensive efforts and investments over 15 years. It mentions benefits such as increased energy security, integration of renewables, and lower energy costs for consumers, which could reasonably lead to optimism. However, the source does not contain any direct statement or attribution expressing that a user or individual feels optimistic about the grid decision.",
+        "missing": "Direct attribution or statement that a user feels optimistic about the grid decision.",
+        "postQuote": "This grid decision makes me feel optimistic"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+        "title": "data.consilium.europa.eu",
+        "fetchedAt": "2026-11-14T15:31:52.354Z",
+        "publishedAt": null,
+        "hash": "6117a9a6fae5673d27f3e254533a8995414b0d721c656fa4b689a6713ff7a58e",
+        "requestId": "0ddddde5-06a5-4995-a77a-db20a1b0bd52",
+        "extractedCharacters": 5924,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 1,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1872,
+      "completion_tokens": 290,
+      "total_tokens": 2162,
+      "credits_charged": 0.145536
+    },
+    "inferenceMs": 1060,
+    "extractionMs": 555,
+    "comparisonMs": 505,
+    "verificationMs": 0,
+    "verifierModel": null,
+    "verificationRequestId": null,
+    "requestId": "chatcmpl-EkA3R5slY6i9ZnKsXVEePgDcCdcrj",
+    "extractionRequestId": "chatcmpl-EkA3Q968qqOB46FGnhOv5TyaMYPBN"
+  }
+}

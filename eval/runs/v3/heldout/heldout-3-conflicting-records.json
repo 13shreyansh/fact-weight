@@ -1,0 +1,104 @@
+{
+  "id": "heldout-3-conflicting-records",
+  "kind": "conflicting-records",
+  "expected": "contested",
+  "baselineLabel": "contested",
+  "pipelineLabel": "contested",
+  "baseline": {
+    "data": {
+      "label": "contested",
+      "reason": "Source S1 supports the claim that Southmere received 224 water pumps on 18 September 2025, while source S2 states Southmere received 255 water pumps on the same date, indicating a disagreement between sources."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 54,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.023328,
+      "prompt_tokens": 270,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 324
+    },
+    "latencyMs": 1573,
+    "requestId": "chatcmpl-Ek9xSSEJywmgVgiIeqvtj8t28Umuz"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Southmere received 224 water pumps on 18 September 2025.",
+        "status": "contested",
+        "supportGroups": 1,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The municipal register states that Southmere received exactly 224 water pumps on 18 September 2025.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "This is an official municipal register record directly stating the claim.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-3-conflicting-records",
+            "title": "Synthetic Southmere record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          },
+          {
+            "sourceId": "S2",
+            "quote": "An independently compiled port register states that Southmere received exactly 255 water pumps on 18 September 2025. The two registers disagree.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "This independent register directly contradicts the number of water pumps received as stated in the municipal register.",
+            "group": "G2",
+            "url": "https://independent.example.net/heldout-3-conflicting-records",
+            "title": "Synthetic Southmere record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The municipal register directly records that Southmere received exactly 224 water pumps on that date. However, an independent port register contradicts this by stating Southmere received 255 water pumps on the same date, indicating a conflict in the records.",
+        "missing": "Independent verification or resolution of the discrepancy between the two registers is missing to confirm the exact number of water pumps received."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-3-conflicting-records",
+        "title": "Synthetic Southmere record",
+        "text": "The municipal register states that Southmere received exactly 224 water pumps on 18 September 2025.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      },
+      {
+        "id": "S2",
+        "url": "https://independent.example.net/heldout-3-conflicting-records",
+        "title": "Synthetic Southmere record",
+        "text": "An independently compiled port register states that Southmere received exactly 255 water pumps on 18 September 2025. The two registers disagree.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G2"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 230,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.080352,
+      "prompt_tokens": 754,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 984
+    },
+    "inferenceMs": 2231,
+    "requestId": "chatcmpl-Ek9xToqA98RvGS1niHdnKo8PijjTd"
+  }
+}

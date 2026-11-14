@@ -1,0 +1,82 @@
+{
+  "id": "heldout-0-attribution",
+  "kind": "attribution",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The source directly states that the Pinehaven mayor said the project would cost 173 million euros."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 27,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.013728,
+      "prompt_tokens": 178,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 205
+    },
+    "latencyMs": 1825,
+    "requestId": "chatcmpl-EkA1I2FAD1MgZRLFXFx8oKIhdPA2w"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Pinehaven mayor said the project would cost 173 million euros.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "In a press conference, the Pinehaven mayor said the project would cost 173 million euros.",
+            "relation": "supports",
+            "basis": "attribution",
+            "reason": "The source attributes the statement about the project cost directly to the Pinehaven mayor.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-0-attribution",
+            "title": "Synthetic Pinehaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The source directly reports that the Pinehaven mayor stated the project cost as 173 million euros during a press conference, matching the claim exactly.",
+        "missing": "No information on independent verification or accuracy of the cost estimate is provided.",
+        "postQuote": "The Pinehaven mayor said the project would cost 173 million euros."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-0-attribution",
+        "title": "Synthetic Pinehaven record",
+        "text": "In a press conference, the Pinehaven mayor said the project would cost 173 million euros. The estimate has not been independently verified.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 880,
+      "completion_tokens": 184,
+      "total_tokens": 1064,
+      "credits_charged": 0.077568
+    },
+    "inferenceMs": 3141,
+    "extractionMs": 1293,
+    "comparisonMs": 1848,
+    "requestId": "chatcmpl-EkA1Kf8UVd4vJUI25T5vt7ul2sKur",
+    "extractionRequestId": "chatcmpl-EkA1J6NsUZ4mpVjTkjW4prRuA3bbe"
+  }
+}

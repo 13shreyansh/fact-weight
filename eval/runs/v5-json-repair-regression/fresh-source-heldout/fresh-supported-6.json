@@ -1,0 +1,119 @@
+{
+  "id": "fresh-supported-6",
+  "kind": "supported",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The press release from 13 June 2025 explicitly states that the EU's temporary protection law sets minimum standards of protection, confirming the post's claim."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 39,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.06792,
+      "prompt_tokens": 1259,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1298
+    },
+    "latencyMs": 585,
+    "requestId": "chatcmpl-EkA78q4303tou1fTRrSfT92APyZHV"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The EU temporary protection law sets minimum standards of protection",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The EU’s temporary protection law sets minimum standards of protection. The actual level of assistance can vary from one member state to another.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The source directly states that the EU temporary protection law sets minimum standards of protection.",
+            "group": "G1",
+            "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+            "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+            "fetchedAt": "2026-11-14T15:36:55.025Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source explicitly states that the EU's temporary protection law sets minimum standards of protection, confirming the claim as an event describing the law's characteristics.",
+        "missing": "No details on the specific minimum standards or how they compare across member states are provided.",
+        "postQuote": "The EU temporary protection law sets minimum standards of protection"
+      },
+      {
+        "claim": "The information is according to the 13 June 2025 press release",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "- Council of the EU - Press release - 13 June 2025 13:15 # EU member states agree to extend temporary protection for refugees from Ukraine",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The source is a press release dated 13 June 2025, confirming the claim's attribution to this press release.",
+            "group": "G1",
+            "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+            "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+            "fetchedAt": "2026-11-14T15:36:55.025Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source is a press release dated 13 June 2025 from the Council of the EU, which matches the date and nature of the information claimed.",
+        "missing": "No additional corroboration from other sources or confirmation that all information in the claim is exclusively from this press release.",
+        "postQuote": "according to the 13 June 2025 press release"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+        "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+        "fetchedAt": "2026-11-14T15:36:55.025Z",
+        "publishedAt": null,
+        "hash": "d3942cd550624c787148985f439cb22c0b591e3b3f8798b65e3a8b7cf372212e",
+        "requestId": "1c8fe56c-312d-4c47-8e36-e13585f7926c",
+        "extractedCharacters": 4674,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1895,
+      "completion_tokens": 872,
+      "total_tokens": 5069,
+      "credits_charged": 5.231663999999999
+    },
+    "inferenceMs": 1713,
+    "extractionMs": 846,
+    "comparisonMs": 559,
+    "verificationMs": 308,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch3513Fxpi12UWZygzEVg",
+    "syntaxRetries": 0,
+    "requestId": "chatcmpl-EkA7AUbbJVf7HHo0ljDs0Sw8X18RP",
+    "extractionRequestId": "chatcmpl-EkA79GzcE79ZMekIZZs32HWX9QX4J"
+  }
+}

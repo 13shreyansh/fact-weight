@@ -1,0 +1,82 @@
+{
+  "id": "heldout-2-date-support",
+  "kind": "date-support",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The source explicitly states that the Lakehaven power link was connected on 18 September 2025, confirming the post's claim."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 34,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.015072,
+      "prompt_tokens": 178,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 212
+    },
+    "latencyMs": 1318,
+    "requestId": "chatcmpl-EkA23yz5CMeYzsDwkorXeKhTzkI2N"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Lakehaven power link was connected on 18 September 2025.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The grid log confirms the Lakehaven power link was connected on 18 September 2025, after its equipment tests were completed.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The grid log is an official record confirming the connection event on the specified date.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-2-date-support",
+            "title": "Synthetic Lakehaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The source S1 directly records that the Lakehaven power link was connected on 18 September 2025, confirming the event date and completion of equipment tests prior to connection.",
+        "missing": "No information is missing regarding the connection date or event confirmation.",
+        "postQuote": "The Lakehaven power link was connected on 18 September 2025."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-2-date-support",
+        "title": "Synthetic Lakehaven record",
+        "text": "The grid log confirms the Lakehaven power link was connected on 18 September 2025, after its equipment tests were completed.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 881,
+      "completion_tokens": 197,
+      "total_tokens": 1078,
+      "credits_charged": 0.080112
+    },
+    "inferenceMs": 3937,
+    "extractionMs": 1837,
+    "comparisonMs": 2100,
+    "requestId": "chatcmpl-EkA2612uL3kOMNctMJk4vgbJjw741",
+    "extractionRequestId": "chatcmpl-EkA24z0nCA5oTVot5vRb2Ze5ckzHm"
+  }
+}

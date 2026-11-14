@@ -1,7 +1,67 @@
-# Fact Weight design
+---
+name: Fact Weight
+description: A reading workspace for claim and source comparison
+colors:
+  primary: "#18564e"
+  paper: "#f1f5f3"
+  surface: "#ffffff"
+  ink: "#172e30"
+  muted: "#526562"
+  rule: "#c9d2c9"
+typography:
+  display:
+    fontFamily: "Georgia, serif"
+    fontSize: "clamp(38px, 4.2vw, 58px)"
+    fontWeight: 400
+    lineHeight: 1.1
+    letterSpacing: "-0.025em"
+  body:
+    fontFamily: "-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
+    fontSize: "16px"
+    lineHeight: 1.6
+rounded:
+  control: "6px"
+spacing:
+  page: "40px"
+  mobile-page: "20px"
+components:
+  button-primary:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.surface}"
+    rounded: "{rounded.control}"
+    padding: "15px"
+---
 
-The user delegated implementation in the autonomous competition brief. The interface is an evidence reading desk, designed for an ordinary laptop in a bright event hall. Operate mode.
+# Fact Weight design system
 
-Seven grounded directions considered: newsroom clipping desk, Baltic public broadcaster article, library reference catalogue, court evidence schedule, scientific paper margin, civic information notice, document comparison editor. Seed assigned candidate six. The civic notice direction carries a clear introductory sentence, one reading column and ruled source rows. Dark developer console, transit diagram, dance notation, boarding pass and split-flap challengers lose reader identification; retain their discipline of stable labels and priority on narrow screens without borrowing decorative forms.
+## Overview
 
-Off-white #f6f5ef, ink #172e30, dark teal #18564e, secondary #526562, rule #c9d2c9. Georgia headings, humanist system body. Flat ruled sections. Evidence status colors have text labels. Desktop has a left input panel and right evidence workspace; mobile stacks in reading order. Focus ring uses ink; errors are explained with a recovery action. No motion needed while reading; result arrival uses a short reveal, disabled under reduced motion.
+A civic information notice adapted to a claim-reading task. Operate mode. The introductory sentence explains the reader's action, while ruled document rows keep the evidence legible. The autonomous build brief delegated implementation choices.
+
+## Colors
+
+Cool paper and white reading areas, dark teal for the main action. Status colors always carry text labels. No color is a probability scale.
+
+## Typography
+
+Georgia headings and passages contrast with the compact system body text. Source IDs, counts and dates use readable tabular figures where relevant.
+
+## Layout
+
+The content has a1320px maximum width. Desktop pairs a390px input column with the evidence area. At950px the input narrows to330px; at720px the workspace stacks in reading order. The first screen explains the user, task and action.
+
+## Elevation & Depth
+
+Flat surfaces and1px rules. No shadows or decorative blur.
+
+## Shapes
+
+Controls use6px corners. Evidence is a plain white passage area, without nested cards.
+
+## Components
+
+Inputs retain labels and helper text. Results show the claim, relation, group counts, quotation, source and timestamp. Loading, error, empty and unavailable-source states have explicit explanations. Focus uses a3px teal outline with4px offset. A250ms result arrival is disabled under reduced motion.
+
+## Do's and Don'ts
+
+Keep uncertainty visible. Keep source links beside quotations. Do not turn group counts into confidence probabilities, use a source as absolute truth, or invent evaluation claims. The detector's initial warm-palette warning was addressed with cool paper; its input-panel spacing warning awaits the single browser QA pass. No independent visual review is claimed.

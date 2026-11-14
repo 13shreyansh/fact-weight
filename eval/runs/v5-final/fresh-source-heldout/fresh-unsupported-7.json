@@ -1,0 +1,95 @@
+{
+  "id": "fresh-unsupported-7",
+  "kind": "unsupported",
+  "expected": "unsupported",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The source passage provides detailed information about the EU's extension of temporary protection for Ukrainian refugees and its benefits, but it does not include any personal opinions or evaluations about temporary protection being a 'wonderful idea.' Therefore, the user's personal opinion is not supported or contradicted by the source."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 65,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.072288,
+      "prompt_tokens": 1246,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1311
+    },
+    "latencyMs": 1496,
+    "requestId": "chatcmpl-EkA8lE0B48yDy0OVfThbWExFSy0Lg"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The user personally thinks temporary protection is a wonderful idea.",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "Today, the Council voiced its unanimous support for a proposal to extend the temporary protection for the more than 4 million Ukrainians fleeing from Russia’s war of aggression until 4 March 2027.",
+            "relation": "context",
+            "basis": "direct_record",
+            "reason": "The source discusses the extension of temporary protection but does not mention any personal opinion by the user.",
+            "group": "G1",
+            "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+            "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+            "fetchedAt": "2026-11-14T15:36:55.025Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The claim is about the user's personal opinion on temporary protection. The provided source is an official press release about the EU member states agreeing to extend temporary protection for Ukrainian refugees. It contains no mention of any user's personal opinion or statement about temporary protection being a wonderful idea.",
+        "missing": "Any direct statement or attribution from the user expressing their personal opinion that temporary protection is a wonderful idea.",
+        "postQuote": "I personally think temporary protection is a wonderful idea."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+        "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+        "fetchedAt": "2026-11-14T15:36:55.025Z",
+        "publishedAt": null,
+        "hash": "d3942cd550624c787148985f439cb22c0b591e3b3f8798b65e3a8b7cf372212e",
+        "requestId": "1c8fe56c-312d-4c47-8e36-e13585f7926c",
+        "extractedCharacters": 4674,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1834,
+      "completion_tokens": 229,
+      "total_tokens": 2063,
+      "credits_charged": 0.132
+    },
+    "inferenceMs": 3609,
+    "extractionMs": 1238,
+    "comparisonMs": 2371,
+    "verificationMs": 0,
+    "verifierModel": null,
+    "verificationRequestId": null,
+    "requestId": "chatcmpl-EkA8oEY0Qk31nPNe1g4qzt6rvxoAm",
+    "extractionRequestId": "chatcmpl-EkA8mkSpqs53zxsHK9Z2eQoiXtBgO"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "version": "v3",
+  "split": "heldout",
+  "n": 40,
+  "at": "2026-11-14T15:27:57.226Z",
+  "datasetSha256": "21e8c14531ef1907302eb258459cce155be592c4cebb9a40f200e79be7c8f951",
+  "engineSha256": "3690b99efb9dbeac96feb385bd4abb6dc0184b683e5b4953aa8ea476a0a46386",
+  "labelProvenance": "synthetic construction rules; no human labels",
+  "baseline": {
+    "n": 40,
+    "correct": 39,
+    "errors": 0,
+    "accuracy": 0.975,
+    "tp": 16,
+    "fp": 1,
+    "tn": 23,
+    "fn": 0,
+    "precision": 0.9411764705882353,
+    "recall": 1,
+    "fpr": 0.041666666666666664
+  },
+  "pipeline": {
+    "n": 40,
+    "correct": 40,
+    "errors": 0,
+    "accuracy": 1,
+    "tp": 16,
+    "fp": 0,
+    "tn": 24,
+    "fn": 0,
+    "precision": 1,
+    "recall": 1,
+    "fpr": 0
+  },
+  "citations": {
+    "accepted": 48,
+    "verbatim": 48,
+    "rejected": 0
+  },
+  "medianInferenceMs": 2037,
+  "p95InferenceMs": 2796,
+  "creditsCharged": 3.3809280000000004,
+  "wallMs": 75323,
+  "failures": []
+}

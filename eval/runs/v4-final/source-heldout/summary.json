@@ -1,0 +1,66 @@
+{
+  "version": "v4-final",
+  "split": "source-heldout",
+  "n": 24,
+  "at": "2026-11-14T15:34:14.301Z",
+  "datasetSha256": "f59f93ca13394f7e8940b99955fabbcef7c671d8965835ab27643fb52dc38374",
+  "engineSha256": "3585dc7d74c1898ed18ddc6a0771530e77be109b020eb95168c5d0c6d4500a6e",
+  "labelProvenance": "agent-constructed source-derived assertions against one real Council document; no human labels",
+  "baseline": {
+    "n": 24,
+    "correct": 19,
+    "errors": 0,
+    "accuracy": 0.7916666666666666,
+    "tp": 5,
+    "fp": 1,
+    "tn": 17,
+    "fn": 1,
+    "precision": 0.8333333333333334,
+    "recall": 0.8333333333333334,
+    "fpr": 0.05555555555555555
+  },
+  "pipeline": {
+    "n": 24,
+    "correct": 20,
+    "errors": 0,
+    "accuracy": 0.8333333333333334,
+    "tp": 6,
+    "fp": 2,
+    "tn": 16,
+    "fn": 0,
+    "precision": 0.75,
+    "recall": 1,
+    "fpr": 0.1111111111111111
+  },
+  "citations": {
+    "accepted": 23,
+    "verbatim": 23,
+    "rejected": 4
+  },
+  "medianInferenceMs": 3846,
+  "p95InferenceMs": 4876,
+  "creditsCharged": 5.256624,
+  "wallMs": 69574,
+  "failures": [
+    {
+      "id": "source-unsupported-3",
+      "expected": "unsupported",
+      "actual": "contradicted"
+    },
+    {
+      "id": "source-unsupported-6",
+      "expected": "unsupported",
+      "actual": "contradicted"
+    },
+    {
+      "id": "source-unsupported-8",
+      "expected": "unsupported",
+      "actual": "supported"
+    },
+    {
+      "id": "source-unsupported-9",
+      "expected": "unsupported",
+      "actual": "supported"
+    }
+  ]
+}

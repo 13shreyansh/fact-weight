@@ -1,0 +1,83 @@
+{
+  "id": "heldout-1-quantity-support",
+  "kind": "quantity-support",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The source states that 190 generators arrived on 18 September 2025, which matches the post exactly."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 30,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.013968,
+      "prompt_tokens": 171,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 201
+    },
+    "latencyMs": 1422,
+    "requestId": "chatcmpl-Ek9wbtXu4zTGqsYMNnINjMtuOwbeD"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Westmere received 190 generators on 18 September 2025.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The Westmere delivery register records that 190 generators arrived on 18 September 2025.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The delivery register is an official record documenting the arrival of the generators on the claimed date.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-1-quantity-support",
+            "title": "Synthetic Westmere record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The delivery register explicitly records the arrival of 190 generators at Westmere on the specified date, confirming the claim as an observed event.",
+        "missing": "No information about the source or purpose of the generators is provided."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-1-quantity-support",
+        "title": "Synthetic Westmere record",
+        "text": "The Westmere delivery register records that 190 generators arrived on 18 September 2025.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 133,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.05784,
+      "prompt_tokens": 673,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 806
+    },
+    "inferenceMs": 1754,
+    "requestId": "chatcmpl-Ek9wcCNRGe4Rtb0UyDo1ibn0na41o"
+  }
+}

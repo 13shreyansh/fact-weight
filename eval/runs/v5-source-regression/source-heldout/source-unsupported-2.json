@@ -1,0 +1,95 @@
+{
+  "id": "source-unsupported-2",
+  "kind": "unsupported",
+  "expected": "unsupported",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The source states the project received over €1.23 billion in EU grants covering 75% of investment costs, implying total costs significantly less than 9.4 billion euros. No mention of a 9.4 billion euro cost is found."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 60,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.073872,
+      "prompt_tokens": 1299,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1359
+    },
+    "latencyMs": 1027,
+    "requestId": "chatcmpl-EkA32prLsEbh3YEdcFRBwSGd3bdKP"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Baltic synchronisation project cost exactly 9.4 billion euros.",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "the project has received extensive political, technical and financial support, including over €1.23 billion in grants from the EU's Connecting Europe Facility, covering 75% of the investment costs, as well as further investments financed under the Recovery and Resilience Facility in Latvia and Lithuania to strengthen electricity infrastructure",
+            "relation": "context",
+            "basis": "direct_record",
+            "reason": "The source details financial support amounts but does not state the total project cost or the 9.4 billion euros figure.",
+            "group": "G1",
+            "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+            "title": "data.consilium.europa.eu",
+            "fetchedAt": "2026-11-14T15:31:52.354Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source provides detailed information about the Baltic synchronisation project, including the duration, technical achievements, and financial support. It mentions over €1.23 billion in EU grants covering 75% of investment costs and additional investments under the Recovery and Resilience Facility, but does not specify the total project cost or confirm the exact figure of 9.4 billion euros.",
+        "missing": "Exact total cost of the Baltic synchronisation project, specifically confirmation of the 9.4 billion euros figure.",
+        "postQuote": "The Baltic synchronisation project cost exactly 9.4 billion euros."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+        "title": "data.consilium.europa.eu",
+        "fetchedAt": "2026-11-14T15:31:52.354Z",
+        "publishedAt": null,
+        "hash": "6117a9a6fae5673d27f3e254533a8995414b0d721c656fa4b689a6713ff7a58e",
+        "requestId": "0ddddde5-06a5-4995-a77a-db20a1b0bd52",
+        "extractedCharacters": 5924,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1888,
+      "completion_tokens": 284,
+      "total_tokens": 2172,
+      "credits_charged": 0.145152
+    },
+    "inferenceMs": 1303,
+    "extractionMs": 1022,
+    "comparisonMs": 281,
+    "verificationMs": 0,
+    "verifierModel": null,
+    "verificationRequestId": null,
+    "requestId": "chatcmpl-EkA35yhv3ajKyFCIuCVrjx7Et0Zjl",
+    "extractionRequestId": "chatcmpl-EkA33SC0AmigG542hhYavrA1VDLAd"
+  }
+}

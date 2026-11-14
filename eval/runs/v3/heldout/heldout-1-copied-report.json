@@ -1,0 +1,104 @@
+{
+  "id": "heldout-1-copied-report",
+  "kind": "copied-report",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "Both source passages explicitly state that Westmere received 190 medical kits on 18 September 2025, confirming the post's claim."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 35,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.0204,
+      "prompt_tokens": 285,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 320
+    },
+    "latencyMs": 1802,
+    "requestId": "chatcmpl-Ek9wlhmoIBCXSj2zXJkulv0YN4igF"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Westmere received 190 medical kits on 18 September 2025.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "According to the regional register, Westmere received 190 medical kits on 18 September 2025. The register lists this as the only delivery for that date.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The regional register is an official record stating the delivery of 190 medical kits to Westmere on the specified date.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-1-copied-report",
+            "title": "Synthetic Westmere record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          },
+          {
+            "sourceId": "S2",
+            "quote": "According to the regional register, Westmere received 190 medical kits on 18 September 2025. The register lists this as the only delivery for that date.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "This source repeats the official record confirming the delivery event.",
+            "group": "G1",
+            "url": "https://mirror.example.net/heldout-1-copied-report",
+            "title": "Synthetic copied report",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "Both sources S1 and S2 directly state that according to the regional register, Westmere received 190 medical kits on 18 September 2025, and that this was the only delivery for that date. This is a direct record of the event from the regional register.",
+        "missing": "No information is provided about the sender, the condition of the kits, or any subsequent deliveries or usage."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-1-copied-report",
+        "title": "Synthetic Westmere record",
+        "text": "According to the regional register, Westmere received 190 medical kits on 18 September 2025. The register lists this as the only delivery for that date.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      },
+      {
+        "id": "S2",
+        "url": "https://mirror.example.net/heldout-1-copied-report",
+        "title": "Synthetic copied report",
+        "text": "According to the regional register, Westmere received 190 medical kits on 18 September 2025. The register lists this as the only delivery for that date.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 253,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.085488,
+      "prompt_tokens": 769,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1022
+    },
+    "inferenceMs": 2519,
+    "requestId": "chatcmpl-Ek9wnWV110snoqJa4U5F3kdtd3aqY"
+  }
+}

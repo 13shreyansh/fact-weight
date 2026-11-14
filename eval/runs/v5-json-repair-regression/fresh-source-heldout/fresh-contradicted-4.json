@@ -1,0 +1,96 @@
+{
+  "id": "fresh-contradicted-4",
+  "kind": "contradicted",
+  "expected": "contradicted",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The source explicitly states that the extension until March 2027 does not change the terms of the March 2022 decision regarding the categories of persons to whom the temporary protection applies."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 46,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.069312,
+      "prompt_tokens": 1260,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1306
+    },
+    "latencyMs": 577,
+    "requestId": "chatcmpl-EkA7oJ4BirY0lFYhE302m3uiBSE1x"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The extension described on 13 June 2025 changed the categories of persons covered by the March 2022 decision.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The extension does not change the terms of the March 2022 decision as regards the categories of persons to whom the temporary protection applies or the rights they enjoy.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The official press release explicitly states that the extension does not change the categories of persons covered by the March 2022 decision.",
+            "group": "G1",
+            "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+            "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+            "fetchedAt": "2026-11-14T15:36:55.025Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source from 13 June 2025 states that the temporary protection for Ukrainian refugees was extended until 4 March 2027. However, it explicitly says that the extension does not change the terms of the March 2022 decision regarding the categories of persons to whom the temporary protection applies or the rights they enjoy. Therefore, the extension did not change the categories of persons covered by the March 2022 decision.",
+        "missing": "No evidence that the categories of persons covered were changed by the extension.",
+        "postQuote": "The extension described on 13 June 2025 changed the categories of persons covered by the March 2022 decision."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+        "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+        "fetchedAt": "2026-11-14T15:36:55.025Z",
+        "publishedAt": null,
+        "hash": "d3942cd550624c787148985f439cb22c0b591e3b3f8798b65e3a8b7cf372212e",
+        "requestId": "1c8fe56c-312d-4c47-8e36-e13585f7926c",
+        "extractedCharacters": 4674,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1878,
+      "completion_tokens": 545,
+      "total_tokens": 4617,
+      "credits_charged": 3.9970559999999997
+    },
+    "inferenceMs": 1652,
+    "extractionMs": 554,
+    "comparisonMs": 580,
+    "verificationMs": 518,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch3549g1LMr72AaN57mSe",
+    "syntaxRetries": 0,
+    "requestId": "chatcmpl-EkA7rUBqpxu2PVjV3lmTg3yTdKUVN",
+    "extractionRequestId": "chatcmpl-EkA7pRbMinJ7C51Ol0uGBXEVhpOHG"
+  }
+}

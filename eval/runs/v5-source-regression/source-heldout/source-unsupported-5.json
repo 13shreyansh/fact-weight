@@ -1,0 +1,95 @@
+{
+  "id": "source-unsupported-5",
+  "kind": "unsupported",
+  "expected": "unsupported",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The source passage confirms the successful synchronisation of the Baltic electricity systems with Continental Europe but does not provide any specific approval percentage from Latvian residents regarding the grid synchronisation."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 42,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.070464,
+      "prompt_tokens": 1300,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1342
+    },
+    "latencyMs": 251,
+    "requestId": "chatcmpl-EkA3DQR7BVKFiIimtvtDI3sqEGYpa"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Exactly 91 percent of Latvian residents approved of the grid synchronisation.",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "Estonia, Latvia and Lithuania have successfully synchronised their electricity systems with the Continental Europe Synchronous Area via Poland on 9 February 2025, ensuring their independence from Russia's and Belarus's electricity systems. This is a key milestone for the Baltic States and for Europe strengthening the energy resilience and independence.",
+            "relation": "context",
+            "basis": "direct_record",
+            "reason": "The source confirms the event of synchronisation but does not provide any information about public approval percentages.",
+            "group": "G1",
+            "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+            "title": "data.consilium.europa.eu",
+            "fetchedAt": "2026-11-14T15:31:52.354Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The provided source details the successful synchronisation of the Baltic electricity systems with the Continental Europe Synchronous Area and describes the technical and political aspects of the project. However, it does not mention any approval rating or percentage of Latvian residents supporting the synchronisation.",
+        "missing": "Any data or statement about public approval or survey results indicating that exactly 91 percent of Latvian residents approved of the grid synchronisation.",
+        "postQuote": "Exactly 91 percent of Latvian residents approved of the grid synchronisation."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+        "title": "data.consilium.europa.eu",
+        "fetchedAt": "2026-11-14T15:31:52.354Z",
+        "publishedAt": null,
+        "hash": "6117a9a6fae5673d27f3e254533a8995414b0d721c656fa4b689a6713ff7a58e",
+        "requestId": "0ddddde5-06a5-4995-a77a-db20a1b0bd52",
+        "extractedCharacters": 5924,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1892,
+      "completion_tokens": 268,
+      "total_tokens": 2160,
+      "credits_charged": 0.142272
+    },
+    "inferenceMs": 1733,
+    "extractionMs": 274,
+    "comparisonMs": 1459,
+    "verificationMs": 0,
+    "verifierModel": null,
+    "verificationRequestId": null,
+    "requestId": "chatcmpl-EkA3F7c3j9Ma8mAG6r8QIcpyNfm0a",
+    "extractionRequestId": "chatcmpl-EkA3Ebi5HPKWtKChfYFqTSEOOf0sO"
+  }
+}

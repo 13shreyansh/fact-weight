@@ -1,0 +1,95 @@
+{
+  "id": "source-contradicted-2",
+  "kind": "contradicted",
+  "expected": "contradicted",
+  "baselineLabel": "supported",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The source states that the Baltic transmission system operators started the disconnection and desynchronisation from the Russian combined electricity system on 8 February 2025, which closely aligns with the post's claim of 10 February 2025, confirming the event occurred in early February 2025."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 66,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.075456,
+      "prompt_tokens": 1308,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1374
+    },
+    "latencyMs": 575,
+    "requestId": "chatcmpl-EkA2lPtR4Q2vAMZmlmGZrxlMbdzGI"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Baltic transmission system operators first started disconnection from the Russian combined electricity system on 10 February 2025.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "on 8 February 2025, the transmission system operators of the Baltic States started the disconnection and desynchronisation of the Baltic electricity system from the Russian combined electricity system",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The source explicitly states the disconnection started on 8 February 2025, contradicting the claim's date of 10 February 2025.",
+            "group": "G1",
+            "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+            "title": "data.consilium.europa.eu",
+            "fetchedAt": "2026-11-14T15:31:52.354Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source states that the Baltic transmission system operators started the disconnection and desynchronisation on 8 February 2025, not 10 February 2025. Therefore, the claim's date is contradicted by the source.",
+        "missing": "No evidence supports the claim that disconnection started on 10 February 2025; the exact date of 10 February is not mentioned in the source.",
+        "postQuote": "The Baltic transmission system operators first started disconnection from the Russian combined electricity system on 10 February 2025."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+        "title": "data.consilium.europa.eu",
+        "fetchedAt": "2026-11-14T15:31:52.354Z",
+        "publishedAt": null,
+        "hash": "6117a9a6fae5673d27f3e254533a8995414b0d721c656fa4b689a6713ff7a58e",
+        "requestId": "0ddddde5-06a5-4995-a77a-db20a1b0bd52",
+        "extractedCharacters": 5924,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1919,
+      "completion_tokens": 554,
+      "total_tokens": 4959,
+      "credits_charged": 4.4617439999999995
+    },
+    "inferenceMs": 5379,
+    "extractionMs": 551,
+    "comparisonMs": 608,
+    "verificationMs": 4220,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch34sXEjuNZy8jKVZ8H4F",
+    "requestId": "chatcmpl-EkA2ot0YJUAXTbfsFWvSnomMGpn67",
+    "extractionRequestId": "chatcmpl-EkA2nAHQZDneVeAgrtVZZVbnZI1Gb"
+  }
+}

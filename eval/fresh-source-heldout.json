@@ -1,0 +1,194 @@
+[
+  {
+    "id": "fresh-supported-1",
+    "kind": "supported",
+    "post": "On 13 June 2025, the EU Council voiced unanimous support for a proposal to extend temporary protection until 4 March 2027.",
+    "expected": "supported",
+    "sourceUrl": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+    "labelProvenance": "agent-constructed source-derived assertion/opinion against historical 13 June 2025 press release, not current legal guidance, no human labels"
+  },
+  {
+    "id": "fresh-supported-2",
+    "kind": "supported",
+    "post": "The 13 June 2025 press release says the Council will formally adopt the extension decision at an upcoming session.",
+    "expected": "supported",
+    "sourceUrl": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+    "labelProvenance": "agent-constructed source-derived assertion/opinion against historical 13 June 2025 press release, not current legal guidance, no human labels"
+  },
+  {
+    "id": "fresh-supported-3",
+    "kind": "supported",
+    "post": "The EU temporary protection directive was adopted in 2001.",
+    "expected": "supported",
+    "sourceUrl": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+    "labelProvenance": "agent-constructed source-derived assertion/opinion against historical 13 June 2025 press release, not current legal guidance, no human labels"
+  },
+  {
+    "id": "fresh-supported-4",
+    "kind": "supported",
+    "post": "The 13 June 2025 press release says the actual level of assistance can vary between EU member states.",
+    "expected": "supported",
+    "sourceUrl": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+    "labelProvenance": "agent-constructed source-derived assertion/opinion against historical 13 June 2025 press release, not current legal guidance, no human labels"
+  },
+  {
+    "id": "fresh-supported-5",
+    "kind": "supported",
+    "post": "The 13 June 2025 press release lists medical assistance among temporary protection rights.",
+    "expected": "supported",
+    "sourceUrl": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+    "labelProvenance": "agent-constructed source-derived assertion/opinion against historical 13 June 2025 press release, not current legal guidance, no human labels"
+  },
+  {
+    "id": "fresh-supported-6",
+    "kind": "supported",
+    "post": "The EU temporary protection law sets minimum standards of protection, according to the 13 June 2025 press release.",
+    "expected": "supported",
+    "sourceUrl": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+    "labelProvenance": "agent-constructed source-derived assertion/opinion against historical 13 June 2025 press release, not current legal guidance, no human labels"
+  },
+  {
+    "id": "fresh-contradicted-1",
+    "kind": "contradicted",
+    "post": "On 13 June 2025, the EU Council voiced support for extending temporary protection until 4 March 2028 rather than 4 March 2027.",
+    "expected": "contradicted",
+    "sourceUrl": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+    "labelProvenance": "agent-constructed source-derived assertion/opinion against historical 13 June 2025 press release, not current legal guidance, no human labels"
+  },
+  {
+    "id": "fresh-contradicted-2",
+    "kind": "contradicted",
+    "post": "The EU temporary protection directive was adopted in 2005, not in 2001.",
+    "expected": "contradicted",
+    "sourceUrl": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+    "labelProvenance": "agent-constructed source-derived assertion/opinion against historical 13 June 2025 press release, not current legal guidance, no human labels"
+  },
+  {
+    "id": "fresh-contradicted-3",
+    "kind": "contradicted",
+    "post": "The 13 June 2025 press release states that people under temporary protection need to apply for asylum individually.",
+    "expected": "contradicted",
+    "sourceUrl": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+    "labelProvenance": "agent-constructed source-derived assertion/opinion against historical 13 June 2025 press release, not current legal guidance, no human labels"
+  },
+  {
+    "id": "fresh-contradicted-4",
+    "kind": "contradicted",
+    "post": "The extension described on 13 June 2025 changed the categories of persons covered by the March 2022 decision.",
+    "expected": "contradicted",
+    "sourceUrl": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+    "labelProvenance": "agent-constructed source-derived assertion/opinion against historical 13 June 2025 press release, not current legal guidance, no human labels"
+  },
+  {
+    "id": "fresh-contradicted-5",
+    "kind": "contradicted",
+    "post": "The 13 June 2025 press release states that the actual level of assistance is identical in every EU member state.",
+    "expected": "contradicted",
+    "sourceUrl": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+    "labelProvenance": "agent-constructed source-derived assertion/opinion against historical 13 June 2025 press release, not current legal guidance, no human labels"
+  },
+  {
+    "id": "fresh-contradicted-6",
+    "kind": "contradicted",
+    "post": "The 13 June 2025 press release states that the EU temporary protection mechanism has never been triggered.",
+    "expected": "contradicted",
+    "sourceUrl": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+    "labelProvenance": "agent-constructed source-derived assertion/opinion against historical 13 June 2025 press release, not current legal guidance, no human labels"
+  },
+  {
+    "id": "fresh-unsupported-1",
+    "kind": "unsupported",
+    "post": "Exactly 92 percent of displaced Ukrainians had decided to return by 13 June 2025.",
+    "expected": "unsupported",
+    "sourceUrl": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+    "labelProvenance": "agent-constructed source-derived assertion/opinion against historical 13 June 2025 press release, not current legal guidance, no human labels"
+  },
+  {
+    "id": "fresh-unsupported-2",
+    "kind": "unsupported",
+    "post": "On 13 June 2025 the EU earmarked exactly 123 million euros for temporary protection offices in Latvia.",
+    "expected": "unsupported",
+    "sourceUrl": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+    "labelProvenance": "agent-constructed source-derived assertion/opinion against historical 13 June 2025 press release, not current legal guidance, no human labels"
+  },
+  {
+    "id": "fresh-unsupported-3",
+    "kind": "unsupported",
+    "post": "The 13 June 2025 announcement guaranteed every beneficiary exactly 500 euros in cash each month.",
+    "expected": "unsupported",
+    "sourceUrl": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+    "labelProvenance": "agent-constructed source-derived assertion/opinion against historical 13 June 2025 press release, not current legal guidance, no human labels"
+  },
+  {
+    "id": "fresh-unsupported-4",
+    "kind": "unsupported",
+    "post": "The temporary protection announcement guaranteed housing within exactly 48 hours.",
+    "expected": "unsupported",
+    "sourceUrl": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+    "labelProvenance": "agent-constructed source-derived assertion/opinion against historical 13 June 2025 press release, not current legal guidance, no human labels"
+  },
+  {
+    "id": "fresh-unsupported-5",
+    "kind": "unsupported",
+    "post": "The 13 June 2025 announcement launched a digital registration app named BalticWelcome.",
+    "expected": "unsupported",
+    "sourceUrl": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+    "labelProvenance": "agent-constructed source-derived assertion/opinion against historical 13 June 2025 press release, not current legal guidance, no human labels"
+  },
+  {
+    "id": "fresh-unsupported-6",
+    "kind": "unsupported",
+    "post": "The 13 June 2025 announcement established exactly 47 new temporary protection offices in Lithuania.",
+    "expected": "unsupported",
+    "sourceUrl": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+    "labelProvenance": "agent-constructed source-derived assertion/opinion against historical 13 June 2025 press release, not current legal guidance, no human labels"
+  },
+  {
+    "id": "fresh-unsupported-7",
+    "kind": "unsupported",
+    "post": "I personally think temporary protection is a wonderful idea.",
+    "expected": "unsupported",
+    "sourceUrl": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+    "labelProvenance": "agent-constructed source-derived assertion/opinion against historical 13 June 2025 press release, not current legal guidance, no human labels"
+  },
+  {
+    "id": "fresh-unsupported-8",
+    "kind": "unsupported",
+    "post": "I feel pessimistic when I read this press release.",
+    "expected": "unsupported",
+    "sourceUrl": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+    "labelProvenance": "agent-constructed source-derived assertion/opinion against historical 13 June 2025 press release, not current legal guidance, no human labels"
+  },
+  {
+    "id": "fresh-unsupported-9",
+    "kind": "unsupported",
+    "post": "This document makes me angry.",
+    "expected": "unsupported",
+    "sourceUrl": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+    "labelProvenance": "agent-constructed source-derived assertion/opinion against historical 13 June 2025 press release, not current legal guidance, no human labels"
+  },
+  {
+    "id": "fresh-unsupported-10",
+    "kind": "unsupported",
+    "post": "I prefer shorter press releases.",
+    "expected": "unsupported",
+    "sourceUrl": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+    "labelProvenance": "agent-constructed source-derived assertion/opinion against historical 13 June 2025 press release, not current legal guidance, no human labels"
+  },
+  {
+    "id": "fresh-unsupported-11",
+    "kind": "unsupported",
+    "post": "In my opinion this announcement is inspiring.",
+    "expected": "unsupported",
+    "sourceUrl": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+    "labelProvenance": "agent-constructed source-derived assertion/opinion against historical 13 June 2025 press release, not current legal guidance, no human labels"
+  },
+  {
+    "id": "fresh-unsupported-12",
+    "kind": "unsupported",
+    "post": "Everyone should read this announcement carefully and make up their own mind.",
+    "expected": "unsupported",
+    "sourceUrl": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+    "labelProvenance": "agent-constructed source-derived assertion/opinion against historical 13 June 2025 press release, not current legal guidance, no human labels"
+  }
+]

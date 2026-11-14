@@ -1,0 +1,74 @@
+{
+  "id": "fresh-unsupported-11",
+  "kind": "unsupported",
+  "expected": "unsupported",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The post expresses a personal opinion that the announcement is inspiring, but the source passage only provides factual information about the EU's extension of temporary protection for Ukrainian refugees without any subjective or evaluative statements that support or contradict the opinion."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 53,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.069888,
+      "prompt_tokens": 1244,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1297
+    },
+    "latencyMs": 1312,
+    "requestId": "chatcmpl-EkA8w8c6xmJDq6vcMWviwu8V4RrjC"
+  },
+  "pipeline": {
+    "claims": [],
+    "sources": [
+      {
+        "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+        "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+        "fetchedAt": "2026-11-14T15:36:55.025Z",
+        "publishedAt": null,
+        "hash": "d3942cd550624c787148985f439cb22c0b591e3b3f8798b65e3a8b7cf372212e",
+        "requestId": "1c8fe56c-312d-4c47-8e36-e13585f7926c",
+        "extractedCharacters": 4674,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 4,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.007488,
+      "prompt_tokens": 140,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 144
+    },
+    "inferenceMs": 912,
+    "extractionMs": 912,
+    "comparisonMs": 0,
+    "requestId": "chatcmpl-EkA8xZRWWEmyJTe9SMOLwxA4vk1B8",
+    "extractionRequestId": "chatcmpl-EkA8xZRWWEmyJTe9SMOLwxA4vk1B8"
+  }
+}

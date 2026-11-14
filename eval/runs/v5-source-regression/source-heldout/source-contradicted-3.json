@@ -1,0 +1,95 @@
+{
+  "id": "source-contradicted-3",
+  "kind": "contradicted",
+  "expected": "contradicted",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The source states that all electricity interconnections with Russia and Belarus have been permanently disconnected after the Baltic synchronisation process, directly contradicting the post's claim that they remained connected."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 45,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.071136,
+      "prompt_tokens": 1302,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1347
+    },
+    "latencyMs": 1024,
+    "requestId": "chatcmpl-EkA2rf9VDKzFPvGnA4NDKRnbcU9TH"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "All electricity interconnections with Russia and Belarus remained connected after the Baltic synchronisation process.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "All electricity interconnections with Russia and Belarus have been permanently disconnected.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The official note from the Council of the European Union clearly states that all interconnections with Russia and Belarus were permanently disconnected after synchronisation.",
+            "group": "G1",
+            "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+            "title": "data.consilium.europa.eu",
+            "fetchedAt": "2026-11-14T15:31:52.354Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source explicitly states that all electricity interconnections with Russia and Belarus have been permanently disconnected following the Baltic synchronisation process. Therefore, the claim that all interconnections remained connected is contradicted by the official record.",
+        "missing": "No evidence supports the claim that interconnections remained connected; the source provides direct evidence of disconnection.",
+        "postQuote": "All electricity interconnections with Russia and Belarus remained connected after the Baltic synchronisation process."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+        "title": "data.consilium.europa.eu",
+        "fetchedAt": "2026-11-14T15:31:52.354Z",
+        "publishedAt": null,
+        "hash": "6117a9a6fae5673d27f3e254533a8995414b0d721c656fa4b689a6713ff7a58e",
+        "requestId": "0ddddde5-06a5-4995-a77a-db20a1b0bd52",
+        "extractedCharacters": 5924,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1901,
+      "completion_tokens": 368,
+      "total_tokens": 4719,
+      "credits_charged": 3.796752
+    },
+    "inferenceMs": 3316,
+    "extractionMs": 313,
+    "comparisonMs": 510,
+    "verificationMs": 2493,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch34t1a5CMTLpTxMDLKpp",
+    "requestId": "chatcmpl-EkA2ufeuTRIdAbaqH5Fm3BktdN0O1",
+    "extractionRequestId": "chatcmpl-EkA2siMNsWDjnCTzN0hCRTj7nAABm"
+  }
+}

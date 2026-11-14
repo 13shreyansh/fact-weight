@@ -1,0 +1,104 @@
+{
+  "id": "heldout-2-conflicting-records",
+  "kind": "conflicting-records",
+  "expected": "contested",
+  "baselineLabel": "contested",
+  "pipelineLabel": "contested",
+  "baseline": {
+    "data": {
+      "label": "contested",
+      "reason": "One source states Lakehaven received 207 water pumps on 18 September 2025, while another source states 238 pumps were received on the same date, indicating a disagreement between sources."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 47,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.021984,
+      "prompt_tokens": 270,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 317
+    },
+    "latencyMs": 1679,
+    "requestId": "chatcmpl-Ek9x8LSvS1FuPkqR9sV4dXoOdPvKW"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Lakehaven received 207 water pumps on 18 September 2025.",
+        "status": "contested",
+        "supportGroups": 1,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The municipal register states that Lakehaven received exactly 207 water pumps on 18 September 2025.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "Official municipal register directly records receipt of 207 water pumps on the specified date.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-2-conflicting-records",
+            "title": "Synthetic Lakehaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          },
+          {
+            "sourceId": "S2",
+            "quote": "An independently compiled port register states that Lakehaven received exactly 238 water pumps on 18 September 2025. The two registers disagree.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "Independent port register directly records a different number (238) of water pumps received on the same date, contradicting the claim.",
+            "group": "G2",
+            "url": "https://independent.example.net/heldout-2-conflicting-records",
+            "title": "Synthetic Lakehaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "Source S1 states that the municipal register records Lakehaven receiving exactly 207 water pumps on 18 September 2025, which directly supports the claim as an official record. However, source S2 provides a conflicting record from an independent port register stating 238 water pumps were received on the same date, indicating a discrepancy between sources. Thus, while S1 supports the claim, the conflicting evidence from S2 means the exact number is uncertain.",
+        "missing": "Independent verification or reconciliation of the conflicting records to confirm the exact number of water pumps received on that date."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-2-conflicting-records",
+        "title": "Synthetic Lakehaven record",
+        "text": "The municipal register states that Lakehaven received exactly 207 water pumps on 18 September 2025.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      },
+      {
+        "id": "S2",
+        "url": "https://independent.example.net/heldout-2-conflicting-records",
+        "title": "Synthetic Lakehaven record",
+        "text": "An independently compiled port register states that Lakehaven received exactly 238 water pumps on 18 September 2025. The two registers disagree.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G2"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 279,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.08976,
+      "prompt_tokens": 754,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1033
+    },
+    "inferenceMs": 3083,
+    "requestId": "chatcmpl-Ek9xAwg8qQnBvgYRdFpC1jlDBN4Vo"
+  }
+}

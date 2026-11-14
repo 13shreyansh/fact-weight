@@ -1,0 +1,82 @@
+{
+  "id": "heldout-3-quantity-contradiction",
+  "kind": "quantity-contradiction",
+  "expected": "contradicted",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The source states that exactly 224 generators arrived on 18 September 2025, whereas the post claims 274 generators, which contradicts the source."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 41,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.016704,
+      "prompt_tokens": 184,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 225
+    },
+    "latencyMs": 1607,
+    "requestId": "chatcmpl-EkA2PygB04sep8QeEo6Rku4BBIRdI"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Southmere received 274 generators on 18 September 2025.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "exactly 224 generators arrived on 18 September 2025. There were no other deliveries that day.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The official delivery register records 224 generators delivered on that date, contradicting the claim of 274.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-3-quantity-contradiction",
+            "title": "Synthetic Southmere record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The source S1 states that exactly 224 generators arrived on 18 September 2025 and that there were no other deliveries that day, which directly contradicts the claim of 274 generators received on that date.",
+        "missing": "No evidence supports the claim of 274 generators; the exact number delivered is recorded as 224.",
+        "postQuote": "Southmere received 274 generators on 18 September 2025."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-3-quantity-contradiction",
+        "title": "Synthetic Southmere record",
+        "text": "The final Southmere delivery register states: exactly 224 generators arrived on 18 September 2025. There were no other deliveries that day.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 885,
+      "completion_tokens": 213,
+      "total_tokens": 1098,
+      "credits_charged": 0.083376
+    },
+    "inferenceMs": 3491,
+    "extractionMs": 1226,
+    "comparisonMs": 2265,
+    "requestId": "chatcmpl-EkA2SnP8pRwiWgj4AuEDUWKswjxmR",
+    "extractionRequestId": "chatcmpl-EkA2R0VkbjsMJUeN9GODu7XO35xl4"
+  }
+}

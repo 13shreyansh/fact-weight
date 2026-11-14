@@ -1,0 +1,83 @@
+{
+  "id": "heldout-1-quoted-allegation",
+  "kind": "quoted-allegation",
+  "expected": "unsupported",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The source states the cost claim is unverified and the final cost is unknown, so the post's claim is not confirmed."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 33,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.014928,
+      "prompt_tokens": 179,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 212
+    },
+    "latencyMs": 1183,
+    "requestId": "chatcmpl-Ek9wi69qKsqsv9qUWDUF3bLtX8weh"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Westmere project cost 190 million euros.",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "An anonymous post alleged that the Westmere project cost 190 million euros. The newsroom has not verified that claim and the final cost is unknown.",
+            "relation": "context",
+            "basis": "allegation",
+            "reason": "The source presents the cost as an unverified anonymous allegation and states the final cost is unknown, providing no confirmed support for the claim.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-1-quoted-allegation",
+            "title": "Synthetic Westmere record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The claim states a specific cost for the Westmere project. The source reports an anonymous allegation of this cost but explicitly states the claim is unverified and the final cost is unknown, so there is no confirmed evidence for the actual cost.",
+        "missing": "Verified or official confirmation of the Westmere project's final cost."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-1-quoted-allegation",
+        "title": "Synthetic Westmere record",
+        "text": "An anonymous post alleged that the Westmere project cost 190 million euros. The newsroom has not verified that claim and the final cost is unknown.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 168,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.064944,
+      "prompt_tokens": 681,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 849
+    },
+    "inferenceMs": 2235,
+    "requestId": "chatcmpl-Ek9wjk8KIyp9SKiTH2w99QMKtj99I"
+  }
+}

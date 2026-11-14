@@ -1,0 +1,95 @@
+{
+  "id": "fresh-unsupported-4",
+  "kind": "unsupported",
+  "expected": "unsupported",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The source describes the extension and rights under temporary protection but does not mention any guarantee of housing within exactly 48 hours."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 32,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.066048,
+      "prompt_tokens": 1248,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1280
+    },
+    "latencyMs": 1658,
+    "requestId": "chatcmpl-EkA8F0HBnZFAVSqJVrhIE6f3BANw7"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The temporary protection announcement guaranteed housing within exactly 48 hours.",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "People benefitting from temporary protection enjoy the same rights across the EU. These rights include: - residence - access to the labour market and housing - medical assistance - social welfare assistance - access to education for children",
+            "relation": "context",
+            "basis": "direct_record",
+            "reason": "The quote only lists access to housing as a right and says nothing about any timeframe. The absence of a 48-hour guarantee is missing confirmation, not a mutually exclusive fact, so it does not contradict the claim.",
+            "group": "G1",
+            "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+            "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+            "fetchedAt": "2026-11-14T15:36:55.025Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "Some proposed relations did not pass a second model check. The accepted passages below determine this evidence label.",
+        "missing": "Any mention of a guarantee or promise that housing will be provided within exactly 48 hours after the announcement.",
+        "postQuote": "The temporary protection announcement guaranteed housing within exactly 48 hours."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+        "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+        "fetchedAt": "2026-11-14T15:36:55.025Z",
+        "publishedAt": null,
+        "hash": "d3942cd550624c787148985f439cb22c0b591e3b3f8798b65e3a8b7cf372212e",
+        "requestId": "1c8fe56c-312d-4c47-8e36-e13585f7926c",
+        "extractedCharacters": 4674,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1843,
+      "completion_tokens": 503,
+      "total_tokens": 4540,
+      "credits_charged": 4.038
+    },
+    "inferenceMs": 7470,
+    "extractionMs": 1289,
+    "comparisonMs": 2362,
+    "verificationMs": 3819,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch3565LsmiHQeBot1bvDw",
+    "requestId": "chatcmpl-EkA8HhM0gKe9gpv11GkEgEUCjrtCu",
+    "extractionRequestId": "chatcmpl-EkA8GSrXwfLiw8hJp6UwqHSH4Hf16"
+  }
+}

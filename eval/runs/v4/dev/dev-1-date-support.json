@@ -1,0 +1,82 @@
+{
+  "id": "dev-1-date-support",
+  "kind": "date-support",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The source explicitly states that the Eastmere power link was connected on 12 March 2025, confirming the post's claim."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 34,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.014976,
+      "prompt_tokens": 176,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 210
+    },
+    "latencyMs": 1045,
+    "requestId": "chatcmpl-EkA02REm3qw98LFv9flunaQscxCVH"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Eastmere power link was connected on 12 March 2025.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The grid log confirms the Eastmere power link was connected on 12 March 2025, after its equipment tests were completed.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The grid log is an official record confirming the connection date of the Eastmere power link.",
+            "group": "G1",
+            "url": "https://register.example.org/dev-1-date-support",
+            "title": "Synthetic Eastmere record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The source S1 directly records that the Eastmere power link was connected on 12 March 2025, confirming the event occurred on that date.",
+        "missing": "No information about the circumstances or any other details of the connection event is provided beyond the date and completion of equipment tests.",
+        "postQuote": "The Eastmere power link was connected on 12 March 2025."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/dev-1-date-support",
+        "title": "Synthetic Eastmere record",
+        "text": "The grid log confirms the Eastmere power link was connected on 12 March 2025, after its equipment tests were completed.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 879,
+      "completion_tokens": 206,
+      "total_tokens": 1085,
+      "credits_charged": 0.081744
+    },
+    "inferenceMs": 3446,
+    "extractionMs": 1296,
+    "comparisonMs": 2150,
+    "requestId": "chatcmpl-EkA04Ww5x8GpuIjfzV7SMyk4Jj7U3",
+    "extractionRequestId": "chatcmpl-EkA0304nhQ7YXDVYY93ZKnvjhtGEo"
+  }
+}

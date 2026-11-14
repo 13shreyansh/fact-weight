@@ -1,0 +1,96 @@
+{
+  "id": "fresh-contradicted-6",
+  "kind": "contradicted",
+  "expected": "contradicted",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The press release from 13 June 2025 explicitly states that the temporary protection mechanism was triggered for the first time in response to Russia's invasion of Ukraine and has been in effect since March 2022, contradicting the claim that it has never been triggered."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 63,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.072432,
+      "prompt_tokens": 1257,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1320
+    },
+    "latencyMs": 820,
+    "requestId": "chatcmpl-EkA7ySF0Zgc0bS8SD0mquptRUOreZ"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The EU temporary protection mechanism has never been triggered as of 13 June 2025.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "It was triggered for the first time in response to Russia’s invasion of Ukraine.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The source explicitly states the temporary protection mechanism was triggered for the first time due to the Ukraine conflict, contradicting the claim that it has never been triggered as of 13 June 2025.",
+            "group": "G1",
+            "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+            "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+            "fetchedAt": "2026-11-14T15:36:55.025Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source states that the temporary protection directive was triggered for the first time in response to Russia's invasion of Ukraine, which occurred before 13 June 2025. Therefore, the claim that it has never been triggered as of that date is contradicted by the source. The source also discusses the extension of the temporary protection mechanism, indicating it is active and has been used.",
+        "missing": "No information in the source supports the claim that the mechanism has never been triggered; the source explicitly states it was triggered for the first time due to the Ukraine crisis.",
+        "postQuote": "The 13 June 2025 press release states that the EU temporary protection mechanism has never been triggered."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+        "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+        "fetchedAt": "2026-11-14T15:36:55.025Z",
+        "publishedAt": null,
+        "hash": "d3942cd550624c787148985f439cb22c0b591e3b3f8798b65e3a8b7cf372212e",
+        "requestId": "1c8fe56c-312d-4c47-8e36-e13585f7926c",
+        "extractedCharacters": 4674,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1866,
+      "completion_tokens": 666,
+      "total_tokens": 4699,
+      "credits_charged": 4.577136
+    },
+    "inferenceMs": 1686,
+    "extractionMs": 641,
+    "comparisonMs": 627,
+    "verificationMs": 418,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch354smpbCmd1WDoHoyFA",
+    "syntaxRetries": 0,
+    "requestId": "chatcmpl-EkA81GKQUxxyrVs46h3hQ1uIBORuC",
+    "extractionRequestId": "chatcmpl-EkA7ztcqtEisRGXvKieGY0nAWB9jy"
+  }
+}

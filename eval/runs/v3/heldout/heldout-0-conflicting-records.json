@@ -1,0 +1,104 @@
+{
+  "id": "heldout-0-conflicting-records",
+  "kind": "conflicting-records",
+  "expected": "contested",
+  "baselineLabel": "contested",
+  "pipelineLabel": "contested",
+  "baseline": {
+    "data": {
+      "label": "contested",
+      "reason": "One source states Pinehaven received 173 water pumps on 18 September 2025, while another source states it received 204 water pumps on the same date, indicating conflicting information."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 46,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.02184,
+      "prompt_tokens": 271,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 317
+    },
+    "latencyMs": 1921,
+    "requestId": "chatcmpl-Ek9wXLXWypZOXG7jZU5rOMOJg7leG"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Pinehaven received 173 water pumps on 18 September 2025.",
+        "status": "contested",
+        "supportGroups": 1,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The municipal register states that Pinehaven received exactly 173 water pumps on 18 September 2025.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "This is an official municipal record directly stating the claim.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-0-conflicting-records",
+            "title": "Synthetic Pinehaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          },
+          {
+            "sourceId": "S2",
+            "quote": "An independently compiled port register states that Pinehaven received exactly 204 water pumps on 18 September 2025. The two registers disagree.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "This independent record directly contradicts the number of pumps received as stated in the municipal register.",
+            "group": "G2",
+            "url": "https://independent.example.net/heldout-0-conflicting-records",
+            "title": "Synthetic Pinehaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The municipal register explicitly states that Pinehaven received exactly 173 water pumps on that date, providing a direct record of the event. However, an independent port register contradicts this number, stating 204 pumps were received on the same date, indicating a discrepancy between sources.",
+        "missing": "Independent verification or reconciliation of the conflicting records to confirm the exact number of water pumps received."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-0-conflicting-records",
+        "title": "Synthetic Pinehaven record",
+        "text": "The municipal register states that Pinehaven received exactly 173 water pumps on 18 September 2025.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      },
+      {
+        "id": "S2",
+        "url": "https://independent.example.net/heldout-0-conflicting-records",
+        "title": "Synthetic Pinehaven record",
+        "text": "An independently compiled port register states that Pinehaven received exactly 204 water pumps on 18 September 2025. The two registers disagree.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G2"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 230,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.0804,
+      "prompt_tokens": 755,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 985
+    },
+    "inferenceMs": 2548,
+    "requestId": "chatcmpl-Ek9wYjmHvVmnZfi6DSmHi5Y3GSbGf"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "id": "source-unsupported-7",
+  "kind": "unsupported",
+  "expected": "unsupported",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The source passage describes the successful synchronisation of the Baltic electricity systems with Continental Europe and its benefits for energy security and renewable integration, but it does not mention any specific reduction in annual carbon emissions, let alone an exact figure of 2 million tonnes."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 58,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.073584,
+      "prompt_tokens": 1301,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1359
+    },
+    "latencyMs": 331,
+    "requestId": "chatcmpl-EkA3ImpCX8vuoFYW0pRpXBmlXC40Q"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Baltic synchronisation process reduced annual carbon emissions by exactly 2 million tonnes.",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [],
+        "explanation": "The source details the successful synchronisation of the Baltic electricity systems with the Continental Europe Synchronous Area, emphasizing increased energy security, independence, and enhanced integration of renewable energy, which can contribute to emission reductions. However, it does not provide any specific quantitative data about the amount of carbon emissions reduced, let alone an exact figure of 2 million tonnes annually.",
+        "missing": "Specific quantitative data or official statements confirming that the synchronisation process reduced annual carbon emissions by exactly 2 million tonnes.",
+        "postQuote": "The Baltic synchronisation process reduced annual carbon emissions by exactly 2 million tonnes."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+        "title": "data.consilium.europa.eu",
+        "fetchedAt": "2026-11-14T15:31:52.354Z",
+        "publishedAt": null,
+        "hash": "6117a9a6fae5673d27f3e254533a8995414b0d721c656fa4b689a6713ff7a58e",
+        "requestId": "0ddddde5-06a5-4995-a77a-db20a1b0bd52",
+        "extractedCharacters": 5924,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 1,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1894,
+      "completion_tokens": 277,
+      "total_tokens": 2171,
+      "credits_charged": 0.144096
+    },
+    "inferenceMs": 914,
+    "extractionMs": 596,
+    "comparisonMs": 318,
+    "verificationMs": 0,
+    "verifierModel": null,
+    "verificationRequestId": null,
+    "requestId": "chatcmpl-EkA3LIcblh455VXfXTafPS9MjnIE1",
+    "extractionRequestId": "chatcmpl-EkA3KTB0aiElNY1I0hnvEdV5TBW4K"
+  }
+}

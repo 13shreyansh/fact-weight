@@ -1,0 +1,104 @@
+{
+  "id": "heldout-1-conflicting-records",
+  "kind": "conflicting-records",
+  "expected": "contested",
+  "baselineLabel": "contested",
+  "pipelineLabel": "contested",
+  "baseline": {
+    "data": {
+      "label": "contested",
+      "reason": "Source S1 supports the claim that Westmere received 190 water pumps on 18 September 2025, while source S2 states that Westmere received 221 water pumps on the same date, indicating a disagreement between the two sources."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 57,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.023904,
+      "prompt_tokens": 270,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 327
+    },
+    "latencyMs": 1561,
+    "requestId": "chatcmpl-Ek9wq1ar7GKycqweabprWZxLu7kmn"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Westmere received 190 water pumps on 18 September 2025.",
+        "status": "contested",
+        "supportGroups": 1,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The municipal register states that Westmere received exactly 190 water pumps on 18 September 2025.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "This is an official municipal register record directly stating the claim.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-1-conflicting-records",
+            "title": "Synthetic Westmere record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          },
+          {
+            "sourceId": "S2",
+            "quote": "An independently compiled port register states that Westmere received exactly 221 water pumps on 18 September 2025. The two registers disagree.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "This is an official independent port register record directly contradicting the claim.",
+            "group": "G2",
+            "url": "https://independent.example.net/heldout-1-conflicting-records",
+            "title": "Synthetic Westmere record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The municipal register directly records that Westmere received exactly 190 water pumps on that date, supporting the claim. However, an independent port register records a conflicting number of 221 water pumps received on the same date, indicating a disagreement between sources. Thus, while there is direct record support for the claim from one source, the conflicting record means the claim is not conclusively established.",
+        "missing": "Independent confirmation or resolution of the discrepancy between the two registers to verify the exact number of water pumps received."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-1-conflicting-records",
+        "title": "Synthetic Westmere record",
+        "text": "The municipal register states that Westmere received exactly 190 water pumps on 18 September 2025.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      },
+      {
+        "id": "S2",
+        "url": "https://independent.example.net/heldout-1-conflicting-records",
+        "title": "Synthetic Westmere record",
+        "text": "An independently compiled port register states that Westmere received exactly 221 water pumps on 18 September 2025. The two registers disagree.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G2"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 251,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.084384,
+      "prompt_tokens": 754,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1005
+    },
+    "inferenceMs": 2495,
+    "requestId": "chatcmpl-Ek9wrvTc8bIW5qcSjxdbcOn9720Cz"
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "id": "source-unsupported-11",
+  "kind": "unsupported",
+  "expected": "unsupported",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The source passage provides detailed information about the synchronization of Baltic electricity systems but does not mention or relate to personal opinions about long electricity reports."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 35,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.068736,
+      "prompt_tokens": 1292,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1327
+    },
+    "latencyMs": 698,
+    "requestId": "chatcmpl-EkA3UoE9hpfJNiWNMzWWa2QOBuoSe"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The user personally dislikes long electricity reports.",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "Estonia, Latvia and Lithuania have successfully synchronised their electricity systems with the Continental Europe Synchronous Area via Poland on 9 February 2025, ensuring their independence from Russia's and Belarus's electricity systems.",
+            "relation": "context",
+            "basis": "direct_record",
+            "reason": "This official document reports on the synchronisation event but does not address any personal opinions about report length.",
+            "group": "G1",
+            "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+            "title": "data.consilium.europa.eu",
+            "fetchedAt": "2026-11-14T15:31:52.354Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The claim is about the user's personal opinion regarding long electricity reports. The provided source is an official Council of the European Union note about the synchronisation of Baltic electricity systems, which is a formal and detailed report on electricity infrastructure and policy. However, the source does not mention or reflect any personal opinions or preferences of the user or any individual about the length or style of electricity reports.",
+        "missing": "Any statement or evidence about the user's personal feelings or opinions on long electricity reports.",
+        "postQuote": "I personally dislike long electricity reports."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+        "title": "data.consilium.europa.eu",
+        "fetchedAt": "2026-11-14T15:31:52.354Z",
+        "publishedAt": null,
+        "hash": "6117a9a6fae5673d27f3e254533a8995414b0d721c656fa4b689a6713ff7a58e",
+        "requestId": "0ddddde5-06a5-4995-a77a-db20a1b0bd52",
+        "extractedCharacters": 5924,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1869,
+      "completion_tokens": 242,
+      "total_tokens": 2111,
+      "credits_charged": 0.136176
+    },
+    "inferenceMs": 1138,
+    "extractionMs": 612,
+    "comparisonMs": 526,
+    "verificationMs": 0,
+    "verifierModel": null,
+    "verificationRequestId": null,
+    "requestId": "chatcmpl-EkA3XB0CFKddmdyyfW7XbKsqCXSna",
+    "extractionRequestId": "chatcmpl-EkA3WJoYp4Epeefsj7h0fqvLH1Wwq"
+  }
+}

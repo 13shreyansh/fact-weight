@@ -1,0 +1,82 @@
+{
+  "id": "heldout-2-quantity-contradiction",
+  "kind": "quantity-contradiction",
+  "expected": "contradicted",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The source states that exactly 207 generators arrived on 18 September 2025, whereas the post claims 257 generators."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 35,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.015552,
+      "prompt_tokens": 184,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 219
+    },
+    "latencyMs": 1051,
+    "requestId": "chatcmpl-EkA1yUcp4Mcl4KY64vUN44xoryvyA"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Lakehaven received 257 generators on 18 September 2025",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The final Lakehaven delivery register states: exactly 207 generators arrived on 18 September 2025. There were no other deliveries that day.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The delivery register is an official record directly stating the quantity and date of generators received, contradicting the claim of 257 generators.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-2-quantity-contradiction",
+            "title": "Synthetic Lakehaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The official delivery register for Lakehaven records exactly 207 generators arriving on 18 September 2025, with no other deliveries that day, directly contradicting the claim of 257 generators received.",
+        "missing": "Any evidence of additional deliveries or corrections to the delivery register that would account for the difference of 50 generators.",
+        "postQuote": "Lakehaven received 257 generators on 18 September 2025"
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-2-quantity-contradiction",
+        "title": "Synthetic Lakehaven record",
+        "text": "The final Lakehaven delivery register states: exactly 207 generators arrived on 18 September 2025. There were no other deliveries that day.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 885,
+      "completion_tokens": 223,
+      "total_tokens": 1108,
+      "credits_charged": 0.085296
+    },
+    "inferenceMs": 3525,
+    "extractionMs": 1236,
+    "comparisonMs": 2289,
+    "requestId": "chatcmpl-EkA21oEq3gfN0DqaoU2kn0sCjNVLN",
+    "extractionRequestId": "chatcmpl-EkA1zk2UNR2mAr8b3uWAtdyYwZ3UD"
+  }
+}

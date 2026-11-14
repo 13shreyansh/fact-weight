@@ -1,0 +1,82 @@
+{
+  "id": "dev-1-plan-not-completion",
+  "kind": "plan-not-completion",
+  "expected": "unsupported",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The source states the repairs are planned to be completed on 12 March 2025 but does not confirm that the repairs were actually completed."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 36,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.015888,
+      "prompt_tokens": 187,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 223
+    },
+    "latencyMs": 1390,
+    "requestId": "chatcmpl-EkA0DLftWqPGfrHsEXJq61Kz0tgp0"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Eastmere bridge repairs were completed on 12 March 2025.",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The Eastmere council plans to complete the bridge repairs on 12 March 2025. No completion certificate has been issued, and the work's actual status is not stated.",
+            "relation": "context",
+            "basis": "plan",
+            "reason": "The source only mentions a plan to complete the repairs on that date, with no confirmation of completion.",
+            "group": "G1",
+            "url": "https://register.example.org/dev-1-plan-not-completion",
+            "title": "Synthetic Eastmere record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The source states that the Eastmere council plans to complete the bridge repairs on 12 March 2025 but does not confirm that the repairs were actually completed on that date. There is no completion certificate issued or any direct record of completion.",
+        "missing": "Direct confirmation or official record of the repairs being completed on 12 March 2025.",
+        "postQuote": "The Eastmere bridge repairs were completed on 12 March 2025."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/dev-1-plan-not-completion",
+        "title": "Synthetic Eastmere record",
+        "text": "The Eastmere council plans to complete the bridge repairs on 12 March 2025. No completion certificate has been issued, and the work's actual status is not stated.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 890,
+      "completion_tokens": 228,
+      "total_tokens": 1118,
+      "credits_charged": 0.086496
+    },
+    "inferenceMs": 3290,
+    "extractionMs": 1229,
+    "comparisonMs": 2061,
+    "requestId": "chatcmpl-EkA0FBUcq9MHTVT1KF3Ac7lcq6bzw",
+    "extractionRequestId": "chatcmpl-EkA0ElMoNb4Vv0BNJvGjdzpkQgwSG"
+  }
+}

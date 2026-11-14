@@ -1,0 +1,82 @@
+{
+  "id": "heldout-0-date-support",
+  "kind": "date-support",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The source explicitly states that the Pinehaven power link was connected on 18 September 2025, confirming the post's claim."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 34,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.015072,
+      "prompt_tokens": 178,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 212
+    },
+    "latencyMs": 1491,
+    "requestId": "chatcmpl-EkA1DSv3yZ4gLH1cbDP6SG9QBcFng"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Pinehaven power link was connected on 18 September 2025.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The grid log confirms the Pinehaven power link was connected on 18 September 2025, after its equipment tests were completed.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The grid log is an official record confirming the connection date of the power link.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-0-date-support",
+            "title": "Synthetic Pinehaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The source S1 directly records that the Pinehaven power link was connected on 18 September 2025, confirming the event occurred on that date.",
+        "missing": "No contradictory evidence or additional context about the connection process or subsequent status is provided.",
+        "postQuote": "The Pinehaven power link was connected on 18 September 2025."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-0-date-support",
+        "title": "Synthetic Pinehaven record",
+        "text": "The grid log confirms the Pinehaven power link was connected on 18 September 2025, after its equipment tests were completed.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 881,
+      "completion_tokens": 196,
+      "total_tokens": 1077,
+      "credits_charged": 0.07992
+    },
+    "inferenceMs": 3258,
+    "extractionMs": 1317,
+    "comparisonMs": 1941,
+    "requestId": "chatcmpl-EkA1FVriufZbCS0ZqXLpdRSKfNhkx",
+    "extractionRequestId": "chatcmpl-EkA1EwGRbLeawOknOkIQAszHqrkon"
+  }
+}

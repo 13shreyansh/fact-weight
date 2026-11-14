@@ -1,0 +1,95 @@
+{
+  "id": "source-contradicted-6",
+  "kind": "contradicted",
+  "expected": "contradicted",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The source explicitly states that consumers were not affected during the frequency stability tests or when synchronous operation with the continental European grid started, directly contradicting the post's claim that consumers were affected."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 47,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.071328,
+      "prompt_tokens": 1298,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1345
+    },
+    "latencyMs": 253,
+    "requestId": "chatcmpl-EkA2wl8e8GXpbrvyssTfKl88CSsCd"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Consumers were affected when synchronous operation with the continental European grid started.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "Consumers were not affected during the frequency stability tests or when synchronous operation with the continental European grid started. The voltage regulation tests were successfully carried out on the high voltage 330kV network, and the voltage changes were within the planned range without affecting the quality of the power supply and the electrical installations of the consumers.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The source directly records that consumers were not affected during the synchronization event.",
+            "group": "G1",
+            "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+            "title": "data.consilium.europa.eu",
+            "fetchedAt": "2026-11-14T15:31:52.354Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source explicitly states that consumers were not affected during the frequency stability tests or when synchronous operation with the continental European grid started. Voltage regulation tests were within planned ranges and did not affect power supply quality or consumer electrical installations. Therefore, the claim that consumers were affected is contradicted by the source.",
+        "missing": "No evidence in the source supports any consumer impact during the synchronization event.",
+        "postQuote": "Consumers were affected when synchronous operation with the continental European grid started."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+        "title": "data.consilium.europa.eu",
+        "fetchedAt": "2026-11-14T15:31:52.354Z",
+        "publishedAt": null,
+        "hash": "6117a9a6fae5673d27f3e254533a8995414b0d721c656fa4b689a6713ff7a58e",
+        "requestId": "0ddddde5-06a5-4995-a77a-db20a1b0bd52",
+        "extractedCharacters": 5924,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1889,
+      "completion_tokens": 583,
+      "total_tokens": 4973,
+      "credits_charged": 4.723488000000001
+    },
+    "inferenceMs": 4814,
+    "extractionMs": 245,
+    "comparisonMs": 260,
+    "verificationMs": 4309,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch34tFZhgozbd3E5wxUtH",
+    "requestId": "chatcmpl-EkA2zGhOVdULzwfYKRY0WMkW30ZbN",
+    "extractionRequestId": "chatcmpl-EkA2xgTiaLKYpVGzTPmHy3h9KKNfh"
+  }
+}

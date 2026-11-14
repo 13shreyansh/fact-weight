@@ -1,0 +1,69 @@
+{
+  "id": "heldout-2-quoted-allegation",
+  "kind": "quoted-allegation",
+  "expected": "unsupported",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The source states the cost claim is unverified and the final cost is unknown, providing no confirmation of the 207 million euros figure."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 35,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.015312,
+      "prompt_tokens": 179,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 214
+    },
+    "latencyMs": 1297,
+    "requestId": "chatcmpl-EkA29sNsIUXtTep8pcREEF2jOPusn"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Lakehaven project cost 207 million euros.",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [],
+        "explanation": "The source contains an anonymous allegation stating the project cost 207 million euros but explicitly notes the claim is unverified and the final cost is unknown. Therefore, there is no direct or official confirmation of the project's cost.",
+        "missing": "Official or verified documentation confirming the actual cost of the Lakehaven project.",
+        "postQuote": "The Lakehaven project cost 207 million euros."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-2-quoted-allegation",
+        "title": "Synthetic Lakehaven record",
+        "text": "An anonymous post alleged that the Lakehaven project cost 207 million euros. The newsroom has not verified that claim and the final cost is unknown.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 1,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 872,
+      "completion_tokens": 196,
+      "total_tokens": 1068,
+      "credits_charged": 0.079488
+    },
+    "inferenceMs": 3347,
+    "extractionMs": 1310,
+    "comparisonMs": 2037,
+    "requestId": "chatcmpl-EkA2BaVPYmqUmnRPUztV1FqgNDqPH",
+    "extractionRequestId": "chatcmpl-EkA2AyPTPIFTNoOXMcYWn1K617akL"
+  }
+}

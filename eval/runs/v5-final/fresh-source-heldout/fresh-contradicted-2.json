@@ -1,0 +1,29 @@
+{
+  "id": "fresh-contradicted-2",
+  "kind": "contradicted",
+  "expected": "contradicted",
+  "baselineLabel": "supported",
+  "pipelineLabel": "ERROR",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The source states that the EU directive on temporary protection was adopted in 2001, confirming that it was not adopted in 2005 as the post claims."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 40,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.067872,
+      "prompt_tokens": 1254,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1294
+    },
+    "latencyMs": 1791,
+    "requestId": "chatcmpl-EkA7Kn8eC6oAmhrxmojnGSE1Egx5r"
+  },
+  "error": "The model returned an unreadable analysis. Please retry."
+}

@@ -1,0 +1,83 @@
+{
+  "id": "heldout-2-quantity-support",
+  "kind": "quantity-support",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The source states that 207 generators arrived at Lakehaven on 18 September 2025, directly supporting the post's claim."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 34,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.014736,
+      "prompt_tokens": 171,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 205
+    },
+    "latencyMs": 895,
+    "requestId": "chatcmpl-Ek9wuGfe6bPhAbidc2I3qph8xWJLI"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Lakehaven received 207 generators on 18 September 2025.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The Lakehaven delivery register records that 207 generators arrived on 18 September 2025.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The delivery register is an official record of the arrival event and quantity.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-2-quantity-support",
+            "title": "Synthetic Lakehaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The delivery register explicitly records that 207 generators arrived on that date, confirming the quantity and date of receipt.",
+        "missing": "No information about the source or purpose of the generators, or any subsequent handling or usage."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-2-quantity-support",
+        "title": "Synthetic Lakehaven record",
+        "text": "The Lakehaven delivery register records that 207 generators arrived on 18 September 2025.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 129,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.057072,
+      "prompt_tokens": 673,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 802
+    },
+    "inferenceMs": 1711,
+    "requestId": "chatcmpl-Ek9wvl5oR1wsl7VIqRZbq06usVqBY"
+  }
+}

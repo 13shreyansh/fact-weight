@@ -1,0 +1,119 @@
+{
+  "id": "fresh-unsupported-3",
+  "kind": "unsupported",
+  "expected": "unsupported",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The source passage describes the extension of temporary protection for Ukrainian refugees and lists general rights such as residence, access to labor market, housing, medical and social welfare assistance, and education, but does not mention any guaranteed monthly cash payment of 500 euros or any specific cash amount provided to beneficiaries."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 66,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.07296,
+      "prompt_tokens": 1256,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1322
+    },
+    "latencyMs": 528,
+    "requestId": "chatcmpl-EkA8EKOgnpCQm1V17I1V6yzSKCVAa"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The announcement was made on 13 June 2025.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "- Council of the EU - Press release - 13 June 2025 13:15 # EU member states agree to extend temporary protection for refugees from Ukraine Today, the Council voiced its unanimous support for a proposal to extend the temporary protection for the more than 4 million Ukrainians fleeing from Russia’s war of aggression until 4 March 2027.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The press release dated 13 June 2025 reports the Council's agreement and announcement on that day.",
+            "group": "G1",
+            "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+            "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+            "fetchedAt": "2026-11-14T15:36:55.025Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The press release from the Council of the EU is dated 13 June 2025 and reports on the agreement to extend temporary protection for refugees from Ukraine, indicating the announcement was made on that date.",
+        "missing": "No direct statement explicitly saying 'the announcement was made on 13 June 2025', but the press release date and content strongly imply this.",
+        "postQuote": "The 13 June 2025 announcement"
+      },
+      {
+        "claim": "Every beneficiary is guaranteed exactly 500 euros in cash each month.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "People benefitting from temporary protection enjoy the same rights across the EU. These rights include: - residence - access to the labour market and housing - medical assistance - social welfare assistance - access to education for children The EU’s temporary protection law sets minimum standards of protection. The actual level of assistance can vary from one member state to another.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The source lists rights and assistance but does not mention any guaranteed cash payment of 500 euros monthly.",
+            "group": "G1",
+            "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+            "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+            "fetchedAt": "2026-11-14T15:36:55.025Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source does not mention any guaranteed cash amount of 500 euros per month for beneficiaries of temporary protection. It only lists general rights such as residence, access to labor market, housing, medical assistance, social welfare assistance, and education access, without specifying any cash payment or amount.",
+        "missing": "Any mention of a guaranteed cash payment of exactly 500 euros per month to beneficiaries.",
+        "postQuote": "guaranteed every beneficiary exactly 500 euros in cash each month"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+        "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+        "fetchedAt": "2026-11-14T15:36:55.025Z",
+        "publishedAt": null,
+        "hash": "d3942cd550624c787148985f439cb22c0b591e3b3f8798b65e3a8b7cf372212e",
+        "requestId": "1c8fe56c-312d-4c47-8e36-e13585f7926c",
+        "extractedCharacters": 4674,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1891,
+      "completion_tokens": 1906,
+      "total_tokens": 6241,
+      "credits_charged": 9.79368
+    },
+    "inferenceMs": 1289,
+    "extractionMs": 391,
+    "comparisonMs": 333,
+    "verificationMs": 565,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch356Aujoh8A18EtCLjiq",
+    "syntaxRetries": 0,
+    "requestId": "chatcmpl-EkA8HMfTR8K9adXVSQdFOw3nWdIf6",
+    "extractionRequestId": "chatcmpl-EkA8Ge5cKR1R2o0l027WZzPBQIZd4"
+  }
+}

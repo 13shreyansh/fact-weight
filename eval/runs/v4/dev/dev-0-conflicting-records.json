@@ -1,0 +1,103 @@
+{
+  "id": "dev-0-conflicting-records",
+  "kind": "conflicting-records",
+  "expected": "contested",
+  "baselineLabel": "contested",
+  "pipelineLabel": "contested",
+  "baseline": {
+    "data": {
+      "label": "contested",
+      "reason": "One source states Northhaven received 48 water pumps on 12 March 2025, while another source states 79 pumps on the same date, indicating conflicting information."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 43,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.021024,
+      "prompt_tokens": 266,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 309
+    },
+    "latencyMs": 995,
+    "requestId": "chatcmpl-Ek9zrcgVsMKkDARNRDHhjnkcFufwM"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Northhaven received 48 water pumps on 12 March 2025.",
+        "status": "contested",
+        "supportGroups": 1,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The municipal register states that Northhaven received exactly 48 water pumps on 12 March 2025.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "Official municipal register directly records the receipt of 48 water pumps on the specified date.",
+            "group": "G1",
+            "url": "https://register.example.org/dev-0-conflicting-records",
+            "title": "Synthetic Northhaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          },
+          {
+            "sourceId": "S2",
+            "quote": "An independently compiled port register states that Northhaven received exactly 79 water pumps on 12 March 2025. The two registers disagree.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "Independent port register directly records a different number (79) of water pumps received on the same date, contradicting the claim.",
+            "group": "G2",
+            "url": "https://independent.example.net/dev-0-conflicting-records",
+            "title": "Synthetic Northhaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The municipal register (S1) directly records that Northhaven received exactly 48 water pumps on 12 March 2025, supporting the claim as an official record. However, an independent port register (S2) records a conflicting number of 79 water pumps received on the same date, indicating a discrepancy between sources. Thus, while S1 supports the claim, the conflicting evidence from S2 means the claim is not conclusively verified.",
+        "missing": "Independent verification or reconciliation of the conflicting records to confirm the exact number of water pumps received on 12 March 2025.",
+        "postQuote": "Northhaven received 48 water pumps on 12 March 2025."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/dev-0-conflicting-records",
+        "title": "Synthetic Northhaven record",
+        "text": "The municipal register states that Northhaven received exactly 48 water pumps on 12 March 2025.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      },
+      {
+        "id": "S2",
+        "url": "https://independent.example.net/dev-0-conflicting-records",
+        "title": "Synthetic Northhaven record",
+        "text": "An independently compiled port register states that Northhaven received exactly 79 water pumps on 12 March 2025. The two registers disagree.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G2"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 951,
+      "completion_tokens": 335,
+      "total_tokens": 1286,
+      "credits_charged": 0.109968
+    },
+    "inferenceMs": 4578,
+    "extractionMs": 1431,
+    "comparisonMs": 3147,
+    "requestId": "chatcmpl-Ek9ztDe2btABE58IknOdu4aWXhpec",
+    "extractionRequestId": "chatcmpl-Ek9zsmiWtprLgEdmEB1lDtE8NQy7k"
+  }
+}

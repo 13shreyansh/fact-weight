@@ -1,0 +1,194 @@
+[
+  {
+    "id": "source-supported-1",
+    "kind": "supported",
+    "post": "Estonia, Latvia and Lithuania synchronised with continental Europe on 9 February 2025.",
+    "expected": "supported",
+    "sourceUrl": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+    "labelProvenance": "agent-constructed source-derived stress assertion or opinion; no human labels; relation to one Council document, not world truth"
+  },
+  {
+    "id": "source-supported-2",
+    "kind": "supported",
+    "post": "The Baltic transmission system operators started disconnection from the Russian combined electricity system on 8 February 2025.",
+    "expected": "supported",
+    "sourceUrl": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+    "labelProvenance": "agent-constructed source-derived stress assertion or opinion; no human labels; relation to one Council document, not world truth"
+  },
+  {
+    "id": "source-supported-3",
+    "kind": "supported",
+    "post": "All electricity interconnections with Russia and Belarus were permanently disconnected in the Baltic synchronisation process.",
+    "expected": "supported",
+    "sourceUrl": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+    "labelProvenance": "agent-constructed source-derived stress assertion or opinion; no human labels; relation to one Council document, not world truth"
+  },
+  {
+    "id": "source-supported-4",
+    "kind": "supported",
+    "post": "Consumers were not affected during the frequency stability tests described in the report.",
+    "expected": "supported",
+    "sourceUrl": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+    "labelProvenance": "agent-constructed source-derived stress assertion or opinion; no human labels; relation to one Council document, not world truth"
+  },
+  {
+    "id": "source-supported-5",
+    "kind": "supported",
+    "post": "The Baltic electricity systems synchronised with the Continental Europe Synchronous Area via Poland.",
+    "expected": "supported",
+    "sourceUrl": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+    "labelProvenance": "agent-constructed source-derived stress assertion or opinion; no human labels; relation to one Council document, not world truth"
+  },
+  {
+    "id": "source-supported-6",
+    "kind": "supported",
+    "post": "Consumers were not affected when synchronous operation with the continental European grid started.",
+    "expected": "supported",
+    "sourceUrl": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+    "labelProvenance": "agent-constructed source-derived stress assertion or opinion; no human labels; relation to one Council document, not world truth"
+  },
+  {
+    "id": "source-contradicted-1",
+    "kind": "contradicted",
+    "post": "Estonia, Latvia and Lithuania synchronised with continental Europe on 10 February 2025.",
+    "expected": "contradicted",
+    "sourceUrl": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+    "labelProvenance": "agent-constructed source-derived stress assertion or opinion; no human labels; relation to one Council document, not world truth"
+  },
+  {
+    "id": "source-contradicted-2",
+    "kind": "contradicted",
+    "post": "The Baltic transmission system operators first started disconnection from the Russian combined electricity system on 10 February 2025.",
+    "expected": "contradicted",
+    "sourceUrl": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+    "labelProvenance": "agent-constructed source-derived stress assertion or opinion; no human labels; relation to one Council document, not world truth"
+  },
+  {
+    "id": "source-contradicted-3",
+    "kind": "contradicted",
+    "post": "All electricity interconnections with Russia and Belarus remained connected after the Baltic synchronisation process.",
+    "expected": "contradicted",
+    "sourceUrl": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+    "labelProvenance": "agent-constructed source-derived stress assertion or opinion; no human labels; relation to one Council document, not world truth"
+  },
+  {
+    "id": "source-contradicted-4",
+    "kind": "contradicted",
+    "post": "Consumers were affected during the frequency stability tests described in the report.",
+    "expected": "contradicted",
+    "sourceUrl": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+    "labelProvenance": "agent-constructed source-derived stress assertion or opinion; no human labels; relation to one Council document, not world truth"
+  },
+  {
+    "id": "source-contradicted-5",
+    "kind": "contradicted",
+    "post": "The Baltic electricity systems had not synchronised with the Continental Europe Synchronous Area by the end of 9 February 2025.",
+    "expected": "contradicted",
+    "sourceUrl": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+    "labelProvenance": "agent-constructed source-derived stress assertion or opinion; no human labels; relation to one Council document, not world truth"
+  },
+  {
+    "id": "source-contradicted-6",
+    "kind": "contradicted",
+    "post": "Consumers were affected when synchronous operation with the continental European grid started.",
+    "expected": "contradicted",
+    "sourceUrl": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+    "labelProvenance": "agent-constructed source-derived stress assertion or opinion; no human labels; relation to one Council document, not world truth"
+  },
+  {
+    "id": "source-unsupported-1",
+    "kind": "unsupported",
+    "post": "Lithuanian households saved exactly 17 euros each during the first week after synchronisation.",
+    "expected": "unsupported",
+    "sourceUrl": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+    "labelProvenance": "agent-constructed source-derived stress assertion or opinion; no human labels; relation to one Council document, not world truth"
+  },
+  {
+    "id": "source-unsupported-2",
+    "kind": "unsupported",
+    "post": "The Baltic synchronisation project cost exactly 9.4 billion euros.",
+    "expected": "unsupported",
+    "sourceUrl": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+    "labelProvenance": "agent-constructed source-derived stress assertion or opinion; no human labels; relation to one Council document, not world truth"
+  },
+  {
+    "id": "source-unsupported-3",
+    "kind": "unsupported",
+    "post": "Exactly 47 hospitals switched to backup generators during the Baltic grid tests.",
+    "expected": "unsupported",
+    "sourceUrl": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+    "labelProvenance": "agent-constructed source-derived stress assertion or opinion; no human labels; relation to one Council document, not world truth"
+  },
+  {
+    "id": "source-unsupported-4",
+    "kind": "unsupported",
+    "post": "Exactly 8,200 technicians worked on the Baltic synchronisation project.",
+    "expected": "unsupported",
+    "sourceUrl": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+    "labelProvenance": "agent-constructed source-derived stress assertion or opinion; no human labels; relation to one Council document, not world truth"
+  },
+  {
+    "id": "source-unsupported-5",
+    "kind": "unsupported",
+    "post": "Exactly 91 percent of Latvian residents approved of the grid synchronisation.",
+    "expected": "unsupported",
+    "sourceUrl": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+    "labelProvenance": "agent-constructed source-derived stress assertion or opinion; no human labels; relation to one Council document, not world truth"
+  },
+  {
+    "id": "source-unsupported-6",
+    "kind": "unsupported",
+    "post": "Exactly 3,400 household solar panels failed during the synchronisation tests.",
+    "expected": "unsupported",
+    "sourceUrl": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+    "labelProvenance": "agent-constructed source-derived stress assertion or opinion; no human labels; relation to one Council document, not world truth"
+  },
+  {
+    "id": "source-unsupported-7",
+    "kind": "unsupported",
+    "post": "The Baltic synchronisation process reduced annual carbon emissions by exactly 2 million tonnes.",
+    "expected": "unsupported",
+    "sourceUrl": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+    "labelProvenance": "agent-constructed source-derived stress assertion or opinion; no human labels; relation to one Council document, not world truth"
+  },
+  {
+    "id": "source-unsupported-8",
+    "kind": "unsupported",
+    "post": "Exactly 24 substations were replaced in Lithuania on 8 February 2025.",
+    "expected": "unsupported",
+    "sourceUrl": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+    "labelProvenance": "agent-constructed source-derived stress assertion or opinion; no human labels; relation to one Council document, not world truth"
+  },
+  {
+    "id": "source-unsupported-9",
+    "kind": "unsupported",
+    "post": "I think the grid synchronisation was a wonderful idea.",
+    "expected": "unsupported",
+    "sourceUrl": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+    "labelProvenance": "agent-constructed source-derived stress assertion or opinion; no human labels; relation to one Council document, not world truth"
+  },
+  {
+    "id": "source-unsupported-10",
+    "kind": "unsupported",
+    "post": "This grid decision makes me feel optimistic.",
+    "expected": "unsupported",
+    "sourceUrl": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+    "labelProvenance": "agent-constructed source-derived stress assertion or opinion; no human labels; relation to one Council document, not world truth"
+  },
+  {
+    "id": "source-unsupported-11",
+    "kind": "unsupported",
+    "post": "I personally dislike long electricity reports.",
+    "expected": "unsupported",
+    "sourceUrl": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+    "labelProvenance": "agent-constructed source-derived stress assertion or opinion; no human labels; relation to one Council document, not world truth"
+  },
+  {
+    "id": "source-unsupported-12",
+    "kind": "unsupported",
+    "post": "Every reader should decide for themselves whether this project was worthwhile.",
+    "expected": "unsupported",
+    "sourceUrl": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+    "labelProvenance": "agent-constructed source-derived stress assertion or opinion; no human labels; relation to one Council document, not world truth"
+  }
+]

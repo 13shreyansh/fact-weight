@@ -1,0 +1,95 @@
+{
+  "id": "fresh-unsupported-5",
+  "kind": "unsupported",
+  "expected": "unsupported",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The source passage from 13 June 2025 discusses the extension of temporary protection for Ukrainian refugees and related policy matters but does not mention the launch of a digital registration app named BalticWelcome or any similar app announcement."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 51,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.069936,
+      "prompt_tokens": 1253,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1304
+    },
+    "latencyMs": 1394,
+    "requestId": "chatcmpl-EkA8aOwBPjAFALzeEDwIxoneD64O4"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "On 13 June 2025, an announcement launched a digital registration app named BalticWelcome.",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "EU member states agree to extend temporary protection for refugees from Ukraine Today, the Council voiced its unanimous support for a proposal to extend the temporary protection for the more than 4 million Ukrainians fleeing from Russia’s war of aggression until 4 March 2027.",
+            "relation": "context",
+            "basis": "direct_record",
+            "reason": "The quote only shows that the 13 June 2025 Council release announced an extension of temporary protection. It never mentions an app or BalticWelcome, and that silence is missing confirmation, not a mutually exclusive fact that contradicts the claim.",
+            "group": "G1",
+            "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+            "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+            "fetchedAt": "2026-11-14T15:36:55.025Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "Some proposed relations did not pass a second model check. The accepted passages below determine this evidence label.",
+        "missing": "Any mention or description of an announcement or launch of a digital registration app named BalticWelcome on 13 June 2025.",
+        "postQuote": "The 13 June 2025 announcement launched a digital registration app named BalticWelcome."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+        "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+        "fetchedAt": "2026-11-14T15:36:55.025Z",
+        "publishedAt": null,
+        "hash": "d3942cd550624c787148985f439cb22c0b591e3b3f8798b65e3a8b7cf372212e",
+        "requestId": "1c8fe56c-312d-4c47-8e36-e13585f7926c",
+        "extractedCharacters": 4674,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1859,
+      "completion_tokens": 714,
+      "total_tokens": 4803,
+      "credits_charged": 4.758384
+    },
+    "inferenceMs": 9680,
+    "extractionMs": 1422,
+    "comparisonMs": 2776,
+    "verificationMs": 5482,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch357gDNzJamA9JymcAeV",
+    "requestId": "chatcmpl-EkA8dAZckMEYFdmFZj5m7jw3hBH4q",
+    "extractionRequestId": "chatcmpl-EkA8b6Jt5exGf01WTyfMG50zbocwq"
+  }
+}

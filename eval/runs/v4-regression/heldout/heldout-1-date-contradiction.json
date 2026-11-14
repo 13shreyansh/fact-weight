@@ -1,0 +1,82 @@
+{
+  "id": "heldout-1-date-contradiction",
+  "kind": "date-contradiction",
+  "expected": "contradicted",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The source states the Westmere power link was first connected on 18 September 2025, which contradicts the post's claim of 21 September 2025."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 44,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.017472,
+      "prompt_tokens": 188,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 232
+    },
+    "latencyMs": 1244,
+    "requestId": "chatcmpl-EkA1dALKoFeUWKhkaMD6kvqkU4orp"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Westmere power link was connected on 21 September 2025.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The grid operator's final event log says the Westmere power link was first connected on 18 September 2025, not on 21 September 2025.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The official event log directly records the connection date as 18 September 2025, contradicting the claim of 21 September 2025.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-1-date-contradiction",
+            "title": "Synthetic Westmere record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The source S1 provides a direct record from the grid operator's final event log stating that the Westmere power link was first connected on 18 September 2025, which contradicts the claim that it was connected on 21 September 2025.",
+        "missing": "No evidence supports the connection date of 21 September 2025; the exact connection date according to the official log is 18 September 2025.",
+        "postQuote": "The Westmere power link was connected on 21 September 2025."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-1-date-contradiction",
+        "title": "Synthetic Westmere record",
+        "text": "The grid operator's final event log says the Westmere power link was first connected on 18 September 2025, not on 21 September 2025.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 891,
+      "completion_tokens": 254,
+      "total_tokens": 1145,
+      "credits_charged": 0.091536
+    },
+    "inferenceMs": 3686,
+    "extractionMs": 1377,
+    "comparisonMs": 2309,
+    "requestId": "chatcmpl-EkA1g7f33jp71pBt42XxGdTylhmd0",
+    "extractionRequestId": "chatcmpl-EkA1fod28zGL08aX2x4JOoSgTy1Hd"
+  }
+}

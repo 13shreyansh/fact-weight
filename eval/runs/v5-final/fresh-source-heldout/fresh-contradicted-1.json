@@ -1,0 +1,95 @@
+{
+  "id": "fresh-contradicted-1",
+  "kind": "contradicted",
+  "expected": "contradicted",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The source states that on 13 June 2025, the EU Council agreed to extend temporary protection until 4 March 2027, not until 4 March 2028 as claimed in the post."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 52,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.070896,
+      "prompt_tokens": 1269,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1321
+    },
+    "latencyMs": 1418,
+    "requestId": "chatcmpl-EkA7Kbm4nfKVXJITGJNbzIpdBwUDJ"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "On 13 June 2025, the EU Council voiced support for extending temporary protection until 4 March 2028 rather than 4 March 2027.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "Today, the Council voiced its unanimous support for a proposal to extend the temporary protection for the more than 4 million Ukrainians fleeing from Russia’s war of aggression until 4 March 2027.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The source explicitly states the Council supported extension until 4 March 2027, not 4 March 2028.",
+            "group": "G1",
+            "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+            "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+            "fetchedAt": "2026-11-14T15:36:55.025Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source states that on 13 June 2025, the Council voiced unanimous support for extending temporary protection until 4 March 2027, not 4 March 2028. There is no mention of support for extending until 4 March 2028. Therefore, the claim that the Council supported extension until 4 March 2028 rather than 4 March 2027 is contradicted by the source.",
+        "missing": "Any evidence that the Council voiced support for extending temporary protection until 4 March 2028 instead of 4 March 2027.",
+        "postQuote": "On 13 June 2025, the EU Council voiced support for extending temporary protection until 4 March 2028 rather than 4 March 2027."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+        "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+        "fetchedAt": "2026-11-14T15:36:55.025Z",
+        "publishedAt": null,
+        "hash": "d3942cd550624c787148985f439cb22c0b591e3b3f8798b65e3a8b7cf372212e",
+        "requestId": "1c8fe56c-312d-4c47-8e36-e13585f7926c",
+        "extractedCharacters": 4674,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1905,
+      "completion_tokens": 639,
+      "total_tokens": 4783,
+      "credits_charged": 4.286975999999999
+    },
+    "inferenceMs": 8022,
+    "extractionMs": 1421,
+    "comparisonMs": 2618,
+    "verificationMs": 3983,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch351tzfb7u69D53Njf9n",
+    "requestId": "chatcmpl-EkA7Mof52cZEIf3aQ6Qxv3tKXGlzV",
+    "extractionRequestId": "chatcmpl-EkA7Lq97LytTBglO0L6mcd3oJMbgc"
+  }
+}

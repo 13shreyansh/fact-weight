@@ -1,0 +1,83 @@
+{
+  "id": "dev-0-quantity-support",
+  "kind": "quantity-support",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The source states that 48 generators arrived in Northhaven on 12 March 2025, which matches the post exactly."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 33,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.014448,
+      "prompt_tokens": 169,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 202
+    },
+    "latencyMs": 643,
+    "requestId": "chatcmpl-Ek9tgTUhSeSLhSUQkWBwCIwzTRTEx"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Northhaven received 48 generators on 12 March 2025.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The Northhaven delivery register records that 48 generators arrived on 12 March 2025.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The delivery register is an official record documenting the arrival of the generators on the claimed date.",
+            "group": "G1",
+            "url": "https://register.example.org/dev-0-quantity-support",
+            "title": "Synthetic Northhaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The delivery register explicitly records the arrival of 48 generators in Northhaven on the specified date, confirming the event occurred as claimed.",
+        "missing": "No information about the source or context of the delivery beyond the register entry is provided."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/dev-0-quantity-support",
+        "title": "Synthetic Northhaven record",
+        "text": "The Northhaven delivery register records that 48 generators arrived on 12 March 2025.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 136,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.05832,
+      "prompt_tokens": 671,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 807
+    },
+    "inferenceMs": 1970,
+    "requestId": "chatcmpl-Ek9vfJgLraR9CfqDdSYOYeO0kCOno"
+  }
+}

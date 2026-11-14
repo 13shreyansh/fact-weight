@@ -1,0 +1,95 @@
+{
+  "id": "fresh-contradicted-5",
+  "kind": "contradicted",
+  "expected": "contradicted",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The press release explicitly states that while temporary protection provides the same rights across the EU, the actual level of assistance can vary from one member state to another, contradicting the claim that the level of assistance is identical in every EU member state."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 58,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.071616,
+      "prompt_tokens": 1260,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1318
+    },
+    "latencyMs": 1608,
+    "requestId": "chatcmpl-EkA7xy23h8mz1p0J7xGDO2MzMRLFV"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The 13 June 2025 press release states that the actual level of assistance is identical in every EU member state.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "People benefitting from temporary protection enjoy the same rights across the EU. These rights include: - residence - access to the labour market and housing - medical assistance - social welfare assistance - access to education for children The EU’s temporary protection law sets minimum standards of protection. The actual level of assistance can vary from one member state to another.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The press release states that while rights are the same, the actual level of assistance can vary between member states, contradicting the claim of identical assistance.",
+            "group": "G1",
+            "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+            "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+            "fetchedAt": "2026-11-14T15:36:55.025Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The press release explicitly states that \"People benefitting from temporary protection enjoy the same rights across the EU,\" listing residence, access to labor market, housing, medical assistance, social welfare assistance, and education for children as rights. However, it also clearly states that \"The EU’s temporary protection law sets minimum standards of protection. The actual level of assistance can vary from one member state to another.\" This directly contradicts the claim that the actual level of assistance is identical in every EU member state.",
+        "missing": "No evidence that the press release states the actual level of assistance is identical; rather, it states the opposite.",
+        "postQuote": "The 13 June 2025 press release states that the actual level of assistance is identical in every EU member state."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+        "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+        "fetchedAt": "2026-11-14T15:36:55.025Z",
+        "publishedAt": null,
+        "hash": "d3942cd550624c787148985f439cb22c0b591e3b3f8798b65e3a8b7cf372212e",
+        "requestId": "1c8fe56c-312d-4c47-8e36-e13585f7926c",
+        "extractedCharacters": 4674,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1879,
+      "completion_tokens": 661,
+      "total_tokens": 4784,
+      "credits_charged": 4.314384
+    },
+    "inferenceMs": 9183,
+    "extractionMs": 1740,
+    "comparisonMs": 3145,
+    "verificationMs": 4298,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch354tqpfyAsmqxZzMhFV",
+    "requestId": "chatcmpl-EkA81W4YdyQnwcfGUNHMQZe5aCC77",
+    "extractionRequestId": "chatcmpl-EkA7zFkgGTsU0v8vhZ7tXssXMHQxK"
+  }
+}

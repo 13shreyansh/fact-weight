@@ -1,0 +1,56 @@
+{
+  "version": "v4-regression",
+  "split": "heldout",
+  "n": 40,
+  "at": "2026-11-14T15:33:27.586Z",
+  "datasetSha256": "21e8c14531ef1907302eb258459cce155be592c4cebb9a40f200e79be7c8f951",
+  "engineSha256": "3585dc7d74c1898ed18ddc6a0771530e77be109b020eb95168c5d0c6d4500a6e",
+  "labelProvenance": "synthetic construction rules; no human labels",
+  "baseline": {
+    "n": 40,
+    "correct": 39,
+    "errors": 0,
+    "accuracy": 0.975,
+    "tp": 16,
+    "fp": 1,
+    "tn": 23,
+    "fn": 0,
+    "precision": 0.9411764705882353,
+    "recall": 1,
+    "fpr": 0.041666666666666664
+  },
+  "pipeline": {
+    "n": 40,
+    "correct": 38,
+    "errors": 2,
+    "accuracy": 0.95,
+    "tp": 16,
+    "fp": 0,
+    "tn": 22,
+    "fn": 0,
+    "precision": 1,
+    "recall": 1,
+    "fpr": 0
+  },
+  "citations": {
+    "accepted": 44,
+    "verbatim": 44,
+    "rejected": 1
+  },
+  "medianInferenceMs": 3686,
+  "p95InferenceMs": 4588,
+  "creditsCharged": 4.012703999999999,
+  "wallMs": 105597,
+  "failures": [
+    {
+      "id": "heldout-1-plan-not-completion",
+      "expected": "unsupported",
+      "actual": "ERROR"
+    },
+    {
+      "id": "heldout-1-copied-report",
+      "expected": "supported",
+      "actual": "ERROR"
+    }
+  ]
+}

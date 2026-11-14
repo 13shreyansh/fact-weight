@@ -1,0 +1,83 @@
+{
+  "id": "heldout-2-explicit-negation",
+  "kind": "explicit-negation",
+  "expected": "contradicted",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The source explicitly states that the Lakehaven ferry service did not stop on 18 September 2025 and continued its normal timetable throughout that day."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 39,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.016176,
+      "prompt_tokens": 181,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 220
+    },
+    "latencyMs": 1595,
+    "requestId": "chatcmpl-Ek9x81ChiRzeYafo98VRFzi4Gkw3r"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Lakehaven ferry service stopped on 18 September 2025.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The Lakehaven operator states the ferry service did not stop on 18 September 2025. It continued its normal timetable throughout that day.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The operator's statement is an official record directly contradicting the claim that the ferry service stopped.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-2-explicit-negation",
+            "title": "Synthetic Lakehaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The claim asserts that the ferry service stopped on a specific date. The source provides an operational record from the Lakehaven operator stating the ferry service did not stop and continued normally on that date, directly contradicting the claim.",
+        "missing": "Independent confirmation of the ferry service stopping on that date beyond the operator's statement is missing."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-2-explicit-negation",
+        "title": "Synthetic Lakehaven record",
+        "text": "The Lakehaven operator states the ferry service did not stop on 18 September 2025. It continued its normal timetable throughout that day.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 167,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.064848,
+      "prompt_tokens": 683,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 850
+    },
+    "inferenceMs": 2186,
+    "requestId": "chatcmpl-Ek9xAHtAjXn8U8O6Bd3uliOFEgK3S"
+  }
+}

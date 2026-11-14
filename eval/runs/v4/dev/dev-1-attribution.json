@@ -1,0 +1,82 @@
+{
+  "id": "dev-1-attribution",
+  "kind": "attribution",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The source directly quotes the Eastmere mayor stating the project would cost 65 million euros."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 26,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.01344,
+      "prompt_tokens": 176,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 202
+    },
+    "latencyMs": 1516,
+    "requestId": "chatcmpl-EkA08yWoQTSsGtIJUqLC7H9b3amfJ"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Eastmere mayor said the project would cost 65 million euros.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "In a press conference, the Eastmere mayor said the project would cost 65 million euros.",
+            "relation": "supports",
+            "basis": "attribution",
+            "reason": "The source attributes the statement about the project cost directly to the Eastmere mayor.",
+            "group": "G1",
+            "url": "https://register.example.org/dev-1-attribution",
+            "title": "Synthetic Eastmere record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The source directly reports that the Eastmere mayor stated the project cost as 65 million euros during a press conference, matching the claim exactly.",
+        "missing": "No information is provided about independent verification or any other statements by the mayor.",
+        "postQuote": "The Eastmere mayor said the project would cost 65 million euros."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/dev-1-attribution",
+        "title": "Synthetic Eastmere record",
+        "text": "In a press conference, the Eastmere mayor said the project would cost 65 million euros. The estimate has not been independently verified.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 878,
+      "completion_tokens": 185,
+      "total_tokens": 1063,
+      "credits_charged": 0.077664
+    },
+    "inferenceMs": 3302,
+    "extractionMs": 1488,
+    "comparisonMs": 1814,
+    "requestId": "chatcmpl-EkA0BVOY7qPL80WoL1luv12z5wp4G",
+    "extractionRequestId": "chatcmpl-EkA09I0bOoIBSti2qvWe16oiT3xUC"
+  }
+}

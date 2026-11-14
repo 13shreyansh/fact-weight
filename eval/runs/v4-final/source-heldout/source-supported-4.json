@@ -1,0 +1,92 @@
+{
+  "id": "source-supported-4",
+  "kind": "supported",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The source explicitly states that consumers were not affected during the frequency stability tests or when synchronous operation with the continental European grid started."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 33,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.068688,
+      "prompt_tokens": 1299,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1332
+    },
+    "latencyMs": 1415,
+    "requestId": "chatcmpl-EkA2akTwRVQbHopwE3v1Atp5HuLBb"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Consumers were not affected during the frequency stability tests.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "Consumers were not affected during the frequency stability tests or when synchronous operation with the continental European grid started. The voltage regulation tests were successfully carried out on the high voltage 330kV network, and the voltage changes were within the planned range without affecting the quality of the power supply and the electrical installations of the consumers.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The source explicitly states that consumers were not affected during the frequency stability tests, directly supporting the claim.",
+            "group": "G1",
+            "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+            "title": "data.consilium.europa.eu",
+            "fetchedAt": "2026-11-14T15:31:52.354Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source directly states that consumers were not affected during the frequency stability tests conducted as part of the synchronisation of the Baltic electricity systems with the Continental Europe Synchronous Area. It also mentions that voltage regulation tests were carried out successfully without affecting power supply quality or electrical installations of consumers, supporting the claim that consumers experienced no impact during these tests.",
+        "missing": "No information is missing regarding the claim about consumer impact during the frequency stability tests; the source provides a clear statement on this point.",
+        "postQuote": "Consumers were not affected during the frequency stability tests described in the report."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+        "title": "data.consilium.europa.eu",
+        "fetchedAt": "2026-11-14T15:31:52.354Z",
+        "publishedAt": null,
+        "hash": "6117a9a6fae5673d27f3e254533a8995414b0d721c656fa4b689a6713ff7a58e",
+        "requestId": "0ddddde5-06a5-4995-a77a-db20a1b0bd52",
+        "extractedCharacters": 5924,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1884,
+      "completion_tokens": 274,
+      "total_tokens": 2158,
+      "credits_charged": 0.14304
+    },
+    "inferenceMs": 3605,
+    "extractionMs": 1157,
+    "comparisonMs": 2448,
+    "requestId": "chatcmpl-EkA2dyPnF4NrKR4oBU3AEtMHpV1R0",
+    "extractionRequestId": "chatcmpl-EkA2b1QnlT5VZ3Fc68zcZqgMeBYTM"
+  }
+}

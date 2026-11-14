@@ -1,0 +1,95 @@
+{
+  "id": "source-supported-3",
+  "kind": "supported",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The source explicitly states that all electricity interconnections with Russia and Belarus have been permanently disconnected as part of the Baltic synchronisation process with the Continental Europe Synchronous Area."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 41,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.070416,
+      "prompt_tokens": 1303,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1344
+    },
+    "latencyMs": 594,
+    "requestId": "chatcmpl-EkA2ainrxENP0S0jF0qWmrAN4Reig"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "All electricity interconnections with Russia and Belarus were permanently disconnected in the Baltic synchronisation process.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "All electricity interconnections with Russia and Belarus have been permanently disconnected.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "The official note explicitly states the permanent disconnection of all electricity interconnections with Russia and Belarus as part of the synchronisation process.",
+            "group": "G1",
+            "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+            "title": "data.consilium.europa.eu",
+            "fetchedAt": "2026-11-14T15:31:52.354Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source directly states that all electricity interconnections with Russia and Belarus have been permanently disconnected as part of the Baltic synchronisation process with the Continental Europe Synchronous Area. It details the disconnection starting on 8 February 2025 and the successful synchronisation on 9 February 2025, confirming the permanent nature of the disconnection and the independence gained from the Russian-Belorussian system.",
+        "missing": "No significant details about any remaining temporary connections or exceptions are mentioned, so the claim about permanent disconnection is fully supported by the source.",
+        "postQuote": "All electricity interconnections with Russia and Belarus were permanently disconnected in the Baltic synchronisation process."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+        "title": "data.consilium.europa.eu",
+        "fetchedAt": "2026-11-14T15:31:52.354Z",
+        "publishedAt": null,
+        "hash": "6117a9a6fae5673d27f3e254533a8995414b0d721c656fa4b689a6713ff7a58e",
+        "requestId": "0ddddde5-06a5-4995-a77a-db20a1b0bd52",
+        "extractedCharacters": 5924,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1904,
+      "completion_tokens": 521,
+      "total_tokens": 4881,
+      "credits_charged": 4.335744
+    },
+    "inferenceMs": 5524,
+    "extractionMs": 988,
+    "comparisonMs": 582,
+    "verificationMs": 3954,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch34rpGQVKzEFLJwcFJaE",
+    "requestId": "chatcmpl-EkA2cK0vJ4q0LLfBTkkzF1oG2eQaX",
+    "extractionRequestId": "chatcmpl-EkA2bsIvNtTvP9FFwRH9UUvUwtguS"
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "id": "source-contradicted-1",
+  "kind": "contradicted",
+  "expected": "contradicted",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The source states that Estonia, Latvia, and Lithuania synchronised with continental Europe on 9 February 2025, not on 10 February 2025 as claimed in the post."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 47,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.071616,
+      "prompt_tokens": 1304,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1351
+    },
+    "latencyMs": 307,
+    "requestId": "chatcmpl-EkA2l9OhALxiqtZHZOrtXQRTx5tE6"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Estonia synchronised with continental Europe on 10 February 2025",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "Estonia, Latvia and Lithuania have successfully synchronised their electricity systems with the Continental Europe Synchronous Area via Poland on 9 February 2025",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The source explicitly states the synchronisation occurred on 9 February 2025, contradicting the claim of 10 February 2025.",
+            "group": "G1",
+            "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+            "title": "data.consilium.europa.eu",
+            "fetchedAt": "2026-11-14T15:31:52.354Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source states that Estonia, along with Latvia and Lithuania, successfully synchronised their electricity systems with the Continental Europe Synchronous Area on 9 February 2025, not 10 February 2025. This is a direct record of the event date, indicating the claim's date is incorrect by one day.",
+        "missing": "No evidence supports the claim date of 10 February 2025; the exact date given is 9 February 2025.",
+        "postQuote": "Estonia, Latvia and Lithuania synchronised with continental Europe on 10 February 2025"
+      },
+      {
+        "claim": "Latvia synchronised with continental Europe on 10 February 2025",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [],
+        "explanation": "The comparison model did not return an analysis for this extracted claim.",
+        "missing": "A completed evidence comparison.",
+        "postQuote": "Estonia, Latvia and Lithuania synchronised with continental Europe on 10 February 2025"
+      },
+      {
+        "claim": "Lithuania synchronised with continental Europe on 10 February 2025",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [],
+        "explanation": "The comparison model did not return an analysis for this extracted claim.",
+        "missing": "A completed evidence comparison.",
+        "postQuote": "Estonia, Latvia and Lithuania synchronised with continental Europe on 10 February 2025"
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+        "title": "data.consilium.europa.eu",
+        "fetchedAt": "2026-11-14T15:31:52.354Z",
+        "publishedAt": null,
+        "hash": "6117a9a6fae5673d27f3e254533a8995414b0d721c656fa4b689a6713ff7a58e",
+        "requestId": "0ddddde5-06a5-4995-a77a-db20a1b0bd52",
+        "extractedCharacters": 5924,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 3,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 2004,
+      "completion_tokens": 756,
+      "total_tokens": 5395,
+      "credits_charged": 5.222544
+    },
+    "inferenceMs": 6415,
+    "extractionMs": 542,
+    "comparisonMs": 563,
+    "verificationMs": 5310,
+    "verifierModel": "claude-fable-5.2",
+    "verificationRequestId": "msg_vrtx_011Ch34sWAFhGs2CTXhAMNH9",
+    "requestId": "chatcmpl-EkA2oWI55o5N9sGwVzFFfw55602TV",
+    "extractionRequestId": "chatcmpl-EkA2mfKWZ2XQQtTF2nFpabiECSOCS"
+  }
+}

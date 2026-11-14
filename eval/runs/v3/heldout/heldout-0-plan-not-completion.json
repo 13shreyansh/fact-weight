@@ -1,0 +1,83 @@
+{
+  "id": "heldout-0-plan-not-completion",
+  "kind": "plan-not-completion",
+  "expected": "unsupported",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The source states the repairs are planned to be completed on 18 September 2025 but does not confirm that the repairs were actually completed on that date."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 39,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.01656,
+      "prompt_tokens": 189,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 228
+    },
+    "latencyMs": 1456,
+    "requestId": "chatcmpl-Ek9wTuI42KTRgw85tplvVJxKvMRjE"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Pinehaven bridge repairs were completed on 18 September 2025.",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The Pinehaven council plans to complete the bridge repairs on 18 September 2025. No completion certificate has been issued, and the work's actual status is not stated.",
+            "relation": "context",
+            "basis": "plan",
+            "reason": "The source only mentions a plan to complete the repairs on that date, with no confirmation of completion.",
+            "group": "G1",
+            "url": "https://register.example.org/heldout-0-plan-not-completion",
+            "title": "Synthetic Pinehaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The source states that the Pinehaven council plans to complete the bridge repairs on 18 September 2025 but does not confirm that the repairs were actually completed on that date. There is no completion certificate issued and the actual status of the work is not stated, so the completion event is unconfirmed.",
+        "missing": "Direct confirmation or official record of the completion of the Pinehaven bridge repairs on 18 September 2025."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/heldout-0-plan-not-completion",
+        "title": "Synthetic Pinehaven record",
+        "text": "The Pinehaven council plans to complete the bridge repairs on 18 September 2025. No completion certificate has been issued, and the work's actual status is not stated.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 193,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.070224,
+      "prompt_tokens": 691,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 884
+    },
+    "inferenceMs": 2053,
+    "requestId": "chatcmpl-Ek9wU2OKw2IZBFC67HZZ6aAU3r8ns"
+  }
+}

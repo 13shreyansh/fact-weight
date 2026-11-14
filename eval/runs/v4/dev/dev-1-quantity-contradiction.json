@@ -1,0 +1,82 @@
+{
+  "id": "dev-1-quantity-contradiction",
+  "kind": "quantity-contradiction",
+  "expected": "contradicted",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The source states that exactly 65 generators arrived on 12 March 2025, contradicting the post's claim of 115 generators."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 38,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.016032,
+      "prompt_tokens": 182,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 220
+    },
+    "latencyMs": 1403,
+    "requestId": "chatcmpl-Ek9zxurI0uuSzIgSeLsFiPhHlQRZq"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Eastmere received 115 generators on 12 March 2025.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The final Eastmere delivery register states: exactly 65 generators arrived on 12 March 2025. There were no other deliveries that day.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The official delivery register records only 65 generators arriving on that date, contradicting the claim of 115.",
+            "group": "G1",
+            "url": "https://register.example.org/dev-1-quantity-contradiction",
+            "title": "Synthetic Eastmere record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The source S1 provides a delivery register stating that exactly 65 generators arrived on 12 March 2025 and that there were no other deliveries that day, which directly contradicts the claim that 115 generators were received on that date.",
+        "missing": "No evidence of any additional deliveries or other sources confirming a total of 115 generators on that date.",
+        "postQuote": "Eastmere received 115 generators on 12 March 2025."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/dev-1-quantity-contradiction",
+        "title": "Synthetic Eastmere record",
+        "text": "The final Eastmere delivery register states: exactly 65 generators arrived on 12 March 2025. There were no other deliveries that day.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 883,
+      "completion_tokens": 226,
+      "total_tokens": 1109,
+      "credits_charged": 0.085776
+    },
+    "inferenceMs": 3840,
+    "extractionMs": 1426,
+    "comparisonMs": 2414,
+    "requestId": "chatcmpl-Ek9zzvRYQkJscnRq52uI4AsTOZuvU",
+    "extractionRequestId": "chatcmpl-Ek9zyqf9t2AqmyYsxesbKdlWWToEv"
+  }
+}

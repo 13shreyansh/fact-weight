@@ -1,0 +1,82 @@
+{
+  "id": "dev-0-attribution",
+  "kind": "attribution",
+  "expected": "supported",
+  "baselineLabel": "supported",
+  "pipelineLabel": "supported",
+  "baseline": {
+    "data": {
+      "label": "supported",
+      "reason": "The source directly quotes the Northhaven mayor stating the project would cost 48 million euros."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 26,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.01344,
+      "prompt_tokens": 176,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 202
+    },
+    "latencyMs": 1319,
+    "requestId": "chatcmpl-Ek9zg0wV7uNNzJd919WOTUPHFjHhX"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The Northhaven mayor said the project would cost 48 million euros.",
+        "status": "supported",
+        "supportGroups": 1,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "In a press conference, the Northhaven mayor said the project would cost 48 million euros.",
+            "relation": "supports",
+            "basis": "attribution",
+            "reason": "The source attributes the statement about the project cost directly to the Northhaven mayor, matching the claim exactly.",
+            "group": "G1",
+            "url": "https://register.example.org/dev-0-attribution",
+            "title": "Synthetic Northhaven record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The source directly reports that the Northhaven mayor stated the project cost as 48 million euros in a press conference, matching the claim exactly. The source notes the estimate has not been independently verified, so the claim is supported only as an attribution of what the mayor said, not as a verified fact about the project cost.",
+        "missing": "Independent verification or confirmation of the actual project cost beyond the mayor's statement.",
+        "postQuote": "The Northhaven mayor said the project would cost 48 million euros."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/dev-0-attribution",
+        "title": "Synthetic Northhaven record",
+        "text": "In a press conference, the Northhaven mayor said the project would cost 48 million euros. The estimate has not been independently verified.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 878,
+      "completion_tokens": 226,
+      "total_tokens": 1104,
+      "credits_charged": 0.085536
+    },
+    "inferenceMs": 3315,
+    "extractionMs": 1237,
+    "comparisonMs": 2078,
+    "requestId": "chatcmpl-Ek9ziWoaO9gLsHUQ3BMOMGaN16rTi",
+    "extractionRequestId": "chatcmpl-Ek9zh2egRry7LOyAdrfsmKsrjCdtk"
+  }
+}

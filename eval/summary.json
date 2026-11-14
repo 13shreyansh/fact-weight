@@ -1,1 +1,159 @@
-{"status":"running","note":"Development evaluation is running. No held-out result has been published."}
+{
+  "version": "v5-fresh-source",
+  "status": "complete-with-limitations",
+  "heldout": {
+    "version": "v5-final",
+    "split": "fresh-source-heldout",
+    "n": 24,
+    "at": "2026-11-14T15:39:48.516Z",
+    "datasetSha256": "f173849d20dfc654cc4a3be1aad29f90db1ffc148fafdaec9e257ac81d6999df",
+    "engineSha256": "3350bc236fd4b21ae8678e143185965ae4a9e9a187a1a12e020eb2416572b96f",
+    "labelProvenance": "agent-constructed source-derived assertions against one real Council document; no human labels",
+    "baseline": {
+      "n": 24,
+      "correct": 23,
+      "errors": 0,
+      "accuracy": 0.9583333333333334,
+      "tp": 5,
+      "fp": 0,
+      "tn": 18,
+      "fn": 1,
+      "precision": 1,
+      "recall": 0.8333333333333334,
+      "fpr": 0
+    },
+    "pipeline": {
+      "n": 24,
+      "correct": 22,
+      "errors": 1,
+      "accuracy": 0.9166666666666666,
+      "tp": 5,
+      "fp": 1,
+      "tn": 17,
+      "fn": 1,
+      "precision": 0.8333333333333334,
+      "recall": 0.8333333333333334,
+      "fpr": 0.05555555555555555,
+      "errorPolicy": "Error on a positive task counts as a missed flag."
+    },
+    "citations": {
+      "accepted": 23,
+      "verbatim": 23,
+      "rejected": 1
+    },
+    "medianInferenceMs": 6769,
+    "p95InferenceMs": 10419,
+    "creditsCharged": 69.92275200000002,
+    "wallMs": 134827,
+    "failures": [
+      {
+        "id": "fresh-contradicted-2",
+        "expected": "contradicted",
+        "actual": "ERROR"
+      },
+      {
+        "id": "fresh-unsupported-3",
+        "expected": "unsupported",
+        "actual": "contradicted"
+      }
+    ]
+  },
+  "syntheticV3": {
+    "version": "v3",
+    "split": "heldout",
+    "n": 40,
+    "at": "2026-11-14T15:27:57.226Z",
+    "datasetSha256": "21e8c14531ef1907302eb258459cce155be592c4cebb9a40f200e79be7c8f951",
+    "engineSha256": "3690b99efb9dbeac96feb385bd4abb6dc0184b683e5b4953aa8ea476a0a46386",
+    "labelProvenance": "synthetic construction rules; no human labels",
+    "baseline": {
+      "n": 40,
+      "correct": 39,
+      "errors": 0,
+      "accuracy": 0.975,
+      "tp": 16,
+      "fp": 1,
+      "tn": 23,
+      "fn": 0,
+      "precision": 0.9411764705882353,
+      "recall": 1,
+      "fpr": 0.041666666666666664
+    },
+    "pipeline": {
+      "n": 40,
+      "correct": 40,
+      "errors": 0,
+      "accuracy": 1,
+      "tp": 16,
+      "fp": 0,
+      "tn": 24,
+      "fn": 0,
+      "precision": 1,
+      "recall": 1,
+      "fpr": 0
+    },
+    "citations": {
+      "accepted": 48,
+      "verbatim": 48,
+      "rejected": 0
+    },
+    "medianInferenceMs": 2037,
+    "p95InferenceMs": 2796,
+    "creditsCharged": 3.3809280000000004,
+    "wallMs": 75323,
+    "failures": []
+  },
+  "display": "Fresh source-derived stress test: 22/24 labels matched, versus 23/24 for the same-evidence baseline. The flow made 1 false flag among 18 negative cases and had 1 failed model response. Agent-constructed cases against one dated document, no human labels. The JSON-response repair has a separate regression run. After the format repair, a repeated regression matched 23/24 with no failed requests; the false flag remains.",
+  "datasetDescription": "24 agent-constructed assertions/opinions against the historical 13 June 2025 Council press release. These are source-derived stress cases, not authentic social posts or human expert labels. One failed response counts as a missed flag. This untouched run preceded the bounded JSON-mode retry fix; later runs are labelled regression. No broad misinformation-detection accuracy is established.",
+  "jsonRepairRegression": {
+    "version": "v5-json-repair-regression",
+    "split": "fresh-source-heldout",
+    "n": 24,
+    "at": "2026-11-14T15:42:18.903Z",
+    "datasetSha256": "f173849d20dfc654cc4a3be1aad29f90db1ffc148fafdaec9e257ac81d6999df",
+    "engineSha256": "82b280cbce7964ef3b7e18bb9434246428c13e22ce82a1082abdb698684c2017",
+    "labelProvenance": "agent-constructed source-derived assertions against one real Council document; no human labels",
+    "baseline": {
+      "n": 24,
+      "correct": 23,
+      "errors": 0,
+      "accuracy": 0.9583333333333334,
+      "tp": 5,
+      "fp": 0,
+      "tn": 18,
+      "fn": 1,
+      "precision": 1,
+      "recall": 0.8333333333333334,
+      "fpr": 0
+    },
+    "pipeline": {
+      "n": 24,
+      "correct": 23,
+      "errors": 0,
+      "accuracy": 0.9583333333333334,
+      "tp": 6,
+      "fp": 1,
+      "tn": 17,
+      "fn": 0,
+      "precision": 0.8571428571428571,
+      "recall": 1,
+      "fpr": 0.05555555555555555
+    },
+    "citations": {
+      "accepted": 25,
+      "verbatim": 25,
+      "rejected": 1
+    },
+    "medianInferenceMs": 1489,
+    "p95InferenceMs": 2056,
+    "creditsCharged": 75.91324800000002,
+    "wallMs": 35028,
+    "failures": [
+      {
+        "id": "fresh-unsupported-3",
+        "expected": "unsupported",
+        "actual": "contradicted"
+      }
+    ]
+  }
+}

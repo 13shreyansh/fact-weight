@@ -1,0 +1,92 @@
+{
+  "id": "source-contradicted-4",
+  "kind": "contradicted",
+  "expected": "contradicted",
+  "baselineLabel": "contradicted",
+  "pipelineLabel": "contradicted",
+  "baseline": {
+    "data": {
+      "label": "contradicted",
+      "reason": "The source explicitly states that consumers were not affected during the frequency stability tests or when synchronous operation with the continental European grid started."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 35,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.069024,
+      "prompt_tokens": 1298,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1333
+    },
+    "latencyMs": 1303,
+    "requestId": "chatcmpl-EkA2rRcybpyLkNeCSnj96LyMTEFV6"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Consumers were affected during the frequency stability tests.",
+        "status": "contradicted",
+        "supportGroups": 0,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "Consumers were not affected during the frequency stability tests or when synchronous operation with the continental European grid started.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "The source explicitly states that consumers were not affected during the frequency stability tests, directly contradicting the claim.",
+            "group": "G1",
+            "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+            "title": "data.consilium.europa.eu",
+            "fetchedAt": "2026-11-14T15:31:52.354Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The source explicitly states that consumers were not affected during the frequency stability tests or when synchronous operation with the continental European grid started. This directly contradicts the claim that consumers were affected during these tests.",
+        "missing": "No evidence that consumers were affected during the frequency stability tests; the source explicitly denies any impact on consumers during these tests.",
+        "postQuote": "Consumers were affected during the frequency stability tests described in the report."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+        "title": "data.consilium.europa.eu",
+        "fetchedAt": "2026-11-14T15:31:52.354Z",
+        "publishedAt": null,
+        "hash": "6117a9a6fae5673d27f3e254533a8995414b0d721c656fa4b689a6713ff7a58e",
+        "requestId": "0ddddde5-06a5-4995-a77a-db20a1b0bd52",
+        "extractedCharacters": 5924,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1881,
+      "completion_tokens": 200,
+      "total_tokens": 2081,
+      "credits_charged": 0.128688
+    },
+    "inferenceMs": 3350,
+    "extractionMs": 1324,
+    "comparisonMs": 2026,
+    "requestId": "chatcmpl-EkA2uGlDPEnrM3cOtY13MoGdwHuNf",
+    "extractionRequestId": "chatcmpl-EkA2suIu3xaI13TDs8Rzv7eIGqAdL"
+  }
+}

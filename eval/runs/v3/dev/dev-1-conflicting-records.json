@@ -1,0 +1,104 @@
+{
+  "id": "dev-1-conflicting-records",
+  "kind": "conflicting-records",
+  "expected": "contested",
+  "baselineLabel": "contested",
+  "pipelineLabel": "contested",
+  "baseline": {
+    "data": {
+      "label": "contested",
+      "reason": "Source S1 supports the claim that Eastmere received 65 water pumps on 12 March 2025, while source S2 states that Eastmere received 96 water pumps on the same date, indicating a disagreement between the two sources."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 57,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.023712,
+      "prompt_tokens": 266,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 323
+    },
+    "latencyMs": 290,
+    "requestId": "chatcmpl-Ek9uDkAOmwOnLD3Na6wdjVMoh2ZVG"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Eastmere received 65 water pumps on 12 March 2025.",
+        "status": "contested",
+        "supportGroups": 1,
+        "contradictionGroups": 1,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "The municipal register states that Eastmere received exactly 65 water pumps on 12 March 2025.",
+            "relation": "supports",
+            "basis": "direct_record",
+            "reason": "Official municipal register directly records receipt of 65 water pumps on the specified date.",
+            "group": "G1",
+            "url": "https://register.example.org/dev-1-conflicting-records",
+            "title": "Synthetic Eastmere record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          },
+          {
+            "sourceId": "S2",
+            "quote": "An independently compiled port register states that Eastmere received exactly 96 water pumps on 12 March 2025. The two registers disagree.",
+            "relation": "contradicts",
+            "basis": "direct_record",
+            "reason": "Independent port register directly records receipt of 96 water pumps on the same date, contradicting the municipal register.",
+            "group": "G2",
+            "url": "https://independent.example.net/dev-1-conflicting-records",
+            "title": "Synthetic Eastmere record",
+            "fetchedAt": "2026-11-14T15:00:00Z",
+            "publishedAt": "2025-10-01T12:00:00Z"
+          }
+        ],
+        "explanation": "The municipal register explicitly states that Eastmere received exactly 65 water pumps on that date, providing a direct official record of this event. However, an independent port register contradicts this by stating 96 water pumps were received, indicating conflicting records about the quantity received. There is no additional evidence to resolve this discrepancy.",
+        "missing": "Verification from a third independent source or reconciliation between the two registers to confirm the exact number of water pumps received."
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://register.example.org/dev-1-conflicting-records",
+        "title": "Synthetic Eastmere record",
+        "text": "The municipal register states that Eastmere received exactly 65 water pumps on 12 March 2025.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G1"
+      },
+      {
+        "id": "S2",
+        "url": "https://independent.example.net/dev-1-conflicting-records",
+        "title": "Synthetic Eastmere record",
+        "text": "An independently compiled port register states that Eastmere received exactly 96 water pumps on 12 March 2025. The two registers disagree.",
+        "publishedAt": "2025-10-01T12:00:00Z",
+        "fetchedAt": "2026-11-14T15:00:00Z",
+        "group": "G2"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 251,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.084192,
+      "prompt_tokens": 750,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1001
+    },
+    "inferenceMs": 3464,
+    "requestId": "chatcmpl-Ek9w5twATGZ0WJaOmlF1eV7PB6QPZ"
+  }
+}

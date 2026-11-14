@@ -1,1 +1,151 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Method & evaluation · Fact Weight</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head><body><header><a class="brand" href="/">Fact Weight</a><nav><a href="/">Inspect a claim</a><a href="https://github.com/13shreyansh/fact-weight">Code ↗</a></nav></header><main><article class="method"><h1>Evidence is inspectable.<br>Certainty is earned.</h1><p>Fact Weight helps a reader compare a specific claim with specific documents. It does not decide whether a person is a bot, establish an author's intent, or treat an outlet as an absolute authority.</p><h2>How a label is made</h2><ol><li>You paste a post and choose up to four article URLs.</li><li>Context.dev extracts their text. Fresh mode requests a new extraction. Retrieval time and any provider cache metadata stay in the evidence record.</li><li>Hostinger AI Router extracts checkable claims and proposes passage relations.</li><li>Code rejects quotations that do not occur verbatim in the extracted text. It groups articles from the same domain and near-identical extracted text.</li><li>Accepted supporting and contradicting groups determine the label.</li></ol><table><tr><th>Retrieved passages</th><th>Label</th></tr><tr><td>Support, no contradiction</td><td>Supported</td></tr><tr><td>Support and contradiction</td><td>Contested</td></tr><tr><td>Contradiction, no support</td><td>Contradicted</td></tr><tr><td>No direct support or contradiction</td><td>Unsupported</td></tr></table><p>One source group is enough for a relation label. It is not enough to establish a fact. Group counts describe documents, not votes, and are never converted into a probability.</p><h2>What we measured</h2><div id="eval-detail">The evaluation summary is loading.</div><p><a href="https://github.com/13shreyansh/fact-weight/blob/main/eval/LEDGER.md">Evaluation ledger and failures</a> · <a href="https://github.com/13shreyansh/fact-weight/blob/main/EVAL_SPEC.md">Frozen evaluation contract</a></p><h2>Where this can fail</h2><p>A quotation match only proves that those words were in the extraction. The model can still misunderstand them. Separate domains may copy a single wire report, share ownership, or repeat the same official statement. The grouping heuristic cannot prove independence.</p><p>You choose the documents. An incomplete or biased source selection gives an incomplete view. A page can be stale, blocked, mistranslated, wrong or missing context. Retrieval time is not publication time. This version does not search the whole web or run a continuous feed.</p><p>Our synthetic evaluation uses constructed passages and labels. It does not establish real-world disinformation precision, human agreement, multilingual accuracy or calibrated confidence. Those require an independently labelled source corpus and review.</p><h2>Privacy and limits</h2><p>Your post and extracted passages go to Hostinger AI Router. Article URLs go to Context.dev. The application does not write your post to disk. It holds up to 200 extracted pages in process memory for five minutes of reuse, and remembers the previous extracted text hash until cache eviction or restart. Provider data handling applies. Avoid private or personal information.</p><p>The demo limits each connection to four requests per minute, two concurrent analyses, four sources per request and 150 analyses per process per day. The counter resets on a process restart, so it is a demo abuse limit rather than a durable billing cap.</p><h2>Entry details</h2><p>Built during Junction 2026 by Shreyansh, solo team The CS Guy. Hostinger is the main challenge. Context.dev is the technology prize entry. Project code is MIT licensed. External source material retains its own rights.</p></article></main><footer><span>Fact Weight · Read the evidence.</span><span>Helsinki, November 2026</span></footer></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Method & evaluation · Fact Weight</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">Fact Weight</a>
+      <nav>
+        <a href="/">Inspect a claim</a
+        ><a href="https://github.com/13shreyansh/fact-weight">Code ↗</a>
+      </nav>
+    </header>
+    <main>
+      <article class="method">
+        <h1>Evidence is inspectable.<br />Certainty is earned.</h1>
+        <p>
+          Fact Weight helps a reader compare a specific claim with specific
+          documents. It does not decide whether a person is a bot, establish an
+          author's intent, or treat an outlet as an absolute authority.
+        </p>
+        <h2>How a label is made</h2>
+        <ol>
+          <li>
+            You paste a post and choose up to four article URLs, or ask
+            Context.dev to search a curated reference pool.
+          </li>
+          <li>
+            Context.dev extracts their text. Fresh mode requests a new
+            extraction. Retrieval time and any provider cache metadata stay in
+            the evidence record.
+          </li>
+          <li>
+            Hostinger AI Router extracts checkable claims from the post alone. A
+            second call compares only those claim IDs with the retrieved
+            passages. Extra claim IDs from the comparison cannot enter the
+            result.
+          </li>
+          <li>
+            Code normalizes Unicode and whitespace, then rejects quotations that
+            do not occur in the extracted text. It groups articles from the same
+            domain and near-identical extracted text.
+          </li>
+          <li>
+            A different model family checks proposed relations. It can veto a
+            relation but cannot create evidence. This check is not calibrated
+            against human labels.
+          </li>
+          <li>
+            Accepted supporting and contradicting groups determine the label.
+          </li>
+        </ol>
+        <table>
+          <tr>
+            <th>Retrieved passages</th>
+            <th>Label</th>
+          </tr>
+          <tr>
+            <td>Support, no contradiction</td>
+            <td>Supported</td>
+          </tr>
+          <tr>
+            <td>Support and contradiction</td>
+            <td>Contested</td>
+          </tr>
+          <tr>
+            <td>Contradiction, no support</td>
+            <td>Contradicted</td>
+          </tr>
+          <tr>
+            <td>No direct support or contradiction</td>
+            <td>Unsupported</td>
+          </tr>
+        </table>
+        <p>
+          One source group is enough for a relation label. It is not enough to
+          establish a fact. Group counts describe documents, not votes, and are
+          never converted into a probability.
+        </p>
+        <h2>What we measured</h2>
+        <div id="eval-detail">The evaluation summary is loading.</div>
+        <p>
+          <a
+            href="https://github.com/13shreyansh/fact-weight/blob/main/eval/LEDGER.md"
+            >Evaluation ledger and failures</a
+          >
+          ·
+          <a
+            href="https://github.com/13shreyansh/fact-weight/blob/main/EVAL_SPEC.md"
+            >Frozen evaluation contract</a
+          >
+        </p>
+        <h2>Where this can fail</h2>
+        <p>
+          A quotation match only proves that those words were in the extraction.
+          The model can still misunderstand them. Separate domains may copy a
+          single wire report, share ownership, or repeat the same official
+          statement. The grouping heuristic cannot prove independence.
+        </p>
+        <p>
+          You choose the documents, or discovery searches ERR, LRT, LSM, the EU
+          Council, NATO and ISW. This pool is incomplete and institutionally
+          skewed. An incomplete or biased source selection gives an incomplete
+          view. A page can be stale, blocked, mistranslated, wrong or missing
+          context. Retrieval time is not publication time. This version does not
+          run a continuous feed.
+        </p>
+        <p>
+          Our evaluation includes synthetic cases and agent-constructed
+          assertions against real documents. It does not establish real-world
+          disinformation precision, human agreement, multilingual accuracy or
+          calibrated confidence. Those require an independently labelled source
+          corpus and review.
+        </p>
+        <h2>Privacy and limits</h2>
+        <p>
+          Your post and extracted passages go to Hostinger AI Router. Article
+          URLs and, when discovery is enabled, up to 400 post characters go to
+          Context.dev. The application does not write your post to disk. It
+          holds up to 200 extracted pages in process memory for five minutes of
+          reuse, and remembers the previous extracted text hash until cache
+          eviction or restart. For comparison, at most the first 18,000
+          normalized characters per page are sent to the model. Important later
+          passages can be missed. Page hashes cover the entire extracted text.
+          Provider data handling applies. Avoid private or personal information.
+        </p>
+        <p>
+          The demo limits each connection to four requests per minute, two
+          concurrent analyses, four sources per request and 150 analyses per
+          process per day. The counter resets on a process restart, so it is a
+          demo abuse limit rather than a durable billing cap.
+        </p>
+        <h2>Entry details</h2>
+        <p>
+          Built during Junction 2026 by Shreyansh, solo team The CS Guy.
+          Hostinger is the main challenge. Context.dev is the technology prize
+          entry. Project code is MIT licensed. External source material retains
+          its own rights.
+        </p>
+      </article>
+    </main>
+    <footer>
+      <span>Fact Weight · Read the evidence.</span
+      ><span>Helsinki, November 2026</span>
+    </footer>
+  </body>
+</html>

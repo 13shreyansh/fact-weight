@@ -1,0 +1,95 @@
+{
+  "id": "source-unsupported-4",
+  "kind": "unsupported",
+  "expected": "unsupported",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The source passage provides detailed information about the Baltic synchronisation project, including timelines, investments, and technical aspects, but does not mention the number of technicians involved."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 40,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.070032,
+      "prompt_tokens": 1299,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1339
+    },
+    "latencyMs": 281,
+    "requestId": "chatcmpl-EkA37jgeL0Jiyv8A8AhtaCmjiUWZ9"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "Exactly 8,200 technicians worked on the Baltic synchronisation project.",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "Estonian, Latvia and Lithuanian grid operators have upgraded and rebuilt more than 500 kilometres of high-voltage transmission lines, installed synchronous compensators and high-capacity battery systems.",
+            "relation": "context",
+            "basis": "direct_record",
+            "reason": "The source describes the infrastructure work done but does not specify the number of technicians involved.",
+            "group": "G1",
+            "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+            "title": "data.consilium.europa.eu",
+            "fetchedAt": "2026-11-14T15:31:52.354Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The provided source details the successful synchronisation of the Baltic electricity systems with Continental Europe and describes extensive infrastructure upgrades and investments over 15 years, but it does not mention the number of technicians involved in the project. Therefore, there is no evidence to support or contradict the claim about exactly 8,200 technicians working on the project.",
+        "missing": "Any mention or data specifying the number of technicians who worked on the Baltic synchronisation project.",
+        "postQuote": "Exactly 8,200 technicians worked on the Baltic synchronisation project."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://data.consilium.europa.eu/doc/document/ST-6668-2025-INIT/en/pdf",
+        "title": "data.consilium.europa.eu",
+        "fetchedAt": "2026-11-14T15:31:52.354Z",
+        "publishedAt": null,
+        "hash": "6117a9a6fae5673d27f3e254533a8995414b0d721c656fa4b689a6713ff7a58e",
+        "requestId": "0ddddde5-06a5-4995-a77a-db20a1b0bd52",
+        "extractedCharacters": 5924,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1888,
+      "completion_tokens": 242,
+      "total_tokens": 2130,
+      "credits_charged": 0.137088
+    },
+    "inferenceMs": 1492,
+    "extractionMs": 575,
+    "comparisonMs": 917,
+    "verificationMs": 0,
+    "verifierModel": null,
+    "verificationRequestId": null,
+    "requestId": "chatcmpl-EkA3AN2SRaEmYON1b4UXXMvnh05VS",
+    "extractionRequestId": "chatcmpl-EkA39v2Wuke5AEn22Nhk6dteJiy2s"
+  }
+}

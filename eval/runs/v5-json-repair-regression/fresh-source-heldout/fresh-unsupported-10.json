@@ -1,0 +1,96 @@
+{
+  "id": "fresh-unsupported-10",
+  "kind": "unsupported",
+  "expected": "unsupported",
+  "baselineLabel": "unsupported",
+  "pipelineLabel": "unsupported",
+  "baseline": {
+    "data": {
+      "label": "unsupported",
+      "reason": "The source passage is a detailed press release about extending temporary protection for Ukrainian refugees and does not mention or discuss preferences regarding the length of press releases."
+    },
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "completion_tokens": 37,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "credits_charged": 0.06672,
+      "prompt_tokens": 1242,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 1279
+    },
+    "latencyMs": 832,
+    "requestId": "chatcmpl-EkA8rNJ2fdcZvIv1aossfoVuNjEnn"
+  },
+  "pipeline": {
+    "claims": [
+      {
+        "claim": "The user prefers shorter press releases.",
+        "status": "unsupported",
+        "supportGroups": 0,
+        "contradictionGroups": 0,
+        "evidence": [
+          {
+            "sourceId": "S1",
+            "quote": "- Council of the EU - Press release - 13 June 2025 13:15 # EU member states agree to extend temporary protection for refugees from Ukraine Today, the Council voiced its unanimous support for a proposal to extend the temporary protection for the more than 4 million Ukrainians fleeing from Russia’s war of aggression until 4 March 2027.",
+            "relation": "context",
+            "basis": "unrelated",
+            "reason": "The source is an official press release about EU policy on refugee protection and does not address the user's preference for press release length.",
+            "group": "G1",
+            "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+            "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+            "fetchedAt": "2026-11-14T15:36:55.025Z",
+            "publishedAt": null
+          }
+        ],
+        "explanation": "The claim is about the user's personal preference for shorter press releases. The provided source is an official EU press release about extending temporary protection for Ukrainian refugees, which does not mention the user's preferences or any statements about press release length.",
+        "missing": "Any statement or evidence about the user's preference for shorter press releases.",
+        "postQuote": "I prefer shorter press releases."
+      }
+    ],
+    "sources": [
+      {
+        "url": "https://www.consilium.europa.eu/en/press/press-releases/2025/06/13/eu-member-states-agree-to-extend-temporary-protection-for-refugees-from-ukraine/",
+        "title": "EU member states agree to extend temporary protection for refugees from Ukraine",
+        "fetchedAt": "2026-11-14T15:36:55.025Z",
+        "publishedAt": null,
+        "hash": "d3942cd550624c787148985f439cb22c0b591e3b3f8798b65e3a8b7cf372212e",
+        "requestId": "1c8fe56c-312d-4c47-8e36-e13585f7926c",
+        "extractedCharacters": 4674,
+        "truncated": false,
+        "creditsConsumed": 1,
+        "providerCache": {
+          "status": "miss",
+          "age_ms": 0
+        },
+        "changed": null,
+        "cached": false,
+        "id": "S1",
+        "group": "G1"
+      }
+    ],
+    "rejectedCitations": 0,
+    "groupingNote": "Groups collapse domains and near-identical passages. Separate groups are not proof of independent reporting. Shared ownership, wire origins and hidden copying may be missed.",
+    "scope": "These labels describe the retrieved passages, not the truth of a claim or the intent of its author.",
+    "rejectedClaims": 0,
+    "model": "gpt-4.1-mini",
+    "usage": {
+      "prompt_tokens": 1822,
+      "completion_tokens": 240,
+      "total_tokens": 2062,
+      "credits_charged": 0.133536
+    },
+    "inferenceMs": 1183,
+    "extractionMs": 585,
+    "comparisonMs": 598,
+    "verificationMs": 0,
+    "verifierModel": null,
+    "verificationRequestId": null,
+    "syntaxRetries": 0,
+    "requestId": "chatcmpl-EkA8tFMHt1dCzJDCJMwTN4uxvMR5e",
+    "extractionRequestId": "chatcmpl-EkA8sNERwQCYACz4b2QNbRH4aBd0s"
+  }
+}

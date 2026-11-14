@@ -1,0 +1,57 @@
+{
+  "version": "v5-final",
+  "split": "fresh-source-heldout",
+  "n": 24,
+  "at": "2026-11-14T15:39:48.516Z",
+  "datasetSha256": "f173849d20dfc654cc4a3be1aad29f90db1ffc148fafdaec9e257ac81d6999df",
+  "engineSha256": "3350bc236fd4b21ae8678e143185965ae4a9e9a187a1a12e020eb2416572b96f",
+  "labelProvenance": "agent-constructed source-derived assertions against one real Council document; no human labels",
+  "baseline": {
+    "n": 24,
+    "correct": 23,
+    "errors": 0,
+    "accuracy": 0.9583333333333334,
+    "tp": 5,
+    "fp": 0,
+    "tn": 18,
+    "fn": 1,
+    "precision": 1,
+    "recall": 0.8333333333333334,
+    "fpr": 0
+  },
+  "pipeline": {
+    "n": 24,
+    "correct": 22,
+    "errors": 1,
+    "accuracy": 0.9166666666666666,
+    "tp": 5,
+    "fp": 1,
+    "tn": 17,
+    "fn": 1,
+    "precision": 0.8333333333333334,
+    "recall": 0.8333333333333334,
+    "fpr": 0.05555555555555555,
+    "errorPolicy": "Error on a positive task counts as a missed flag."
+  },
+  "citations": {
+    "accepted": 23,
+    "verbatim": 23,
+    "rejected": 1
+  },
+  "medianInferenceMs": 6769,
+  "p95InferenceMs": 10419,
+  "creditsCharged": 69.92275200000002,
+  "wallMs": 134827,
+  "failures": [
+    {
+      "id": "fresh-contradicted-2",
+      "expected": "contradicted",
+      "actual": "ERROR"
+    },
+    {
+      "id": "fresh-unsupported-3",
+      "expected": "unsupported",
+      "actual": "contradicted"
+    }
+  ]
+}
