@@ -50,8 +50,11 @@ add("watch", "baltics");
 add("benchmark", "latest");
 const calls = db.prepare("SELECT * FROM calls").all();
 fs.writeFileSync(
-  "work/signal-data-update.json",
-  JSON.stringify({ records, calls }),
+  "work/signal-data-update.ndjson",
+  [
+    ...records.map((r) => JSON.stringify({ type: "record", ...r })),
+    ...calls.map((r) => JSON.stringify({ type: "call", ...r })),
+  ].join("\n"),
 );
 console.log(
   "Data update",

@@ -69,3 +69,21 @@ test("valid signature cannot authorize a different monitor", () => {
   });
   assert.equal(receiveWebhook("route-test", raw, headers).status, 403);
 });
+test("failed and partial webhook collections remain durable retries with backoff", async () => {
+  const { processInbox } = await import("../signal/monitors.mjs");
+  put("watch", "test", { id: "test" });
+  for (const status of ["failed", "partial"]) {
+    const id = "retry-" + status;
+    put("webhook", id, {
+      id,
+      routeId: "route-test",
+      watchId: "test",
+      status: "pending",
+    });
+    await processInbox(async () => ({ id: "sweep-test", status }));
+    const saved = all("webhook").find((e) => e.id === id);
+    assert.equal(saved.status, "pending");
+    assert.equal(saved.attempts, 1);
+    assert.ok(Date.parse(saved.nextAttemptAt) > Date.now());
+  }
+});

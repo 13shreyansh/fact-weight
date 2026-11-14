@@ -23,7 +23,9 @@ try {
 export const hash = (x) =>
   crypto
     .createHash("sha256")
-    .update(typeof x === "string" ? x : JSON.stringify(x))
+    .update(
+      typeof x === "string" || x instanceof Uint8Array ? x : JSON.stringify(x),
+    )
     .digest("hex");
 export const put = (kind, id, data) =>
   db

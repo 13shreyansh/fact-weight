@@ -1,3 +1,40 @@
+# Targeted re-review, current source
+
+Reviewed source commit `a63c2c9371ab041b63a346527d451ca86c7aac9c` on Node 24.21.0. The implementation agent was preparing another release during this review. This section supersedes the initial review below where a finding is marked closed.
+
+Spec fit: **FAIL, acceptance still incomplete**. Build quality: **FAIL, three reproduced P1 defects remain**.
+
+## Independently verified fixes
+
+- `npm test`: **35 passed, 0 failed**. This includes the new webhook signature, monitor-identity, inbox deduplication, retry accounting, shingle-membership, unknown-baseline, endpoint and CSV checks.
+- Recomputed all three currently shown moderate pushes from their stored posts and the current detector. All three remain moderate: `a6b0d22b1d61` has 10 copied posts of 17; `aa9426e2b5e6` has 13 of 20; `nab032987aff` has 7 of 9. No timing signal is needed. The former publisher-alternate override is removed. Strong remains zero.
+- Unknown matching-hour/source-family baselines now stay unknown. Prior P1 findings 1 and 2 are closed for the inspected source and current moderate records.
+- Provider attempts now use UUIDs and atomic SQLite reservations. Failed retries remain separate. Prior P1 finding 3 is closed for direct provider calls.
+- Scheduled work now calls enrichment, queued sweeps no longer silently drop competing jobs, and `npm start` points to Signal Fire. Prior P1 findings 4 and 5 and the dropped-sweep part of P2 finding 9 are closed in source.
+- New normalized records carry call IDs and the trail separates collection from weighing. The three moderate pushes have call IDs for every post. Retained historical small clusters still lack original collection call IDs, so their provenance is incomplete rather than repaired by inference.
+- Source contains the inclusive endpoint fix, URL lanes/slice restoration, background-post rendering, CSV formula escaping, and a raw original-post JSON export.
+- HMAC verification checks original bytes, a five-minute timestamp window, duplicate signature fields, envelope identity and the registered monitor. Signing secrets use authenticated encryption and are redacted from stored responses. Tests passed independently; this is not evidence of receipt from the real Context service.
+- Both submission description bodies contain exactly **130 words**.
+
+## Remaining reproduced P1 defects
+
+1. **A failed sweep permanently acknowledges the webhook event.** `signal/monitors.mjs:219-234` marks every resolved sweep as `processed`; `signal/sweep.mjs` catches provider, budget and processing failures and resolves a run with `status: failed` or `partial`. Independent in-memory reproduction using the current `processInbox`: a stub sweep resolves `{id: failed-sweep, status: failed, errors: [...]}` and the event becomes `processed`. That change will not retry. Inspect the returned status and preserve durable retry/backoff or explicit partial/failed work. Startup recovery of interrupted `processing` events is already present and is not a finding.
+
+2. **Finishing a PDF can overwrite a newer push or undo withdrawal.** `signal/packs.mjs:5-45` takes a snapshot, awaits PDF generation and filesystem operations, then writes the entire old push back. Independent in-memory reproduction: start a pack for an old push; store a newer title with `excluded: true`; finish the pack. The saved title becomes old and the exclusion disappears. A download can therefore reverse a recheck. Use revision-bound content files and compare-and-swap of pack metadata, or reject the stale result after rereading. Also include every rendered field in the cache identity, including title, claim, verdict, techniques, sites, seen-before and explanations, which the current cache key omits.
+
+3. **The advertised PDF SHA-256 is not the file's SHA-256.** `signal/providers.mjs:hash`, `signal/packs.mjs:39`, and the PDF response header in `signal/server.mjs` pass a Buffer through JSON.stringify before hashing. Independent read-only verification with standard Python `hashlib.sha256(file_bytes)` failed against the stored hash for all four active local records with packs: `a6b0d22b1d61`, `a97b30b3019f`, `aa9426e2b5e6`, and `nab032987aff`. The current value hashes the JSON Buffer representation, not the PDF bytes. Treat Buffer/Uint8Array as bytes and refresh existing metadata, including cache-hit paths. Current PDF text extraction found the expected title and claim prefixes and no out-of-page text blocks. Existing `artifacts/pdf-check` images show an older eight-page render, while the current main packs have twelve pages, so those images are not current visual acceptance.
+
+## Remaining limits and follow-up checks
+
+- Public check of `https://signal-fire.72.61.22.106.sslip.io/api/health` through independent headless Playwright returned plain `404 page not found` during release preparation. No deployed commit was verified in this pass. This observation does not negate the owner's previous deployment evidence; it blocks claiming this reviewed source is the current deployed release.
+- Campaign replay, frozen campaign thresholds, full deployed E2E, the complete screenshot/taste gate and the deployed Context cut remain open. Content screening and observed historical delays must not replace campaign accuracy or lead time.
+- Monitor spend is recorded after remote runs and the guard pauses on a one-minute timer with a fixed 150-credit buffer. Direct-call caps are now durable, but a strict global daily cap for many recurring monitors is not established: account for the active monitor count, worst-case next-run spend and delayed/missing run webhooks before claiming a hard bound.
+- New envelope deduplication is tested, but its record insert and monitor-run accounting are separate writes. Consider making receipt, accounting and monitor metadata one transaction so a crash cannot retain a dedupe marker while losing the associated billing record.
+
+No source files, live records, monitors or deployment state were changed by the reviewer. Only this report was updated. The new defect reproductions used mocked in-memory dependencies; no provider credits were consumed.
+
+---
+
 # Signal Fire independent review
 
 Initial review, 15 November 2026 Helsinki. Source and local server were changing during review. Findings below describe the inspected version and require re-review after fixes. No source edits, provider calls, external writes, deployment or additional agents were performed. Only this report was written by the reviewer.

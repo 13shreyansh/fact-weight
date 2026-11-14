@@ -194,7 +194,11 @@ export async function processInbox(sweep) {
   if (inboxBusy) return;
   inboxBusy = true;
   try {
-    const pending = all("webhook").filter((e) => e.status === "pending");
+    const pending = all("webhook").filter(
+      (e) =>
+        e.status === "pending" &&
+        (!e.nextAttemptAt || Date.parse(e.nextAttemptAt) <= Date.now()),
+    );
     for (const watchId of new Set(pending.map((e) => e.watchId))) {
       const events = pending.filter((e) => e.watchId === watchId),
         watch = get("watch", watchId);
@@ -225,6 +229,7 @@ export async function processInbox(sweep) {
           recheck: configs.some((c) => c.kind === "Trusted tracker pages"),
           webhookIds: events.map((e) => e.id),
         });
+        if (result?.status !== "complete") throw Error("Collection incomplete");
         for (const e of events)
           put("webhook", e.id, {
             ...e,
@@ -237,6 +242,14 @@ export async function processInbox(sweep) {
           put("webhook", event.id, {
             ...event,
             status: "pending",
+            attempts: (event.attempts || 0) + 1,
+            nextAttemptAt: new Date(
+              Date.now() +
+                Math.min(
+                  3600000,
+                  60000 * 2 ** Math.min(6, event.attempts || 0),
+                ),
+            ).toISOString(),
             lastError: "Collection will retry.",
           });
       }

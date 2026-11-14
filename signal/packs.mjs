@@ -1,23 +1,21 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { get, put, hash } from "./providers.mjs";
+import { get, put, hash, db } from "./providers.mjs";
 import { pdf } from "./export.mjs";
+export function packKey(input, review) {
+  const { pack, pipeline, ready, firstAlertAt, ...content } = input;
+  return hash({ rendererVersion: "sf-pack-v3", ...content, review });
+}
 export async function ensurePack(input) {
   const review = get("review", input.id),
     p = { ...input, review },
-    cacheKey = hash({
-      rendererVersion: "sf-pack-v2",
-      posts: p.posts,
-      accounts: p.accounts,
-      signals: p.signals,
-      evidence: p.evidence,
-      review,
-    });
+    cacheKey = packKey(input, review);
   const root = process.env.SIGNAL_DATA || "data",
-    file = path.join(root, "packs", p.id + ".pdf");
+    file = path.join(root, "packs", p.id + "-" + cacheKey + ".pdf");
   if (p.pack?.cacheKey === cacheKey) {
     try {
-      return { push: p, bytes: await fs.readFile(file) };
+      const bytes = await fs.readFile(file);
+      if (p.pack.sha256 === hash(bytes)) return { push: p, bytes };
     } catch {}
   }
   const startedAt = new Date().toISOString(),
@@ -42,6 +40,13 @@ export async function ensurePack(input) {
   };
   p.firstAlertAt = p.firstAlertAt || finishedAt;
   p.ready = true;
+  db.exec("BEGIN IMMEDIATE");
+  const current = get("push", p.id);
+  if (current && packKey(current, get("review", p.id)) !== cacheKey) {
+    db.exec("ROLLBACK");
+    if (current.excluded) throw Error("This finding has been withdrawn.");
+    return ensurePack(current);
+  }
   put("push", p.id, p);
   put("latency", p.id, {
     id: p.id,
@@ -61,5 +66,6 @@ export async function ensurePack(input) {
     trigger: p.trigger || "Initial collection",
     pipeline: p.pipeline,
   });
+  db.exec("COMMIT");
   return { push: p, bytes };
 }
