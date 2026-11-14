@@ -1707,3 +1707,7 @@ textarea {
   font-display: block;
   unicode-range: U+0100-024F, U+1E00-1EFF;
 }
+.primary.downloaded {
+  background: #e8f3eb;
+  color: #23613b;
+}

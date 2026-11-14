@@ -100,7 +100,13 @@ export function metrics(w = defaultId) {
       all("discovery").filter((d) => d.parsed?.success || d.data?.length)
         .length,
     sweeps: sweeps.length,
-    lastSweep: sweeps.at(-1) || get("meta", "initialCollection"),
+    lastSweep:
+      sweeps.at(-1) ||
+      (w === defaultId ? get("meta", "initialCollection") : null),
+    lastReadAt:
+      sweeps.filter((s) => s.finishedAt).at(-1)?.finishedAt ||
+      (w === defaultId ? get("meta", "initialCollection")?.finishedAt : null),
+    sweeping: sweeps.at(-1)?.status === "running",
     calls,
     credits: spend(),
     watches: all("watch").filter(
@@ -109,6 +115,13 @@ export function metrics(w = defaultId) {
     disputed: all("review").filter((r) => !r.reopened).length,
     coverage: all("coverage"),
     embedding: get("meta", "embedding"),
+    models: [
+      ...new Set(
+        pushes(w)
+          .flatMap((p) => [p.reading?.model, p.judgement?.model])
+          .filter(Boolean),
+      ),
+    ],
   };
 }
 const candidateText = (c) => c.posts.map((p) => p.text.slice(0, 400)).join(" ");
@@ -152,7 +165,9 @@ export function finalize(c, watchId = defaultId) {
     const host = new URL(e.url).hostname.replace(/^www\./, "");
     const domain = host.split(".").slice(-2).join(".");
     const origin =
-      e.stance === "for" && /bild/i.test(e.name + " " + e.quote)
+      e.stance === "for" &&
+      (/bild/i.test(e.name + " " + e.quote) ||
+        (j.data.claimType === "attribution" && /bild/i.test(j.data.claim)))
         ? "report:bild"
         : e.stance === "against" && /peskov|kremlin|песков|кремл/i.test(e.quote)
           ? "statement:kremlin"

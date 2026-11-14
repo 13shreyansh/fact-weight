@@ -5,6 +5,7 @@ import { load } from "cheerio";
 import { semanticGroups } from "./embeddings.mjs";
 import { enrich } from "./enrich.mjs";
 import { collectNewsPage, storeArticle } from "./news-pages.mjs";
+import { sameCopiedStory } from "./overlap.mjs";
 import { ensurePack } from "./packs.mjs";
 let queue = Promise.resolve();
 export function sweep(w = defaultWatch) {
@@ -158,9 +159,10 @@ async function performSweep(w) {
           p.watchId === w.id &&
           p.mode !== "replay" &&
           !p.excluded &&
-          p.posts.filter((x) => incomingIds.has(x.id)).length /
+          (p.posts.filter((x) => incomingIds.has(x.id)).length /
             Math.max(1, Math.min(p.posts.length, posts.length)) >=
-            0.7,
+            0.7 ||
+            sameCopiedStory(p.posts, posts)),
       );
       if (previous)
         posts = [
@@ -183,7 +185,7 @@ async function performSweep(w) {
       )
         continue;
       try {
-        const candidate = { id, posts, accounts, ...measured };
+        const candidate = { ...previous, id, posts, accounts, ...measured };
         const result = await enrich(candidate, w);
         put("assessed", id, result);
         const published = finalize({ ...result, trigger: w.trigger }, w.id);

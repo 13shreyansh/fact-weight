@@ -1,6 +1,6 @@
 import { scrape, put, hash } from "./providers.mjs";
 import { load } from "cheerio";
-export function storeArticle(d, url) {
+export function storeArticle(d, url, persist = true) {
   const $ = load(d.html?.data || ""),
     json = $('script[type="application/ld+json"]')
       .map((i, e) => {
@@ -15,7 +15,10 @@ export function storeArticle(d, url) {
       .flatMap((x) => x["@graph"] || [x]),
     ld = json.find((x) => x.datePublished),
     postedAt = ld?.datePublished || d.metadata?.publishedTime,
-    text = $("article").text().trim() || ld?.articleBody || d.markdown?.data;
+    body = $("[itemprop=articleBody], .article__text").first().clone(),
+    text = body.length
+      ? (body.find("p,div,br,li").after("\n"), body.text().trim())
+      : ld?.articleBody || $("article").text().trim() || d.markdown?.data;
   if (!postedAt || !text) return null;
   const host = new URL(url).hostname,
     id = "nw-" + hash(url).slice(0, 16);
@@ -33,8 +36,10 @@ export function storeArticle(d, url) {
   const p = {
     id,
     url,
-    title: d.metadata?.title || $("h1").first().text(),
+    title: $("h1").first().text() || d.metadata?.title,
     sourceLabel,
+    declaredSourceURL:
+      $("[data-source-url]").first().attr("data-source-url") || null,
     sourceLinks,
     postedAt,
     text,
@@ -48,16 +53,18 @@ export function storeArticle(d, url) {
     collectedAt: new Date().toISOString(),
     call: d._call,
   };
-  put("post", id, p);
-  put("account", p.accountId, {
-    id: p.accountId,
-    handle: host,
-    url: "https://" + host,
-    platform: host === "telegra.ph" ? "WB" : "NW",
-    createdAt: null,
-    followers: null,
-    kind: "publisher",
-  });
+  if (persist) {
+    put("post", id, p);
+    put("account", p.accountId, {
+      id: p.accountId,
+      handle: host,
+      url: "https://" + host,
+      platform: host === "telegra.ph" ? "WB" : "NW",
+      createdAt: null,
+      followers: null,
+      kind: "publisher",
+    });
+  }
   return p;
 }
 export async function collectNewsPage(d, url) {

@@ -1,28 +1,28 @@
-import { all, get, put } from "../signal/providers.mjs";
-import { finalize, defaultWatch } from "../signal/store.mjs";
+import { get, put } from "../signal/providers.mjs";
+import { storeArticle } from "../signal/news-pages.mjs";
 import { enrich } from "../signal/enrich.mjs";
-for (const id of ["a6b0d22b1d61", "aa9426e2b5e6"]) {
-  const c = get("candidate", id);
-  if (!c) continue;
-  try {
-    const result = await enrich(c, defaultWatch);
-    put("assessed", id, result);
-    const p = finalize(result);
+import { finalize } from "../signal/store.mjs";
+import { ensurePack } from "../signal/packs.mjs";
+for (const id of ["a6b0d22b1d61", "aa9426e2b5e6", "nab032987aff"]) {
+  let c = get("assessed", id);
+  c.posts = c.posts.map((p) => {
+    let d = get("reference", p.url);
+    return d?.html?.data && p.url.includes("news-pravda.com")
+      ? { ...p, ...storeArticle(d, p.url) }
+      : p;
+  });
+  let result = await enrich(c, get("watch", "baltics"));
+  put("assessed", id, result);
+  let p = finalize(result);
+  if (p) {
+    await ensurePack(p);
     console.log(
       id,
-      p?.verdict,
-      p?.title,
-      p?.evidence.length,
-      p?.seenBefore.length,
+      p.verdict,
+      p.posts.length,
+      p.evidence.length,
+      p.judgement.promptVersion,
+      p.claim,
     );
-  } catch (e) {
-    console.log(id, e.message);
   }
-}
-for (const c of all("assessed").filter(
-  (c) => !["a6b0d22b1d61", "aa9426e2b5e6"].includes(c.id),
-)) {
-  const latest = get("candidate", c.id);
-  const posts = c.posts.map((p) => ({ ...p, ...get("post", p.id) }));
-  finalize({ ...c, ...(latest || {}), posts });
 }
