@@ -1,8 +1,8 @@
 # REAL FINDINGS
 
-Updated 2026-11-14T23:38:38.897Z. Source observations, not an attribution of intent. Publishing domains are counted as publishing identities; they are not people or new social accounts.
+Updated 2026-11-14T23:43:54.826Z. Source observations, not an attribution of intent. Publishing domains are counted as publishing identities; they are not people or new social accounts.
 
-## a6b0d22b1d61: Russia's alleged demands for a new European security agreement including Finland leaving N
+## a6b0d22b1d61: Russia's alleged demands for a new European security agreement including Finland leaving…
 
 Verdict: moderate. Measured 17 posts, 11 publishing identities. Peak: 17 posts in 10 minutes, starting 2026-11-14T13:02:06.000Z. Same-minute signal is withheld where a comparable historical collection baseline is unavailable.
 
@@ -15,7 +15,7 @@ Verdict: moderate. Measured 17 posts, 11 publishing identities. Peak: 17 posts i
 - NW news-pravda.com, 2026-11-14T13:07:11Z: https://news-pravda.com/world/2026/11/14/2744128.html
 - NW germany.news-pravda.com, 2026-11-14T13:07:52Z: https://germany.news-pravda.com/en/russia/2026/11/14/176826.html
 - NW deutsch.news-pravda.com, 2026-11-14T13:08:01Z: https://deutsch.news-pravda.com/world/2026/11/14/917749.html
-- NW telegra.ph, 2026-11-14T13:08:07+0000: https://telegra.ph/FINLAND-SHOULD-WITHDRAW-FROM-NATO-MILITARY-BASES-SHOULD-BE-REMOVED-FROM-THE-BALTIC-STATES-AND-UKRAINE-SHOULD-BE-NEUTRAL-11-14
+- WB telegra.ph, 2026-11-14T13:08:07+0000: https://telegra.ph/FINLAND-SHOULD-WITHDRAW-FROM-NATO-MILITARY-BASES-SHOULD-BE-REMOVED-FROM-THE-BALTIC-STATES-AND-UKRAINE-SHOULD-BE-NEUTRAL-11-14
 - NW estonia.news-pravda.com, 2026-11-14T13:09:00Z: https://estonia.news-pravda.com/world/2026/11/14/52235.html
 - NW finland.news-pravda.com, 2026-11-14T13:09:02Z: https://finland.news-pravda.com/world/2026/11/14/30900.html
 - NW lt.news-pravda.com, 2026-11-14T13:09:11Z: https://lt.news-pravda.com/world/2026/11/14/72357.html
@@ -70,7 +70,7 @@ No verified cloned Baltic news site was found in this push.
 
 Judgement: gpt-4.1-mini, sf-judge-v3, 2026-11-14T23:29:59.102Z.
 
-## aa9426e2b5e6: Russian delegation head Medinsky asserts territorial claims and buffer zone control in Ukr
+## aa9426e2b5e6: Russian delegation head Medinsky asserts territorial claims and buffer zone control in…
 
 Verdict: moderate. Measured 20 posts, 14 publishing identities. Peak: 20 posts in 10 minutes, starting 2026-11-14T20:51:08.000Z. Same-minute signal is withheld where a comparable historical collection baseline is unavailable.
 
@@ -85,7 +85,7 @@ Verdict: moderate. Measured 20 posts, 14 publishing identities. Peak: 20 posts i
 - NW lt.news-pravda.com, 2026-11-14T20:51:36Z: https://lt.news-pravda.com/world/2026/11/14/72380.html
 - NW poland.news-pravda.com, 2026-11-14T20:51:38Z: https://poland.news-pravda.com/en/eu/2026/11/14/77802.html
 - NW latvia.news-pravda.com, 2026-11-14T20:51:39Z: https://latvia.news-pravda.com/world/2026/11/14/84405.html
-- NW telegra.ph, 2026-11-14T20:52:24+0000: https://telegra.ph/Ivan-Mezyuho-A-long-interview-with-the-Free-Press-on-the-topic-of-the-resumed-negotiations-in-the-format-of-Russia--USA--Ukraine-11-14
+- WB telegra.ph, 2026-11-14T20:52:24+0000: https://telegra.ph/Ivan-Mezyuho-A-long-interview-with-the-Free-Press-on-the-topic-of-the-resumed-negotiations-in-the-format-of-Russia--USA--Ukraine-11-14
 - NW md.news-pravda.com, 2026-11-14T20:52:35Z: https://md.news-pravda.com/world/2026/11/14/256243.html
 - NW turkey.news-pravda.com, 2026-11-14T20:52:36Z: https://turkey.news-pravda.com/en/russia/2026/11/14/111999.html
 - NW estonia.news-pravda.com, 2026-11-14T20:52:41Z: https://estonia.news-pravda.com/world/2026/11/14/52256.html
@@ -137,7 +137,7 @@ No verified cloned Baltic news site was found in this push.
 
 Judgement: gpt-4.1-mini, sf-judge-v3, 2026-11-14T23:30:13.127Z.
 
-## nab032987aff: Russia demands NATO close bases in Eastern Europe and Finland leave NATO in Ukraine peace 
+## nab032987aff: Russia demands NATO close bases in Eastern Europe and Finland leave NATO in Ukraine…
 
 Verdict: moderate. Measured 9 posts, 8 publishing identities. Peak: 9 posts in 10 minutes, starting 2026-11-14T17:10:05.000Z. Same-minute signal is withheld where a comparable historical collection baseline is unavailable.
 
