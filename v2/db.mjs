@@ -127,7 +127,7 @@ export async function call(provider, endpoint, params = {}, opts = {}) {
       return { ...response, _call: id };
     } catch (e) {
       db.prepare("UPDATE calls SET status=?,ms=? WHERE id=? AND status=0").run(status || -2, Date.now() - start, id);
-      if (e.status === 429 && attempt < 4) {
+      if ((e.status === 429 || (e.status >= 500 && provider === "router")) && attempt < 4) {
         const wait = Number((JSON.stringify(e.response || {}).match(/Retry in (\d+) seconds/) || [])[1] || 30);
         await new Promise((r) => setTimeout(r, (wait + 2) * 1000));
         continue;
