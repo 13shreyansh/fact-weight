@@ -83,3 +83,13 @@ Must-surface (via general pipeline, no special-casing):
 Spend (measured, VPS ledger): Context.dev 4,927 credits, Router 36.95 credits (77 calls), Exa $10.36. Plus local development runs on the Mac ledger: Context.dev ~1,320, Router ~9, Exa ~$1.
 
 Problems / not done: Context.dev monitors + webhook events, /api/watch, embeddings cosine second check, ASN lookup, Louvain, held-out eval — not built. Pravda-type networks are invisible to the two search indexes for these stories, so FI shows no coordinated push.
+
+### ENGINE V2 update (05:40 Helsinki, commit 8291fe0 deployed; Louvain commit pushed, deploys with next release)
+- Real time live: 25 Context.dev monitors (60 min) on country news searches and top sites of coordinated groups; signed webhooks at /api/hooks/contextdev/<route> (HMAC verified), new pages confirmed with the same shingle check → /api/live events; 9 hook events in the first minutes (measured).
+- Newsroom alerts: POST /api/watch {country, webhook_url} (https only, private hosts refused), one POST per event, ≥10 s apart.
+- Second check: copies[].cosine (text-embedding-3-small) beside copies[].jaccard; copies[].time_source.
+- WHO: ASN via ipinfo.io added; shared_infra as sentences.
+- Pickup rewritten: TikTok tiktok-feed (hashtags from headline entities, with views), Instagram post parser via site search, Reddit search parser, YouTube via Exa. FI rebuild: 113 matching posts (TikTok 90, YouTube 14, Reddit 8, Instagram 1), samples; many TikTok matches are "same topic".
+- Queue now UA RU IL IR MD GE FI US PS RS AM AZ BY VE, then the rest.
+- Slip: a local syntax check started the scheduler on the Mac for ~1 min; it created 4 Context.dev monitors and started a build locally. I stopped it and deleted those 4 monitors (they were mine, created seconds before). Nothing live depends on the Mac.
+- Spend (VPS, measured 05:25): Context.dev 5,406 / 15,000, Exa $14.07 / $60, Router 46 / 800.
