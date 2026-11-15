@@ -73,6 +73,7 @@ function countryOut(cc) {
     status: st.status,
     build_id: st.status === "built" ? r.build_id : st.build_id,
     built_at: r.computed_at,
+    briefing: get("briefing", cc) || null,
     copies_found: stories.reduce((n, s) => n + s.copies.length, 0),
     clusters: [...r.clusters.filter((c) => c.verdict.startsWith("Looks coordinated")), ...r.clusters.filter((c) => !c.verdict.startsWith("Looks coordinated")).slice(0, 2)].map(clusterOut),
     clusters_total: r.clusters.length,

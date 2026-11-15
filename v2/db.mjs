@@ -54,6 +54,8 @@ const routerPrices = {
   "gemini-3.5-flash": [0.000198, 0.001188],
   "gemini-3.5-flash-lite": [0.000036, 0.0003],
   "text-embedding-3-small": [0.000003, 0],
+  "claude-opus-5.5": [0.000528, 0.00264],
+  "gpt-4.1": [0.000264, 0.001056],
 };
 function reserve(provider, endpoint, params) {
   if (provider === "exa") return 0.005 + 0.0015 * (params.numResults || 10);

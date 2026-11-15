@@ -994,6 +994,15 @@ export async function buildCountry(cc, build) {
         if (!oldCopies.has(n.url))
           addEvent("copy_detected", c.code, { country: c.code, site: n.site, url: n.url, headline: n.headline, story_id: n.story.id, cluster_id: cl.id, lag_min: n.t && n.story.articles[0].published_at ? Math.round(minutes(n.story.articles[0].published_at, n.t)) : null, source: n.page?.via === "exa" ? "Exa" : "Context.dev search", at: n.t || computed_at() });
     put("country", c.code, result);
+    try {
+      const { briefCountry } = await import("./briefing.mjs");
+      await step(build, "Briefing", async (s) => {
+        const b = await briefCountry(c.code);
+        s.note = b ? `${b.pushes.length} pushes briefed, ${b.pushes.reduce((n, p) => n + p.claims.length, 0)} claims checked` : "No briefing";
+      });
+    } catch (e) {
+      console.error("briefing", c.code, e.message);
+    }
     addEvent("build_done", c.code, { country: c.code, source: "scheduler", headline: `${c.name}: ${stories.length} stories checked, ${clusters.filter((x) => x.verdict.startsWith("Looks coordinated")).length} coordinated groups`, at: computed_at() });
     build.status = "done";
     return result;
