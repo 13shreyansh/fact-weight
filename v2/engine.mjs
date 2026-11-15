@@ -7,7 +7,7 @@ import { tokens, shingles, jaccard, containment, windowJaccard, headlineSim, cle
 
 export const T = {
   days: 7,
-  maxStories: 30,
+  maxStories: 40,
   copyThreshold: 0.6,
   edgeMinutes: 60,
   clusterMinSites: 3,
@@ -107,7 +107,7 @@ async function collectStories(c) {
   );
   // Exa news search adds articles the Context.dev index misses; they join a story when the headline matches.
   if (process.env.EXA_API_KEY) {
-    const exaQ = [`${c.name} news this week`, `${c.name} politics government election`, `${c.name} technology business companies`, `${c.name} security defence Russia China`];
+    const exaQ = [`${c.name} news this week`, `${c.name} politics government election`, `${c.name} technology business companies CEO`, `${c.name} security defence Russia China`, `top ${c.name} news stories elections integrity`, `${c.name} AI chips tech industry`];
     const ex = await pool(exaQ, 4, (query) =>
       call("exa", "/search", { query, type: "auto", category: "news", numResults: 25, startPublishedDate: new Date(from).toISOString(), endPublishedDate: new Date(to).toISOString(), contents: { text: { maxCharacters: 1200 } } }).catch(() => ({ results: [] })),
     );
@@ -217,7 +217,9 @@ async function findCopies(story, c) {
   if (process.env.EXA_API_KEY) {
     const sents = [...new Set(story.articles.flatMap((a) => sentences(a.description)).filter((x) => x.length >= 60))].sort((a, b) => b.length - a.length).slice(0, 2);
     const head = story.articles.find((a) => c.langs.includes(a.lang))?.headline;
+    const ents = entities(story.title);
     const qs = [...sents.slice(0, 1), ...(head ? [head] : []), ...(story.translations || [])].slice(0, 3);
+    if (ents.length >= 3) qs.push(`${ents.join(" ")} ${c.name}`);
     if (sents.length > 1 && qs.length < 3) qs.push(sents[1]);
     const t0 = Date.parse(story.articles[0].published_at || Date.now());
     const res = await pool(qs, 3, (q) => {
@@ -542,32 +544,61 @@ function walk(o, out = []) {
   }
   return out;
 }
+const STOP = new Set("The A An In On Of For To And But After Before Over With From As At By Is Are Was Says Say Report Reports New Why How What Who".split(" "));
+function entities(headline) {
+  return [...new Set((headline.match(/\b[\p{Lu}][\p{L}\p{N}'-]{1,}/gu) || []).filter((w) => !STOP.has(w)).map((w) => w.replace(/'s$/, "")))].slice(0, 5);
+}
+const viewsOf = (o) => o?.stats?.play_count ?? o?.stats?.views ?? o?.play_count ?? o?.views ?? o?.view_count ?? o?.video_view_count ?? null;
 async function pickup(story) {
   const headline = story.copyHeadline || story.title;
-  const q = tokens(headline).slice(0, 8).join(" ");
+  const ents = entities(headline);
+  const q = ents.length >= 2 ? ents.join(" ") : tokens(headline).slice(0, 8).join(" ");
+  const keys = new Set(ents.map((e) => e.toLowerCase()));
   const copyUrls = story.groups.flat().filter((n) => n.kind === "copy").map((n) => n.url);
   const out = [];
-  const match = (p, platform) => {
+  const seenUrl = new Set();
+  const match = (p, platform, viaTag) => {
+    if (!p.url || seenUrl.has(p.url)) return;
+    const low = p.text.toLowerCase();
+    const shared = [...keys].filter((k) => low.includes(k)).length;
     let type = null;
-    if (copyUrls.some((u) => p.text.includes(u) || p.url === u)) type = "same link";
-    else if (headlineSim(p.text.slice(0, 300), headline) >= 0.5 || windowJaccard(headline, p.text, 3) >= 0.5) type = "same text";
-    if (type) out.push({ platform, url: p.url, author: p.author, published_at: p.published_at, match_type: type, text: p.text.slice(0, 200) });
+    if (copyUrls.some((u) => p.text.includes(u))) type = "same link";
+    else if (headlineSim(p.text.slice(0, 300), headline) >= 0.4 || windowJaccard(headline, p.text, 3) >= 0.4) type = "same text";
+    else if (viaTag && shared >= 2) type = "same hashtag and topic";
+    else if (shared >= Math.min(3, keys.size) && keys.size >= 2) type = "same topic";
+    if (!type) return;
+    seenUrl.add(p.url);
+    out.push({ platform, url: p.url, title: p.text.slice(0, 220), author: p.author, published_at: p.published_at, views: p.views ?? null, match_type: type, found_via: p.via });
   };
+  const tags = [...new Set([ents.slice(0, 2).join(""), ents.slice(1, 3).join(""), ents[0]].filter((t) => t && t.length >= 4).map((t) => t.toLowerCase().replace(/[^\p{L}\p{N}]/gu, "")))].slice(0, 2);
   const jobs = [
     async () => {
-      const d = await call("context", "/web/scrape", { url: `https://www.reddit.com/search/?q=${encodeURIComponent(q)}&sort=new&t=month`, formats: { parse: true }, parseParams: { type: "prebuilt", parser: "reddit-search" } });
-      walk(d.parsed?.data).forEach((p) => match(p, "reddit"));
+      const d = await call("context", "/web/scrape", { url: `https://www.reddit.com/search/?q=${encodeURIComponent(q)}&sort=new&t=week`, formats: { parse: true }, parseParams: { type: "prebuilt", parser: "reddit-search" } });
+      walk(d.parsed?.data).forEach((p) => match({ ...p, via: "Context.dev reddit-search parser" }, "reddit"));
+    },
+    ...tags.map((t) => async () => {
+      const d = await call("context", "/web/scrape", { url: `https://www.tiktok.com/tag/${encodeURIComponent(t)}`, formats: { parse: true }, parseParams: { type: "prebuilt", parser: "tiktok-feed" } });
+      for (const v of d.parsed?.data?.videos || []) match({ url: v.url, text: [v.caption, ...(v.hashtags || []).map((h) => "#" + (h.name || h))].join(" "), author: v.author?.username ? "@" + v.author.username : null, published_at: iso(v.posted_at), views: viewsOf(v), via: `Context.dev tiktok-feed parser, #${t}` }, "tiktok", true);
+    }),
+    async () => {
+      const d = await call("exa", "/search", { query: `${q} YouTube video`, numResults: 10, includeDomains: ["youtube.com"], startPublishedDate: new Date(Date.parse(story.articles[0].published_at || Date.now()) - 864e5).toISOString() }).catch(() => ({ results: [] }));
+      (d.results || []).forEach((r) => match({ url: r.url, text: r.title || "", author: r.author || null, published_at: iso(r.publishedDate), via: "Exa search, youtube.com" }, "youtube"));
     },
     async () => {
-      const d = await call("context", "/web/search", { query: `site:youtube.com ${q}`, numResults: 10 });
-      (d.results || []).map((r) => ({ url: r.url, text: (r.title || "") + " " + (r.description || ""), author: null, published_at: null })).forEach((p) => match(p, "youtube"));
-    },
-    async () => {
-      const d = await call("context", "/web/search", { query: `site:tiktok.com ${q}`, numResults: 10 });
-      (d.results || []).map((r) => ({ url: r.url, text: (r.title || "") + " " + (r.description || ""), author: null, published_at: null })).forEach((p) => match(p, "tiktok"));
+      const d = await call("context", "/web/search", { query: `site:instagram.com ${q}`, numResults: 8 });
+      const posts = (d.results || []).filter((r) => /instagram\.com\/(p|reel)\//.test(r.url)).slice(0, 3);
+      for (const r of posts) {
+        let info = { url: r.url, text: (r.title || "") + " " + (r.description || ""), author: null, published_at: null, via: "Context.dev web search, instagram.com" };
+        try {
+          const pd = await call("context", "/web/scrape", { url: r.url, formats: { parse: true }, parseParams: { type: "prebuilt", parser: "instagram-post" } });
+          const x = pd.parsed?.data || {};
+          info = { ...info, text: x.caption || x.text || info.text, author: x.owner?.username ? "@" + x.owner.username : x.username ? "@" + x.username : null, published_at: iso(x.taken_at || x.posted_at || x.timestamp), views: viewsOf(x), via: "Context.dev instagram-post parser" };
+        } catch {}
+        match(info, "instagram");
+      }
     },
   ];
-  await pool(jobs, 3, (f) => f());
+  await pool(jobs, 4, (f) => f());
   return out;
 }
 
@@ -608,7 +639,16 @@ export async function buildCountry(cc, build) {
     });
     let graph;
     await step(build, "Confirm copies and build the site graph", async (s) => {
-      for (const st of stories) st.groups = identicalGroups(st);
+      // Exa often gives only a date. For pages that already sit in a near-identical group, read the page
+    // itself for its published time (article:published_time, JSON-LD, <time>) before building timed links.
+    for (const st of stories) st.groups = identicalGroups(st);
+    const needTime = stories.flatMap((st) => st.groups.flat().filter((n) => n.kind === "copy" && !n.t && n.page?.via === "exa").map((n) => n.page)).slice(0, 120);
+    await pool(needTime, 6, async (pg) => {
+      const d = await call("context", "/web/scrape", { url: pg.url, formats: { markdown: true, html: true }, sharedParams: { mainContentOnly: false } }, { maxAgeMs: 30 * 86400e3 });
+      const info = scrapeInfo(d, pg.url);
+      Object.assign(pg, { published_at: info.published_at, time_source: info.published_at ? "page metadata" : null, origins: info.origins, ids: info.ids, template: info.template, lang: info.lang || pg.lang });
+    });
+    for (const st of stories) st.groups = identicalGroups(st);
       // Coordination is looked for among sites that are not established publishers in the news index;
       // publisher-to-publisher copying (syndication) is profiled separately and reported as organic.
       const a = cluster(stories, (x) => !all_publishers.has(x), 1),
@@ -747,11 +787,14 @@ export async function buildCountry(cc, build) {
     });
     const pick = [];
     await step(build, "Pickup on public platforms", async (s) => {
-      const top = stories.filter((st) => st.groups.flat().some((n) => n.cluster_id && n.kind === "copy")).slice(0, 3);
+      const coordinated = new Set(clusters.filter((x) => x.verdict.startsWith("Looks coordinated")).flatMap((x) => x.story_ids));
+      const top = [...stories.filter((st) => coordinated.has(st.id)), ...stories.filter((st) => !coordinated.has(st.id) && st.groups.flat().length >= 3)].slice(0, 5);
       for (const st of top) st.copyHeadline = st.groups.flat().find((n) => n.kind === "copy" && n.cluster_id)?.headline;
       const res = await pool(top, 3, pickup);
-      res.forEach((r, i) => Array.isArray(r) && pick.push(...r.map((p) => ({ ...p, story_id: top[i].id, sample: true, computed_at: computed_at() }))));
-      s.note = `${pick.length} matching public posts found across ${top.length} stories (samples, not totals)`;
+      res.forEach((r, i) => Array.isArray(r) && pick.push(...r.map((p) => ({ ...p, story_id: top[i].id, story_title: top[i].title, sample: true, computed_at: computed_at() }))));
+      const by = {};
+      for (const p of pick) by[p.platform] = (by[p.platform] || 0) + 1;
+      s.note = `${pick.length} matching public posts across ${top.length} stories (${Object.entries(by).map(([k, v]) => `${k} ${v}`).join(", ") || "none"}); samples from public search pages, not totals`;
     });
     // Persist stories and the country record.
     for (const st of stories) {

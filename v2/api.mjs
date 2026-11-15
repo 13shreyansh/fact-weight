@@ -76,7 +76,7 @@ function countryOut(cc) {
     clusters: [...r.clusters.filter((c) => c.verdict.startsWith("Looks coordinated")), ...r.clusters.filter((c) => !c.verdict.startsWith("Looks coordinated")).slice(0, 2)].map(clusterOut),
     clusters_total: r.clusters.length,
     narratives: r.narratives.map((n) => ({ ...n, trend_30d: (n.trend_30d || []).map((d) => d.articles), trend_dates: (n.trend_30d || []).map((d) => d.date) })),
-    pickup: r.pickup.map((p) => ({ ...p, title: p.text, views: null, views_reason: "View counts are not read" })),
+    pickup: r.pickup.map((p) => ({ ...p, title: p.title || p.text, views_reason: p.views == null ? "The platform page did not show a view count" : null })),
   };
 }
 function summary(cc) {
