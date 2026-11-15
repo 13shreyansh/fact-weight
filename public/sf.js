@@ -70,7 +70,7 @@
 <text font-size="${fs}" letter-spacing="1.1"><textPath href="#${id}t" startOffset="50%" text-anchor="middle">${t}</textPath></text>
 <text font-size="10.5" letter-spacing="1.6"><textPath href="#${id}b" startOffset="50%" text-anchor="middle">${b}</textPath></text>
 <text y="3" font-size="${String(mid).length > 6 ? 15 : 19}" text-anchor="middle" font-weight="800">${esc(mid)}</text>
-<text y="17" font-size="9" text-anchor="middle" letter-spacing=".8">${esc(sub)}</text></svg></div>`;
+<text y="17" font-size="9" text-anchor="middle" letter-spacing=".8">${esc(sub)}</text>${kind === "copy" ? `<path class="waves" d="M58 -12 q5 -4 10 0 t10 0 t10 0 M58 -3 q5 -4 10 0 t10 0 t10 0 M58 6 q5 -4 10 0 t10 0 t10 0"/>` : ""}</svg></div>`;
   }
   // one shared ink filter
   document.body.insertAdjacentHTML("afterbegin", `<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="ink" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="4" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.4 1.75" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in" result="s"/><feDisplacementMap in="s" in2="n" scale="1.4" xChannelSelector="R" yChannelSelector="G"/></filter></svg>`);
@@ -159,7 +159,7 @@
       rack.innerHTML = countries.map((c) => {
         const st = c.status === "ready"
           ? (c.clusters ? `${plural(c.clusters, "group")} copying<br>${esc(ago(c.built_at))}` : `No coordinated group<br>${esc(ago(c.built_at))}`)
-          : c.status === "building" ? "Building now" : "Queued for precompute";
+          : c.status === "building" ? "Reading now" : "Queued, next 6-hour refresh";
         return `<a class="cell ${esc(c.status)}${c.clusters ? " hot" : ""}" href="/country?cc=${esc(c.code)}"><span class="cc">${esc(c.code)}</span><span class="nm">${esc(c.name || cname(c.code))}</span><span class="st">${st}</span></a>`;
       }).join("");
       const n = rdy.length;
@@ -188,7 +188,7 @@
 <p class="from">First copy ${esc(stamp(first.published_at))}</p>
 <div class="marks inked">${marks.join("")}</div></div>
 <div class="tally"><div><b>${num(copies.length)}</b><span>copies</span></div><div><b>${num(x.countries_reached ?? countriesOf(copies))}</b><span>countries</span></div><div><b>${b.n > 1 ? num(Math.round((b.b - b.a) / 60000)) : "–"}</b><span>min for ${num(b.n)} copies</span></div></div>
-<div class="slip-foot">${vstamp(x.verdict)}<a href="/story?id=${encodeURIComponent(top.id)}">Open the Story X-ray</a></div>`;
+<div class="slip-foot">${vstamp(x.verdict)}<a href="/story?id=${encodeURIComponent(top.id)}">Open the Story X-ray</a></div><div class="perf" aria-hidden="true"></div>`;
       stampIn(slip);
     } catch {
       slip.innerHTML = `<div class="label-head"><span>Copied story</span></div><div class="slip-empty"><p><strong>Countries are being read right now.</strong></p><p>The most-copied story of the week appears here as soon as the first country finishes. Pick a country to see its progress.</p></div>`;
@@ -289,7 +289,7 @@ ${(c.reasons || []).length ? `<ul class="reasons">${c.reasons.map((r) => `<li>${
     $("#summary").innerHTML = clusters.length
       ? `<strong>${plural(clusters.length, "group")} of sites copied ${esc(name)}’s news in coordinated bursts this week.</strong> The largest, ${esc(big.label || "")}, copied ${plural(big.stories_copied, "story", "stories")}${big.median_copy_lag_min != null ? ` with a typical delay of ${num(big.median_copy_lag_min)} minutes` : ""}.${narratives[0] ? ` Its main line: “${esc(narratives[0].label)}”.` : ""}`
       : `<strong>No coordinated copying found for ${esc(name)} this week.</strong> We checked ${plural(d.stories_checked, "story", "stories")}; the copies we found came from outlets with their own wording and timing.`;
-    $("#meta").innerHTML = `<div><b>${num(d.stories_checked)}</b><span>stories checked</span></div><div><b>${num(d.copies_found ?? clusters.reduce((a, c) => a + (c.stories_copied || 0), 0))}</b><span>${d.copies_found != null ? "copies found" : "copied stories"}</span></div><div><b>${num(clusters.length)}</b><span>groups</span></div><div><b>${esc(hhmm(d.built_at || d.computed_at))}</b><span>built ${esc(dmy(d.built_at || d.computed_at))} UTC</span></div>`;
+    $("#meta").innerHTML = `<div><b>${num(d.stories_checked)}</b><span>stories checked</span></div><div><b>${num(d.copies_found ?? clusters.reduce((a, c) => a + (c.stories_copied || 0), 0))}</b><span>${d.copies_found != null ? "copies found" : "copied stories"}</span></div><div><b>${num(clusters.length)}</b><span>groups</span></div><div><b>${esc(dmy(d.built_at || d.computed_at))} ${esc(hhmm(d.built_at || d.computed_at))}</b><span>last built, UTC</span></div>`;
     $("#meta").hidden = false;
 
     const out = [];
