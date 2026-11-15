@@ -2,7 +2,7 @@
 // confirms, what the copies add, who is behind it and where it spread. Written only from stored evidence.
 import { get, put, llm, call } from "./db.mjs";
 import { site } from "./text.mjs";
-import { reach, clusterName } from "./api.mjs";
+import { reach, clusterName, evidenceInfra } from "./api.mjs";
 import { country as countryInfo } from "./countries.mjs";
 
 const STATUSES = ["Matches mainstream reporting", "Adds claims not in mainstream reporting", "Contradicted by mainstream reporting", "Unclear"];
@@ -41,7 +41,8 @@ function evidence(cc) {
       site_count: c.site_count,
       verdict: c.verdict,
       documented_by: c.documented_by.map((d) => ({ network: d.network, sources: d.sources.map((x) => x.name) })),
-      shared_infra: c.shared_infra.slice(0, 5).map((x) => `${x.type} ${x.value} across ${x.sites.length} sites`),
+      shared_infra: evidenceInfra(c.shared_infra).kept.slice(0, 5).map((x) => `${x.type} ${x.value} across ${x.sites.length} sites`),
+      cdn_note: evidenceInfra(c.shared_infra).cdn.length ? "Shared CDN hosting (" + evidenceInfra(c.shared_infra).cdn.join(", ") + ") is common and not evidence" : null,
       origins_top: c.origins_top.slice(0, 6).map((o) => ({ origin: o.origin, citations: o.citations, type: o.type })),
       median_site_gap_min: c.median_site_gap_min,
       stories_copied: c.stories_copied,
@@ -141,7 +142,10 @@ export async function briefCountry(cc) {
             cluster_id: cluster.id,
             network: cluster.documented_by[0]?.network || clusterName(cluster),
             documented_by: cluster.documented_by.flatMap((d) => d.sources.map((x) => x.name)),
-            infra: cluster.shared_infra.slice(0, 4).map((x) => `${x.sites.length} sites share the same ${x.type.replace("_", " ")} (${x.value})`),
+            infra: [
+              ...evidenceInfra(cluster.shared_infra).kept.slice(0, 4).map((x) => `${x.sites.length} sites share the same ${x.type.replace("_", " ")} (${x.value})`),
+              ...evidenceInfra(cluster.shared_infra).cdn.map((o) => `Behind the same CDN (${o}), which is common and not evidence on its own`),
+            ],
             sites: cluster.sites,
           }
         : null,

@@ -3,7 +3,7 @@
 import dns from "node:dns/promises";
 import { call, llm, pool, put, get, all, hash, setContext, db, CapReached, addEvent, embed, cosine } from "./db.mjs";
 import { country as countryInfo } from "./countries.mjs";
-import { tokens, shingles, jaccard, containment, windowJaccard, headlineSim, cleanTitle, mainText, sentences, site, registrable, median } from "./text.mjs";
+import { CDN_ORG, tokens, shingles, jaccard, containment, windowJaccard, headlineSim, cleanTitle, mainText, sentences, site, registrable, median } from "./text.mjs";
 
 // Stories the owner asked to always follow, by country (searched, never invented).
 const WATCHED = {
@@ -805,7 +805,7 @@ export async function buildCountry(cc, build) {
         } else if (g.sites.length >= T.strong.sites && g.stories.length >= T.strong.stories && medGap !== null && medGap <= T.strong.medianGapMin) verdict = "Looks coordinated: strong";
         else verdict = "Looks coordinated: moderate";
         if (w.domain_ages.registered_last_year) reasons.push(`${w.domain_ages.registered_last_year} of ${w.domain_ages.domains.length} domains were registered in the last 12 months`);
-        for (const x of w.shared_infra.slice(0, 3)) reasons.push(`Shared ${x.type.replace("_", " ")} ${x.value} across ${x.sites.length} sites`);
+        for (const x of w.shared_infra.filter((x) => !(x.type === "ip" && CDN_ORG.test(get("asn", x.value)?.org || "")) && !(x.type.startsWith("network") && CDN_ORG.test(x.value))).slice(0, 3)) reasons.push(`Shared ${x.type.replace("_", " ")} ${x.value} across ${x.sites.length} sites`);
         if (w.documented_by.length) reasons.push(`Matches a published list: ${w.documented_by.map((d) => d.network).join(", ")}`);
         if (verdict !== "Looks organic") reasons.push("Innocent explanations not excluded: shared ownership, syndication agreements or a common press release");
         clusters.push({

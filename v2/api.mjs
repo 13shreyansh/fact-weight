@@ -28,7 +28,23 @@ function statusOf(cc) {
   if (b && (b.status === "queued" || b.status === "running")) return { status: r ? "refreshing" : "building", build_id: b.id };
   return { status: r ? "built" : "not_built", build_id: b?.id || null };
 }
-import { registrable } from "./text.mjs";
+import { registrable, CDN_ORG } from "./text.mjs";
+export function evidenceInfra(list) {
+  const kept = [], cdn = new Set();
+  // Sites whose known hosting is a CDN; another shared IP of the same sites is treated as CDN too.
+  const cdnSites = new Set();
+  for (const x of list || []) {
+    const o = x.type === "ip" ? get("asn", x.value)?.org : x.type.startsWith("network") ? x.value : null;
+    if (o && CDN_ORG.test(o)) x.sites.forEach((y) => cdnSites.add(y));
+  }
+  for (const x of list || []) {
+    let org = x.type === "ip" ? get("asn", x.value)?.org : x.type.startsWith("network") ? x.value : null;
+    if (!org && x.type === "ip" && x.sites.every((y) => cdnSites.has(y))) org = [...(list || [])].map((z) => (z.type.startsWith("network") ? z.value : get("asn", z.value)?.org)).find((o) => o && CDN_ORG.test(o)) || "a CDN";
+    if (org && (org === "a CDN" || CDN_ORG.test(org))) cdn.add(org.replace(/^AS\d+\s*/, ""));
+    else kept.push(x);
+  }
+  return { kept, cdn: [...cdn] };
+}
 const GENERIC_CC = new Set(["co", "io", "tv", "me", "ai", "ly", "fm", "cc", "ws", "to", "eu", "gg", "is", "la", "nu", "ac", "app"]);
 export function reach(st) {
   const set = new Set(st.countries_reached || []);
@@ -58,8 +74,11 @@ function clusterOut(c) {
     domain_ages: ages.length
       ? { median_days: c.domain_ages.median_age_days, min_days: Math.min(...ages), registered_last_year: c.domain_ages.registered_last_year, domains: c.domain_ages.domains }
       : { reason: "No registry published a creation date for these domains", domains: c.domain_ages?.domains || [] },
-    shared_infra: (c.shared_infra || []).map((x) => `${x.sites.length} sites share the same ${x.type.replace("_", " ")}: ${x.value} (${x.sites.slice(0, 4).join(", ")}${x.sites.length > 4 ? ", …" : ""})`),
-    shared_infra_detail: c.shared_infra || [],
+    shared_infra: [
+      ...evidenceInfra(c.shared_infra).kept.map((x) => `${x.sites.length} sites share the same ${x.type.replace("_", " ")}: ${x.value} (${x.sites.slice(0, 4).join(", ")}${x.sites.length > 4 ? ", …" : ""})`),
+      ...evidenceInfra(c.shared_infra).cdn.map((o) => `Behind the same CDN (${o}), which is common and not evidence on its own`),
+    ],
+    shared_infra_detail: evidenceInfra(c.shared_infra).kept,
   };
 }
 function countryOut(cc) {

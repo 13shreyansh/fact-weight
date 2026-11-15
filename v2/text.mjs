@@ -91,3 +91,6 @@ export const median = (xs) => {
   const m = v.length >> 1;
   return v.length % 2 ? v[m] : (v[m - 1] + v[m]) / 2;
 };
+
+// Shared CDN or hyperscaler hosting is common and not attribution evidence on its own.
+export const CDN_ORG = /cloudflare|akamai|fastly|amazon|cloudfront|google|microsoft|azure|automattic|incapsula|imperva|sucuri|stackpath|bunny|cdn77|edgecast|limelight|vercel|netlify/i;
