@@ -437,7 +437,7 @@ ${x ? `<div class="pgrid"><div><span class="k">What news outlets reported</span>
     const conf = list(p.confirmed, "confirmed"), claims = list(p.claims, "claims");
     const tg = list(sp.telegram, "telegram");
     const pf = Object.entries(sp.platforms || {}).filter(([, n]) => n);
-    const facts = [[sp.sites, "sites copied it"], [sp.countries, "countries reached"], [sp.minutes_to_spread, "minutes to spread"], [tg.length || null, "Telegram channels"]].filter(([n]) => n != null);
+    const facts = [[sp.sites, "sites copied it"], [sp.countries, "countries reached"], ...(sp.minutes_to_spread >= 120 ? [[Math.round(sp.minutes_to_spread / 60), "hours to spread"]] : [[sp.minutes_to_spread, "minutes to spread"]]), [tg.length || null, "Telegram channels"]].filter(([n]) => n != null);
     return `<article class="dossier label">
 <div class="label-head"><span class="rank">${String(i + 1).padStart(2, "0")}</span>${s.verdict ? vstamp(s.verdict) : ""}<span class="code">${esc(stamp(sp.first_copy_at || s.published_at))}</span></div>
 <div class="dbody"><h3><a href="${href}">${esc(p.headline || s.title)}</a></h3>
