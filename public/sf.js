@@ -141,6 +141,119 @@
     document.addEventListener("click", (e) => { if (!root.parentNode.contains(e.target)) sug.hidden = true; });
   }
 
+
+  /* ---------- live machine ---------- */
+  const STAT_LABELS = [
+    ["stories_read", "stories read"], ["pages_fetched", "pages fetched and compared"], ["copies_confirmed", "copies confirmed"], ["sites_seen", "sites seen copying"],
+    ["groups", "coordinated groups"], ["monitors_live", "pages under live watch"], ["languages", "languages read"], ["last_event_at", "last new copy"]];
+  async function counters() {
+    const el = $("#counters"); if (!el) return null;
+    el.innerHTML = STAT_LABELS.map(() => `<div><span class="skel sk" style="display:block"></span></div>`).join("");
+    try {
+      const s = await api("/api/stats");
+      el.innerHTML = STAT_LABELS.map(([k, l]) => {
+        const v = s[k];
+        const shown = k === "last_event_at" ? (v ? esc(ago(v)) : "–") : num(Array.isArray(v) ? v.length : v);
+        return `<div><b>${shown}</b><span>${esc(l)}</span></div>`;
+      }).join("");
+      document.querySelectorAll(".line>li[data-stat]").forEach((li) => {
+        const k = li.dataset.stat, v = s[k];
+        if (v != null && !li.querySelector(".lv")) li.insertAdjacentHTML("afterbegin", `<span class="lv">${num(Array.isArray(v) ? v.length : v)} ${esc((STAT_LABELS.find((x) => x[0] === k) || [, ""])[1])}</span>`);
+      });
+      return s;
+    } catch { el.remove(); return null; }
+  }
+  const EVT = { copy_detected: "New copy", group_grew: "Group grew", build_done: "Country read", new_story: "New story" };
+  function liveWire(country) {
+    const box = $("#events"), meta = $("#wiremeta"); if (!box) return;
+    const seen = new Set(); let first = true;
+    async function tick() {
+      try {
+        const ev = list(await api(`/api/live?limit=20${country ? `&country=${country}` : ""}`), "events");
+        meta.textContent = `updated ${hhmm(new Date().toISOString())} UTC · refreshes every 20 s`;
+        if (!ev.length && first) box.innerHTML = `<li><span class="empty">Monitors are armed. New copies appear here the moment a watched site publishes one.</span></li>`;
+        const fresh = ev.filter((e) => !seen.has(e.id || e.url + e.at));
+        if (fresh.length && first) box.innerHTML = "";
+        fresh.reverse().forEach((e) => {
+          seen.add(e.id || e.url + e.at);
+          const li = document.createElement("li"); if (!first) li.className = "new";
+          const href = e.story_id ? `/story?id=${encodeURIComponent(e.story_id)}` : e.url;
+          li.innerHTML = `<span class="t">${esc(dmy(e.at))} ${esc(hhmm(e.at))}</span><span class="ty${e.type === "copy_detected" ? "" : " g"}">${esc(EVT[e.type] || e.type)}</span><span class="h"><a href="${esc(href || "#")}">${esc(e.headline || e.site || "")}</a><span>${esc(e.site || host(e.url))}${e.country ? " · " + esc(e.country) : ""} · via ${esc(e.source || "monitor")}</span></span><span class="lag">${e.lag_min != null ? "+" + num(e.lag_min) + "<small style='font-size:13px'> min</small>" : ""}</span>`;
+          box.prepend(li);
+        });
+        while (box.children.length > 30) box.lastChild.remove();
+      } catch { if (first) { meta.textContent = "live feed unavailable"; box.innerHTML = `<li><span class="empty">The live feed could not be reached. It retries every 20 seconds.</span></li>`; } }
+      first = false;
+    }
+    tick(); setInterval(() => { if (!document.hidden) tick(); }, 20000);
+  }
+  function watchForm(cc) {
+    const f = $("#watch"); if (!f) return;
+    const sel = $("#wcc");
+    sel.innerHTML = ALL.map((c) => `<option value="${c.code}"${c.code === (cc || "FI") ? " selected" : ""}>${esc(c.name)}</option>`).join("");
+    f.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const msg = $("#wmsg"), btn = $("button", f); btn.disabled = true; msg.textContent = "Registering…";
+      try {
+        const r = await api("/api/watch", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify({ country: sel.value, webhook_url: $("#wurl").value }) });
+        msg.textContent = `Alerts on for ${cname(sel.value)}. Watch id ${r.id || "created"}. Each new copy is posted to your URL as JSON.`;
+      } catch (err) { msg.textContent = `Could not start alerts: ${err.message}`; }
+      btn.disabled = false;
+    });
+  }
+
+  /* ---------- network graph ---------- */
+  function layout(nodes, edges, W, H) {
+    // Fruchterman-Reingold, deterministic start
+    const idx = new Map(nodes.map((n, i) => [n.id, i]));
+    const PW = W - 220, PH = H - 60, n = nodes.length, k = Math.sqrt((PW * PH) / n) * 0.9;
+    nodes.forEach((p) => { p.x = PW / 2 + ((hash(p.id) & 1023) / 1023 - 0.5) * PW * 0.6; p.y = PH / 2 + ((hash(p.id + "y") & 1023) / 1023 - 0.5) * PH * 0.6; });
+    const E = edges.map((e) => [idx.get(e.a), idx.get(e.b), e.w || 1]).filter((e) => e[0] != null && e[1] != null && e[0] !== e[1]);
+    let t = PW / 8;
+    for (let it = 0; it < 300; it++) {
+      const dx = new Float64Array(n), dy = new Float64Array(n);
+      for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) {
+        let x = nodes[i].x - nodes[j].x, y = nodes[i].y - nodes[j].y; const d = Math.max(0.5, Math.hypot(x, y)), f = (k * k) / d;
+        x = (x / d) * f; y = (y / d) * f; dx[i] += x; dy[i] += y; dx[j] -= x; dy[j] -= y;
+      }
+      E.forEach(([i, j, w]) => {
+        const x = nodes[i].x - nodes[j].x, y = nodes[i].y - nodes[j].y, d = Math.max(0.5, Math.hypot(x, y)), f = ((d * d) / k) * (0.6 + Math.log(1 + w) * 0.5);
+        dx[i] -= (x / d) * f; dy[i] -= (y / d) * f; dx[j] += (x / d) * f; dy[j] += (y / d) * f;
+      });
+      nodes.forEach((p, i) => {
+        dx[i] += (PW / 2 - p.x) * 0.14 * k / 40; dy[i] += (PH / 2 - p.y) * 0.16 * k / 40;
+        const d = Math.max(0.5, Math.hypot(dx[i], dy[i])), m = Math.min(d, t);
+        p.x = Math.max(0, Math.min(PW, p.x + (dx[i] / d) * m)); p.y = Math.max(0, Math.min(PH, p.y + (dy[i] / d) * m));
+      });
+      t = Math.max(1, t * 0.985);
+    }
+    nodes.forEach((p) => { p.x += 30; p.y += 30; });
+    return E;
+  }
+  async function network(cc, clusters) {
+    const host_ = $("#net"); if (!host_) return;
+    let g; try { g = await api(`/api/countries/${cc}/graph`); } catch { host_.remove(); return; }
+    const nodes = list(g.nodes, "nodes").slice(0, 160), edges = list(g.edges, "edges");
+    if (nodes.length < 3) { host_.remove(); return; }
+    const W = 1200, H = 560, E = layout(nodes, edges, W, H);
+    const co = new Set(clusters.filter((c) => verdictOf(c.verdict).cls === "co").map((c) => c.id));
+    const col = (n) => (n.cluster_id && co.has(n.cluster_id) ? "var(--cancel)" : n.cluster_id ? "var(--ink)" : "var(--muted-stamp)");
+    const maxw = Math.max(1, ...E.map((e) => e[2]));
+    const lab = new Set(nodes.slice().sort((p, q) => (q.stories || 0) - (p.stories || 0)).slice(0, 7).map((n) => n.id));
+    const svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Network of ${nodes.length} sites and ${E.length} co-copy links">
+${E.map(([i, j, w]) => `<line x1="${nodes[i].x.toFixed(1)}" y1="${nodes[i].y.toFixed(1)}" x2="${nodes[j].x.toFixed(1)}" y2="${nodes[j].y.toFixed(1)}" stroke="${nodes[i].cluster_id && nodes[i].cluster_id === nodes[j].cluster_id && co.has(nodes[i].cluster_id) ? "rgba(200,35,27,.45)" : "rgba(20,20,20,.18)"}" stroke-width="${(0.6 + (w / maxw) * 3.4).toFixed(2)}"/>`).join("")}
+${nodes.map((n) => { const r = 5 + Math.sqrt(n.stories || 1) * 2.6; return `<g class="node" data-id="${esc(n.id)}" data-s="${num(n.stories)}" transform="translate(${n.x.toFixed(1)},${n.y.toFixed(1)})"><circle r="${r.toFixed(1)}" fill="${col(n)}"${n.documented ? ` stroke="var(--airmail)" stroke-width="3"` : ` stroke="var(--stock)" stroke-width="1.5"`}/>${lab.has(n.id) ? `<text x="${(r + 4).toFixed(1)}" y="4">${esc(short(n.id, 26))}</text>` : ""}</g>`; }).join("")}</svg>`;
+    host_.innerHTML = `<div class="label-head"><span>Co-copy network · ${plural(nodes.length, "site")} · ${plural(E.length, "link")}</span><span class="code">computed ${esc(stamp(g.computed_at))}</span></div><div class="netbox">${svg}<div class="tip" hidden></div></div>
+<div class="legend"><span><i style="background:var(--cancel)"></i>In a coordinated group</span><span><i style="background:var(--ink)"></i>Other group</span><span><i style="background:var(--muted-stamp)"></i>Copied, not grouped</span><span><i style="background:var(--stock);border:3px solid var(--airmail)"></i>Documented in published research</span><span>Line thickness: stories copied within 60 minutes of each other. Dot size: stories copied.</span></div>`;
+    const tip = $(".tip", host_), box = $(".netbox", host_);
+    box.addEventListener("mousemove", (e) => {
+      const n = e.target.closest(".node"); if (!n) { tip.hidden = true; return; }
+      const r = box.getBoundingClientRect(); tip.hidden = false; tip.textContent = `${n.dataset.id} · ${n.dataset.s} stories`;
+      tip.style.left = e.clientX - r.left + "px"; tip.style.top = e.clientY - r.top + "px";
+    });
+    box.addEventListener("mouseleave", () => { tip.hidden = true; });
+  }
+
   /* =============== LANDING =============== */
   async function landing() {
     let countries = [];
@@ -168,6 +281,7 @@
       rack.outerHTML = `<p class="intro">The country list could not load. Reload the page in a moment.</p>`;
     }
     picker($("#any"), ready);
+    counters(); liveWire(null); watchForm("FI");
 
     // specimen slip
     const slip = $("#slip");
@@ -294,7 +408,7 @@ ${(c.reasons || []).length ? `<ul class="reasons">${c.reasons.map((r) => `<li>${
 
     const out = [];
     out.push(`<section class="block"><div class="wrap"><h2>Who is influencing ${esc(name)}</h2><p class="intro">Sites that copied the same ${esc(name)} stories within an hour of each other, again and again. Nobody is on a list in advance; known networks are only named when published research documents them.</p>
-${clusters.length ? `<div class="clusters">${clusters.map(cluster).join("")}</div>` : `<div class="label notice" style="margin-top:28px"><strong>No coordinated group found</strong>Copies of ${esc(name)}’s top stories exist, but no set of sites copied three or more of the same stories within 60 minutes of each other.</div>`}</div></section>`);
+${clusters.length ? `<div class="clusters">${clusters.map(cluster).join("")}</div>` : `<div class="label notice" style="margin-top:28px"><strong>No coordinated group found</strong>Copies of ${esc(name)}’s top stories exist, but no set of sites copied three or more of the same stories within 60 minutes of each other.</div>`}<div class="net" id="net"></div></div></section>`);
     if (narratives.length) out.push(`<section class="block"><div class="wrap"><h2>What they want</h2><p class="intro">The lines these groups push about ${esc(name)}, how often, and since when. Labels are only shown when two independent AI model families agree on them.</p><div class="narr">${narratives.map((n) => narrative(n, clusters)).join("")}</div></div></section>`);
 
     let stories = [];
@@ -307,7 +421,13 @@ ${clusters.length ? `<div class="clusters">${clusters.map(cluster).join("")}</di
     const pick = list(d.pickup || d.social_pickup, "items");
     if (pick.length) out.push(`<section class="block"><div class="wrap"><h2>Where it travels next</h2><p class="intro">The same stories picked up on TikTok, Instagram, YouTube and Reddit. X is not covered.</p><div class="pickup">${pick.map((p) => `<a href="${esc(p.url)}" target="_blank" rel="noopener"><span class="pf">${esc(p.platform)}</span><span class="tt">${esc(p.title || host(p.url))}</span><span class="mono">${esc(stamp(p.published_at))}${p.views != null ? ` · ${num(p.views)} views` : ""}</span></a>`).join("")}</div></div></section>`);
 
+    out.push(`<section class="block"><div class="wrap"><h2>Live for ${esc(name)}</h2><p class="intro">Pages of every group above stay under watch. New copies arrive here without a rebuild.</p><div class="wire label" style="margin-top:24px"><div class="label-head"><span class="livedot" aria-hidden="true"></span><span>Live wire · ${esc(name)}</span><span class="code" id="wiremeta">connecting</span></div><ol class="events" id="events"></ol></div>
+<div class="apigrid" style="margin-top:24px"><form class="label watch" id="watch"><div class="label-head"><span>Alert me about ${esc(name)}</span><span class="code">POST /api/watch</span></div><div class="wbody"><label for="wcc">Country</label><select id="wcc" required></select><label for="wurl">Your webhook (https)</label><input id="wurl" type="url" required placeholder="https://newsroom.example/hooks/signal-fire" pattern="https://.+"><button class="btn" type="submit">Start alerts</button><p class="wmsg" id="wmsg" role="status"></p></div></form>
+<div class="label code-card"><div class="label-head"><span>Same data as JSON</span><span class="code">GET</span></div><pre><code>curl ${esc(location.origin)}/api/countries/${esc(cc)}
+curl ${esc(location.origin)}/api/countries/${esc(cc)}/graph
+curl ${esc(location.origin)}/api/live?country=${esc(cc)}</code></pre></div></div></div></section>`);
     $("#body").innerHTML = out.join("");
+    network(cc, clusters); liveWire(cc); watchForm(cc);
     document.querySelectorAll("tr[data-href]").forEach((tr) => tr.addEventListener("click", (e) => { if (!e.target.closest("a")) location.href = tr.dataset.href; }));
     if (location.hash) { const el = document.getElementById(location.hash.slice(1)); if (el) el.scrollIntoView(); }
   }

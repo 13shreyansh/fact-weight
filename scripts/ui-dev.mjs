@@ -8,9 +8,13 @@ http.createServer(async (req, res) => {
   const u = new URL(req.url, "http://x"); const p = u.pathname;
   const json = (o, s = 200) => { res.writeHead(s, { "Content-Type": "application/json" }); res.end(JSON.stringify(o)); };
   const fix = async (n) => JSON.parse(await fs.readFile(path.join(fx, n), "utf8"));
+  let m;
   try {
     if (p === "/api/countries") return json(await fix("countries.json"));
-    let m;
+    if (p === "/api/stats") return json(await fix("stats.json"));
+    if (p === "/api/live") return json(await fix("live.json"));
+    if (p === "/api/watch" && req.method === "POST") return json({ id: "w" + Date.now() });
+    if ((m = p.match(/^\/api\/countries\/([A-Z]{2})\/graph$/))) { try { return json(await fix(`graph-${m[1]}.json`)); } catch { return json({ error: "No graph" }, 404); } }
     if ((m = p.match(/^\/api\/countries\/([A-Z]{2})\/build$/)) && req.method === "POST") { const id = "b" + Date.now(); builds.set(id, Date.now()); return json({ id }); }
     if ((m = p.match(/^\/api\/countries\/([A-Z]{2})$/))) { try { return json(await fix(`country-${m[1]}.json`)); } catch { return json({ code: m[1], status: "not_built" }); } }
     if (p === "/api/stories") { try { return json(await fix(`stories-${u.searchParams.get("country")}.json`)); } catch { return json([]); } }
