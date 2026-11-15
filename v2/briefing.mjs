@@ -58,8 +58,8 @@ const SYSTEM = `You write a short, factual intelligence briefing for a general r
 {"summary": string (3-4 plain sentences: what is being pushed at the country this week, by which group of sites (name documented networks), and what the pushed stories emphasise; if no coordinated groups, say so plainly),
  "pushes": [{"story_id": string (from evidence.pushed),
    "headline": string,
-   "confirmed": [{"text": string (a fact the mainstream headlines/outlets in the evidence report, max 25 words), "source_urls": [string] (urls from that story's mainstream list)}] (2-4),
-   "claims": [string] (2-5 claims the copies added or emphasised, taken from added_by_copies or copy headlines; each max 25 words, phrased as a checkable statement),
+   "confirmed": [{"text": string (a substantive fact the mainstream headlines report, max 25 words; not a statement about who reported it), "source_urls": [string] (urls from that story's mainstream list)}] (1-4),
+   "claims": [string] (2-4 substantive claims the copies added or emphasised, taken from added_by_copies or copy headlines; each max 25 words, phrased as a checkable statement about events; never a claim about which outlet reported something),
    "want": string (one line: what the pushing sites emphasise about the country)}] (max 3, in the order given in evidence.pushed)}
 If evidence is thin, say so in the summary.`;
 
@@ -90,6 +90,12 @@ async function checkClaim(claim, story, excludeSites) {
   const evidence = (v?.evidence || [])
     .map((e) => ({ ...docs.find((d) => d.i === e.i), quote: norm(e.quote) }))
     .filter((e) => e.url && e.quote && e.text.includes(e.quote))
+    // The quote must be about the claim: at least two of the claim's content words appear in it.
+    .filter((e) => {
+      const words = [...new Set(claim.toLowerCase().match(/[\p{L}\p{N}]{5,}/gu) || [])];
+      const q = e.quote.toLowerCase();
+      return words.filter((w) => q.includes(w)).length >= Math.min(2, words.length);
+    })
     .map(({ outlet, url, quote }) => ({ outlet, url, quote }));
   // Without a verbatim quote, a reported/contradicted decision is not shown as such.
   return { text: claim, status: evidence.length ? status : "only_copies", evidence, checked_by: "Exa search + gpt-4.1, quotes verified verbatim" };
