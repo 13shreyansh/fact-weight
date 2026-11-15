@@ -636,6 +636,9 @@ export async function buildCountry(cc, build) {
           verdict = "Looks organic";
           const agencies = [...new Set(wireCredits.map((n) => n.page.wire))].slice(0, 3).join(", ");
           reasons.push(`${Math.round(wireShare * 100)}% of the copies credit a news agency (${agencies}); licensed wire copy explains identical text`);
+        } else if (w.domain_ages.median_age_days !== null && w.domain_ages.median_age_days >= 15 * 365 && !w.domain_ages.domains.some((d) => d.age_days !== null && d.age_days < 3 * 365) && w.domain_ages.domains.filter((d) => d.age_days !== null).length >= Math.ceil(g.sites.length / 2)) {
+          verdict = "Looks organic";
+          reasons.push(`Long-established outlets (median domain age ${Math.round(w.domain_ages.median_age_days / 365)} years, none newer than 3 years); a shared news agency feed or common ownership is the likely explanation`);
         } else if (g.sites.length >= T.strong.sites && g.stories.length >= T.strong.stories && medGap !== null && medGap <= T.strong.medianGapMin) verdict = "Looks coordinated: strong";
         else verdict = "Looks coordinated: moderate";
         if (w.domain_ages.registered_last_year) reasons.push(`${w.domain_ages.registered_last_year} of ${w.domain_ages.domains.length} domains were registered in the last 12 months`);
