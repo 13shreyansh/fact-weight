@@ -41,7 +41,10 @@ function observe(page) {
   page.on("console", (m) => {
     if (m.type() === "error") errors.push(m.text());
   });
-  page.on("dialog", (d) => d.accept());
+  page.on("dialog", (d) => {
+    errors.push("Unexpected browser dialog: " + d.type());
+    d.accept();
+  });
 }
 async function ready(page, selector) {
   try {
@@ -102,6 +105,28 @@ try {
     await ready(page, "#burst");
     await shot(page, "04-push-top-" + suffix);
     await page.locator("#plot-larger").click();
+    await page.waitForTimeout(900);
+    const squares = await page.locator("#burst").evaluate((c) => {
+      const bytes = c
+        .getContext("2d")
+        .getImageData(0, 0, c.width, c.height).data;
+      let pixels = 0;
+      for (let i = 0; i < bytes.length; i += 4)
+        if (
+          bytes[i] === 232 &&
+          bytes[i + 1] === 89 &&
+          bytes[i + 2] === 12 &&
+          bytes[i + 3] === 255
+        )
+          pixels++;
+      return pixels / 16;
+    });
+    assert.equal(
+      squares * Number(await page.locator("#burst").getAttribute("data-unit")),
+      push.posts.length,
+      "Each ember square represents real posts",
+    );
+    checks.push("Whole-push square count " + width);
     await shot(page, "00-video-opening-" + suffix, "#timeline");
     await page.locator('[data-zoom="10min"]').click();
     await page.waitForTimeout(750);
@@ -128,7 +153,15 @@ try {
           ),
       ),
     ];
-    for (let bin of occupied.slice(0, 5)) {
+    const binsToCheck = [
+      ...new Set(
+        [...occupied.slice(0, 3), 3, 17, 29, 47, 61].map((i) =>
+          Math.min(columns - 1, i),
+        ),
+      ),
+    ].slice(0, 5);
+    assert.equal(binsToCheck.length, 5);
+    for (let bin of binsToCheck) {
       await canvas.click({
         position: { x: bin * 5 + 2, y: Math.min(70, box.height / 2) },
       });
@@ -151,6 +184,9 @@ try {
       );
     }
     checks.push("Exact bin membership " + width);
+    await canvas.click({ position: { x: occupied[0] * 5 + 2, y: 70 } });
+    await page.locator("#plot-larger").click();
+    await page.waitForTimeout(900);
     await shot(page, "05-push-peak-" + suffix, "#timeline");
     assert.ok(page.url().includes("slice="));
     const savedURL = page.url();
@@ -404,6 +440,14 @@ try {
     });
   if (privateId && ownerContext)
     await ownerContext.request.delete(base + "/api/watch/" + privateId);
+  else if (ownerContext) {
+    const fallback = await (
+      await ownerContext.request.get(base + "/api/state")
+    ).json();
+    for (const w of fallback.watches || [])
+      if (!w.public && w.name === "E2E test watch — delete after acceptance")
+        await ownerContext.request.delete(base + "/api/watch/" + w.id);
+  }
   await fs.writeFile(
     root + "/acceptance-report.json",
     JSON.stringify(

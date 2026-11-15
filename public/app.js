@@ -670,7 +670,16 @@ function drawPlot(canvas, p, options = {}) {
       min = peak;
       max = min + 600000;
     } else if (opts.zoom === "hour") {
-      min = peak - 25 * 60000;
+      const ordered = [...times].sort((a, b) => a - b);
+      let count = 0;
+      min = first;
+      for (let left = 0, right = 0; right < ordered.length; right++) {
+        while (ordered[right] - ordered[left] > 3600000) left++;
+        if (right - left + 1 > count) {
+          count = right - left + 1;
+          min = ordered[left];
+        }
+      }
       max = min + 3600000;
     } else {
       min = first - 2 * 3600000;
