@@ -25,6 +25,7 @@ import {
   pushes,
   metrics,
   finalize,
+  restoreWording,
 } from "./store.mjs";
 import { config } from "./detect.mjs";
 import { pdf, zip } from "./export.mjs";
@@ -40,6 +41,7 @@ import {
   monitorMetrics,
 } from "./monitors.mjs";
 collapseDuplicates(defaultId);
+restoreWording();
 const startedAt = new Date().toISOString(),
   commit = process.env.SIGNAL_COMMIT || "local";
 for (const c of all("assessed")) if (!get("push", c.id)) finalize(c);

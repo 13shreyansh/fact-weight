@@ -448,7 +448,7 @@ function wording(p) {
               `<div class="technique-block"><h3 class="technique-title">${esc(t.name)}</h3><p>${esc(t.explanation)}</p>${quote(
                 p.posts.find((x) => x.text.includes(t.phrase)),
                 { phrase: t.phrase },
-              )}</div>`,
+              )}<p class="small secondary">in ${p.posts.filter((x) => x.text.includes(t.phrase)).length} of ${p.posts.length} posts</p></div>`,
           )
           .join("")
       : '<p class="no-data">No wording technique was established from exact phrases in these posts.</p>') +

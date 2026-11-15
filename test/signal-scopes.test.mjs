@@ -38,3 +38,23 @@ test("private collection is isolated, shared evidence survives deletion, and lat
   assert.equal(get("post", "late"), null);
   assert.equal(safeWatch({ id: "private", owner: "secret" }).owner, undefined);
 });
+test("wording from the Router reading survives a later evidence-only answer", async () => {
+  const { wordingFor } = await import("../signal/store.mjs");
+  let c = {
+    posts: [{ text: "Where the foot of a soldier is set, it is ours." }],
+    judgement: { data: { techniques: [] } },
+    reading: {
+      data: {
+        techniques: [
+          {
+            name: "Loaded language",
+            phrase: "Where the foot of a soldier is set, it is ours.",
+          },
+          { name: "Fear appeal", phrase: "absent phrase" },
+        ],
+      },
+    },
+  };
+  assert.equal(wordingFor(c).length, 1);
+  assert.equal(wordingFor(c)[0].name, "Loaded language");
+});

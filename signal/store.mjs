@@ -141,6 +141,29 @@ export function metrics(w = defaultId) {
   };
 }
 const candidateText = (c) => c.posts.map((p) => p.text.slice(0, 400)).join(" ");
+export function wordingFor(c) {
+  const labels = c.judgement?.data?.techniques?.length
+    ? c.judgement.data.techniques
+    : (c.reading?.data?.techniques || []).slice(0, 1);
+  return labels
+    .filter(
+      (t) =>
+        techniqueName(t.name) &&
+        typeof t.phrase === "string" &&
+        t.phrase.length >= 8 &&
+        c.posts.some((p) => p.text.includes(t.phrase)),
+    )
+    .map((t) => ({ ...t, name: techniqueName(t.name) }));
+}
+export function restoreWording() {
+  for (const p of all("push").filter(
+    (p) => !p.excluded && !p.techniques?.length,
+  )) {
+    const techniques = wordingFor(p);
+    if (techniques.length)
+      put("push", p.id, { ...p, techniques, techniqueSource: p.reading });
+  }
+}
 export function finalize(c, watchId = defaultId) {
   if (
     watchId !== defaultId &&
@@ -226,13 +249,8 @@ export function finalize(c, watchId = defaultId) {
     title,
     claim: j.data.claim,
     evidence: sources,
-    techniques: (j.data.techniques || [])
-      .filter(
-        (t) =>
-          techniqueName(t.name) &&
-          c.posts.some((p) => p.text.includes(t.phrase)),
-      )
-      .map((t) => ({ ...t, name: techniqueName(t.name) })),
+    techniques: wordingFor(c),
+    techniqueSource: j.data.techniques?.length ? j : c.reading || j,
     innocentExplanations: j.data.innocentExplanations || [],
     firstSeen: c.start,
     lastSeen: c.end,
