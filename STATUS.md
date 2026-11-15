@@ -93,3 +93,17 @@ Problems / not done: Context.dev monitors + webhook events, /api/watch, embeddin
 - Queue now UA RU IL IR MD GE FI US PS RS AM AZ BY VE, then the rest.
 - Slip: a local syntax check started the scheduler on the Mac for ~1 min; it created 4 Context.dev monitors and started a build locally. I stopped it and deleted those 4 monitors (they were mine, created seconds before). Nothing live depends on the Mac.
 - Spend (VPS, measured 05:25): Context.dev 5,406 / 15,000, Exa $14.07 / $60, Router 46 / 800.
+
+### ENGINE V2 per-country results (06:05 Helsinki, deployed e48247e; measured on the live API)
+| Country | Stories | Copies | Coordinated groups | Top coordinated story |
+|---|---|---|---|---|
+| UA | 40 | 375 | 1 moderate (blinknews.org, ukraine.appsfornexus.com, ukrinform.net) | General Staff loss tallies (10 copies) |
+| RU | 40 | 333 | 2 moderate, one matches the CheckFirst Pravda list ("Pravda network (Portal Kombat), 5 sites": news-pravda.com, spanish.news-pravda.com, pravda-news.xyz, en.topwar.ru, telegra.ph) | "Russia lifts unofficial ban on targeting Zelenskyy…" (6 copies, 3 countries) |
+| IL | 40 | 455 | 1 moderate (aggregators) | Netanyahu / Eisenkot unity government (15 copies) |
+| IR | 40 | 456 | 4 (1 strong: eghtesaad24.ir, fararu.com, iscanews.ir, rouzegar.com, saat24.news, …; median site gap 6 min) | "Iran shot down 260 US aircraft…" (21 copies, strong) |
+| FI | 40 | 268 | 0 (agency/established-outlet copying, shown as organic with reasons) | — |
+| US | 40 | 439 | 0 (AP syndication) | — |
+The Pravda match is an outcome label: the cluster was discovered by copying behaviour, then matched to the published CheckFirst domain list.
+Verifier: v1 verifier default switched from claude-fable-5.2 to claude-opus-5.5 (Router); the frozen v1 benchmark numbers (7/32 caught, 0/32 false flags) were measured with the Fable verifier. Engine v2 uses no Fable model (gemini-3.5-flash(-lite), gpt-4.1-mini, claude-haiku-4.5, text-embedding-3-small). Tests: 57 pass, 1 skipped (retired v1 watch), 0 fail.
+Live: 40 Context.dev monitors, 80 signed hook events in 24 h. Spend (VPS): Context.dev 6,954 / 15,000; Exa $22.09 / $60; Router 66 credits (328 calls) / 800.
+Screens: artifacts/screens-final/ (home, UA, RU, IL, IR, story RU Pravda, story IR strong; 1440 and 390; no console errors, no overflow, no internal values).
