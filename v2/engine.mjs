@@ -362,21 +362,36 @@ async function documentedLists() {
   put("meta", "documented_lists", { fetched_at: new Date().toISOString(), lists: lists.map((l) => ({ name: l.name, by: l.by, domains: l.domains.size })) });
   return documented;
 }
+let bootstrap = null;
+async function rdapBase(tld) {
+  if (!bootstrap) {
+    try {
+      const d = await (await fetch("https://data.iana.org/rdap/dns.json", { signal: AbortSignal.timeout(15000) })).json();
+      bootstrap = new Map(d.services.flatMap(([tlds, urls]) => tlds.map((t) => [t, urls.find((u) => u.startsWith("https")) || urls[0]])));
+    } catch {
+      return null;
+    }
+  }
+  return bootstrap.get(tld) || null;
+}
 async function rdap(domain) {
   const cached = get("rdap", domain);
-  if (cached) return cached;
+  if (cached && (cached.registered_at || cached.reason === "The registry does not publish a creation date")) return cached;
   let out = { domain, registered_at: null, registrar: null, reason: null };
-  try {
-    const r = await fetch("https://rdap.org/domain/" + domain, { signal: AbortSignal.timeout(15000), redirect: "follow" });
-    if (r.ok) {
-      const d = await r.json();
-      out.registered_at = iso(d.events?.find((e) => e.eventAction === "registration")?.eventDate);
-      out.registrar = d.entities?.find((e) => e.roles?.includes("registrar"))?.vcardArray?.[1]?.find((v) => v[0] === "fn")?.[3] || null;
-      if (!out.registered_at) out.reason = "The registry does not publish a creation date";
-    } else out.reason = r.status === 404 ? "The registry has no public RDAP record for this domain" : "RDAP lookup failed";
-  } catch {
-    out.reason = "RDAP lookup timed out";
-  }
+  const base = await rdapBase(domain.split(".").at(-1));
+  if (!base) out.reason = "This domain's registry does not offer a public RDAP service";
+  else
+    try {
+      const r = await fetch(base.replace(/\/?$/, "/") + "domain/" + domain, { signal: AbortSignal.timeout(15000), headers: { Accept: "application/rdap+json", "User-Agent": "signal-fire-engine/2" } });
+      if (r.ok) {
+        const d = await r.json();
+        out.registered_at = iso(d.events?.find((e) => e.eventAction === "registration")?.eventDate);
+        out.registrar = d.entities?.find((e) => e.roles?.includes("registrar"))?.vcardArray?.[1]?.find((v) => v[0] === "fn")?.[3] || null;
+        if (!out.registered_at) out.reason = "The registry does not publish a creation date";
+      } else out.reason = r.status === 404 ? "The registry has no public record for this domain" : `The registry refused the lookup (${r.status})`;
+    } catch {
+      out.reason = "Registry lookup timed out";
+    }
   put("rdap", domain, out);
   return out;
 }
