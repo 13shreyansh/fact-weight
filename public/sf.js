@@ -372,7 +372,7 @@ ${(c.reasons || []).length ? `<ul class="reasons">${c.reasons.map((r) => `<li>${
     const c = clusters.find((x) => x.id === n.cluster_id);
     const ex = (n.examples || []).map((e) => (typeof e === "string" ? { headline: e } : e));
     return `<div class="nrow"><div><h3>${esc(n.label)}</h3><p class="sub">${plural(n.articles, "article")}${c ? ` from <a href="#${esc(c.id)}">${esc(c.label)}</a>` : ""}${n.first_seen ? ` · first seen ${esc(dmy(n.first_seen))}` : ""}</p></div>
-<div>${trend(n.trend_30d)}</div>
+<div>${trend(n.trend_30d)}${n.timeline_store?`<p class="sub">${esc(n.timeline_store)} · ${n.timeline_cached?"cached source counts":n.timeline_scope==="linked_examples"?"linked examples by publication day":"source counts by publication day"}</p>`:""}${n.models?.verda?`<p class="sub">Summary checked with NVIDIA Nemotron on Verda</p>`:""}</div>
 <div><span class="k">Examples</span><ul class="ex">${ex.slice(0, 3).map((e) => `<li>${e.url ? `<a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.headline || e.title || host(e.url))}</a>` : esc(e.headline || e.title)}</li>`).join("") || `<li class="none">No examples stored</li>`}</ul></div></div>`;
   }
   function storyRows(stories) {

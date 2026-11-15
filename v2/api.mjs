@@ -1,5 +1,7 @@
 // Engine v2 HTTP API. Returns true when it handled the request.
 import crypto from "node:crypto";
+import {readTimelines,tigerConfigured} from "./tiger.mjs";
+import {NEMOTRON_MODEL} from "./nemotron.mjs";
 import { db, get, all, put, spendSummary, CAPS, spent } from "./db.mjs";
 import { country as countryInfo, PRECOMPUTED } from "./countries.mjs";
 import { T, saveBuild, loadBuild } from "./engine.mjs";
@@ -81,12 +83,15 @@ function clusterOut(c) {
     shared_infra_detail: evidenceInfra(c.shared_infra).kept,
   };
 }
-function countryOut(cc) {
+async function countryOut(cc) {
   const info = countryInfo(cc);
   const r = get("country", cc);
   const st = statusOf(cc);
   if (!r) return { code: cc, name: info?.name, status: st.status, build_id: st.build_id, built_at: null, computed_at: now() };
   const stories = (r.story_ids || []).map((id) => get("story", id)).filter(Boolean);
+  let timelines=null;
+  if(tigerConfigured())try{timelines=await readTimelines(cc,r.narratives.map(n=>n.id));}catch{}
+
   return {
     ...r,
     status: st.status,
@@ -96,7 +101,7 @@ function countryOut(cc) {
     copies_found: stories.reduce((n, s) => n + s.copies.length, 0),
     clusters: [...r.clusters.filter((c) => c.verdict.startsWith("Looks coordinated")), ...r.clusters.filter((c) => !c.verdict.startsWith("Looks coordinated")).slice(0, 2)].map(clusterOut),
     clusters_total: r.clusters.length,
-    narratives: r.narratives.map((n) => ({ ...n, trend_30d: (n.trend_30d || []).map((d) => d.articles), trend_dates: (n.trend_30d || []).map((d) => d.date) })),
+    narratives: r.narratives.filter(n=>n.label).map((n) => {const stored=timelines?.get(n.id),fresh=!!stored?.length,buckets=fresh?stored:n.trend_30d||[];return {...n,trend_30d:buckets.map(d=>d.articles),trend_dates:buckets.map(d=>d.date),...(fresh?{timeline_store:'Tiger Data'}:{}),timeline_cached:!!n.timeline_store&&!fresh};}),
     pickup: r.pickup.map((p) => ({ ...p, title: p.title || p.text, views_reason: p.views == null ? "The platform page did not show a view count" : null })),
   };
 }
@@ -141,6 +146,7 @@ export function requestBuild(cc, source, ip) {
 
 export async function handleV2(req, res, url) {
   const p = url.pathname;
+  if(process.env.SIGNAL_STAGE_READONLY==='1'&&p.startsWith('/api/')&&!['GET','OPTIONS'].includes(req.method))return send(res,403,{error:'This review copy is read-only.'});
   if (req.method === "OPTIONS" && p.startsWith("/api/")) return send(res, 204, {});
   let hm = p.match(/^\/api\/hooks\/contextdev\/([a-f0-9]{32})$/);
   if (hm && req.method === "POST") {
@@ -183,7 +189,7 @@ export async function handleV2(req, res, url) {
   if (m && req.method === "GET") {
     const cc = m[1].toUpperCase();
     if (!countryInfo(cc)) return send(res, 404, { error: "That is not a country code we recognise." });
-    return send(res, 200, countryOut(cc));
+    return send(res, 200, await countryOut(cc));
   }
   m = p.match(/^\/api\/countries\/([A-Za-z]{2})\/build$/);
   if (m && req.method === "POST") {
@@ -284,6 +290,7 @@ export async function handleV2(req, res, url) {
     const spend = Object.fromEntries(spendSummary().map((r) => [{ context: "context_dev", router: "hostinger_router", exa: "exa" }[r.provider], { used: r.charged_or_reserved, measured: r.measured, calls: r.calls, cap: r.cap }]));
     return send(res, 200, {
       computed_at: now(),
+      sponsor_integrations:{nemotron:{configured:!!process.env.VERDA_INFERENCE_KEY,model:NEMOTRON_MODEL,last_success:get('meta','nemotron_last_success')},tiger_data:{configured:tigerConfigured(),last_success:get('meta','tiger_last_success')}},
       thresholds: { jaccard: T.copyThreshold, window_min: T.edgeMinutes, min_sites: T.clusterMinSites, min_stories: T.clusterMinStories, stories_per_country: T.maxStories, days: T.days, strong: T.strong, organic_min_outlets: T.organicMinOutlets },
       spend: Object.fromEntries(Object.entries(spend).map(([k, v]) => [k === "exa" ? "exa" : k, k === "exa" ? { ...v, unit: "USD" } : { ...v, unit: "credits" }])),
       counts: { countries_built: countries.length, stories_checked: countries.reduce((n, c) => n + c.stories_checked, 0), clusters: countries.reduce((n, c) => n + c.clusters.length, 0), builds },
@@ -310,7 +317,7 @@ export async function handleV2(req, res, url) {
       ],
       techniques_labelled: ["Added claim", "Added attribution", "Loaded language", "Fear appeal", "Added context", "Boilerplate"],
       earlier_benchmark: { source: "Signal Fire v1 frozen coordination replay (job 02), measured", held_out_caught: "7/32", held_out_false_flags: "0/32", note: "Measures v1 conditional verification of retrieved Pravda sets, not v2 discovery" },
-      models: { story_filter: "gemini-3.5-flash-lite", narrative_grouping: "gemini-3.5-flash", label_check: ["gpt-4.1-mini", "claude-haiku-4.5"], spin_labels: "gpt-4.1-mini" },
+      models: { story_filter: "gemini-3.5-flash-lite", narrative_grouping: "gemini-3.5-flash", label_check: ["gpt-4.1-mini", "claude-haiku-4.5",...(process.env.VERDA_INFERENCE_KEY?[NEMOTRON_MODEL]:[])], spin_labels: "gpt-4.1-mini" },
     });
   }
   return false;

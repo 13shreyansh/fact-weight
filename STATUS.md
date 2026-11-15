@@ -1,3 +1,9 @@
+Implement live Nemotron 3.5 Super VL verification on Verda and Tiger Data narrative timelines.
+Work in this isolated branch; preserve existing detection rules, sources and cached records.
+Acceptance requires a real provider call, persisted time buckets, regressions and deployed desktop/mobile flows.
+Do not touch Junction descriptions, portal records, other projects, or the CRACI workflow owned by root.
+Ship only after independent review and prove the deployed commit; keep credentials out of files and logs.
+
 Signal Fire finds coordinated public war narratives and exposes the evidence.
 The shipped watch follows the documented Pravda network aimed at the Baltics and Finland.
 Live collection uses Context.dev; shown narrative and claim judgements use Hostinger AI Router.

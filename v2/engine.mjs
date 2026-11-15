@@ -1,6 +1,8 @@
 // Engine v2: starts from no list of actors. Sites reveal themselves by publishing
 // near-identical text about a country's top stories within minutes of each other.
 import dns from "node:dns/promises";
+import {reviewNarratives,labelAgreement,NEMOTRON_MODEL} from "./nemotron.mjs";
+import {saveMentions,readTimelines,tigerConfigured} from "./tiger.mjs";
 import { call, llm, pool, put, get, all, hash, setContext, db, CapReached, addEvent, embed, cosine } from "./db.mjs";
 import { country as countryInfo } from "./countries.mjs";
 import { CDN_ORG, tokens, shingles, jaccard, containment, windowJaccard, headlineSim, cleanTitle, mainText, sentences, site, registrable, median } from "./text.mjs";
@@ -579,21 +581,25 @@ async function narratives(cl, titles, cc) {
   const checkSys = `You check labels. For each proposed narrative, answer whether the label is a fair, neutral summary of what the listed headlines say. Return JSON {"verdicts":[{"index":int,"agree":boolean}]}.`;
   const payload = { narratives: props.map((n, index) => ({ index, label: n.label, headlines: n.items.map((i) => list[i]?.title).filter(Boolean) })) };
   const [a, b] = await Promise.all([llm("gpt-4.1-mini", checkSys, payload, 400), llm("claude-haiku-4.5", checkSys, payload, 400)]);
-  const ok = (v, i) => !!v?.verdicts?.find((x) => x.index === i)?.agree;
+  const ok = (v, i) => v?.verdicts?.find((x) => x.index === i)?.agree === true;
+  const nemotron = await reviewNarratives(payload).catch(() => null);
+  const requiresNemotron = !!process.env.VERDA_INFERENCE_KEY;
   return props.map((n, i) => {
     const items = n.items.map((k) => titles[k]).filter(Boolean);
-    const agreed = ok(a, i) && ok(b, i);
+    const agreed = labelAgreement([ok(a,i),ok(b,i)],nemotron,i,requiresNemotron);
     return {
       id: hash(cl.id + n.label).slice(0, 10),
       label: agreed ? n.label : null,
-      label_reason: agreed ? null : "The two checking models (OpenAI and Anthropic families) did not both accept the proposed label",
+      label_reason: agreed ? null : requiresNemotron && !nemotron ? "The additional evidence check is unavailable; the proposed label is withheld" : "The checking models did not all accept the proposed label",
       proposed_label: n.label,
-      models: { grouped_by: "gemini-3.5-flash", checked_by: ["gpt-4.1-mini", "claude-haiku-4.5"], agree: [ok(a, i), ok(b, i)] },
+      models: { grouped_by: "gemini-3.5-flash", checked_by: ["gpt-4.1-mini", "claude-haiku-4.5",...(requiresNemotron?[NEMOTRON_MODEL]:[])], agree: [ok(a, i), ok(b, i),...(requiresNemotron?[nemotron?.verdicts?.find(v=>v.index===i)?.agree===true]:[])], ...(nemotron?{verda:{model:nemotron.model,at:nemotron.at,ms:nemotron.ms,cached:nemotron.cached}}:{}) },
       cluster_id: cl.id,
       articles: items.length,
       first_seen: items.map((x) => x.t).filter(Boolean).sort()[0] || null,
       examples: items.slice(0, 5).map((x) => ({ url: x.url, site: x.site, headline: x.headline, published_at: x.t })),
       urls: items.map((x) => x.url),
+      timeline_mentions: items.map(x=>({url:x.url,site:x.site,published_at:x.t})),
+      source_urls: items.map(x=>x.url),
     };
   });
 }
@@ -859,7 +865,15 @@ export async function buildCountry(cc, build) {
         n.trend_note = "Counts copies observed by this engine; days before the first build are unobserved, not zero";
         n.computed_at = computed_at();
       }
-      s.note = `${narr.length} narratives proposed, ${narr.filter((n) => n.label).length} accepted by both checking models`;
+      if (tigerConfigured()) {
+        try {
+          const persisted=await saveMentions(c.code,narr);
+          const timelines=await readTimelines(c.code,narr.map(n=>n.id));
+          for(const n of narr){n.trend_30d=timelines.get(n.id)||[];n.timeline_store='Tiger Data';n.timeline_scope='retrieved_matches';n.trend_note='Retrieved source pages grouped by publication day in Tiger Data. Missing days mean no copies retrieved, not no publishing.';}
+          put('meta','tiger_last_success',{at:computed_at(),country:c.code,inserted:persisted.inserted});
+        } catch { for(const n of narr)n.timeline_note='The stored timeline is shown while the timeline service reconnects.'; }
+      }
+      s.note = `${narr.length} narratives proposed, ${narr.filter((n) => n.label).length} accepted by the configured checking models`;
     });
     const spins = new Map();
     await step(build, "Spin: what copies add", async (s) => {
@@ -951,7 +965,7 @@ export async function buildCountry(cc, build) {
       articles_indexed: indexed,
       story_ids: stories.map((s) => s.id),
       clusters: clusters.map(({ _nodes, ...x }) => x),
-      narratives: narr.map(({ urls, ...n }) => n),
+      narratives: narr.map(({ urls, timeline_mentions, ...n }) => n),
       organic_examples: organic.slice(0, 6),
       pickup: pick,
       coverage_note: stories.reduce((n, st) => n + st.pages.length, 0) < 5 ? "Not enough data: phrase search returned very few candidate pages for this country" : null,
