@@ -300,6 +300,22 @@ try {
         base + "/api/state?watch=" + privateId,
       );
       assert.equal(denied.status(), 404);
+      for (let attempt = 0; attempt < 90; attempt++) {
+        const current = await (
+          await context.request.get(base + "/api/state?watch=" + privateId)
+        ).json();
+        if (current.metrics.lastSweep?.finishedAt) {
+          assert.ok(
+            current.metrics.lastSweep.read >= 1,
+            "New watch must actually read a source",
+          );
+          checks.push("New watch completed a real first sweep");
+          break;
+        }
+        if (attempt === 89)
+          throw Error("First private-watch sweep did not finish");
+        await page.waitForTimeout(2000);
+      }
       let del = await context.request.delete(base + "/api/watch/" + privateId);
       assert.ok(del.ok());
       privateId = null;

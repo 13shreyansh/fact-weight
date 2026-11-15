@@ -823,7 +823,9 @@ function drawPlot(canvas, p, options = {}) {
         );
       for (const dot of points) {
         const from = previous.get(dot.id) || dot;
-        ctx.fillStyle = p.verdict === "organic" ? "#7C8993" : "#E8590C";
+        ctx.fillStyle = ["strong", "moderate"].includes(p.verdict)
+          ? "#E8590C"
+          : "#7C8993";
         if (dot.inPush)
           ctx.fillRect(
             from.x + (dot.x - from.x) * ease,

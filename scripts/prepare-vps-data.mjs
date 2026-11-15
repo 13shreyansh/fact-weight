@@ -1,10 +1,25 @@
 import fs from "node:fs";
-import { db, get, all } from "../signal/providers.mjs";
+import { db, get, put, all } from "../signal/providers.mjs";
+import { storeArticle } from "../signal/news-pages.mjs";
+import { instant } from "../signal/dates.mjs";
 import { finalize } from "../signal/store.mjs";
 import { ensurePack } from "../signal/packs.mjs";
 const ids = ["a6b0d22b1d61", "aa9426e2b5e6", "nab032987aff", "a97b30b3019f"];
 for (const id of ids) {
   const c = get("assessed", id);
+  c.posts = c.posts.map((p) => {
+    const d = get("reference", p.url);
+    return d?.html?.data && p.url.includes("news-pravda.com")
+      ? { ...p, ...storeArticle(d, p.url) }
+      : p;
+  });
+  for (const source of c.sources || []) {
+    if (source.publishedAt) {
+      source.rawPublishedAt = source.rawPublishedAt || source.publishedAt;
+      source.publishedAt = instant(source.publishedAt);
+    }
+  }
+  put("assessed", id, c);
   for (const p of c.posts) {
     if (new URL(p.url).hostname === "telegra.ph") {
       p.platform = "WB";

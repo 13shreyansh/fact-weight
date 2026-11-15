@@ -98,7 +98,11 @@ export async function pdf(p) {
       bins.forEach((n, i) => {
         for (let j = 0; j < n; j += unit)
           doc
-            .fillColor(p.verdict === "organic" ? "#7C8993" : "#E8590C")
+            .fillColor(
+              ["strong", "moderate"].includes(p.verdict)
+                ? "#E8590C"
+                : "#7C8993",
+            )
             .rect(48 + i * 5, y - Math.floor(j / unit) * 5, 4, 4)
             .fill();
       });
