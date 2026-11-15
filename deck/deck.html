@@ -1,0 +1,155 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Signal Fire</title>
+<style>
+@font-face{font-family:"Barlow Condensed";font-weight:700;src:url(../public/fonts/barlow-condensed-latin-700-normal.woff2)}
+@font-face{font-family:"Barlow Condensed";font-weight:800;src:url(../public/fonts/barlow-condensed-latin-800-normal.woff2)}
+@font-face{font-family:"Barlow";font-weight:400;src:url(../public/fonts/barlow-latin-400-normal.woff2)}
+@font-face{font-family:"Barlow";font-weight:600;src:url(../public/fonts/barlow-latin-600-normal.woff2)}
+@font-face{font-family:"JetBrains Mono";src:url(../public/fonts/jetbrains-mono-latin-wght-normal.woff2)}
+:root{--y:#ffcc00;--ink:#141414;--g:#e9eae6;--blue:#1d47b0;--red:#c8231b;--green:#0b6e3f;--muted:#62625c}
+@page{size:1920px 1080px;margin:0}
+*{box-sizing:border-box;margin:0}
+body{font-family:Barlow,sans-serif;color:var(--ink);background:#fff}
+.s{width:1920px;height:1080px;position:relative;overflow:hidden;page-break-after:always;padding:96px 120px;background:var(--g)}
+.s.y{background:var(--y)}.s.k{background:var(--ink);color:#fff}
+.kick{font-family:"JetBrains Mono";font-size:22px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.y .kick{color:#3b2f00}.k .kick{color:var(--y)}
+h1,h2{font-family:"Barlow Condensed";font-weight:800;text-transform:uppercase;line-height:.9;letter-spacing:-.01em}
+h1{font-size:150px;margin-top:28px}h2{font-size:92px;margin:22px 0 36px}
+h1 em{font-style:normal;background:linear-gradient(transparent 19%,var(--ink) 19%,var(--ink) 90%,transparent 90%);color:var(--y);padding:0 .1em}
+p.lead{font-size:38px;line-height:1.3;max-width:1300px}
+.foot{position:absolute;left:120px;right:120px;bottom:56px;display:flex;justify-content:space-between;font-family:"JetBrains Mono";font-size:20px;color:var(--muted)}
+.k .foot{color:#aaa}
+.stamp{display:inline-block;font-family:"Barlow Condensed";font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:34px;border:5px solid currentColor;padding:6px 18px;transform:rotate(-2deg)}
+.red{color:var(--red)}.blue{color:var(--blue)}.green{color:var(--green)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.shot{width:100%;border:4px solid var(--ink);display:block;background:#fff}
+.nums{display:grid;grid-template-columns:repeat(4,1fr);border:4px solid var(--ink);background:#fff;margin-top:24px}
+.nums div{padding:34px 30px;border-right:4px solid var(--ink)}.nums div:last-child{border:0}
+.nums b{display:block;font-family:"Barlow Condensed";font-weight:800;font-size:92px;line-height:.9}
+.nums span{font-size:24px;letter-spacing:.08em;text-transform:uppercase}
+ol.line{list-style:none;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:0;border:4px solid var(--ink);background:#fff}
+ol.line li{padding:28px 24px;border-right:4px solid var(--ink);min-height:420px}ol.line li:last-child{border:0}
+ol.line b{display:block;font-family:"Barlow Condensed";font-weight:800;font-size:48px;text-transform:uppercase;margin:10px 0 14px}
+ol.line i{font-style:normal;font-family:"JetBrains Mono";font-size:20px;color:var(--red)}
+ol.line p{font-size:24px;line-height:1.35}
+ul.b{font-size:34px;line-height:1.35;padding-left:1.1em}ul.b li{margin-bottom:18px}
+.card{background:#fff;border:4px solid var(--ink);padding:36px 40px}
+.card h3{font-family:"Barlow Condensed";font-weight:800;font-size:46px;text-transform:uppercase;margin:16px 0 10px}
+.card p{font-size:28px;line-height:1.35}
+code{font-family:"JetBrains Mono";font-size:24px}
+</style></head><body>
+
+<section class="s y">
+ <div class="kick">Junction 2026 · Hostinger: Decode the Noise · Context.dev: The Web Is Your Real-Time Database</div>
+ <h1>Signal Fire</h1>
+ <h2 style="font-size:120px;margin-top:40px">Know who is influencing your country, <em>and what they want.</em></h2>
+ <div class="foot"><span>signal-fire.72.61.22.106.sslip.io</span><span>github.com/13shreyansh/signal-fire</span></div>
+</section>
+
+<section class="s">
+ <div class="kick">The problem</div>
+ <h2>The same story, dozens of sites, minutes apart</h2>
+ <div class="cols">
+  <ul class="b">
+   <li>Influence networks don't write news. They copy it, add a few sentences, and republish it on dozens of sites in many languages within minutes.</li>
+   <li>Readers, editors and fact-checkers see one article at a time, so the pattern stays invisible.</li>
+   <li>Today that tracing is done by hand, one site and one story at a time.</li>
+  </ul>
+  <div class="card"><span class="stamp red">The tell</span><h3>Copying gives them away</h3><p>Real outlets report in their own words, on their own schedule. A push is many near-identical pages stamped on the same few minutes. Signal Fire looks for exactly that shape.</p></div>
+ </div>
+ <div class="foot"><span>Signal Fire</span><span>02</span></div>
+</section>
+
+<section class="s">
+ <div class="kick">What you see</div>
+ <h2>Pick a country. See what's being pushed at it.</h2>
+ <div class="cols" style="grid-template-columns:1.25fr 1fr">
+  <img class="shot" src="../artifacts/screens-final/country-IR-desktop.png" alt="Iran country page">
+  <ul class="b">
+   <li><b>Being pushed now:</b> the coordinated stories, in plain words.</li>
+   <li><b>What the copies added:</b> real news on the left, the inserted sentences on the right.</li>
+   <li><b>Who is behind it:</b> the network, its hosting and tracking IDs.</li>
+   <li>Everything else is pushed down.</li>
+  </ul>
+ </div>
+ <div class="foot"><span>Live country page · Iran</span><span>03</span></div>
+</section>
+
+<section class="s">
+ <div class="kick">How it works · no list of suspects</div>
+ <h2>A sorting office for the open web</h2>
+ <ol class="line">
+  <li><i>01</i><b>Collect</b><p>Each country's news in its own languages, from the Context.dev news index and Exa.</p></li>
+  <li><i>02</i><b>Match</b><p>Every candidate copy is scraped at full text and checked twice: exact wording, then meaning.</p></li>
+  <li><i>03</i><b>Graph</b><p>Sites that publish the same text within the hour are linked. Louvain clustering finds the networks.</p></li>
+  <li><i>04</i><b>Attribute</b><p>Domain age, shared IPs and hosting, analytics IDs, cited Telegram channels.</p></li>
+  <li><i>05</i><b>Interpret</b><p>Narratives are shown only when two model families (OpenAI and Anthropic, via the Hostinger AI Router) agree.</p></li>
+  <li><i>06</i><b>Watch</b><p>Context.dev monitors re-check the web and send signed webhooks to a live wire.</p></li>
+ </ol>
+ <div class="foot"><span>Method is public at /method, with live numbers</span><span>04</span></div>
+</section>
+
+<section class="s y">
+ <div class="kick">Found on its own</div>
+ <h2>Russia: five sites, two minutes apart</h2>
+ <div class="cols" style="grid-template-columns:1.25fr 1fr">
+  <img class="shot" src="../artifacts/screens-final/story-RU-pravda-desktop.png" alt="Story X-ray">
+  <div>
+   <p class="lead" style="font-size:34px">With no list of suspects, the engine linked five sites posting the same text about two minutes apart. Only afterwards did it check them against published research: they are the Pravda network (Portal Kombat).</p>
+   <p style="margin-top:30px"><span class="stamp red">Looks coordinated</span></p>
+  </div>
+ </div>
+ <div class="foot"><span>Story X-ray · live</span><span>05</span></div>
+</section>
+
+<section class="s">
+ <div class="kick">Results, measured live · 15 Nov 2026, 06:35 Helsinki</div>
+ <h2>Real networks, real copies</h2>
+ <div class="nums">
+  <div><b>19</b><span>countries built</span></div>
+  <div><b>4,407</b><span>confirmed copies</span></div>
+  <div><b>1,729</b><span>sites</span></div>
+  <div><b>27</b><span>coordinated groups</span></div>
+ </div>
+ <ul class="b" style="margin-top:44px">
+  <li><b>Finland:</b> a 7-site Pravda group pushing 15 stories, a median of 2 minutes apart, on shared hosting. <span class="red">Strong.</span></li>
+  <li><b>Iran:</b> Iranian outlets posting within 6 minutes; "Iran shot down 260 US aircraft" reached 21 copies. <span class="red">Strong.</span></li>
+  <li><b>It doesn't cry wolf:</b> news-agency copying (AP, STT) is marked <span class="green">organic</span>, with the reason.</li>
+ </ul>
+ <div class="foot"><span>Numbers change as the engine runs; /api/stats is the live source</span><span>06</span></div>
+</section>
+
+<section class="s k">
+ <div class="kick">Real time on Context.dev</div>
+ <h2>The web as a live database</h2>
+ <div class="cols">
+  <ul class="b">
+   <li>40 Context.dev monitors re-check country news and each network's sites.</li>
+   <li>Every change arrives as a signed webhook. It's verified, run through the same copy test, and posted to the live wire.</li>
+   <li>Social pickup through Context.dev parsers: TikTok, Instagram, YouTube and Reddit.</li>
+   <li>Any country can be built on demand.</li>
+  </ul>
+  <div class="card" style="color:var(--ink)"><h3>Newsroom alerts</h3><p>One call subscribes a newsroom to a country:</p><p style="margin-top:18px"><code>POST /api/watch {"country":"FI","webhook_url":"https://…"}</code></p><p style="margin-top:18px">It gets one POST for each new push.</p></div>
+ </div>
+ <div class="foot"><span>Signal Fire</span><span>07</span></div>
+</section>
+
+<section class="s y">
+ <div class="kick">Honest by design · built on Hostinger</div>
+ <h2>Evidence, not verdicts of truth</h2>
+ <div class="cols">
+  <div>
+   <p style="margin-bottom:20px"><span class="stamp red">Looks coordinated</span></p>
+   <p style="margin-bottom:20px"><span class="stamp green">Looks organic</span></p>
+   <p><span class="stamp" style="color:#6c6c66">Not enough data</span></p>
+   <p class="lead" style="margin-top:36px;font-size:32px">Those are the only three verdicts. We never call anything fake, and every claim links to its source pages and match scores.</p>
+  </div>
+  <ul class="b" style="font-size:32px">
+   <li>The app, scheduler, monitors and webhook receiver run in one container on a Hostinger VPS.</li>
+   <li>Narratives use the Hostinger AI Router.</li>
+   <li>Next: more countries and languages, YouTube transcripts, and newsroom pilots.</li>
+  </ul>
+ </div>
+ <div class="foot"><span>signal-fire.72.61.22.106.sslip.io</span><span>08</span></div>
+</section>
+</body></html>
