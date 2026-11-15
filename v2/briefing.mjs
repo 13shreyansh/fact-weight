@@ -15,7 +15,7 @@ function evidence(cc) {
   const stories = r.story_ids.map((id) => get("story", id)).filter(Boolean);
   const pushed = stories
     .filter((s) => coordIds.has(s.id))
-    .sort((a, b) => (b.copies.some((c) => c.documented_network) - a.copies.some((c) => c.documented_network)) || b.copies.length - a.copies.length)
+    .sort((a, b) => (b.copies.some((c) => c.documented_network) - a.copies.some((c) => c.documented_network)) || (!!b.watched - !!a.watched) || b.copies.length - a.copies.length)
     .slice(0, 6);
   const watched = stories.filter((s) => s.watched && !coordIds.has(s.id)).slice(0, 4);
   const pick = (s) => ({
