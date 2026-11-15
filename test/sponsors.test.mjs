@@ -16,6 +16,19 @@ test('real adapter parses a provider reply, caches exact input and records model
  const first=await reviewNarratives(payload,{token:'isolated-test',fetch:fake});const second=await reviewNarratives(payload,{token:'isolated-test',fetch:fake});
  assert.equal(calls,1);assert.equal(first.cached,false);assert.equal(second.cached,true);assert.equal(first.provider,'Verda');assert.equal(labelAgreement([true,true],first,0,true),true);
 });
+test('an unreadable provider reply retries once with a larger budget and records both attempts',async()=>{
+ const {db}=await import('../v2/db.mjs');let calls=0;
+ const result=await reviewNarratives({narratives:[{label:'Retry regression',headlines:['Council moves a meeting']}]},{token:'isolated-test',fresh:true,fetch:async(url,request)=>{
+  calls++;assert.equal(JSON.parse(request.body).max_tokens,calls===1?600:1600);
+  return Response.json({choices:[{finish_reason:calls===1?'length':'stop',message:{content:calls===1?'{"verdicts":[':'{"verdicts":[{"index":0,"agree":true}]}'}}],usage:{prompt_tokens:40,completion_tokens:calls===1?600:80}});
+ }});
+ assert.equal(calls,2);assert.equal(result.attempts,2);assert.deepEqual(result.usage,{prompt_tokens:80,completion_tokens:680});
+ const attempts=db.prepare("SELECT status,response FROM calls WHERE provider='verda' ORDER BY rowid DESC LIMIT 2").all();
+ assert.equal(attempts[0].status,200);assert.equal(attempts[1].status,-2);assert.equal(JSON.parse(attempts[1].response).finish_reason,'length');assert.equal(JSON.parse(attempts[1].response).usage.completion_tokens,600);
+});
+test('repeated malformed replies never approve or cache a partial verdict',async()=>{
+ let calls=0;await assert.rejects(reviewNarratives({narratives:[{label:'Always broken regression',headlines:[]}]},{token:'isolated-test',fresh:true,fetch:async()=>{calls++;return Response.json({choices:[{finish_reason:'stop',message:{content:'{"verdicts":[]}'}}]});}}),/incomplete/);assert.equal(calls,2);
+});
 test('timeline ingest rejects missing timestamps and deduplicates source pages',()=>{
  const e={url:'https://news.example/story',site:'news.example',published_at:'2026-11-15T01:00:00Z'};
  assert.equal(mentionRows('FI',[{id:'n1',examples:[e,e,{...e,published_at:null},{...e,url:'javascript:alert(1)'}]}]).length,1);
