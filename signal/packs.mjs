@@ -4,7 +4,7 @@ import { get, put, hash, db } from "./providers.mjs";
 import { pdf } from "./export.mjs";
 export function packKey(input, review) {
   const { pack, pipeline, ready, firstAlertAt, ...content } = input;
-  return hash({ rendererVersion: "sf-pack-v3", ...content, review });
+  return hash({ rendererVersion: "sf-pack-v4", ...content, review });
 }
 export async function ensurePack(input) {
   const review = get("review", input.id),

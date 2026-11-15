@@ -86,25 +86,39 @@ export async function pdf(p) {
       last = Math.max(...times);
     const chart = (label, min, max) => {
       text(label);
-      const bins = Array(90).fill(0);
-      times
-        .filter((t) => t >= min && t <= max)
-        .forEach(
-          (t) =>
-            bins[Math.min(89, Math.floor(((t - min) / (max - min)) * 90))]++,
-        );
-      const unit = Math.max(1, Math.ceil(Math.max(...bins) / 24));
+      const bins = Array.from({ length: 90 }, () => ({ push: 0, other: 0 }));
+      for (const [list, key] of [
+        [p.posts, "push"],
+        [p.backgroundPosts || [], "other"],
+      ])
+        for (const post of list) {
+          const t = Date.parse(post.postedAt);
+          if (t >= min && t <= max)
+            bins[Math.min(89, Math.floor(((t - min) / (max - min)) * 90))][
+              key
+            ]++;
+        }
+      const unit = Math.max(
+        1,
+        Math.ceil(Math.max(...bins.map((b) => b.push + b.other)) / 24),
+      );
       const y = doc.y + 125;
-      bins.forEach((n, i) => {
-        for (let j = 0; j < n; j += unit)
+      bins.forEach((b, i) => {
+        let row = 0;
+        for (let n = 0; n < b.push; n += unit)
           doc
             .fillColor(
               ["strong", "moderate"].includes(p.verdict)
                 ? "#E8590C"
                 : "#7C8993",
             )
-            .rect(48 + i * 5, y - Math.floor(j / unit) * 5, 4, 4)
+            .rect(48 + i * 5, y - row++ * 5, 4, 4)
             .fill();
+        for (let n = 0; n < b.other; n += unit)
+          doc
+            .strokeColor("#7C8993")
+            .rect(48 + i * 5, y - row++ * 5, 4, 4)
+            .stroke();
       });
       doc
         .strokeColor("#D5DBDF")
@@ -126,7 +140,7 @@ export async function pdf(p) {
       doc.y = y + 35;
       doc.fillColor("#111B21");
       text(
-        `One square = ${unit} ${unit === 1 ? "post" : "posts"}. Vilnius time.`,
+        `One square = ${unit} ${unit === 1 ? "post" : "posts"}. Filled: this push. Outlined: other posts on these keywords. Vilnius time.`,
       );
     };
     chart(
