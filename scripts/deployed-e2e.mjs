@@ -44,7 +44,17 @@ function observe(page) {
   page.on("dialog", (d) => d.accept());
 }
 async function ready(page, selector) {
-  await page.locator(selector).first().waitFor();
+  try {
+    await page.locator(selector).first().waitFor();
+  } catch (error) {
+    console.log(
+      "FAILED SCREEN",
+      page.url(),
+      (await page.locator("body").innerText()).slice(0, 1500),
+    );
+    await page.screenshot({ path: root + "/failure.png", fullPage: true });
+    throw error;
+  }
   await page.evaluate(() => document.fonts.ready);
 }
 async function shot(page, name, selector) {

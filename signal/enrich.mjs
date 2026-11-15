@@ -1,3 +1,4 @@
+import { instant } from "./dates.mjs";
 import { verifyEvidence } from "./verify.mjs";
 import { judge, search, scrape, put, hash, all, db } from "./providers.mjs";
 import { embedPosts, similarity } from "./embeddings.mjs";
@@ -124,7 +125,8 @@ export async function enrich(candidate, watch) {
                 text: plainText(s.markdown.data).slice(0, 24000),
                 markdown: s.markdown.data.slice(0, 28000),
                 call: s._call,
-                publishedAt: s.metadata?.publishedTime,
+                publishedAt: instant(s.metadata?.publishedTime),
+                rawPublishedAt: s.metadata?.publishedTime || null,
               });
               check.calls.push(s._call);
             }
@@ -159,7 +161,7 @@ export async function enrich(candidate, watch) {
               text: r.title + " " + d.markdown.data.slice(0, 250),
               title: r.title,
               url: r.url,
-              recordedAt: d.metadata?.publishedTime || null,
+              recordedAt: instant(d.metadata?.publishedTime),
               call: d._call,
             });
         } catch {}

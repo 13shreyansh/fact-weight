@@ -1,0 +1,11 @@
+{
+  "at": "2026-11-15T00:24:00.861Z",
+  "counts": {
+    "dev-cases": 16,
+    "dev-controls": 16,
+    "heldout-cases": 32,
+    "heldout-controls": 31
+  },
+  "canonicalURLoverlap": [],
+  "nearDuplicateNetworkStories": []
+}

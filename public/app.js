@@ -68,24 +68,30 @@ const duration = (ms) =>
           Math.round((ms % 60000) / 1000) +
           " s";
 const fmt = (n) => Number(n).toLocaleString("en-GB");
+const epoch = (s) =>
+  Date.parse(
+    typeof s === "string"
+      ? s.replace(/EEST$/, "+03:00").replace(/EET$/, "+02:00")
+      : s,
+  );
 const date = (s, time = false) =>
-  s
+  s && Number.isFinite(epoch(s))
     ? new Intl.DateTimeFormat("en-GB", {
         day: "numeric",
         month: "short",
         year: "numeric",
         ...(time ? { hour: "2-digit", minute: "2-digit" } : {}),
         timeZone: "Europe/Vilnius",
-      }).format(new Date(s))
+      }).format(new Date(epoch(s)))
     : "could not be measured";
 const clock = (s) =>
-  s
+  s && Number.isFinite(epoch(s))
     ? new Intl.DateTimeFormat("en-GB", {
         hour: "2-digit",
         minute: "2-digit",
         second: "2-digit",
         timeZone: "Europe/Vilnius",
-      }).format(new Date(s))
+      }).format(new Date(epoch(s)))
     : "";
 const relative = (s) => {
   if (!s) return "not yet completed";

@@ -1,3 +1,4 @@
+import { instant } from "./dates.mjs";
 import { scrape, put, hash, get } from "./providers.mjs";
 import { load } from "cheerio";
 export function storeArticle(d, url, persist = true) {
@@ -14,7 +15,7 @@ export function storeArticle(d, url, persist = true) {
       .filter(Boolean)
       .flatMap((x) => x["@graph"] || [x]),
     ld = json.find((x) => x.datePublished),
-    postedAt = ld?.datePublished || d.metadata?.publishedTime,
+    postedAt = instant(ld?.datePublished || d.metadata?.publishedTime),
     body = $("[itemprop=articleBody], .article__text").first().clone(),
     text = body.length
       ? (body.find("p,div,br,li").after("\n"), body.text().trim())
