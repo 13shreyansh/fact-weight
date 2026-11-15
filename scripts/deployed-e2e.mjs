@@ -84,6 +84,35 @@ async function shot(page, name, selector) {
   );
   let path = root + "/" + name + ".png";
   await page.screenshot({ path, fullPage: false });
+  const receipt = await page.evaluate(() => ({
+    asOf: state.metrics.asOf,
+    watch: { id: state.watch.id, name: state.watch.name },
+    metrics: state.metrics,
+    pushes: state.pushes.map((p) => ({
+      id: p.id,
+      posts: p.posts.length,
+      accounts: p.accounts.length,
+      verdict: p.verdict,
+    })),
+    currentPush: push
+      ? {
+          id: push.id,
+          posts: push.posts.length,
+          accounts: push.accounts.length,
+          signals: push.signals,
+        }
+      : null,
+    benchmark: state.benchmark.coordination
+      ? {
+          both: state.benchmark.coordination.both,
+          strong: state.benchmark.coordination.strong,
+        }
+      : null,
+  }));
+  await fs.writeFile(
+    root + "/" + name + ".data.json",
+    JSON.stringify(receipt, null, 2),
+  );
   await fs.copyFile(path, "screenshots/signalfire/" + name + ".png");
   shots.push({
     name,
@@ -284,9 +313,31 @@ try {
     await page.goto(base + "/method");
     await ready(page, "#running");
     await shot(page, "20-method-replay-" + suffix, "#replay");
+    const frozen = JSON.parse(
+      await fs.readFile(
+        "artifacts/benchmark/heldout-coordination-results.json",
+        "utf8",
+      ),
+    );
     await page.locator('[data-count="strong"]').click();
     assert.ok(page.url().includes("count=strong"));
+    assert.deepEqual(
+      await page.locator(".confusion tbody td").allTextContents(),
+      [
+        frozen.strong.tp,
+        frozen.strong.fn,
+        frozen.strong.fp,
+        frozen.strong.tn,
+      ].map(String),
+    );
     await page.locator('[data-count="both"]').click();
+    assert.deepEqual(
+      await page.locator(".confusion tbody td").allTextContents(),
+      [frozen.both.tp, frozen.both.fn, frozen.both.fp, frozen.both.tn].map(
+        String,
+      ),
+    );
+    checks.push("Frozen benchmark cells match both settings " + width);
     await shot(page, "21-method-lead-" + suffix, "#lead");
     await shot(page, "22-method-wrong-" + suffix, "#wrong");
     await shot(page, "27-method-speed-" + suffix, "#speed");
