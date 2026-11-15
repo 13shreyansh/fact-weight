@@ -28,6 +28,15 @@ function statusOf(cc) {
   return { status: r ? "built" : "not_built", build_id: b?.id || null };
 }
 import { registrable } from "./text.mjs";
+const GENERIC_CC = new Set(["co", "io", "tv", "me", "ai", "ly", "fm", "cc", "ws", "to", "eu", "gg", "is", "la", "nu", "ac", "app"]);
+export function reach(st) {
+  const set = new Set(st.countries_reached || []);
+  for (const c of st.copies || []) {
+    const t = String(c.site || "").split(".").at(-1);
+    if (t.length === 2 && !GENERIC_CC.has(t)) set.add(t.toUpperCase() === "UK" ? "GB" : t.toUpperCase());
+  }
+  return [...set].sort();
+}
 export function clusterName(c) {
   const doc = c.documented_by?.[0]?.network;
   const reg = new Map();
@@ -160,7 +169,8 @@ export async function handleV2(req, res, url) {
         outlet: s.mainstream[0]?.outlet || null,
         published_at: s.first_mainstream_at,
         copies: s.copies.length,
-        countries_reached: s.countries_reached,
+        countries_reached: reach(s).length,
+        countries_reached_list: reach(s),
         verdict: s.verdict,
         cluster_id: s.copies.find((c) => c.cluster_id)?.cluster_id || null,
         computed_at: s.computed_at,
@@ -171,7 +181,7 @@ export async function handleV2(req, res, url) {
   if (m && req.method === "GET") {
     const s = get("story", m[1]);
     if (!s) return send(res, 404, { error: "That story could not be found." });
-    return send(res, 200, { ...s, back_country: s.country });
+    return send(res, 200, { ...s, countries_reached: reach(s).length, countries_reached_list: reach(s), countries_note: "Countries are the engine's own country reads plus the national domain (.fi, .se, …) of copying sites; .com sites are not assigned a country", back_country: s.country });
   }
   m = p.match(/^\/api\/countries\/([A-Za-z]{2})\/graph$/);
   if (m && req.method === "GET") {
