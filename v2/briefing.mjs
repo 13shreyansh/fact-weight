@@ -118,7 +118,9 @@ export async function briefCountry(cc) {
     const claims = [];
     for (const cl of (p.claims || []).slice(0, 4)) claims.push(await checkClaim(cl, s, copySites));
     const cluster = r.clusters.find((c) => c.story_ids.includes(s.id) && c.verdict.startsWith("Looks coordinated"));
-    const times = s.copies.map((c) => c.published_at).filter(Boolean).sort();
+    // Spread time is measured on the coordinated group's own copies (first to 80% of them).
+    const groupCopies = cluster ? s.copies.filter((c) => cluster.sites.includes(c.site)) : s.copies;
+    const times = (groupCopies.length >= 2 ? groupCopies : s.copies).map((c) => c.published_at).filter(Boolean).sort();
     pushes.push({
       story_id: s.id,
       headline: p.headline || s.title,
@@ -127,6 +129,7 @@ export async function briefCountry(cc) {
       claims,
       spread: {
         sites: copySites.length,
+        group_sites: cluster ? groupCopies.map((c) => c.site).filter((x, i, a) => a.indexOf(x) === i).length : null,
         countries: reach(s).length,
         first_copy_at: isoOk(times[0]),
         minutes_to_spread: times.length > 1 ? Math.round((Date.parse(times[Math.min(times.length - 1, Math.floor(times.length * 0.8))]) - Date.parse(times[0])) / 60000) : null,
