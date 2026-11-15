@@ -106,7 +106,7 @@ export async function briefCountry(cc) {
   const ev = evidence(cc);
   if (!ev) return null;
   const r = get("country", cc);
-  const draft = await llm("claude-opus-5.5", SYSTEM, ev, 3000);
+  const draft = await llm("claude-opus-5.5", SYSTEM, ev, 8000);
   if (!draft?.summary) return null;
   const pushes = [];
   for (const p of (draft.pushes || []).slice(0, 3)) {
@@ -161,13 +161,14 @@ export async function briefCountry(cc) {
 "pushed": what the copying sites want readers to believe, in plain words.
 "why": why it spreads, as the mechanism with numbers from the evidence (e.g. "7 linked sites reposted it within 2 minutes in 5 languages, plus 3 Telegram channels").
 "who": who is behind it (network name and documented-by, or the group of sites), plus one fingerprint that is not CDN hosting.
-Also "country_line": at most 2 short sentences for the whole country: what is being pushed and by whom. Return JSON {"country_line":string,"items":[{"story_id":string,"wrong":string,"pushed":string,"why":string,"who":string}]}.`,
-      { pushes: pushes.map((p) => ({ story_id: p.story_id, headline: p.headline, claims: p.claims.map((c) => ({ text: c.text, status: c.status, evidence: c.evidence.map((e) => e.outlet + ": " + e.quote) })), spread: p.spread, behind: p.behind, want: p.want })) },
-      1500,
+"true": the core fact that established outlets confirm, from "confirmed" or reported claims.
+Also "country_line": at most 2 short sentences for the whole country: what is being pushed and by whom. Return JSON {"country_line":string,"items":[{"story_id":string,"wrong":string,"pushed":string,"true":string,"why":string,"who":string}]}.`,
+      { pushes: pushes.map((p) => ({ story_id: p.story_id, headline: p.headline, confirmed: p.confirmed.map((c) => c.text), claims: p.claims.map((c) => ({ text: c.text, status: c.status, evidence: c.evidence.map((e) => e.outlet + ": " + e.quote) })), spread: p.spread, behind: p.behind, want: p.want })) },
+      6000,
     );
     for (const p of pushes) {
       const x = g?.items?.find((i) => i.story_id === p.story_id);
-      if (x) p.plain = { wrong: x.wrong, message: x.pushed, why: x.why, who: x.who };
+      if (x) p.plain = { wrong: x.wrong, message: x.pushed, true: x.true || p.confirmed[0]?.text || null, why: x.why, who: x.who };
     }
     if (g?.country_line) draft.country_line = g.country_line;
   }
