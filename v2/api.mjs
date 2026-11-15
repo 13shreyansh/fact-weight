@@ -27,11 +27,22 @@ function statusOf(cc) {
   if (b && (b.status === "queued" || b.status === "running")) return { status: r ? "refreshing" : "building", build_id: b.id };
   return { status: r ? "built" : "not_built", build_id: b?.id || null };
 }
+import { registrable } from "./text.mjs";
+export function clusterName(c) {
+  const doc = c.documented_by?.[0]?.network;
+  const reg = new Map();
+  for (const x of c.sites) reg.set(registrable(x), (reg.get(registrable(x)) || 0) + 1);
+  const [top, n] = [...reg].sort((a, b) => b[1] - a[1])[0] || [c.sites[0], 1];
+  if (doc) return `${doc}, ${c.site_count} sites`;
+  if (n >= 3) return `${top} network, ${c.site_count} sites`;
+  return `${c.sites[0]} and ${c.site_count - 1} other site${c.site_count === 2 ? "" : "s"}`;
+}
 function clusterOut(c) {
   const ages = c.domain_ages?.domains?.filter((d) => d.age_days !== null).map((d) => d.age_days) || [];
   return {
     ...c,
-    label: c.label || null,
+    label: clusterName(c),
+    narrative: c.label || null,
     documented_by: (c.documented_by || []).flatMap((d) => d.sources.map((s) => ({ name: `${d.network}: ${s.name}`, url: s.url, network: d.network, matched_sites: d.matched_sites }))),
     origins_top: (c.origins_top || []).map((o) => ({ name: o.origin, count: o.citations, url: o.url, type: o.type })),
     domain_ages: ages.length
@@ -53,7 +64,8 @@ function countryOut(cc) {
     build_id: st.status === "built" ? r.build_id : st.build_id,
     built_at: r.computed_at,
     copies_found: stories.reduce((n, s) => n + s.copies.length, 0),
-    clusters: r.clusters.map(clusterOut),
+    clusters: [...r.clusters.filter((c) => c.verdict.startsWith("Looks coordinated")), ...r.clusters.filter((c) => !c.verdict.startsWith("Looks coordinated")).slice(0, 2)].map(clusterOut),
+    clusters_total: r.clusters.length,
     narratives: r.narratives.map((n) => ({ ...n, trend_30d: (n.trend_30d || []).map((d) => d.articles), trend_dates: (n.trend_30d || []).map((d) => d.date) })),
     pickup: r.pickup.map((p) => ({ ...p, title: p.text, views: null, views_reason: "View counts are not read" })),
   };
@@ -71,7 +83,7 @@ function summary(cc) {
     built_at: r?.computed_at || null,
     stories_checked: r?.stories_checked ?? null,
     clusters: r ? coord.length : null,
-    top_actor: top ? top.documented_by?.[0]?.network || `${top.site_count} sites incl. ${top.sites.slice(0, 2).join(", ")}` : null,
+    top_actor: top ? clusterName(top) : null,
     top_narrative: r?.narratives?.find((n) => n.label)?.label || null,
     precomputed: PRECOMPUTED.includes(cc),
     computed_at: now(),
