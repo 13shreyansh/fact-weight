@@ -19,6 +19,10 @@ New static UI in `public/`: `index.html`, `country.html`, `story.html`, `method.
 - `GET /api/stories/<id>` -> {title,verdict,mainstream[{outlet,url,published_at,headline}],copies[{site,cluster_id,url,published_at,headline,lang,country}],first_mainstream_at,first_copy_at,lag_minutes,countries_reached,spin[{copy_url,added_phrases[],labels[]}],method_note,back_country?}
 - `POST /api/countries/<CC>/build` -> {id}; on cap return 429 with {error:"..."} (UI shows "budget used up, resumes tomorrow").
 - `GET /api/builds/<id>` -> {status: running|done|failed, message?, error?, steps[{name|label,status: waiting|running|done|failed,ms,calls:{exa:n,context_dev:n},detail?}]}
+- `GET /api/stats` -> {computed_at,stories_read,pages_fetched,copies_confirmed,sites_seen,groups,monitors_live,languages,last_event_at,...}
+- `GET /api/live?limit=20&country=` -> [{id,at,type: copy_detected|group_grew|build_done|new_story,country,site,url,headline,story_id,cluster_id,lag_min,source}]
+- `GET /api/countries/<CC>/graph` -> {computed_at,nodes:[{id,cluster_id,stories,lang,documented}],edges:[{a,b,w}]}
+- `POST /api/watch` {country,webhook_url} -> {id}
 - `GET /api/method` (optional) -> {computed_at,thresholds{jaccard,window_min,min_sites,min_stories},spend{exa:{used,cap},...},eval{...}}
 
 Verdict strings must be exactly: "Looks coordinated: strong", "Looks coordinated: moderate", "Looks organic", "Not enough data". All times ISO 8601 UTC.

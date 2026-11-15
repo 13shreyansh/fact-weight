@@ -17,15 +17,21 @@
 <aside class="slip" id="slip" aria-live="polite"><div class="label-head"><span>Copied story</span></div><div class="slip-body"><div class="skel" style="height:72px"></div><div class="skel" style="height:14px;width:50%;margin-top:12px"></div><div class="skel" style="height:120px;margin-top:16px"></div></div></aside>
 </div></section>
 
-<section class="section"><div class="wrap">
-<h2>The copying gives them away</h2>
-<p class="intro">Real outlets write their own words on their own schedule. Coordinated sites publish the same text within minutes, story after story. That rhythm is the evidence.</p>
-<ol class="route">
-<li><h3>Read the week’s top stories</h3><p>About 40 stories per country from the open web, in the country’s own languages and English.</p></li>
-<li><h3>Search for copies</h3><p>Distinctive sentences from each story are searched across the web. A copy must match at least 60% of the wording.</p></li>
-<li><h3>Group sites that copy together</h3><p>Sites that copy three or more of the same stories within 60 minutes of each other form a group.</p></li>
-<li><h3>Show who and what</h3><p>Domain ages, shared hosting and code, cited sources, and the lines they add that mainstream coverage does not have.</p></li>
+<section class="section machine" id="machine"><div class="wrap">
+<div class="mhead"><h2>A sorting office for the open web, running now</h2>
+<p class="intro">Real outlets write their own words on their own schedule. Coordinated sites publish the same text within minutes, story after story. Signal Fire watches for that rhythm around the clock, in every language, and shows its working.</p></div>
+<div class="counters" id="counters" aria-live="polite"></div>
+
+<ol class="line">
+<li data-stat="stories_read"><h3>Collect</h3><p>Each country’s most covered stories of the week, read in its own languages and English.</p><ul class="tech"><li>Exa neural search</li><li>Context.dev news search</li><li>Date-filtered, per language</li></ul></li>
+<li data-stat="copies_confirmed"><h3>Match</h3><p>Distinctive sentences are hunted across the web; every candidate page is fetched and compared.</p><ul class="tech"><li>Exact-phrase web search</li><li>Context.dev scrape</li><li>Shingle overlap ≥ 0.6</li><li>Embedding similarity check</li></ul></li>
+<li data-stat="groups"><h3>Graph</h3><p>Sites become linked each time they copy the same story within an hour. Communities in that graph are the groups.</p><ul class="tech"><li>Co-copy graph, 60 min window</li><li>Louvain communities</li><li>Threshold frozen on held-out countries</li></ul></li>
+<li data-stat="sites_seen"><h3>Attribute</h3><p>Who runs it: the infrastructure and sources a group shares, matched to published research only at the end.</p><ul class="tech"><li>RDAP domain age</li><li>IP and network (ASN)</li><li>Analytics and tag-manager IDs</li><li>Page-template fingerprint</li><li>Telegram origin tracing</li></ul></li>
+<li data-stat="languages"><h3>Interpret</h3><p>What they want: the lines they push, and the words a copy adds that mainstream coverage never had.</p><ul class="tech"><li>Spin diff vs closest mainstream</li><li>Two AI model families must agree</li><li>DISARM and EUvsDisinfo vocabulary</li></ul></li>
+<li data-stat="monitors_live"><h3>Watch</h3><p>Every group’s pages stay under watch, so new copies land here without a rebuild, and so do your alerts.</p><ul class="tech"><li>Context.dev monitors + webhooks</li><li>Re-read every 6 hours</li><li>TikTok, Instagram, YouTube, Reddit pickup</li><li>Alerts API for newsrooms</li></ul></li>
 </ol>
+
+<div class="wire label" id="wire"><div class="label-head"><span class="livedot" aria-hidden="true"></span><span>Live wire</span><span class="code" id="wiremeta">connecting</span></div><ol class="events" id="events"></ol></div>
 </div></section>
 
 <section class="section rack-wrap" id="countries"><div class="wrap">
@@ -34,6 +40,22 @@
 <div class="rack" id="rack"></div>
 <div class="anyc"><div class="pickbox" style="flex:1 1 360px;max-width:560px"><form id="any" class="field" role="search"><label class="sr" for="q2">Any other country</label><input id="q2" placeholder="Any other country" autocomplete="off" spellcheck="false"><button class="btn" type="submit">Read it</button></form></div><p>Not in the rack? Any country can be read live, from scratch, in about 5 to 10 minutes.</p></div>
 </div></section>
+
+<section class="section api"><div class="wrap">
+<h2>Plug it into your newsroom</h2>
+<p class="intro">Everything on this site is an open JSON API. Point a webhook at a country and Signal Fire posts each new copy to you the moment a monitor confirms it.</p>
+<div class="apigrid">
+<form class="label watch" id="watch"><div class="label-head"><span>Alert me</span><span class="code">POST /api/watch</span></div>
+<div class="wbody"><label for="wcc">Country</label><select id="wcc" required></select>
+<label for="wurl">Your webhook (https)</label><input id="wurl" type="url" required placeholder="https://newsroom.example/hooks/signal-fire" pattern="https://.+">
+<button class="btn" type="submit">Start alerts</button><p class="wmsg" id="wmsg" role="status"></p></div></form>
+<div class="label code-card"><div class="label-head"><span>Read it yourself</span><span class="code">GET</span></div>
+<pre><code>curl https://signal-fire.72.61.22.106.sslip.io/api/countries/FI
+curl https://signal-fire.72.61.22.106.sslip.io/api/stories/&lt;id&gt;
+curl https://signal-fire.72.61.22.106.sslip.io/api/live?country=FI
+curl https://signal-fire.72.61.22.106.sslip.io/api/countries/FI/graph</code></pre>
+<p class="cnote">Every number carries the time it was computed and where it came from.</p></div>
+</div></div></section>
 
 <section class="section"><div class="wrap">
 <h2>Three verdicts, no accusations</h2>
