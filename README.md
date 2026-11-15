@@ -16,7 +16,7 @@ The multilingual embedding model is `Xenova/paraphrase-multilingual-MiniLM-L12-v
 
 There are no constructed examples or seeded findings. Source snapshots, provider call provenance, account metadata, judgements, prompt versions and times are stored in SQLite. Dates and follower lists that are unavailable stay unknown. Publisher translations and ordinary syndication can look coordinated, so the page states innocent explanations and accepts a persistent reviewer dispute.
 
-The CIKM 2024 EUvsDisinfo base inventory contains 18,249 article records; the recorded Ukraine keyword filter selects 4,503. The content-screening experiment and any campaign replay are different measurements. See `STATUS.md`, `artifacts/benchmark/` and the Method page for actual results and unresolved limits. No early detection claim is made without both original-post and debunk timestamps.
+The CIKM 2024 EUvsDisinfo base inventory contains 18,249 article records; the recorded Ukraine keyword filter selects 4,503. The frozen candidate-set coordination replay caught 7 of 32 Pravda network sets, with 0 of 32 normal-reporting controls falsely flagged and 25 misses. This is conditional verification of retrieved publication sets, not end-to-end discovery; the small control sample cannot establish a general false-flag rate. Doppelganger and Operation Overload were documented but not replayed. The separate content-screening experiment falsely flagged 3 of 16 trustworthy held-out articles (18.75%). See `STATUS.md`, `artifacts/benchmark/` and the Method page for actual results and unresolved limits. No early detection claim is made without both original-post and debunk timestamps.
 
 ## Hostinger
 

@@ -1,0 +1,1017 @@
+{
+  "at": "2026-11-15T01:18:02.037Z",
+  "commit": "165a9ea0d278a9d279e41358a7c4283a27105286",
+  "metrics": {
+    "asOf": "2026-11-15T01:18:01.361Z",
+    "posts": 8505,
+    "accounts": 635,
+    "sources": 14,
+    "sweeps": 70,
+    "lastSweep": {
+      "id": "ae23180756e4",
+      "watchId": "baltics",
+      "startedAt": "2026-11-15T01:16:49.801Z",
+      "trigger": "Context.dev webhook",
+      "webhookIds": [
+        "evt_33867ea5574172528b6bc2d20c1cb14c",
+        "evt_8efa03e55c40c4d147cdacb8168f78be"
+      ],
+      "read": 2,
+      "errors": [],
+      "status": "complete",
+      "finishedAt": "2026-11-15T01:17:40.548Z"
+    },
+    "lastReadAt": "2026-11-15T01:17:40.548Z",
+    "sweeping": false,
+    "calls": [
+      {
+        "provider": "context",
+        "n": 1398
+      },
+      {
+        "provider": "router",
+        "n": 64
+      }
+    ],
+    "credits": [
+      {
+        "provider": "context",
+        "calls": 3190,
+        "measured": 3026,
+        "charged_or_reserved": 3256
+      },
+      {
+        "provider": "router",
+        "calls": 200,
+        "measured": 381.761352,
+        "charged_or_reserved": 521.761352
+      }
+    ],
+    "watches": 1,
+    "disputed": 0,
+    "coverage": [
+      {
+        "oldest": null,
+        "through": "2026-11-14",
+        "pages": 1,
+        "complete": false
+      },
+      {
+        "oldest": null,
+        "through": "2026-11-14",
+        "pages": 1,
+        "complete": false
+      },
+      {
+        "oldest": "2026-10-31T18:51:35+00:00",
+        "through": "2026-11-14",
+        "pages": 44,
+        "complete": true
+      },
+      {
+        "oldest": null,
+        "through": "2026-11-14",
+        "pages": 1,
+        "complete": false
+      },
+      {
+        "oldest": null,
+        "through": "2026-11-14",
+        "pages": 1,
+        "complete": false
+      },
+      {
+        "oldest": null,
+        "through": "2026-11-14",
+        "pages": 1,
+        "complete": false
+      },
+      {
+        "oldest": "2026-10-31T19:30:41+00:00",
+        "through": "2026-11-14",
+        "pages": 3,
+        "complete": true
+      },
+      {
+        "oldest": "2026-10-31T16:01:05+00:00",
+        "through": "2026-11-14",
+        "pages": 10,
+        "complete": true
+      },
+      {
+        "oldest": "2026-04-16T13:12:30+00:00",
+        "through": "2026-11-14",
+        "pages": 1,
+        "complete": true
+      },
+      {
+        "oldest": "2026-10-16T08:40:28+00:00",
+        "through": "2026-11-14",
+        "pages": 1,
+        "complete": true
+      },
+      {
+        "oldest": "2025-01-31T04:50:03+00:00",
+        "through": "2026-11-14",
+        "pages": 1,
+        "complete": true
+      },
+      {
+        "oldest": "2023-01-04T14:03:01+00:00",
+        "through": "2026-11-14",
+        "pages": 1,
+        "complete": true
+      },
+      {
+        "oldest": "2026-10-19T12:09:15+00:00",
+        "through": "2026-11-14",
+        "pages": 3,
+        "complete": true
+      },
+      {
+        "oldest": "2024-09-09T17:06:55+00:00",
+        "through": "2026-11-14",
+        "pages": 1,
+        "complete": true
+      },
+      {
+        "oldest": "2026-10-30T23:23:54+00:00",
+        "through": "2026-11-14",
+        "pages": 19,
+        "complete": true
+      },
+      {
+        "oldest": null,
+        "through": "2026-11-14",
+        "pages": 1,
+        "complete": false
+      },
+      {
+        "oldest": "2026-09-03T12:11:07+00:00",
+        "through": "2026-11-14",
+        "pages": 1,
+        "complete": true
+      },
+      {
+        "oldest": "2026-10-31T06:58:54+00:00",
+        "through": "2026-11-14",
+        "pages": 10,
+        "complete": true
+      },
+      {
+        "oldest": "2026-10-27T18:34:19+00:00",
+        "through": "2026-11-14",
+        "pages": 12,
+        "complete": true
+      },
+      {
+        "oldest": "2026-10-31T18:12:01+00:00",
+        "through": "2026-11-14",
+        "pages": 55,
+        "complete": true
+      },
+      {
+        "oldest": "2026-10-30T12:16:45+00:00",
+        "through": "2026-11-14",
+        "pages": 4,
+        "complete": true
+      },
+      {
+        "oldest": null,
+        "through": "2026-11-14",
+        "pages": 1,
+        "complete": false
+      },
+      {
+        "oldest": "2026-10-31T17:59:01+00:00",
+        "through": "2026-11-14",
+        "pages": 7,
+        "complete": true
+      },
+      {
+        "oldest": "2026-10-20T08:09:02+00:00",
+        "through": "2026-11-14",
+        "pages": 1,
+        "complete": true
+      },
+      {
+        "oldest": "2026-10-29T10:48:42+00:00",
+        "through": "2026-11-14",
+        "pages": 27,
+        "complete": true
+      },
+      {
+        "oldest": "2026-10-31T12:01:13+00:00",
+        "through": "2026-11-14",
+        "pages": 16,
+        "complete": true
+      },
+      {
+        "oldest": null,
+        "through": "2026-11-14",
+        "pages": 1,
+        "complete": false
+      },
+      {
+        "oldest": null,
+        "through": "2026-11-14",
+        "pages": 1,
+        "complete": false
+      },
+      {
+        "oldest": "2026-10-30T20:03:07+00:00",
+        "through": "2026-11-14",
+        "pages": 9,
+        "complete": true
+      },
+      {
+        "oldest": "2026-10-31T18:55:14+00:00",
+        "through": "2026-11-14",
+        "pages": 17,
+        "complete": true
+      },
+      {
+        "oldest": "2026-10-27T09:10:14+00:00",
+        "through": "2026-11-14",
+        "pages": 3,
+        "complete": true
+      },
+      {
+        "oldest": "2025-08-03T07:56:37+00:00",
+        "through": "2026-11-14",
+        "pages": 1,
+        "complete": true
+      },
+      {
+        "oldest": "2026-10-31T07:06:14+00:00",
+        "through": "2026-11-14",
+        "pages": 5,
+        "complete": true
+      },
+      {
+        "oldest": "2025-06-25T18:06:21+00:00",
+        "through": "2026-11-14",
+        "pages": 1,
+        "complete": true
+      },
+      {
+        "oldest": "2026-10-29T08:47:25+00:00",
+        "through": "2026-11-14",
+        "pages": 5,
+        "complete": true
+      },
+      {
+        "oldest": "2026-10-30T20:24:21+00:00",
+        "through": "2026-11-14",
+        "pages": 12,
+        "complete": true
+      },
+      {
+        "oldest": "2024-05-09T22:26:32+00:00",
+        "through": "2026-11-14",
+        "pages": 1,
+        "complete": true
+      },
+      {
+        "oldest": "2024-03-11T10:52:55+00:00",
+        "through": "2026-11-14",
+        "pages": 1,
+        "complete": true
+      },
+      {
+        "oldest": "2026-10-21T08:09:32+00:00",
+        "through": "2026-11-14",
+        "pages": 1,
+        "complete": true
+      },
+      {
+        "oldest": "2023-05-06T20:36:53+00:00",
+        "through": "2026-11-14",
+        "pages": 1,
+        "complete": true
+      },
+      {
+        "oldest": "2026-10-31T20:49:01+00:00",
+        "through": "2026-11-14",
+        "pages": 25,
+        "complete": true
+      },
+      {
+        "oldest": "2026-10-31T11:29:38+00:00",
+        "through": "2026-11-14",
+        "pages": 9,
+        "complete": true
+      },
+      {
+        "oldest": "2026-10-30T07:39:42+00:00",
+        "through": "2026-11-14",
+        "pages": 4,
+        "complete": true
+      },
+      {
+        "oldest": "2026-10-31T21:32:09+00:00",
+        "through": "2026-11-14",
+        "pages": 29,
+        "complete": true
+      }
+    ],
+    "embedding": {
+      "model": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+      "dimensions": 384,
+      "at": "2026-11-14T22:40:49.730Z",
+      "posts": 2181
+    },
+    "models": [
+      "gpt-4.1-mini",
+      "gpt-4.1",
+      "claude-fable-5.2"
+    ],
+    "monitors": {
+      "registered": 31,
+      "active": 31,
+      "events": 129,
+      "verifiedEvents": 129,
+      "changes": 43,
+      "processed": 43,
+      "kinds": [
+        "News pages",
+        "News search · lv",
+        "Trusted tracker pages",
+        "News search · ru",
+        "News search · lt",
+        "News search · uk",
+        "News search · fi",
+        "Telegram pages",
+        "News search · et",
+        "Documented look-alike domains",
+        "News search · en"
+      ],
+      "lastEvent": "2026-11-15T01:16:14.607Z",
+      "budget": {
+        "at": "2026-11-15T01:17:49.926Z",
+        "daily": 1457,
+        "used": 3256,
+        "paused": false
+      }
+    },
+    "speed": {
+      "sampleSize": 3,
+      "medianFirstPostToAlertMs": 22824287,
+      "slowestFirstPostToAlertMs": 37673215,
+      "perEndpoint": [
+        {
+          "endpoint": "/org/usage",
+          "calls": 1,
+          "medianMs": 311,
+          "slowestMs": 311
+        },
+        {
+          "endpoint": "/web/scrape",
+          "calls": 2391,
+          "medianMs": 1621,
+          "slowestMs": 89167
+        },
+        {
+          "endpoint": "/web/search",
+          "calls": 361,
+          "medianMs": 1087,
+          "slowestMs": 12442
+        },
+        {
+          "endpoint": "/news/search",
+          "calls": 28,
+          "medianMs": 602.5,
+          "slowestMs": 2464
+        },
+        {
+          "endpoint": "/monitors/limits",
+          "calls": 1,
+          "medianMs": 260,
+          "slowestMs": 260
+        },
+        {
+          "endpoint": "/monitors",
+          "calls": 81,
+          "medianMs": 577,
+          "slowestMs": 2340
+        },
+        {
+          "endpoint": "/monitors/run",
+          "calls": 128,
+          "medianMs": 1291.5,
+          "slowestMs": 22805
+        },
+        {
+          "endpoint": "/batch/submit",
+          "calls": 1,
+          "medianMs": 355,
+          "slowestMs": 355
+        },
+        {
+          "endpoint": "/batch/:id",
+          "calls": 32,
+          "medianMs": 184.5,
+          "slowestMs": 456
+        },
+        {
+          "endpoint": "/batch/:id/results",
+          "calls": 1,
+          "medianMs": 635,
+          "slowestMs": 635
+        },
+        {
+          "endpoint": "/monitors/:id/run",
+          "calls": 1,
+          "medianMs": 714,
+          "slowestMs": 714
+        },
+        {
+          "endpoint": "/web/urls",
+          "calls": 4,
+          "medianMs": 6914,
+          "slowestMs": 8103
+        },
+        {
+          "endpoint": "/monitors/:id",
+          "calls": 100,
+          "medianMs": 563,
+          "slowestMs": 28562
+        }
+      ],
+      "note": "Times include historical posts collected after publication. They are observed delays, not early-warning lead times."
+    },
+    "features": [
+      {
+        "name": "Public tiktok-feed parser",
+        "calls": 32,
+        "credits": 30,
+        "reserved": 10
+      },
+      {
+        "name": "Public instagram-feed parser",
+        "calls": 26,
+        "credits": 26,
+        "reserved": 0
+      },
+      {
+        "name": "Public reddit-search parser",
+        "calls": 26,
+        "credits": 21,
+        "reserved": 0
+      },
+      {
+        "name": "Web search",
+        "calls": 361,
+        "credits": 485,
+        "reserved": 0
+      },
+      {
+        "name": "News search",
+        "calls": 34,
+        "credits": 140,
+        "reserved": 0
+      },
+      {
+        "name": "Page scrape",
+        "calls": 2275,
+        "credits": 2217,
+        "reserved": 60
+      },
+      {
+        "name": "Public tiktok-profile parser",
+        "calls": 28,
+        "credits": 28,
+        "reserved": 0
+      },
+      {
+        "name": "Public tiktok-comments parser",
+        "calls": 28,
+        "credits": 28,
+        "reserved": 0
+      },
+      {
+        "name": "Public instagram-post parser",
+        "calls": 27,
+        "credits": 27,
+        "reserved": 0
+      },
+      {
+        "name": "Page and search monitors",
+        "calls": 311,
+        "credits": 0,
+        "reserved": 160
+      },
+      {
+        "name": "Batch collection",
+        "calls": 34,
+        "credits": 5,
+        "reserved": 0
+      },
+      {
+        "name": "Structured page extraction",
+        "calls": 3,
+        "credits": 15,
+        "reserved": 0
+      },
+      {
+        "name": "Site URL discovery",
+        "calls": 4,
+        "credits": 4,
+        "reserved": 0
+      }
+    ]
+  },
+  "findings": [
+    {
+      "id": "a6b0d22b1d61",
+      "title": "BILD reports Russia's alleged demands in Ukraine peace talks",
+      "verdict": "moderate",
+      "posts": 17,
+      "accounts": 11,
+      "peak": 17,
+      "peakAt": "2026-11-14T13:02:06.000Z",
+      "firstSeen": "2026-11-14T13:02:06.000Z",
+      "lastSeen": "2026-11-14T13:11:11.000Z",
+      "copied": 10,
+      "signals": [
+        {
+          "key": "timing",
+          "fired": false,
+          "measured": 17,
+          "baseline": null,
+          "reason": "A same-hour and weekday baseline for these collection sources is still being collected.",
+          "name": "Same minute"
+        },
+        {
+          "key": "new_accounts",
+          "fired": false,
+          "measured": 0,
+          "known": 0,
+          "reason": "Account creation dates could not be measured on these public pages.",
+          "name": "New accounts"
+        },
+        {
+          "key": "same_text",
+          "fired": true,
+          "measured": 10,
+          "reason": "10 of 17 posts repeat near-identical wording in 2 text variants, measured with four-word shingles.",
+          "name": "Same text"
+        },
+        {
+          "key": "shared_links",
+          "fired": true,
+          "measured": 17,
+          "url": "https://skandinavia.infodefense.press/",
+          "reason": "17 posts share https://skandinavia.infodefense.press/. A shared link alone can also reflect ordinary reporting.",
+          "name": "Same links"
+        },
+        {
+          "key": "ties",
+          "fired": false,
+          "reason": "Mutual follower lists could not be measured on these public pages.",
+          "name": "Linked accounts"
+        }
+      ],
+      "claim": "The German newspaper BILD reported that Russia proposed Finland withdraw from NATO, NATO remove military bases from the Baltic states, and Ukraine become neutral in current Ukraine peace talks.",
+      "evidence": [
+        {
+          "sourceId": "s0",
+          "passageId": "s0-p3",
+          "stance": "not reported",
+          "basis": "attribution",
+          "reason": "Bild is named and the Finland and Baltic bases demands are covered, but Ukraine neutrality is absent, so the quote does not carry the whole claim.",
+          "quote": "14:05•Updated 13.11. 14:36 German newspaper Bild reports that Russian negotiators have put forward far-reaching demands in talks in Abu Dhabi aimed at ending the war in Ukraine. They include that Finland withdraw from Nato and that the alliance be barred from having military bases in the Baltic states.",
+          "proposedStance": "for",
+          "verificationPassed": false,
+          "name": "Russia demands Finland leave Nato in Ukraine peace talks, Bild reports | Yle News | Yle",
+          "url": "https://yle.fi/a/74-20256829",
+          "publishedAt": "2026-11-13T12:05:24.000Z",
+          "publisherGroup": "yle.fi"
+        },
+        {
+          "sourceId": "s1",
+          "passageId": "s1-p1",
+          "stance": "not reported",
+          "basis": "attribution",
+          "reason": "Bild is cited for the Finland and Baltic bases demands in the Abu Dhabi talks, but Ukraine neutrality is not mentioned.",
+          "quote": "Palantir eyes entry into Baltic military sector News 16 h ago AI making life-or-death decisions? Palantir eyes entry into Baltic military sector LRT English Newsletter: Rethinking Lithuania’s Taiwan pivot News 17 h ago LRT English Newsletter: Rethinking Lithuania’s Taiwan pivot Lithuanian publisher draws controversy with plans to publish Hitler’s Mein Kampf News 1 d ago Lithuanian publisher draws controversy with plans to publish Hitler’s Mein Kampf Lithuania’s MFA hold talks with Chinese delegation, keeps mum on details News 1 d ago Lithuania’s MFA hold talks with Chinese delegation, keeps mum on details Lithuania bans sale of nonalcoholic beer and wine to minors News 1 d ago Lithuania bans sale of nonalcoholic beer and wine to minors Lithuania opens assisted reproduction to unmarried couples and single women News 1 d ago Lithuania opens assisted reproduction to unmarried couples and single women Chinese delegation visits Lithuania amid efforts to repair diplomatic relations News 1 d ago Chinese delegation visits Lithuania amid efforts to repair diplomatic relations Lithuania’s ruling coalition agrees on windfall tax for fuel producers News 1 d ago Lithuania’s ruling coalition agrees on windfall tax for fuel producers News2026.11.13 13:25 Russia’s demands for Ukraine war end include ban on NATO bases in Baltics – German media L LRT.lt 2026.11.13 13:25 Peace talks in Abu Dhabi | AP The demands put forward by Russian negotiators during talks on ending the war in Ukraine include bans on setting up NATO military bases in the Baltic states and Finland withdrawing from NATO, the German newspaper Bild reported Friday. The unofficial proposals, presented to European representatives in Abu Dhabi, are part of Russia’s stated aim of negotiating a new security order in Europe.",
+          "proposedStance": "for",
+          "verificationPassed": false,
+          "name": "Russia’s demands for Ukraine war end include ban on NATO bases in Baltics – German media - LRT",
+          "url": "https://www.lrt.lt/en/news-in-english/19/3113194/russia-s-demands-for-ukraine-war-end-include-ban-on-nato-bases-in-baltics-german-media",
+          "publishedAt": "2026-11-13T11:25:00.000Z",
+          "publisherGroup": "lrt.lt"
+        },
+        {
+          "sourceId": "s2",
+          "passageId": "s2-p10",
+          "stance": "for",
+          "basis": "attribution",
+          "reason": "The quote attributes to Bild that Russia made all three demands in the Abu Dhabi talks on ending the war: Finland leaving NATO, a ban on NATO bases in the Baltic states, and Ukraine staying permanently outside military alliances.",
+          "quote": "Öppna Under förhandlingarna i Abu Dhabi om ett slut på kriget i Ukraina ska Ryssland ha lagt fram krav som gäller mycket mera än Ukrainas territoriella områden. Ett av de påstådda kraven är att Finland ska lämna Nato och återgå till sin position innan medlemskapet, uppger den tyska tidningen Bild på fredagen. Ett annat krav är att Natos militärbaser i de baltiska länderna förbjuds, och att Ukraina permanent förblir utanför militära allianser.",
+          "verificationPassed": true,
+          "name": "Antti Häkkänen om påstådda ryska Natokrav: Håll huvudet kallt | Utrikes | Svenska Yle",
+          "url": "https://yle.fi/a/7-10108681",
+          "publishedAt": "2026-11-13T10:53:45.000Z",
+          "publisherGroup": "report:bild"
+        },
+        {
+          "sourceId": "s3",
+          "passageId": "s3-p16",
+          "stance": "not reported",
+          "basis": "absence",
+          "reason": "Discusses 2021 Russian proposals to NATO, not current BILD reporting or current Ukraine peace talks.",
+          "quote": "• Also in October 2021, Russia decided to suspend the work of its diplomatic mission to NATO, and required NATO to close down the NATO Information Office in Moscow and suspend the work of the Military Liaison Mission in Moscow. NATO regrets Russia’s decision; nevertheless, NATO’s policy towards Russia remains consistent - strengthening deterrence and defence while remaining open to dialogue. • In December 2021, Russian authorities proposed a legally binding treaty to NATO and the US, demanding NATO to redraw the European Security Architecture by not enlarging further to the East as well as by prohibiting NATO from deploying military forces or weaponry in member states that joined after 1997.",
+          "name": "NATO-Russia relations",
+          "url": "https://www.nato.int/content/dam/nato/legacy-wcm/media_pdf/2022/2/pdf/220214-factsheet_NATO-Russia_Relations_e.pdf",
+          "publishedAt": null,
+          "publisherGroup": "nato.int"
+        }
+      ],
+      "techniques": [],
+      "origins": [
+        {
+          "id": "tg-InfodefSpectrum/31483",
+          "url": "https://t.me/InfodefSpectrum/31483",
+          "text": "‼️🇷🇺🇪🇺🇺🇦 ФИНЛЯНДИЯ ДОЛЖНА ВЫЙТИ ИЗ НАТО, ВОЕННЫЕ БАЗЫ ДОЛЖНЫ БЫТЬ УДАЛЕНЫ ИЗ ПРИБАЛТИКИ, А УКРАИНА ДОЛЖНА БЫТЬ НЕЙТРАЛЬНОЙ!Предполагаемые требования России для нового соглашения о безопасности с Европой.▪️ По данным немецкой газеты BILD, в неофициальных кругах переговоров обсуждается предложение о новой европейской системе безопасности, которое привело бы к значительным изменениям в отношениях между Россией и НАТО.🇫🇮 Финляндия должна выйти из НАТО, в то время как альянс должен отказаться от военных баз в Эстонии, Латвии и Литве.🇺🇦 Украина должна стать военной нейтральной и отказаться от членства в НАТО, но при этом все еще может присоединиться к ЕС. Россия должна сохранить контролируемые ею территории и получить весь Донбасс, включая территории, которые все еще контролируются Киевом.⚓ Одесса и Николаев должны быть демилитаризованы и больше не должны использоваться в качестве украинских военно-морских баз.🇲🇩 Молдова должна быть преобразована в федерацию с Гагаузией и Приднестровьем. Если страна присоединится к ЕС, регионы должны иметь право проводить референдумы о независимости.🇷🇺 Взамен, по сообщениям, Россия должна вывести ядерное оружие и ракеты средней дальности из Беларуси, а также свои войска из Приднестровья.⚠️ BILD подчеркивает, что это лишь одно из нескольких неофициально обсуждаемых предложений. Неясно, поддерживает ли Владимир Путин именно этот план.✍️В течение многих лет Европа обсуждала, как не допустить участия России в европейской системе безопасности.Теперь внезапно обсуждается предложение, в котором Москва, похоже, имеет свои взгляды почти на всю карту.Остается только увидеть, получит ли Брюссель место за столом — или, по крайней мере, скамейку в коридоре. 🪑#InfoDefenseAuthor⚡️   WEB | X | InfoDefAll📱InfodefSCANDINAVIA🌏 InfoDefense Спектр 🌏 InfoDefense",
+          "platform": "TG",
+          "handle": "InfodefSpectrum",
+          "accountId": "tg-InfodefSpectrum",
+          "language": "ru",
+          "postedAt": "2026-11-14T13:02:06+00:00",
+          "links": [
+            "?q=%23InfoDefenseAuthor",
+            "https://skandinavia.infodefense.press/",
+            "https://t.me/InfoDefAll",
+            "https://t.me/InfodefSCANDINAVIA",
+            "http://cat.eu/",
+            "https://t.me/InfodefSpectrum",
+            "https://t.me/InfodefALL",
+            "https://t.me/InfoDefAll"
+          ],
+          "call": "3033a732-421f-4ab5-9c2a-96f796495909",
+          "relationship": "Cited Telegram source; same narrative confirmed",
+          "judgement": {
+            "data": {
+              "sameNarrative": true,
+              "title": "Unofficial Proposal for European Security System Involving Finland's NATO Withdrawal and Ukraine's Neutrality",
+              "claim": "An unofficial proposal discussed in informal circles suggests Finland should withdraw from NATO, NATO military bases should be removed from the Baltic states, and Ukraine should be militarily neutral and not join NATO.",
+              "innocentExplanations": [
+                "The proposal is described as unofficial and one of several being discussed, not a confirmed policy.",
+                "It is unclear whether Vladimir Putin or the Russian government officially supports this plan.",
+                "The proposal includes reciprocal measures such as Russia withdrawing nuclear weapons from Belarus."
+              ],
+              "techniques": [
+                {
+                  "name": "Attribution to a reputable source",
+                  "phrase": "According to the German newspaper BILD",
+                  "explanation": "The claim is attributed to BILD to lend credibility, but the proposal remains unofficial."
+                },
+                {
+                  "name": "Repetition for emphasis",
+                  "phrase": "FINLAND SHOULD WITHDRAW FROM NATO, MILITARY BASES SHOULD BE REMOVED FROM THE BALTIC STATES, AND UKRAINE SHOULD BE NEUTRAL!",
+                  "explanation": "The phrase is repeated multiple times to emphasize the proposal's key points."
+                },
+                {
+                  "name": "Uncertainty framing",
+                  "phrase": "It is unclear whether Vladimir Putin supports this particular plan.",
+                  "explanation": "This phrase signals that the proposal is not confirmed as official policy."
+                }
+              ],
+              "evidence": [
+                {
+                  "sourceId": "network",
+                  "stance": "for",
+                  "quote": "According to the German newspaper BILD, a proposal for a new European security system is being discussed in informal circles, which would lead to significant changes in relations between Russia and NATO. Finland should withdraw from NATO, while the alliance should abandon military bases in Estonia, Latvia and Lithuania. Ukraine should become militarily neutral and renounce membership in NATO, but it can still join the EU.",
+                  "reason": "This passage explicitly states the proposal's main points and its unofficial status."
+                },
+                {
+                  "sourceId": "origin",
+                  "stance": "for",
+                  "quote": "▪️ По данным немецкой газеты BILD, в неофициальных кругах переговоров обсуждается предложение о новой европейской системе безопасности, которое привело бы к значительным изменениям в отношениях между Россией и НАТО.🇫🇮 Финляндия должна выйти из НАТО, в то время как альянс должен отказаться от военных баз в Эстонии, Латвии и Литве.🇺🇦 Украина должна стать военной нейтральной и отказаться от членства в НАТО, но при этом все еще может присоединиться к ЕС.",
+                  "reason": "This Russian-language passage confirms the same unofficial proposal and key demands."
+                }
+              ]
+            },
+            "model": "gpt-4.1-mini",
+            "promptVersion": "sf-judge-v2",
+            "at": "2026-11-14T23:24:07.985Z",
+            "call": "25029d8e-5b2f-4fde-a267-58121912d52e",
+            "usage": {
+              "completion_tokens": 614,
+              "completion_tokens_details": {
+                "reasoning_tokens": 0
+              },
+              "credits_charged": 0.18048,
+              "prompt_tokens": 1304,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              },
+              "total_tokens": 1918
+            }
+          }
+        }
+      ],
+      "pickups": 4,
+      "seenBefore": [],
+      "judgement": {
+        "model": "gpt-4.1",
+        "promptVersion": "sf-judge-v5",
+        "at": "2026-11-15T00:00:17.334Z"
+      }
+    },
+    {
+      "id": "aa9426e2b5e6",
+      "title": "Medinsky: Russian-controlled buffer zone in Ukraine, no European troops",
+      "verdict": "moderate",
+      "posts": 20,
+      "accounts": 14,
+      "peak": 20,
+      "peakAt": "2026-11-14T20:51:08.000Z",
+      "firstSeen": "2026-11-14T20:51:08.000Z",
+      "lastSeen": "2026-11-14T20:54:22.000Z",
+      "copied": 13,
+      "signals": [
+        {
+          "key": "timing",
+          "fired": false,
+          "measured": 20,
+          "baseline": null,
+          "reason": "A same-hour and weekday baseline for these collection sources is still being collected.",
+          "name": "Same minute"
+        },
+        {
+          "key": "new_accounts",
+          "fired": false,
+          "measured": 0,
+          "known": 0,
+          "reason": "Account creation dates could not be measured on these public pages.",
+          "name": "New accounts"
+        },
+        {
+          "key": "same_text",
+          "fired": true,
+          "measured": 13,
+          "reason": "13 of 20 posts repeat near-identical wording in 2 text variants, measured with four-word shingles.",
+          "name": "Same text"
+        },
+        {
+          "key": "shared_links",
+          "fired": true,
+          "measured": 20,
+          "url": "https://svpressa.ru/politic/article/540809/",
+          "reason": "20 posts share https://svpressa.ru/politic/article/540809/. A shared link alone can also reflect ordinary reporting.",
+          "name": "Same links"
+        },
+        {
+          "key": "ties",
+          "fired": false,
+          "reason": "Mutual follower lists could not be measured on these public pages.",
+          "name": "Linked accounts"
+        }
+      ],
+      "claim": "Vladimir Medinsky stated after Abu Dhabi talks that any buffer zone in Ukraine must be under Russian control and no European troops can be present after hostilities end.",
+      "evidence": [
+        {
+          "sourceId": "s-407c7bda14b3",
+          "passageId": "s-407c7bda14b3-p1",
+          "stance": "not reported",
+          "basis": "attribution",
+          "reason": "The quote has Medinsky on territorial claims and expanding a \"security zone\". It says nothing about European troops and does not state that a buffer zone must be under Russian control. That reading is an inference, and in the original post it comes from the interviewer and a political scientist, not Medinsky.",
+          "quote": "Vladimir Medinsky, Russian presidential aide and head of the Russian delegation at Abu Dhabi, told Russian media outlets on November 11 that Russia will capture “every inch of [Russia’s] land one way or another.”[1] Medinsky also asserted that “wherever a Russian soldier has set foot belongs to Russia” — mirroring Russian President Vladimir Putin’s statement from June 2025.[2] Medinsky added that Russia will not accept any territorial exchanges with Ukraine and will continue to expand its “security zone” in Ukraine (very likely referring to territory in northern Sumy and Kharkiv oblasts that Russian officials claim are part of a “buffer zone.”).[",
+          "proposedStance": "for",
+          "verificationPassed": false,
+          "name": "Russian Offensive Campaign Assessment, Nov 11, 2026 | ISW",
+          "url": "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-november-11-2026/",
+          "publishedAt": "2026-11-12T01:55:49.000Z",
+          "publisherGroup": "understandingwar.org"
+        },
+        {
+          "sourceId": "s-675cc334b2e0",
+          "passageId": "s-675cc334b2e0-p3",
+          "stance": "not reported",
+          "basis": "unrelated",
+          "reason": "This passage discusses Russian demands regarding NATO bases in the Baltics and Finland, not the buffer zone in Ukraine or Medinsky's statements.",
+          "quote": "Palantir eyes entry into Baltic military sector News 1 d ago AI making life-or-death decisions? Palantir eyes entry into Baltic military sector LRT English Newsletter: Rethinking Lithuania’s Taiwan pivot News 1 d ago LRT English Newsletter: Rethinking Lithuania’s Taiwan pivot Lithuanian publisher draws controversy with plans to publish Hitler’s Mein Kampf News 2 d ago Lithuanian publisher draws controversy with plans to publish Hitler’s Mein Kampf Lithuania’s MFA hold talks with Chinese delegation, keeps mum on details News 2 d ago Lithuania’s MFA hold talks with Chinese delegation, keeps mum on details Lithuania bans sale of nonalcoholic beer and wine to minors News 2 d ago Lithuania bans sale of nonalcoholic beer and wine to minors News2026.11.13 13:25 Russia’s demands for Ukraine war end include ban on NATO bases in Baltics – German media L LRT.lt 2026.11.13 13:25 Peace talks in Abu Dhabi | AP The demands put forward by Russian negotiators during talks on ending the war in Ukraine include bans on setting up NATO military bases in the Baltic states and Finland withdrawing from NATO, the German newspaper Bild reported Friday. The unofficial proposals, presented to European representatives in Abu Dhabi, are part of Russia’s stated aim of negotiating a new security order in Europe.",
+          "name": "Russia’s demands for Ukraine war end include ban on NATO bases in Baltics – German media - LRT",
+          "url": "https://www.lrt.lt/en/news-in-english/19/3113194/russia-s-demands-for-ukraine-war-end-include-ban-on-nato-bases-in-baltics-german-media",
+          "publishedAt": "2026-11-13T11:25:00.000Z",
+          "publisherGroup": "lrt.lt"
+        }
+      ],
+      "techniques": [],
+      "origins": [
+        {
+          "id": "interview-f46f35a1",
+          "url": "https://svpressa.ru/politic/article/540809/",
+          "text": "Журналист Макдональд высмеял познания Каи Каллас в истории РФ СК РФ выяснил, как убили самбиста Давудова В Дагестане задержали подозреваемого в убийстве самбиста Давудова Эксперт рассказал, что ждет курс рубля в ноябре Сунак: Британия должна ударить по военной инфраструктуре РФ в Арктике Макрон отказался поддержать ограничение финансирования Украины Эксперт оценила, стоит ли работающему пенсионеру увольняться в 2027 году Кушнер: Стороны украинского урегулирования выражают готовность идти на уступки Свободная Пресса на YouTube Свободная Пресса Вконтакте Свободная Пресса в Одноклассниках Свободная Пресса в Телеграм Свободная Пресса в Дзен Свободная Пресса 18+ ! воскресенье, 15 ноября Курс $ 85,01 € 98,34 «Происходящие в нашей экономике процессы можно назвать потенциальной стагнацией...» Андрей Бунич Меню «Происходящие в нашей экономике процессы можно назвать потенциальной стагнацией...» Андрей Бунич Главная Политика Общество Экономика Армии и войны Путешествия Авто Спорт Здоровье В мире Бизнес сегодня Недвижимость Происшествия Наука и технологии Культура Погода История Разделы Новости Статьи Фото СП-Видео Авторы Эксперты Цитаты Персоны Компании Горячие темы Темы: Спецоперация на Украине Ближневосточные войны Мир на Украине Военное обозрение Курс валют Китай сегодня Политика / Евросоюз и Еврозона 13 ноября 17:55 Киев? Берлин? Париж? Куда в итоге ступит нога русского солдата Переговоры с американцами уже вышли на траекторию деНАТОфикации Восточной Европы Дмитрий Родионов Дмитрий Родионов 4021 ВКонтакте Одноклассники Telegram [Отправить по емейл](mailto:?subject=Киев? Берлин? Париж? Куда в итоге ступит нога русского солдата&body=Киев? Берлин? Париж? Куда в итоге ступит нога русского солдата%0Dhttps://svpressa.ru/politic/article/540809/%0D%0DСвободная%20Пресса%0Dhttps://svpressa.ru 'Отправить по емейл') Версия для печати Фото: Вячеслав Прокофьев/ТАСС Материал комментируют: Александр Ведруссов Иван Мезюхо «Там, где ступила нога русского солдата, это наше». Владимир Мединский, глава российской делегации на трехсторонних переговорах в Абу-Даби, отвечая на вопрос Евгения Попова об освобожденных территориях, напомнил слова Владимира Путина. То есть никакого «обмена»? А что освободили, то назад уже не отдадим? — Россия отправила в Абу-Даби довольно подкованную делегацию, включая МИДовскую её часть, однако, пожалуй, никто не вызывает у наших бывших уважаемых партнёров такого раздражения, как «хедлайнер» Мединский, — уверен политолог, директор аналитического центра «Стратег-ПРО» Александр Ведруссов. — Что, по скромным меркам российской патриотической общественности, уже само по себе неплохо. «Бескомпромиссные максималистские позиции» России, которых так страшатся на Западе, никуда не делись и даже стали артикулироваться ещё более категорично. Читайте также Европе разрешили прорубить окно в Россию Европе разрешили прорубить окно в Россию После разговора в Кремле Уиткофф и Кушнер полетели в Америку на крыльях надежды Разумеется, риск отката к «жестам доброй воли» с нашей стороны по-прежнему существует, но на текущий момент он всё-таки минимален. Хотя ещё в прошлом году после произнесения президентом слов о недопустимости «размена» освобождённых русским солдатом территорий последовали пресловутые договоренности в Анкоридже, которые, строго говоря, несколько противоречили данному посылу. Как бы там ни было, благодаря хаотичности и откровенной нечистоплотности администрации Трампа «духу Анкориджа» так и не суждено было воплотиться в букву очередного «Минска», поэтому исторически оправданная и, что ещё важнее, закреплённая в Конституции территориальная формула (Крым + четыре области бывшей Украины) вновь зазвучала из уст российских переговорщиков. И это, разумеется, можно только приветствовать. Что касается мнения европейцев, которые хоть тушкой, хоть чучелом силятся влезть в наш переговорный процесс с американцами, то российская сторона пока держит линию на нежелательность их участия в диалоге Москвы и Вашингтона. И без того шансы найти долгосрочное и устойчивое взаимопонимание не так уж и велики. А тут ещё американцы пытаются чуть ли не контрабандой протащить на встречу тех, кто больше всего заинтересован в срыве переговорного процесса. Парадоксально, но европейские «элитки» текущего извода нельзя даже на пушечный выстрел подпускать к помещению, где проходит обсуждение общеевропейской безопасности. Только наглядный коллапс проекта «Украина» и дальнейшее ухудшение социально-экономической ситуации в ключевых странах ЕС могут сделать европейскую бюрократию более адекватной и сговорчивой. И то далеко не факт. Что касается американцев, посланцы Трампа уже не первый год тужатся под разными предлогами убедить (Уиткофф с Кушнером) или заставить (Рэтклифф и прочие Келлоги) нас как можно скорее прекратить побеждать на Украине. В обмен нам сулят 500 триллионов инвестиций, снятие санкций и — новая «гениальная идея» зятя 47-го президента США: реанимирование совета РФ-НАТО. В ответ в Москве вежливо улыбаются и продолжают упрямо твердить на языке, который вроде как должен быть понятен англосаксам: root causes, root causes и ещё раз root causes. Без устранения коренных причин конфликта даже не на Украине, а вокруг нее, никакого долгосрочного мира на континенте не будет. Новости СМИ2 В итоге прожженные, но не слишком дипломатически подкованные американцы так увлеклись продажей русским очередного невыгодного нам «Минска» (который Москва уже, казалось, вот-вот готова заглотить), что впутались в предметные переговоры о реальной безопасности не только Украины, но и России, Белоруссии, всего континента в целом. Т.е. вместо заключения экспресс-сделки в духе Трампа, которая имела бы оглушительный PR-эффект, но не решала бы ни одну фундаментальную проблему для России, эмиссары Белого дома позволили затянуть себя в потенциально многолетние мучительные дебаты о судьбах мира, по меньшей мере, в границах Европы, если не Евразии. Похоже, что спустя почти пять лет после «ультиматума Путина» Москва не мытьем, так катаньем смогла вывести переговоры с американцами на траекторию «деНАТОфикации» Восточной Европы. Это пока ещё даже не шаг, а всего лишь шажочек в стратегически правильном направлении, но тем не менее. Так что помимо очередного обмена пленными (удерживаемыми лицами), ради которого уже, пожалуй, имело определенный смысл соглашаться на контакты в Абу-Даби, переговорный процесс с американцами, возможно, всё же принесет какую-то пользу на длинной дистанции. Посмотрим. В любом случае, время сейчас поджимает скорее Белый дом, а не Кремль. И зачастившие в Россию американские девелоперы, похоже, постепенно осознают это. — Жесткие высказывания Владимира Мединского по территориальному вопросу могут быть посланием главы российской делегации на переговорах в Абу-Даби в адрес всех тех политических акторов, которые задействованы в украинском кейсе, — полагает политолог, председатель КРОО «Центр политического просвещения» Иван Мезюхо. — Российская Федерация не отступается от задачи восстановления конституционной территориальной целостности. Это весьма чёткий сигнал. «СП»: По территориальному вопросу Мединский еще сказал следующее: там, где поднят флаг России, он опускаться не должен. В контексте интервью Попову это означает, что, если и будет буферная зона, то исключительно под нашим контролем. Так ли это? — На мой взгляд и Владимир Мединский после переговоров в ОАЭ, и президент Владимир Путин во время публичной части встречи со Стивом Уиткоффом и Джаредом Кушнером в Кремле чётко дали понять американцам, да и в целом Западу, что никакие европейские войска не могут находиться на территории Украины после окончания боевых действий. Читайте также Дуглас Макгрегор: Украине надо готовиться к худшему – военная машина НАТО надорвалась Дуглас Макгрегор: Украине надо готовиться к худшему — военная машина НАТО надорвалась Что стало понятно за столом переговоров в Абу-Даби Поэтому, конечно, буферная зона, которая должна быть построена в соответствии с новой архитектурой безопасности и предоставления гарантий всем сторонам конфликта, не может быть использовано как место для размещения войск альянса европейских государств. И, кроме того, на мой взгляд, буферная зона не может строиться за счёт Российской Федерации, а только за счёт территорий украинского государственного образования. Таковы реалии этого конфликта. «СП»: Что касается ноги солдата, то это попытка расширить окно возможностей? Типа нет таких границ, где заканчивает Россия? Где захотим, там и остановимся? — Высказывание о «ноге солдата» — это просто констатация факта. Украина уже давно могла прекратить боевые действия. Надо было идти по пути мирных договоренностей в Стамбуле ещё в 2022 году. Чем дольше будет длиться специальная военная операция, тем больше территорий потеряет Украина, и, соответственно, больше будет контролировать Российская Федерация. Но вопрос даже не в них. Чем протяжённее во времени будет этот конфликт, тем исчерпаемее будут ресурсы Украины, в первую очередь человеческие. Российская Федерация была готова остановиться ещё в 2022 году. «СП»: Если что, нога русского солдата ступала и в Берлине, и в Париже. Но на такое мы, конечно не замахиваемся? А европейцы наверняка используют это как обвинение в подготовке агрессии… — Безусловно, Россия не замахивается на то, чтобы перенести театр боевых действий специальной военной операции в ЕС, но несмотря на это Евросоюз и дальше будет обвинять Москву в подготовке к боевым действиям против него. А текущие обвинения в том, что РФ якобы устраивает гибридные атаки на страны ЕС будут только множиться день ото дня. Национальные элиты европейских государств продолжат пугать население мифической кремлёвской угрозой. «СП»: В реальности окно возможностей очевидно расширяется? Насколько? И как долго оно будет открыто? Стоит ли считать буферную зону аналогом «пояса безопасности», созданного Сталиным после Второй мировой? Какие территории, с нашей точки зрения, должны войти в эту зону? Логично включить в нее Молдавию и Прибалтику, как минимум. А может быть, и Польшу, ведь Калининградской области и союзной Белоруссии тоже нужны гарантии безопасности? — Я бы не был категоричен в утверждении, что окно возможностей на сегодняшний момент действительно расширяется. В то же самое время нельзя говорить о том, что его вообще нет. На мой взгляд, конструирование потенциальной буферной зоны или санитарного кордона, не стоит сравнивать с поясом безопасности времен Второй мировой. В данном случае отсылки к историческому прошлому неуместны. И давайте исходить из принципов политического реализма. Запад не уберёт свои военные базы с территории прибалтийских государств. Запад не оставит Молдавию в зоне стратегических интересов Российской Федерации. Уж слишком много было вложено сил и средств той же Европы и США времён других президентов в то, чтобы эти страны встали на антироссийские рельсы. Переговоры, в которых мы сегодня участвуем, крайне сложные с точки зрения как исторического момента, так и выполнения потенциальных модальностей по урегулированию украинского конфликта. Последние новости и все самое важное о мирных переговорах по Украине, — в теме «Свободной Прессы». Евросоюз и Еврозона Политолог предсказал Зеленскому пугающий приём в странах Евросоюза Politico: Кошта — главный кандидат на роль единого переговорщика Необразованный приспособленец: В парламенте Крыма отреагировали на слова Каллас Европа теряет интерес к Украине: политолог объяснил, почему Все материалы по теме (3784) Читайте новости «Свободной Прессы» в Яндекс.Новостях, а так же подписывайтесь на наши каналы в Яндекс.Дзен, Telegram и MediaMetrics. Читайте ещё Владимир Солодов: Жить и работать на Камчатке – привилегия и одновременно огромная ответственность Владимир Солодов: Жить и работать на Камчатке — привилегия и одновременно огромная ответственность Форпост России на Тихом океане привлекает всё больше молодых специалистов и туристов Economist: Европа готовится повторить блицкриг 1812 года Economist: Европа готовится повторить блицкриг 1812 года Скандинавы планируют пересидеть войну с Россией в гипермаркетах Фицо заявил, что был буквально потрясен разговором с украинским премьером Корецким Макрон выступил с громким заявлением о переговорах с Россией «Воздушная война», если бы ее вела Россия, закончилась бы весьма печально для Европы «Воздушная война», если бы ее вела Россия, закончилась бы весьма печально для Европы Кто на самом деле сорвал десятки рейсов европейских авиаперевозчиков и устроил заоблачную панику Тема: Евросоюз и Еврозона Теги: #Владимир Мединский #Вашингтон #Евросоюз #Буферная зона на Украине #Европейская безопасность #Мир на Украине ВКонтакте Одноклассники Telegram Новости партнеров ЧИТАЙТЕ ЕЩЁ Последние новости 01:28 Сунак: Британия должна ударить по военной инфраструктуре РФ в Арктике 01:01 Мема: Расширение НАТО может привести к ядерной войне 00:42 Комбат ВСУ Верес: Российская спутниковая система «Рассвет» станет проблемой для Украины 00:31 Эксперт рассказал, что ждет курс рубля в ноябре 00:30 Эксперт оценила, стоит ли работающему пенсионеру увольняться в 2027 году 00:13 Кушнер: Стороны украинского урегулирования выражают готовность идти на уступки 00:10 Хавбек «Спартака» Жедсон недоволен своим положением в клубе 23:46 Макрон отказался поддержать ограничение финансирования Украины 23:20 Почти 40 БПЛА сбили за день над территорией РФ 22:55 Пушилин заявил о регулярных ударах ВСУ по кварталам Красноармейска Цитаты О мигрантах во Франции «Считалось, что беженцы из бывших колоний как-то адаптируются к жизни в Европе, разделят европейские ценности, во Франции — республиканские ценности и будут такими же французами с теми же с привычками, нравами, традициями, как коренные. Но это все иллюзии…» Сергей Федоров Эксперт по Франции, ведущий научный сотрудник Института Европы РАН О модернизации экономики «Категорическое условие модернизации и в целом нормальной жизни нашей экономики — решительное отделение сферы деятельности спекулятивных капиталов от реального сектора. Это условие выполняли все крупные развитые страны: без него в принципе нельзя стать развитыми…» Михаил Делягин Доктор экономических наук, член РАЕН, публицист, политик О коррупционных связях «Бывшие государственные чиновники часто уходят в бизнес, используя связи. Им проще выиграть тендер и получить жирный госзаказ. Таким людям доверяют свои деньги наши наивные сограждане. И прикрытие у таких людей в силовых структурах наверняка есть…» Александр Михайлов Член Совета по внешней оборонной политике, генерал-майор ФСБ в отставке Спецпредложения Новости партнеров Новости партнеров Новости Жэньминь Жибао Каждый третий зонт в мире произведен в китайском Шаосине Каждый третий зонт в мире произведен в китайском Шаосине Первые лётчицы палубной авиации ВМС Китая направлены в строевые части Первые лётчицы палубной авиации ВМС Китая направлены в строевые части Ожидается прибытие первого иностранного космонавта на китайскую космическую станцию Ожидается прибытие первого иностранного космонавта на китайскую космическую станцию Выращивание лотоса помогает сельским жителям повышать доходы Выращивание лотоса помогает сельским жителям повышать доходы СП-Видео Мнения Алексей Рамм: Удары на Запорожском направлении загнали противника в стратегический тупик Алексей Рамм: Удары на Запорожском направлении загнали противника в стратегический тупик Мнения Максим Шевченко: Волнения в Европе организовали политики, спасающие Украину и Евросоюз Максим Шевченко: Волнения в Европе организовали политики, спасающие Украину и Евросоюз Мнения Алексей Рамм: Российский Генштаб меняет масштаб операций Алексей Рамм: Российский Генштаб меняет масштаб операций Фото 24 Голливудский шик без границ: идеальные тела и самые смелые наряды на 15-м гала-вечере LACMA Art+Film 40 «Лидуше, прекрасной части моей жизни». Закрытое прощание и венок от Алибасова. В Москве проводили в последний путь Лидию Федосееву-Шукшину 56 Лучшие фото за октябрь: Ангелы Victoria’s Secret, хаос в Милане, глянец Киноакадемии, новый Aurus, вечеринка «Литрейва» в Ленинке Цифры дня 17,6 млн россиян зарегистрированы как самозанятые $600 млрд потеряла американская компания Nvidia на бирже после скандала и отставки Дженсена Хуанга 1007,48 на такое расстояние удалось передать сигнал по оптоволоконному кабелю китайским инженерам На 8% снизилось медианное благосостояние россиян 176 658 рублей составляет пенсия летчика-испытателя 53 АЗС разом исчезли с карты Подмосковья Ещё цифры Свободная Пресса Вконтакте Свободная Пресса в Дзен Свободная Пресса в Одноклассниках Свободная Пресса на YouTube Правовая информация Реклама на сайте Авторам Контакты Врио главного редактора Лебедев В.В. Перепечатка и цитирование материалов издания допускается только при точном соблюдении требований Правил их использования. Мнения отдельных авторов могут не совпадать с позицией редакции. !Незаконное потребление наркотических средств, психотропных веществ, их аналогов причиняет вред здоровью, их незаконный оборот запрещен и влечет установленную законодательством ответственность. СвободнаяПресса ® – свидетельства о регистрации товарных знаков №390722 и №390723 выданы Роспатентом 06.10.2009. Действительны до 23.03.2029. © 2009, АНО «ИнПресс» – свидетельство о регистрации СМИ Эл №ФС77-77526 выдано Федеральной службой по надзору в сфере связи, информационных технологий и массовых коммуникаций. Сетевое издание «Свободная пресса» выходит с 1 ноября 2008 года. 18+ Учредитель: АНО «ИнПресс» Редакция: E-mail: см. Контакты Тел.: +7 495 999 36 79 Издатель: ООО «Авторское бюро» E-mail: 7404263@mail.ru Тел.: +7 495 380 41 32 На информационном ресурсе применяются рекомендательные технологии. Наверх Рейтинг@Mail.ru Партнер Рамблера Если Вы продолжите использование данного сайта, это означает, что Вы даете согласие на использование нашим сервером Cookie-файлов и иных технологий по сбору статистических сведений о посещениях этого сайта с Вашего компьютера или иного устройства. Политика конфиденциальности. Этот сайт использует Cookies, подробнее Больше не показывать",
+          "title": "Киев? Берлин? Париж? Куда в итоге ступит нога русского солдата - Свободная Пресса - Новости СВО. Новости Украины. Украина новости. Когда закончится СВО? Когда закончится война на Украине? Удары по Украине на сегодня.",
+          "platform": "NW",
+          "handle": "svpressa.ru",
+          "language": "ru",
+          "postedAt": "2026-11-13T17:55:00+03:00",
+          "call": "bcb7010c-1918-4c1f-9440-dd5691b4ab59",
+          "relationship": "Original interview explicitly linked by the copied article"
+        }
+      ],
+      "pickups": 0,
+      "seenBefore": [],
+      "judgement": {
+        "model": "gpt-4.1",
+        "promptVersion": "sf-judge-v5",
+        "at": "2026-11-15T01:00:57.737Z"
+      }
+    },
+    {
+      "id": "nab032987aff",
+      "title": "Russia demands NATO close bases in Eastern Europe in Ukraine truce talks",
+      "verdict": "moderate",
+      "posts": 11,
+      "accounts": 9,
+      "peak": 11,
+      "peakAt": "2026-11-14T17:10:05.000Z",
+      "firstSeen": "2026-11-14T17:10:05.000Z",
+      "lastSeen": "2026-11-14T17:17:21.000Z",
+      "copied": 7,
+      "signals": [
+        {
+          "key": "timing",
+          "fired": false,
+          "measured": 11,
+          "baseline": null,
+          "reason": "A same-hour and weekday baseline for these collection sources is still being collected.",
+          "name": "Same minute"
+        },
+        {
+          "key": "new_accounts",
+          "fired": false,
+          "measured": 0,
+          "known": 0,
+          "reason": "Account creation dates could not be measured on these public pages.",
+          "name": "New accounts"
+        },
+        {
+          "key": "same_text",
+          "fired": true,
+          "measured": 7,
+          "reason": "7 of 11 posts repeat near-identical wording in 1 text variants, measured with four-word shingles.",
+          "name": "Same text"
+        },
+        {
+          "key": "shared_links",
+          "fired": true,
+          "measured": 11,
+          "url": "https://max.ru/lomovka",
+          "reason": "11 posts share https://max.ru/lomovka. A shared link alone can also reflect ordinary reporting.",
+          "name": "Same links"
+        },
+        {
+          "key": "ties",
+          "fired": false,
+          "reason": "Mutual follower lists could not be measured on these public pages.",
+          "name": "Linked accounts"
+        }
+      ],
+      "claim": "Russia is demanding that NATO close its bases in Eastern Europe as part of Ukraine truce negotiations, according to reports on the Abu Dhabi talks.",
+      "evidence": [
+        {
+          "sourceId": "s-9c5fe76e6013",
+          "passageId": "s-9c5fe76e6013-p16",
+          "stance": "for",
+          "basis": "direct_record",
+          "reason": "Quote says Russia revived demands in the current negotiations that NATO withdraw its forces from eastern European countries; same actor, region and timeframe, substantively matching the claim.",
+          "quote": "Nausėda noted, however, that the sides had agreed on the release of prisoners. Jared Kushner, Steve Witkoff | AP NATO’s role and European security The negotiations have also seen Russia call for a review of Europe’s security architecture, reviving demands that NATO withdraw its forces from eastern European countries. Nausėda firmly rejected the possibility of accepting Moscow’s demands.",
+          "verificationPassed": true,
+          "name": "Nausėda doubts prospects for Ukraine ceasefire as US envoys head from Abu Dhabi to Dublin - LRT",
+          "url": "https://www.lrt.lt/en/news-in-english/19/3112075/nauseda-doubts-prospects-for-ukraine-ceasefire-as-us-envoys-head-from-abu-dhabi-to-dublin",
+          "publishedAt": "2026-11-12T07:35:00.000Z",
+          "publisherGroup": "lrt.lt"
+        },
+        {
+          "sourceId": "s-675cc334b2e0",
+          "passageId": "s-675cc334b2e0-p3",
+          "stance": "not reported",
+          "basis": "attribution",
+          "reason": "Quote describes a ban on setting up NATO bases in the Baltics, which is prospective, not closure of existing bases in Eastern Europe; a related but different demand.",
+          "quote": "Palantir eyes entry into Baltic military sector News 1 d ago AI making life-or-death decisions? Palantir eyes entry into Baltic military sector LRT English Newsletter: Rethinking Lithuania’s Taiwan pivot News 1 d ago LRT English Newsletter: Rethinking Lithuania’s Taiwan pivot Lithuanian publisher draws controversy with plans to publish Hitler’s Mein Kampf News 2 d ago Lithuanian publisher draws controversy with plans to publish Hitler’s Mein Kampf Lithuania’s MFA hold talks with Chinese delegation, keeps mum on details News 2 d ago Lithuania’s MFA hold talks with Chinese delegation, keeps mum on details Lithuania bans sale of nonalcoholic beer and wine to minors News 2 d ago Lithuania bans sale of nonalcoholic beer and wine to minors News2026.11.13 13:25 Russia’s demands for Ukraine war end include ban on NATO bases in Baltics – German media L LRT.lt 2026.11.13 13:25 Peace talks in Abu Dhabi | AP The demands put forward by Russian negotiators during talks on ending the war in Ukraine include bans on setting up NATO military bases in the Baltic states and Finland withdrawing from NATO, the German newspaper Bild reported Friday. The unofficial proposals, presented to European representatives in Abu Dhabi, are part of Russia’s stated aim of negotiating a new security order in Europe.",
+          "proposedStance": "for",
+          "verificationPassed": false,
+          "name": "Russia’s demands for Ukraine war end include ban on NATO bases in Baltics – German media - LRT",
+          "url": "https://www.lrt.lt/en/news-in-english/19/3113194/russia-s-demands-for-ukraine-war-end-include-ban-on-nato-bases-in-baltics-german-media",
+          "publishedAt": "2026-11-13T11:25:00.000Z",
+          "publisherGroup": "lrt.lt"
+        },
+        {
+          "sourceId": "s-f2f65ee3291e",
+          "passageId": "s-f2f65ee3291e-p3",
+          "stance": "for",
+          "basis": "attribution",
+          "reason": "Bild report that Russian negotiators in Abu Dhabi demanded NATO be barred from having military bases in the Baltic states; attributed report of a current base-removal demand in Eastern Europe.",
+          "quote": "14:05•Updated 13.11. 14:36 German newspaper Bild reports that Russian negotiators have put forward far-reaching demands in talks in Abu Dhabi aimed at ending the war in Ukraine. They include that Finland withdraw from Nato and that the alliance be barred from having military bases in the Baltic states.",
+          "verificationPassed": true,
+          "name": "Russia demands Finland leave Nato in Ukraine peace talks, Bild reports | Yle News | Yle",
+          "url": "https://yle.fi/a/74-20256829",
+          "publishedAt": "2026-11-13T12:05:24.000Z",
+          "publisherGroup": "report:bild"
+        },
+        {
+          "sourceId": "s-b10b77f031be",
+          "passageId": "s-b10b77f031be-p23",
+          "stance": "not reported",
+          "basis": "attribution",
+          "reason": "Quote lists halting expansion, a veto over deployments and refraining from military activity, not a demand to close bases; a related but different policy from an anonymous source.",
+          "quote": "12] Putin and other Russian officials have rejected Western security guarantees for Ukraine since the European-led Coalition of the Willing began discussing such foreign deployments in March 2025.[13] Russian negotiators used the Abu Dhabi talks to reassert their 2021 demands of NATO. An informed source told Ukrainian outlet RBC Ukraine on November 11 that Russian negotiators in Abu Dhabi refused to discuss meaningful ceasefires or concessions with Ukraine and insisted on focusing talks on the Kremlin’s December 2021 demands to halt NATO’s eastward expansion; give Russia a veto over military deployments to countries that joined NATO after 1997; refrain from military activity in Ukraine, Eastern Europe, the Caucasus, and Central Asia; and refrain from deploying intermediate-range missiles within range of Russian territory.[",
+          "proposedStance": "for",
+          "verificationPassed": false,
+          "name": "Russian Offensive Campaign Assessment Updates September 2026 – Present",
+          "url": "https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-updates-september-2026-present/",
+          "publishedAt": "2025-09-01T14:24:00.000Z",
+          "publisherGroup": "understandingwar.org"
+        }
+      ],
+      "techniques": [],
+      "origins": [
+        {
+          "id": "tg-lomovkaa/146592",
+          "url": "https://t.me/lomovkaa/146592",
+          "text": "Россия требует от НАТО свернуть базы в Восточной Европе. Условия перемирия на Украине касаются новой архитектуры безопасности в Европе и послевоенных отношений с Западом. Они были выдвинуты на закрытых переговорах в Абу-Даби, сообщает The New York Times. Издание напоминает, что Москва настаивает на устранении первопричин конфликта, а не на простом прекращении огня.Вот ряд условий:▪️Страны НАТО должны отказаться от дальнейшей экспансии альянса и военной деятельности в Украине, Восточной Европе, Закавказье и Центральной Азии.▪️НАТО должно свернуть базы и вывести войска из стран, присоединившихся после 1997 года, включая Финляндию, Польшу и Прибалтику.▪️Западные страны должны остановить поставки Украине вооружений и военного оборудования.▪️Украина может вступить в ЕС только при отказе от участия в совместной оборонной политике блока.▪️Франция и Великобритания должны отказаться от намерений применять ядерное оружие для защиты других европейских стран.#Россия #НАТО #переговоры #Европа Подпишись!",
+          "platform": "TG",
+          "handle": "lomovkaa",
+          "accountId": "tg-lomovkaa",
+          "language": "ru",
+          "postedAt": "2026-11-14T17:10:05+00:00",
+          "links": [
+            "?q=%23%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F",
+            "?q=%23%D0%9D%D0%90%D0%A2%D0%9E",
+            "?q=%23%D0%BF%D0%B5%D1%80%D0%B5%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D1%8B",
+            "?q=%23%D0%95%D0%B2%D1%80%D0%BE%D0%BF%D0%B0",
+            "https://max.ru/lomovka"
+          ],
+          "call": "a21094f5-32db-492c-9584-763d3ed6d42a",
+          "relationship": "Cited Telegram source; same narrative confirmed",
+          "judgement": {
+            "data": {
+              "sameNarrative": true,
+              "title": "Russia demands NATO close bases in Eastern Europe as part of Ukraine truce conditions",
+              "claim": "Russia demands NATO withdraw troops and close bases in Eastern Europe, including countries that joined after 1997, as part of conditions for a truce in Ukraine.",
+              "innocentExplanations": [
+                "Russia's demands may be part of negotiation tactics to address security concerns.",
+                "The conditions reflect Russia's view on the root causes of the conflict rather than a simple cease-fire.",
+                "The demands could be aimed at reshaping the European security architecture post-conflict."
+              ],
+              "techniques": [
+                {
+                  "name": "Attribution",
+                  "phrase": "The New York Times reports",
+                  "explanation": "The claim is attributed to a reputable news source to lend credibility."
+                },
+                {
+                  "name": "Listing",
+                  "phrase": "Here are a number of conditions",
+                  "explanation": "The post lists specific demands to clarify Russia's position."
+                }
+              ],
+              "evidence": [
+                {
+                  "sourceId": "network",
+                  "stance": "for",
+                  "quote": "NATO should scale down bases and withdraw troops from countries that joined after 1997, including Finland, Poland and the Baltic States.",
+                  "reason": "Explicitly states Russia's demand for NATO to withdraw troops and close bases in Eastern Europe."
+                },
+                {
+                  "sourceId": "origin",
+                  "stance": "for",
+                  "quote": "▪️НАТО должно свернуть базы и вывести войска из стран, присоединившихся после 1997 года, включая Финляндию, Польшу и Прибалтику.",
+                  "reason": "Confirms the demand in Russian language for NATO to withdraw troops and close bases in Eastern Europe."
+                }
+              ]
+            },
+            "model": "gpt-4.1-mini",
+            "promptVersion": "sf-judge-v2",
+            "at": "2026-11-14T23:24:14.651Z",
+            "call": "edac83e9-2c2d-4a11-b647-669afb74d55f",
+            "usage": {
+              "completion_tokens": 398,
+              "completion_tokens_details": {
+                "reasoning_tokens": 0
+              },
+              "credits_charged": 0.11592,
+              "prompt_tokens": 823,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              },
+              "total_tokens": 1221
+            }
+          }
+        }
+      ],
+      "pickups": 0,
+      "seenBefore": [],
+      "judgement": {
+        "model": "gpt-4.1",
+        "promptVersion": "sf-judge-v5",
+        "at": "2026-11-15T01:01:38.207Z"
+      }
+    }
+  ]
+}

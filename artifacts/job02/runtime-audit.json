@@ -1,0 +1,210 @@
+{
+  "at": "2026-11-15T01:19:56.986Z",
+  "health": {
+    "app": "Signal Fire",
+    "commit": "165a9ea0d278a9d279e41358a7c4283a27105286",
+    "startedAt": "2026-11-15T01:11:39.013Z",
+    "at": "2026-11-15T01:19:56.964Z",
+    "contextConfigured": true,
+    "routerConfigured": true
+  },
+  "database": {
+    "at": "2026-11-15T01:19:55.717Z",
+    "monitors": [
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "News pages"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "News search · lv"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "Trusted tracker pages"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "Trusted tracker pages"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "News pages"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "News pages"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "News search · ru"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "News pages"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "News search · lt"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "News pages"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "News search · uk"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "Trusted tracker pages"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "News search · fi"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "News pages"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "News pages"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "News pages"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "Telegram pages"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "Telegram pages"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "News pages"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "Trusted tracker pages"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "Trusted tracker pages"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "News search · et"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "Documented look-alike domains"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "News search · en"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "Telegram pages"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "Telegram pages"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "News pages"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "News pages"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "News pages"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "Telegram pages"
+      },
+      {
+        "watchId": "baltics",
+        "status": "active",
+        "kind": "Documented look-alike domains"
+      }
+    ],
+    "webhooks": {
+      "run.completed:recorded": 129,
+      "change.detected:processed": 44
+    },
+    "activeWatchCount": 1,
+    "expiredWatchTombstones": 5,
+    "directXRequests": 0
+  },
+  "runtime": [
+    {
+      "name": "/signal-fire",
+      "id": "77d09fa1abe028a8c5c25f64eb8abc131d235099ac48e89a5c970dca0419c1ad",
+      "running": true,
+      "health": "healthy",
+      "restarts": 0,
+      "memory": 2147483648,
+      "cpu": 1000000000,
+      "image": "signal-fire:165a9ea0d278a9d279e41358a7c4283a27105286"
+    },
+    {
+      "name": "/fact-weight",
+      "id": "22f7266161f6c4c802dfaf12a3e0cbca8b4b761a7bdbb091098ba07ba6615a95",
+      "running": true,
+      "health": "healthy",
+      "restarts": 0,
+      "memory": 402653184,
+      "cpu": 500000000,
+      "image": "fact-weight:c465b5ffd39022c7e08af038087b7a6033372074"
+    },
+    {
+      "name": "/traefik-traefik-1",
+      "id": "b1d88753c2e76bf5c7bd6625e035805708a3f5b159025c054564bc1d68b9c403",
+      "running": true,
+      "restarts": 0,
+      "memory": 0,
+      "cpu": 0,
+      "image": "traefik:latest"
+    }
+  ],
+  "spread": "MainPID=0\nActiveState=inactive\nSubState=dead"
+}

@@ -1,0 +1,25 @@
+{
+  "source": "Saved response from the deployed public state endpoint",
+  "at": "2026-11-14T23:50:11.855Z",
+  "commit": "aaa12b3da324d5ea31de5c8419bd513228770ce6",
+  "findings": [
+    {
+      "id": "a6b0d22b1d61",
+      "verdict": "moderate",
+      "posts": 17,
+      "accounts": 11
+    },
+    {
+      "id": "aa9426e2b5e6",
+      "verdict": "moderate",
+      "posts": 20,
+      "accounts": 14
+    },
+    {
+      "id": "nab032987aff",
+      "verdict": "moderate",
+      "posts": 9,
+      "accounts": 8
+    }
+  ]
+}

@@ -11,3 +11,8 @@ data/
 artifacts/job02/docs/
 artifacts/e2e/local/
 .codex-job*.log
+
+# Generated deployed acceptance output; release checkpoints are committed separately.
+artifacts/e2e/
+artifacts/pdf-check/
+screenshots/
