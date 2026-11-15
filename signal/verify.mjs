@@ -4,7 +4,12 @@ export function applyVeto(evidence, items) {
     if (!["for", "against"].includes(e.stance)) return e;
     let v = items.find((x) => x.id === String(i));
     return v?.passes === true
-      ? { ...e, verificationPassed: true }
+      ? {
+          ...e,
+          verificationPassed: true,
+          reason: v.reason || e.reason,
+          proposedStance: undefined,
+        }
       : {
           ...e,
           proposedStance: e.stance,

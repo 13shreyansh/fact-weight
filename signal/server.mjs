@@ -1,4 +1,6 @@
 import http from "node:http";
+import { gzipSync } from "node:zlib";
+import { summaryPush } from "./summary.mjs";
 import fs from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
@@ -44,11 +46,14 @@ if (!get("meta", "initialCollection"))
     note: "Initial collection. Baseline is still being learned.",
   });
 function json(res, status, d) {
+  const content = Buffer.from(JSON.stringify(d));
+  const compressed = content.length > 2048;
   res.writeHead(status, {
+    ...(compressed ? { "Content-Encoding": "gzip" } : {}),
     "Content-Type": "application/json",
     "Cache-Control": "no-store",
   });
-  res.end(JSON.stringify(d));
+  res.end(compressed ? gzipSync(content) : content);
 }
 async function body(req) {
   let b = "";
@@ -153,7 +158,7 @@ export const server = http.createServer(async (req, res) => {
       const list = pushes(w.id);
       return json(res, 200, {
         watch: w,
-        pushes: list,
+        pushes: list.map(summaryPush),
         metrics: {
           ...metrics(w.id),
           monitors: monitorMetrics(),

@@ -28,7 +28,7 @@ assert.equal(
   "Deployed commit must equal HEAD before testing",
 );
 const state = await (await client.request.get(base + "/api/state")).json(),
-  push = state.pushes.find((p) => p.id === id);
+  push = await (await client.request.get(base + "/api/push/" + id)).json();
 assert.ok(push && ["moderate", "strong"].includes(push.verdict));
 assert.ok(push.origins?.length);
 assert.ok(push.pickups?.length);
@@ -359,7 +359,10 @@ try {
     crypto.createHash("sha256").update(pdf).digest("hex"),
   );
   checks.push("PDF byte SHA-256 and ZIP row counts match live push");
-  for (const p of state.pushes) {
+  for (const row of state.pushes) {
+    const p = await (
+      await client.request.get(base + "/api/push/" + row.id)
+    ).json();
     const { verdict } = await import("../signal/detect.mjs");
     assert.equal(
       verdict(p.signals, p.posts.length, p.accounts.length),
