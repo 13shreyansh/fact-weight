@@ -139,7 +139,7 @@ async function collectStories(c) {
   // week's most obvious influence stories for the country).
   const watchedIds = new Set();
   if (process.env.EXA_API_KEY) {
-    const wq = [...(WATCHED[c.code] || []), `${c.name} disinformation influence campaign this week`, `Pravda network ${c.name}`, `${c.name} Russian state media claims this week`];
+    const wq = [...(WATCHED[c.code] || []), `${c.name} disinformation influence campaign this week`, `${c.name} Russian state media claims this week`];
     const wr = await pool(wq, 4, (query) =>
       call("exa", "/search", { query, type: "auto", numResults: 15, startPublishedDate: new Date(from - 2 * 864e5).toISOString(), endPublishedDate: new Date(to).toISOString(), contents: { text: { maxCharacters: 1200 } } }).catch(() => ({ results: [] })),
     );
@@ -266,8 +266,8 @@ async function findCopies(story, c) {
     });
     exaSearches = qs.length;
     const docs = await documentedLists();
-    const known = [...new Set([...STATE_OUTLETS, ...docs.lists.flatMap((l) => [...l.registrables])])].slice(0, 200);
-    const ks = await call("exa", "/search", { query: story.title, type: "auto", numResults: 15, includeDomains: known, startPublishedDate: new Date(t0 - 864e5).toISOString(), endPublishedDate: new Date(t0 + 3 * 864e5).toISOString(), contents: { text: { maxCharacters: 2500 } } }).catch(() => ({ results: [] }));
+    const knownDomains = [...new Set([...STATE_OUTLETS, ...docs.lists.flatMap((l) => [...l.registrables])])].slice(0, 200);
+    const ks = await call("exa", "/search", { query: story.title, type: "auto", numResults: 15, includeDomains: knownDomains, startPublishedDate: new Date(t0 - 864e5).toISOString(), endPublishedDate: new Date(t0 + 3 * 864e5).toISOString(), contents: { text: { maxCharacters: 2500 } } }).catch(() => ({ results: [] }));
     exaSearches++;
     res.push({ ...ks, knownSource: true });
     for (const r of res)
