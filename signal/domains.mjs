@@ -38,6 +38,7 @@ export function lookalike(domain) {
       const brand = p.domain.split(".")[0],
         label = domain.split(".")[0];
       return (
+        label === brand ||
         (label.includes(brand) && label !== brand) ||
         (distance(label, brand) <= 1 && brand.length >= 4) ||
         domain.endsWith("." + p.domain + ".com")
@@ -85,17 +86,37 @@ export async function inspectDomain(domain) {
       shingles(candidate.markdown?.data || ""),
       shingles(real.markdown?.data || ""),
     );
-    const logos = ($) =>
+    const logos = ($, base) =>
       new Set(
         $("img[src]")
-          .map((i, e) => $(e).attr("src"))
+          .map((i, e) => {
+            try {
+              return new URL($(e).attr("src"), base).href;
+            } catch {
+              return null;
+            }
+          })
           .get()
-          .filter((x) => /logo/i.test(x)),
+          .filter((x) => x && /logo/i.test(x)),
       );
-    const realLogos = logos(b),
-      shared = [...logos(a)].filter((x) => realLogos.has(x));
+    const realLogos = logos(b, "https://" + brand.domain),
+      shared = [...logos(a, "https://" + domain)].filter(
+        (x) =>
+          realLogos.has(x) &&
+          (new URL(x).hostname === brand.domain ||
+            new URL(x).hostname.endsWith("." + brand.domain)),
+      );
     result.sameLogoFiles = shared;
-    result.verifiedClone = result.textSimilarity > 0.8 || shared.length > 0;
+    result.verifiedClone =
+      ((candidate.markdown?.data?.length || 0) >= 500 &&
+        (real.markdown?.data?.length || 0) >= 500 &&
+        result.textSimilarity > 0.8 &&
+        !/access denied|just a moment|captcha/i.test(
+          (candidate.metadata?.title || "") +
+            " " +
+            (real.metadata?.title || ""),
+        )) ||
+      shared.length > 0;
     result.scrapeCalls = [candidate._call, real._call];
     result.note = result.verifiedClone
       ? "Public page text or logo files match the publisher."

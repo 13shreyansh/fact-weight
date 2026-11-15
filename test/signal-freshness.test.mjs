@@ -62,3 +62,19 @@ test("failed retry attempts remain separate durable spend reservations", async (
     global.fetch = original;
   }
 });
+test("successful empty provider responses complete cleanup without JSON parsing failures", async () => {
+  const { call } = await import("../signal/providers.mjs");
+  const original = global.fetch;
+  global.fetch = async () => new Response(null, { status: 204 });
+  try {
+    const d = await call(
+      "context",
+      "/monitors/isolated-cleanup",
+      {},
+      { method: "DELETE", fresh: true },
+    );
+    assert.ok(d._call);
+  } finally {
+    global.fetch = original;
+  }
+});

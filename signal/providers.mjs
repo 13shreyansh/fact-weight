@@ -151,7 +151,7 @@ export async function call(provider, endpoint, params = {}, opts = {}) {
       },
     );
     status = r.status;
-    response = await r.json();
+    response = r.status === 204 ? {} : await r.json();
     credits =
       provider === "context"
         ? (response.key_metadata?.credits_consumed ??
@@ -167,10 +167,13 @@ export async function call(provider, endpoint, params = {}, opts = {}) {
       JSON.stringify(redact(response)),
       id,
     );
-    if (!r.ok)
-      throw Error(
+    if (!r.ok) {
+      const error = Error(
         `${provider} returned ${status}: ${JSON.stringify(redact(response)).slice(0, 180)}`,
       );
+      error.status = status;
+      throw error;
+    }
     return { ...response, _call: id };
   } catch (e) {
     db.prepare("UPDATE calls SET status=?,ms=? WHERE id=?").run(

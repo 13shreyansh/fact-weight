@@ -3,6 +3,7 @@ import { all, get, put } from "./providers.mjs";
 import { sweep } from "./sweep.mjs";
 import {
   processInbox,
+  cleanExpiredMonitors,
   monitorBudgetGuard,
   setupMonitors,
 } from "./monitors.mjs";
@@ -66,6 +67,12 @@ function poll() {
 }
 setInterval(() => work(), 5000);
 setInterval(poll, 30 * 60000);
-setInterval(() => monitorBudgetGuard().catch(() => {}), 60000);
+setInterval(
+  () =>
+    monitorBudgetGuard()
+      .then(cleanExpiredMonitors)
+      .catch(() => {}),
+  60000,
+);
 setTimeout(poll, 10000);
 await work();

@@ -322,3 +322,27 @@ export function monitorMetrics(watchId) {
     budget: get("meta", "monitorBudget"),
   };
 }
+
+export async function cleanExpiredMonitors() {
+  for (const m of all("monitor")) {
+    const w = get("watch", m.watchId);
+    if (!m.id || !w?.expiresAt || Date.parse(w.expiresAt) > Date.now())
+      continue;
+    try {
+      await call(
+        "context",
+        "/monitors/" + m.id,
+        {},
+        { method: "DELETE", fresh: true, management: true },
+      );
+      db.prepare("DELETE FROM records WHERE kind='monitor' AND id=?").run(
+        m.routeId,
+      );
+    } catch (error) {
+      if (error.status === 404)
+        db.prepare("DELETE FROM records WHERE kind='monitor' AND id=?").run(
+          m.routeId,
+        );
+    }
+  }
+}
