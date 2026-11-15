@@ -559,3 +559,5 @@ p{margin:0 0 1em}
 .evid[open]>*:not(summary){margin-top:18px}
 .vline{display:flex;gap:14px;align-items:center;flex-wrap:wrap;color:var(--ink-2)}
 @media (max-width:820px){.plain{grid-template-columns:1fr}.plain .pr{grid-column:1!important;border-right:0!important;border-bottom:2px solid var(--ink)!important}.plain .pr:last-child{border-bottom:0!important}}
+.plain dd,.dossier h3,.dcol p,.claims li p,.conf li p,.dossier cite,.summary{overflow-wrap:anywhere}
+.dossier,.plain{min-width:0;max-width:100%}
