@@ -1,9 +1,328 @@
-{"code":"FI","name":"Finland","status":"ready","built_at":"2026-11-15T01:40:00Z","computed_at":"2026-11-15T01:40:00Z","stories_checked":41,"copies_found":212,
-"clusters":[
-{"id":"c1","label":"23-site network, 7 languages","sites":["finland.news-pravda.com","news-pravda.com","sweden.news-pravda.com","norway.news-pravda.com","estonia.news-pravda.com","denmark.news-pravda.com","usa.news-pravda.com","de.news-pravda.com","fr.news-pravda.com","pl.news-pravda.com","lt.news-pravda.com","lv.news-pravda.com"],"site_count":23,"documented_by":[{"name":"CheckFirst (Portal Kombat open data)","url":"https://github.com/CheckFirstHQ/pravda-network"},{"name":"VIGINUM","url":"https://www.sgdsn.gouv.fr/publications/portal-kombat"}],"origins_top":[{"name":"t.me/s/rybar","count":14},{"name":"t.me/s/readovkanews","count":9},{"name":"bild.de","count":6}],"domain_ages":{"median_days":812,"min_days":401},"shared_infra":["Same page template on all 23 sites","Same analytics ID on 21 sites","Hosted on one network (AS 49505)"],"stories_copied":17,"median_copy_lag_min":9,"verdict":"Looks coordinated: strong","reasons":["17 Finland stories copied by the same sites within 60 minutes of each other","Median 9 minutes from first copy to the 10th copy","Near-identical wording (shingle overlap 0.83) across 7 languages"],"computed_at":"2026-11-15T01:40:00Z"},
-{"id":"c2","label":"4-site aggregator ring","sites":["uutiset24h.example","suomifeed.example","nordicnow.example","finnews.example"],"site_count":4,"documented_by":[],"origins_top":[{"name":"yle.fi","count":7}],"domain_ages":{"median_days":63,"min_days":40},"shared_infra":[],"stories_copied":5,"median_copy_lag_min":34,"verdict":"Looks coordinated: moderate","reasons":["5 stories copied by the same 4 sites within 60 minutes","Domains registered within 3 weeks of each other"],"computed_at":"2026-11-15T01:40:00Z"}],
-"narratives":[
-{"id":"n1","label":"Finland's NATO membership makes it a target","cluster_id":"c1","articles":64,"trend_30d":[0,1,0,2,1,1,3,2,1,0,2,4,3,2,1,2,3,5,4,2,3,1,2,4,6,3,9,14,8,5],"first_seen":"2026-10-17T08:00:00Z","examples":[{"headline":"Bild: Russia wants Finland to leave NATO","url":"https://finland.news-pravda.com/en/russia/2026/11/13/26293.html"},{"headline":"Finnish politician calls for leaving NATO","url":"https://finland.news-pravda.com/"}]},
-{"id":"n2","label":"Russia's hybrid attack has already reached Finland","cluster_id":"c1","articles":22,"trend_30d":[0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,2,1,0,0,0,1,3,4,2,3,2,1,1],"first_seen":"2026-11-02T10:00:00Z","examples":[{"headline":"Supermarket freezers hacked: the hybrid war reached Finland","url":"https://finland.news-pravda.com/"}]}],
-"organic_examples":[{"story_id":"fi-ice","title":"Finland orders two more icebreakers","outlets":14,"reasons":["14 outlets, wording overlap below 0.3","Publication spread over 19 hours"]}],
-"pickup":[{"platform":"YouTube","url":"https://youtube.com/","title":"Bild: Russia wants Finland out of NATO","published_at":"2026-11-13T19:30:00Z","views":18200},{"platform":"TikTok","url":"https://tiktok.com/","title":"Finland NATO exit?","published_at":"2026-11-14T07:10:00Z","views":40100},{"platform":"Reddit","url":"https://reddit.com/r/europe","title":"Bild report on Finland and NATO","published_at":"2026-11-13T21:00:00Z","views":null}]}
+{
+ "code": "FI",
+ "name": "Finland",
+ "status": "ready",
+ "built_at": "2026-11-15T01:40:00Z",
+ "computed_at": "2026-11-15T01:40:00Z",
+ "stories_checked": 41,
+ "copies_found": 212,
+ "clusters": [
+  {
+   "id": "c1",
+   "label": "23-site network, 7 languages",
+   "sites": [
+    "finland.news-pravda.com",
+    "news-pravda.com",
+    "sweden.news-pravda.com",
+    "norway.news-pravda.com",
+    "estonia.news-pravda.com",
+    "denmark.news-pravda.com",
+    "usa.news-pravda.com",
+    "de.news-pravda.com",
+    "fr.news-pravda.com",
+    "pl.news-pravda.com",
+    "lt.news-pravda.com",
+    "lv.news-pravda.com"
+   ],
+   "site_count": 23,
+   "documented_by": [
+    {
+     "name": "CheckFirst (Portal Kombat open data)",
+     "url": "https://github.com/CheckFirstHQ/pravda-network"
+    },
+    {
+     "name": "VIGINUM",
+     "url": "https://www.sgdsn.gouv.fr/publications/portal-kombat"
+    }
+   ],
+   "origins_top": [
+    {
+     "name": "t.me/s/rybar",
+     "count": 14
+    },
+    {
+     "name": "t.me/s/readovkanews",
+     "count": 9
+    },
+    {
+     "name": "bild.de",
+     "count": 6
+    }
+   ],
+   "domain_ages": {
+    "median_days": 812,
+    "min_days": 401
+   },
+   "shared_infra": [
+    "Same page template on all 23 sites",
+    "Same analytics ID on 21 sites",
+    "Hosted on one network (AS 49505)"
+   ],
+   "stories_copied": 17,
+   "median_copy_lag_min": 9,
+   "verdict": "Looks coordinated: strong",
+   "reasons": [
+    "17 Finland stories copied by the same sites within 60 minutes of each other",
+    "Median 9 minutes from first copy to the 10th copy",
+    "Near-identical wording (shingle overlap 0.83) across 7 languages"
+   ],
+   "computed_at": "2026-11-15T01:40:00Z"
+  },
+  {
+   "id": "c2",
+   "label": "4-site aggregator ring",
+   "sites": [
+    "uutiset24h.example",
+    "suomifeed.example",
+    "nordicnow.example",
+    "finnews.example"
+   ],
+   "site_count": 4,
+   "documented_by": [],
+   "origins_top": [
+    {
+     "name": "yle.fi",
+     "count": 7
+    }
+   ],
+   "domain_ages": {
+    "median_days": 63,
+    "min_days": 40
+   },
+   "shared_infra": [],
+   "stories_copied": 5,
+   "median_copy_lag_min": 34,
+   "verdict": "Looks coordinated: moderate",
+   "reasons": [
+    "5 stories copied by the same 4 sites within 60 minutes",
+    "Domains registered within 3 weeks of each other"
+   ],
+   "computed_at": "2026-11-15T01:40:00Z"
+  }
+ ],
+ "narratives": [
+  {
+   "id": "n1",
+   "label": "Finland's NATO membership makes it a target",
+   "cluster_id": "c1",
+   "articles": 64,
+   "trend_30d": [
+    0,
+    1,
+    0,
+    2,
+    1,
+    1,
+    3,
+    2,
+    1,
+    0,
+    2,
+    4,
+    3,
+    2,
+    1,
+    2,
+    3,
+    5,
+    4,
+    2,
+    3,
+    1,
+    2,
+    4,
+    6,
+    3,
+    9,
+    14,
+    8,
+    5
+   ],
+   "first_seen": "2026-10-17T08:00:00Z",
+   "examples": [
+    {
+     "headline": "Bild: Russia wants Finland to leave NATO",
+     "url": "https://finland.news-pravda.com/en/russia/2026/11/13/26293.html"
+    },
+    {
+     "headline": "Finnish politician calls for leaving NATO",
+     "url": "https://finland.news-pravda.com/"
+    }
+   ]
+  },
+  {
+   "id": "n2",
+   "label": "Russia's hybrid attack has already reached Finland",
+   "cluster_id": "c1",
+   "articles": 22,
+   "trend_30d": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    2,
+    1,
+    0,
+    0,
+    0,
+    1,
+    3,
+    4,
+    2,
+    3,
+    2,
+    1,
+    1
+   ],
+   "first_seen": "2026-11-02T10:00:00Z",
+   "examples": [
+    {
+     "headline": "Supermarket freezers hacked: the hybrid war reached Finland",
+     "url": "https://finland.news-pravda.com/"
+    }
+   ]
+  }
+ ],
+ "organic_examples": [
+  {
+   "story_id": "fi-ice",
+   "title": "Finland orders two more icebreakers",
+   "outlets": 14,
+   "reasons": [
+    "14 outlets, wording overlap below 0.3",
+    "Publication spread over 19 hours"
+   ]
+  }
+ ],
+ "pickup": [
+  {
+   "platform": "YouTube",
+   "url": "https://youtube.com/",
+   "title": "Bild: Russia wants Finland out of NATO",
+   "published_at": "2026-11-13T19:30:00Z",
+   "views": 18200
+  },
+  {
+   "platform": "TikTok",
+   "url": "https://tiktok.com/",
+   "title": "Finland NATO exit?",
+   "published_at": "2026-11-14T07:10:00Z",
+   "views": 40100
+  },
+  {
+   "platform": "Reddit",
+   "url": "https://reddit.com/r/europe",
+   "title": "Bild report on Finland and NATO",
+   "published_at": "2026-11-13T21:00:00Z",
+   "views": null
+  }
+ ],
+ "briefing": {
+  "summary": "FIXTURE TEXT. A seven-site network republished Russian claims about Finland and NATO within minutes of each other this week. The copies repeat a real BILD report but add lines that no news outlet carried. Most other coverage of Finland was ordinary agency copying.",
+  "generated_at": "2026-11-15T04:50:00Z",
+  "pushes": [
+   {
+    "story_id": "fi-bild-nato",
+    "headline": "Bild: Russia wants Finland to leave NATO",
+    "confirmed": [
+     {
+      "text": "BILD reported that Russian negotiators raised Finland's NATO membership in talks.",
+      "sources": [
+       {
+        "outlet": "Yle",
+        "url": "https://yle.fi/"
+       },
+       {
+        "outlet": "BILD",
+        "url": "https://bild.de/"
+       }
+      ]
+     },
+     {
+      "text": "Finland's government called the demand unacceptable.",
+      "sources": [
+       {
+        "outlet": "Helsingin Sanomat",
+        "url": "https://hs.fi/"
+       }
+      ]
+     }
+    ],
+    "claims": [
+     {
+      "text": "Finland is preparing to hold a referendum on leaving NATO.",
+      "status": "contradicted",
+      "evidence": [
+       {
+        "outlet": "Yle",
+        "url": "https://yle.fi/",
+        "quote": "No referendum is planned, the prime minister's office said."
+       }
+      ]
+     },
+     {
+      "text": "NATO troops in Finland are a direct threat to St Petersburg.",
+      "status": "only_copies",
+      "evidence": []
+     },
+     {
+      "text": "Russia raised the issue in Abu Dhabi talks.",
+      "status": "reported",
+      "evidence": [
+       {
+        "outlet": "Reuters",
+        "url": "https://reuters.com/",
+        "quote": "The issue was raised in talks in Abu Dhabi, BILD reported."
+       }
+      ]
+     }
+    ],
+    "spread": {
+     "sites": 17,
+     "countries": 7,
+     "first_copy_at": "2026-11-13T08:59:00Z",
+     "minutes_to_spread": 12,
+     "telegram": [
+      {
+       "channel": "@example_channel",
+       "url": "https://t.me/s/example_channel"
+      }
+     ],
+     "platforms": {
+      "tiktok": 12,
+      "youtube": 3,
+      "reddit": 2,
+      "instagram": 0
+     }
+    },
+    "behind": {
+     "cluster_id": "c1",
+     "network": "Pravda network (Portal Kombat), 7 sites",
+     "documented_by": [
+      "CheckFirst",
+      "VIGINUM",
+      "DFRLab"
+     ],
+     "infra": [
+      "All seven sites sit on the same two IP addresses.",
+      "They share one analytics ID."
+     ]
+    },
+    "want": "Finland joining NATO made it less safe, and it should reconsider."
+   }
+  ]
+ }
+}
