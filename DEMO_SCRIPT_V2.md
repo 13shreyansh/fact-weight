@@ -1,47 +1,75 @@
-# Signal Fire — demo script (2:00)
+# Signal Fire — video script, "Two wars" (2:00)
 
-Live site: https://signal-fire.72.61.22.106.sslip.io at 1440×900. Everything on screen is fetched live data; no seeded pages. Numbers below were measured at 07:25 Helsinki, 15 Nov, and will drift slightly.
+Live site: https://signal-fire.72.61.22.106.sslip.io at 1440×900. Everything shown is live, fetched data. Numbers are from 07:25 Helsinki, 15 Nov; read the live ones on camera.
 
-## 0:00–0:12 · Hook (home page)
-**Say:** "Every country is being told a story. Signal Fire tells you who is telling it, and what's not true. We start with no list of bad actors: sites give themselves away by copying each other within minutes."
-**Show:** home page, the country grid, the live counter (19 countries, 6,058 copies, 2,109 sites, 28 languages).
+---
 
-## 0:12–0:45 · WOW 1: the Finland briefing (red first)
-**Click:** Finland.
-**Say:** "Here's Finland this week, in five lines."
-**Point at, top to bottom:**
-- **Red, "What's wrong":** "It's not an anti-Russia 'Northern Alliance': outlets say the deal is meant to boost NATO's deterrence and defence."
-- **Pink, "The message being pushed":** "Finland and its Nordic neighbours are building a military bloc aimed against Russia."
-- **Green, "What's actually true":** the defence ministers' real statement.
-- **"Why it's spreading":** "16 sites in 5 countries reposted it within 3 minutes, plus 3 Telegram channels."
-- **"Who is behind it":** "Pravda network (Portal Kombat). 7 sites share one Yandex analytics ID."
-**Say:** "Nobody told the engine about Pravda. It found 7 sites moving in lock-step, then matched them to the CheckFirst, VIGINUM and DFRLab records."
+## ACT 1 — The two wars (0:00–0:30) · founder to camera, no screen
 
-## 0:45–1:05 · WOW 2: the evidence (story X-ray)
-**Click:** "Show the evidence", then the story.
-**Show:** the route sheet. Each postmark is a real copy with its real timestamp, minutes apart. Then the wording-match and meaning-match scores, the added lines, and the verbatim quotes from outside outlets that confirm or contradict each claim.
-**Say:** "Every claim was checked against outlets outside the copying network, and we only show a quote if it appears word for word on the fetched page."
+> "There are two wars.
+>
+> The first is the one you can see. It's fought on borders, with tanks and drones. Soldiers fight it, and soldiers get hurt.
+>
+> The second one has no border. It's fought on your phone, in your feed, in the news you read with your morning coffee. In this war you can lose before a single shot is fired, because you've already been convinced of something that isn't true. Here the people who get hurt aren't soldiers. They're ordinary citizens.
+>
+> That second war is happening right now, in every country, and almost nobody can see it. So I built Signal Fire."
 
-## 1:05–1:25 · WOW 3: any country, same machine
-**Click:** Ukraine, then Russia.
-**Say (Ukraine):** "Only the copying sites say all of Kyiv's power generation is destroyed and darkness awaits. That's 25 sites in 4 countries in 2 minutes, plus 29 TikToks."
-**Say (Russia):** "Only the copying sites say Putin 'has already won'. That's 23 sites in 8 countries within a minute."
-**Show for 2 seconds:** "Read any country" lets a visitor build a new country live, with step timings.
+*(Cut to black. Title: **SIGNAL FIRE: see the second war.**)*
 
-## 1:25–1:40 · WOW 4: honest negatives
-**Click:** United States, then scroll to the organic groups.
-**Say:** "AP subscribers copying each other is shown as organic, with the reason: they credit the agency. We'd rather say 'Looks organic' than cry wolf."
+---
 
-## 1:40–1:55 · WOW 5: it never sleeps
-**Show:** Method (pipeline, thresholds, spend) and the live feed: 40 Context.dev monitors and 164 signed webhook events in 24 h.
-**Say:** "Monitors on every country and every network site. A newsroom can POST /api/watch and get each new push as a webhook."
+## ACT 2 — How do you catch a fire you can't see? (0:30–0:50) · home page
 
-## 1:55–2:00 · Close
-**Say:** "Know who is influencing your country, and what they want. Built on Context.dev, Exa and the Hostinger AI Router, running on one Hostinger VPS."
+> "A single article isn't the threat; anyone can write one. The threat is a *machine*: dozens of linked sites publishing the same words within minutes, in many languages, story after story.
+>
+> Real newsrooms write their own words on their own schedule. A machine can't hide its rhythm. That rhythm is the smoke, and Signal Fire watches for it."
 
-## Wording rules on camera
-Say "looks coordinated", "copied", "only the copying sites say". Never say "fake", "bots" or "propaganda" about a specific site. The verdicts are behavioural.
+**Show:** the home page and the live counters: **19 countries · 790 stories · 6,058 copies · 2,109 sites · 28 languages · 40 live monitors.**
 
-## If something looks off live
-- A number differs from this script: say the live number. It refreshes as monitors fire.
-- A briefing line says "Unclear": that's the honest fallback when the two model families disagree.
+> "We start with *no* list of bad actors. The sites reveal themselves by how they behave."
+
+---
+
+## ACT 3 — The proof: Finland (0:50–1:25) · country page, red first
+
+**Click Finland.**
+
+> "This is what the second war looks like this week in Finland."
+
+**Read the card top-down, pointing at each colour:**
+- 🟥 **What's wrong:** "It's not an anti-Russia 'Northern Alliance'. Outlets say the deal is meant to boost NATO's deterrence and defence."
+- 🩷 **The message being pushed:** "Finland and its Nordic neighbours are building a military bloc aimed against Russia."
+- 🟩 **What's actually true:** the defence ministers' real statement.
+- **Why it's spreading:** "16 sites in 5 countries reposted it within 3 minutes, plus 3 Telegram channels."
+- **Who is behind it:** "The Pravda network (Portal Kombat). Seven of its sites share one tracking ID."
+
+> "Nobody told Signal Fire about Pravda. It found seven sites moving in lock-step, and only then matched them to the public records of CheckFirst, VIGINUM and DFRLab."
+
+**Click "Show the evidence":** the route sheet (every copy with its real minute), then the word-for-word quotes from independent outlets.
+
+> "Every 'wrong' is checked against outlets outside the network, and we only show a quote if it appears word for word on the page."
+
+---
+
+## ACT 4 — It's everywhere (1:25–1:45) · quick cuts
+
+- **Ukraine:** "Only the copying sites say all of Kyiv's power is destroyed and darkness is coming. 25 sites, 4 countries, 2 minutes, 29 TikToks."
+- **Russia:** "Only the copying sites say Putin 'has already won'. 23 sites, 8 countries, one minute."
+- **United States:** "And when it's just AP syndication, we say *Looks organic*. A smoke alarm that cries wolf is useless."
+
+---
+
+## ACT 5 — The change (1:45–2:00) · Method page / live feed, then to camera
+
+> "Signal Fire never sleeps. Monitors watch every country and every network site, and a newsroom can plug in and get each new push the minute it lands.
+>
+> We spent a century learning to defend borders. Signal Fire is how we start defending minds: for journalists, for governments, for every citizen who just wants to know what's true.
+>
+> Know who is influencing your country, and what they want."
+
+*(End card: **Signal Fire**. Built on Context.dev, Exa and the Hostinger AI Router, on one Hostinger VPS. The URL.)*
+
+---
+
+### Wording on camera
+The "two wars" framing is yours to say in general terms. When you point at a specific site or group, use the product's words: "looks coordinated", "copied", "only the copying sites say". Don't call a named site "fake", "bots" or "propaganda".
