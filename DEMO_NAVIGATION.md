@@ -21,6 +21,6 @@
 | 14 | **Method** (`/method`) | "Monitors re-check every hour; any newsroom can get alerts." | Top nav **Method**; scroll to **Live numbers** |
 | 15 | Deck: **We learned to defend borders. Now we defend minds.** | Close. | Switch back to the deck |
 
-**Before you present:** open these five tabs in order (`/`, `/country?cc=FI`, `/country?cc=UA`, `/country?cc=RU`, `/country?cc=US`, `/method`) and let each finish loading. Briefings and numbers are live and may differ slightly from these notes, so read what's on screen.
+**Before you present:** open these six tabs in order (`/`, `/country?cc=FI`, `/country?cc=UA`, `/country?cc=RU`, `/country?cc=US`, `/method`) and let each finish loading. Briefings and numbers are live and may differ slightly from these notes, so read what's on screen.
 
 **Words to use:** "looks coordinated", "copied", "only the copying sites say". Don't call a named site fake or propaganda.
