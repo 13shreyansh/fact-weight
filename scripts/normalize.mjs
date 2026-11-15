@@ -1,4 +1,4 @@
-import { all, put, hash, db } from "../signal/providers.mjs";
+import { all, get, put, hash, db } from "../signal/providers.mjs";
 import { load } from "cheerio";
 const dbCallURL = (id) => {
   try {
@@ -38,14 +38,12 @@ const store = (p) => {
     collectedAt: p.collectedAt || new Date().toISOString(),
   });
 };
-for (const d of all("discovery")) {
+for (const { id: recordId } of db
+  .prepare("SELECT id FROM records WHERE kind='discovery'")
+  .all()) {
+  const d = get("discovery", recordId);
   const p = d.parsed?.data;
   if (p?.comments) {
-    const row = all("discovery").find((x) =>
-      x.parsed?.data?.videos?.some(
-        (v) => p.comments[0] && v.id === p.comments[0].post_id,
-      ),
-    );
     const parent = dbCallURL(d._call);
     for (const c of p.comments)
       store({
@@ -135,7 +133,10 @@ for (const d of all("discovery")) {
       followers: p.follower_count,
     });
 }
-for (const d of all("telegram")) {
+for (const { id: recordId } of db
+  .prepare("SELECT id FROM records WHERE kind='telegram'")
+  .all()) {
+  const d = get("telegram", recordId);
   const $ = load(d.html?.data || "");
   $(".tgme_widget_message").each((i, el) => {
     const e = $(el),

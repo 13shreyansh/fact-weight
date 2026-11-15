@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import { reserveRouter } from "./pricing.mjs";
 import crypto from "node:crypto";
 import { DatabaseSync } from "node:sqlite";
 import { redact } from "./secrets.mjs";
@@ -76,7 +77,7 @@ export async function call(provider, endpoint, params = {}, opts = {}) {
           : /\.pdf(?:[?#]|$)/i.test(params.url || "")
             ? 1000
             : 10
-        : 35,
+        : reserveRouter(params),
     cap = provider === "context" ? 30000 : 1500;
   // A synchronous durable reservation precedes every request, including failures.
   const id = crypto.randomUUID(),

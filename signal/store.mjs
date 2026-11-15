@@ -93,12 +93,18 @@ export function metrics(w = defaultId) {
     .sort((a, b) => Date.parse(a.startedAt) - Date.parse(b.startedAt));
   return {
     asOf: new Date().toISOString(),
-    posts: all("post").length,
-    accounts: all("account").length,
-    sources:
-      new Set(all("telegram").map((d) => d.channel)).size +
-      all("discovery").filter((d) => d.parsed?.success || d.data?.length)
-        .length,
+    posts: db.prepare("SELECT count(*) n FROM records WHERE kind='post'").get()
+      .n,
+    accounts: db
+      .prepare("SELECT count(*) n FROM records WHERE kind='account'")
+      .get().n,
+    sources: (get("watch", w)?.sources || []).filter((url) =>
+      db
+        .prepare(
+          "SELECT 1 FROM calls WHERE provider='context' AND endpoint='/web/scrape' AND status=200 AND json_extract(params,'$.url')=? AND (json_extract(response,'$.parsed.success')=1 OR json_extract(response,'$.markdown.success')=1 OR json_extract(response,'$.html.success')=1) LIMIT 1",
+        )
+        .get(url),
+    ).length,
     sweeps: sweeps.length,
     lastSweep:
       sweeps.at(-1) ||

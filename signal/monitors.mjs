@@ -298,9 +298,9 @@ export async function monitorBudgetGuard() {
     paused: pause,
   });
 }
-export function monitorMetrics() {
-  const m = all("monitor"),
-    events = all("webhook");
+export function monitorMetrics(watchId) {
+  const m = all("monitor").filter((m) => !watchId || m.watchId === watchId),
+    events = all("webhook").filter((e) => !watchId || e.watchId === watchId);
   return {
     registered: m.filter((x) => x.id).length,
     active: m.filter((x) => x.status === "active").length,

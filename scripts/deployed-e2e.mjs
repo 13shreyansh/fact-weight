@@ -302,7 +302,7 @@ try {
       ownerContext = null;
       checks.push("Private test watch created, isolated and deleted");
     }
-    await page.locator(".brand").click();
+    await page.goto(base + "/w/baltics");
     await ready(page, "h1");
     await context.close();
   }

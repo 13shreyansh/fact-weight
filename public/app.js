@@ -1356,12 +1356,6 @@ async function boot() {
     $("#retry").onclick = () => location.reload();
   }
 }
-window.addEventListener("beforeunload", (e) => {
-  if (formDirty) {
-    e.preventDefault();
-    e.returnValue = "";
-  }
-});
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     $("#watch-dropdown")?.remove();

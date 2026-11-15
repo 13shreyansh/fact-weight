@@ -165,7 +165,7 @@ export const server = http.createServer(async (req, res) => {
         pushes: list.map(summaryPush),
         metrics: {
           ...metrics(w.id),
-          monitors: monitorMetrics(),
+          monitors: monitorMetrics(w.id),
           ...runtimeMetrics(),
         },
         watches: all("watch")
@@ -437,7 +437,8 @@ export const server = http.createServer(async (req, res) => {
             response: JSON.stringify(JSON.parse(r.response), null, 2)
               .split("\n")
               .slice(0, 40)
-              .join("\n"),
+              .join("\n")
+              .slice(0, 16000),
           }));
         return json(res, 200, {
           calls,
