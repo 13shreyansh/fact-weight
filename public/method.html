@@ -1,151 +1,44 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Method & evaluation · Fact Weight</title>
-    <link rel="stylesheet" href="/style.css" />
-    <script src="/app.js" defer></script>
-  </head>
-  <body>
-    <header>
-      <a class="brand" href="/">Fact Weight</a>
-      <nav>
-        <a href="/">Inspect a claim</a
-        ><a href="https://github.com/13shreyansh/fact-weight">Code ↗</a>
-      </nav>
-    </header>
-    <main>
-      <article class="method">
-        <h1>Evidence is inspectable.<br />Certainty is earned.</h1>
-        <p>
-          Fact Weight helps a reader compare a specific claim with specific
-          documents. It does not decide whether a person is a bot, establish an
-          author's intent, or treat an outlet as an absolute authority.
-        </p>
-        <h2>How a label is made</h2>
-        <ol>
-          <li>
-            You paste a post and choose up to four article URLs, or ask
-            Context.dev to search a curated reference pool.
-          </li>
-          <li>
-            Context.dev extracts their text. Fresh mode requests a new
-            extraction. Retrieval time and any provider cache metadata stay in
-            the evidence record.
-          </li>
-          <li>
-            Hostinger AI Router extracts checkable claims from the post alone. A
-            second call compares only those claim IDs with the retrieved
-            passages. Extra claim IDs from the comparison cannot enter the
-            result.
-          </li>
-          <li>
-            Code normalizes Unicode and whitespace, then rejects quotations that
-            do not occur in the extracted text. It groups articles from the same
-            domain and near-identical extracted text.
-          </li>
-          <li>
-            A different model family checks proposed relations. It can veto a
-            relation but cannot create evidence. This check is not calibrated
-            against human labels.
-          </li>
-          <li>
-            Accepted supporting and contradicting groups determine the label.
-          </li>
-        </ol>
-        <table>
-          <tr>
-            <th>Retrieved passages</th>
-            <th>Label</th>
-          </tr>
-          <tr>
-            <td>Support, no contradiction</td>
-            <td>Supported</td>
-          </tr>
-          <tr>
-            <td>Support and contradiction</td>
-            <td>Contested</td>
-          </tr>
-          <tr>
-            <td>Contradiction, no support</td>
-            <td>Contradicted</td>
-          </tr>
-          <tr>
-            <td>No direct support or contradiction</td>
-            <td>Unsupported</td>
-          </tr>
-        </table>
-        <p>
-          One source group is enough for a relation label. It is not enough to
-          establish a fact. Group counts describe documents, not votes, and are
-          never converted into a probability.
-        </p>
-        <h2>What we measured</h2>
-        <div id="eval-detail">The evaluation summary is loading.</div>
-        <p>
-          <a
-            href="https://github.com/13shreyansh/fact-weight/blob/main/eval/LEDGER.md"
-            >Evaluation ledger and failures</a
-          >
-          ·
-          <a
-            href="https://github.com/13shreyansh/fact-weight/blob/main/EVAL_SPEC.md"
-            >Frozen evaluation contract</a
-          >
-        </p>
-        <h2>Where this can fail</h2>
-        <p>
-          A quotation match only proves that those words were in the extraction.
-          The model can still misunderstand them. Separate domains may copy a
-          single wire report, share ownership, or repeat the same official
-          statement. The grouping heuristic cannot prove independence.
-        </p>
-        <p>
-          You choose the documents, or discovery searches ERR, LRT, LSM, the EU
-          Council, NATO and ISW. This pool is incomplete and institutionally
-          skewed. An incomplete or biased source selection gives an incomplete
-          view. A page can be stale, blocked, mistranslated, wrong or missing
-          context. Retrieval time is not publication time. This version does not
-          run a continuous feed.
-        </p>
-        <p>
-          Our evaluation includes synthetic cases and agent-constructed
-          assertions against real documents. It does not establish real-world
-          disinformation precision, human agreement, multilingual accuracy or
-          calibrated confidence. Those require an independently labelled source
-          corpus and review.
-        </p>
-        <h2>Privacy and limits</h2>
-        <p>
-          Your post and extracted passages go to Hostinger AI Router. Article
-          URLs and, when discovery is enabled, up to 400 post characters go to
-          Context.dev. The application does not write your post to disk. It
-          holds up to 200 extracted pages in process memory for five minutes of
-          reuse, and remembers the previous extracted text hash until cache
-          eviction or restart. For comparison, at most the first 18,000
-          normalized characters per page are sent to the model. Important later
-          passages can be missed. Page hashes cover the entire extracted text.
-          Provider data handling applies. Avoid private or personal information.
-        </p>
-        <p>
-          The demo limits each connection to four requests per minute, two
-          concurrent analyses, four sources per request and 150 analyses per
-          process per day. The counter resets on a process restart, so it is a
-          demo abuse limit rather than a durable billing cap.
-        </p>
-        <h2>Entry details</h2>
-        <p>
-          Built during Junction 2026 by Shreyansh, solo team The CS Guy.
-          Hostinger is the main challenge. Context.dev is the technology prize
-          entry. Project code is MIT licensed. External source material retains
-          its own rights.
-        </p>
-      </article>
-    </main>
-    <footer>
-      <span>Fact Weight · Read the evidence.</span
-      ><span>Helsinki, November 2026</span>
-    </footer>
-  </body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffcc00">
+<link rel="preload" href="/fonts/barlow-condensed-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/barlow-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="/mark-v2.svg" type="image/svg+xml"><link rel="stylesheet" href="/sf.css">
+<title>Method · Signal Fire</title></head><body data-page="method">
+<header class="bar dark"><div class="wrap"><a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12.5" fill="none" stroke="currentColor" stroke-width="2.6"/><circle cx="16" cy="16" r="7.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16 9.6c2.6 2.4 3.9 4.6 3.9 6.6a3.9 3.9 0 0 1-7.8 0c0-1.3.6-2.6 1.6-3.7.2 1.2.8 1.9 1.6 2.2-.5-1.6-.3-3.3.7-5.1z" fill="#c8231b"/></svg>Signal Fire</a><nav aria-label="Main"><a href="/#countries">Countries</a><a href="/method" aria-current="page">Method</a></nav></div></header>
+<main>
+<section class="head"><div class="wrap"><h1 style="font-size:clamp(48px,7vw,104px)">How Signal Fire works</h1><p class="summary">It starts from no list of suspects. It reads a country’s news, finds who copies it, and lets the copying pattern decide who belongs together.</p></div></section>
+<section class="block"><div class="wrap prose">
+<h2>1. A country’s stories</h2>
+<p>For each country we collect about 40 of the week’s most covered stories about or for that country, using Context.dev news search and Exa, in the country’s main languages and English. Each story keeps its headline, outlet, link, language and publication time.</p>
+<h2>2. Finding copies</h2>
+<p>From each story we take two or three distinctive sentences and search the open web for near-identical text. Every candidate page is fetched and compared word by word. A page counts as a copy when at least <strong>60% of its word sequences</strong> match (shingle overlap of 0.6 or more). We record the site, link, publication time, language and any source it cites.</p>
+<h2>3. Groups</h2>
+<p>Two sites are linked each time they copy the same story <strong>within 60 minutes</strong> of each other. A group needs at least <strong>3 sites and 3 shared stories</strong>. The linking threshold was tuned on one set of countries and frozen before we looked at the others.</p>
+<h2>4. Who they are</h2>
+<p>For each group: how old the domains are (from public registration records), shared hosting or network, shared page templates or analytics codes, which sources they cite most, and which languages and countries they target. If a group matches a network documented in published research (for example CheckFirst’s open data, DFRLab or VIGINUM), we name the research and link it. Otherwise the group says “Not named in published research”. Nothing in the search or the scoring uses a list of known sites.</p>
+<h2>5. What they want</h2>
+<p>We group the headlines each network pushes about the country into lines of argument, and compare each copy with the closest mainstream article to show the phrases the copy added. A label is only shown when two independent AI model families on the Hostinger AI Router agree on it; label words come from the DISARM and EUvsDisinfo vocabularies.</p>
+<h2>6. The organic control</h2>
+<p>Many stories are covered by dozens of outlets. When each outlet uses its own wording and its own timing, the story is marked <strong>Looks organic</strong>, with the reasons. This keeps the tool honest about what normal news looks like.</p>
+<h2>Verdicts</h2>
+<table class="facts"><tbody>
+<tr><th>Looks coordinated: strong</th><td>A group copied many of the country’s stories, fast and near-verbatim.</td></tr>
+<tr><th>Looks coordinated: moderate</th><td>The pattern is there, but with fewer stories, slower copies or fewer sites.</td></tr>
+<tr><th>Looks organic</th><td>Broad coverage with independent wording and timing.</td></tr>
+<tr><th>Not enough data</th><td>Too few copies or timestamps to tell.</td></tr>
+</tbody></table>
+<p>Signal Fire never labels anything fake, propaganda or bots. It describes copying behaviour that anyone can check by opening the links.</p>
+<h2>What it cannot see</h2>
+<ul>
+<li><strong>X (Twitter) is not covered.</strong> We do not buy or scrape X data.</li>
+<li>Pages that search engines have not indexed, closed groups and private messaging.</li>
+<li>Copies that are rewritten heavily enough to fall below the 60% match.</li>
+<li>Who pays for a network. Shared infrastructure suggests common operation; it does not prove ownership.</li>
+</ul>
+<h2>Freshness and cost</h2>
+<p>30 countries are read again every 6 hours on our server. Any other country can be read on request; daily caps on search and AI calls keep the service affordable, and when they are reached the site says when builds resume.</p>
+<div id="live"></div>
+</div></section>
+</main>
+<footer class="foot"><div class="wrap"><a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12.5" fill="none" stroke="currentColor" stroke-width="2.6"/><circle cx="16" cy="16" r="7.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16 9.6c2.6 2.4 3.9 4.6 3.9 6.6a3.9 3.9 0 0 1-7.8 0c0-1.3.6-2.6 1.6-3.7.2 1.2.8 1.9 1.6 2.2-.5-1.6-.3-3.3.7-5.1z" fill="#c8231b"/></svg>Signal Fire</a><span>Reads the open web with Context.dev and Exa. Labels by two model families on the Hostinger AI Router. Runs on a Hostinger VPS.</span><a href="/">Pick a country</a></div></footer>
+<script src="/sf.js" defer></script>
+</body></html>

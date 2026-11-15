@@ -1,0 +1,4 @@
+[{"id":"fi-bild-nato","title":"Bild: Russia wants Finland to leave NATO","outlet":"Bild","published_at":"2026-11-13T13:40:00Z","copies":17,"countries_reached":7,"lag_minutes":82,"verdict":"Looks coordinated: strong","cluster_id":"c1"},
+{"id":"fi-hybrid","title":"Supermarket freezers hacked across Finland","outlet":"Yle","published_at":"2026-11-12T09:10:00Z","copies":9,"countries_reached":4,"lag_minutes":140,"verdict":"Looks coordinated: moderate","cluster_id":"c1"},
+{"id":"fi-ice","title":"Finland orders two more icebreakers","outlet":"Helsingin Sanomat","published_at":"2026-11-11T06:00:00Z","copies":14,"countries_reached":3,"lag_minutes":null,"verdict":"Looks organic","cluster_id":null},
+{"id":"fi-budget","title":"Government agrees 2027 budget frame","outlet":"Yle","published_at":"2026-11-10T15:00:00Z","copies":1,"countries_reached":1,"lag_minutes":null,"verdict":"Not enough data","cluster_id":null}]
