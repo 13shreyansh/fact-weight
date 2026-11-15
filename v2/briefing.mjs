@@ -1,7 +1,7 @@
 // Country briefing: an evidence-bound summary of what is being pushed, what mainstream reporting
 // confirms, what the copies add, who is behind it and where it spread. Written only from stored evidence.
 import { get, put, llm, call } from "./db.mjs";
-import { site } from "./text.mjs";
+import { site, cleanTitle } from "./text.mjs";
 import { reach, clusterName, evidenceInfra } from "./api.mjs";
 import { country as countryInfo } from "./countries.mjs";
 
@@ -172,6 +172,10 @@ Also "country_line": at most 2 short sentences for the whole country: what is be
     }
     if (g?.country_line) draft.country_line = g.country_line;
   }
+  // Lead with what is wrong: contradicted claims first, then claims only the copies make.
+  const rank = (p) => (p.claims.some((c) => c.status === "contradicted") ? 0 : p.claims.some((c) => c.status === "only_copies") ? 1 : 2);
+  pushes.sort((a, b) => rank(a) - rank(b));
+  for (const p of pushes) p.headline = cleanTitle(p.headline);
   const out = { country: cc, summary: draft.summary, plain_summary: draft.country_line || null, generated_at: new Date().toISOString(), pushes, method: "Summary and claims drafted by claude-opus-5.5 from stored evidence; each claim checked with Exa against outlets outside the copying group and judged by gpt-4.1; quotes are kept only if they appear verbatim in the fetched page.", computed_at: new Date().toISOString() };
   put("briefing", cc, out);
   return out;
