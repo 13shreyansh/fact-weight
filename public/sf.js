@@ -440,8 +440,13 @@ ${x ? `<div class="pgrid"><div><span class="k">What news outlets reported</span>
     clusters.forEach((c) => { c.label = groupName(c); });
     let stories = [];
     try { stories = list(await api(`/api/stories?country=${cc}`), "stories"); } catch { /* optional */ }
+    const docd = (c) => !!(c && (c.documented_by || []).length);
+    clusters.sort((p, q) => docd(q) - docd(p));
+    const isDoc = (s) => docd(clusters.find((c) => c.id === s.cluster_id));
+    const strong = (s) => verdictOf(s.verdict).text.includes("strong");
+    // Lead with pushes by a network that published research has documented, then strong, then most copied.
     const hot = stories.filter((s) => verdictOf(s.verdict).cls === "co")
-      .sort((p, q) => (verdictOf(q.verdict).text.includes("strong") - verdictOf(p.verdict).text.includes("strong")) || (q.copies || 0) - (p.copies || 0)).slice(0, 4);
+      .sort((p, q) => (isDoc(q) - isDoc(p)) || (strong(q) - strong(p)) || (q.copies || 0) - (p.copies || 0)).slice(0, 4);
     const rest = stories.filter((s) => !hot.includes(s));
     const details = await Promise.all(hot.map((s) => api(`/api/stories/${encodeURIComponent(s.id)}`).catch(() => null)));
 
