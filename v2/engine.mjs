@@ -324,8 +324,49 @@ function cluster(stories, keepSite = () => true, minWeight = 1) {
     if (!comps.has(r)) comps.set(r, new Set());
     comps.get(r).add(x);
   }
+  // Split each connected component into communities with Louvain (local moving, modularity gain),
+  // so a chain of loosely linked sites does not become one giant group.
+  const communities = [];
+  for (const comp of comps.values()) {
+    if (comp.size < 6) {
+      communities.push(comp);
+      continue;
+    }
+    const w = new Map();
+    let m2 = 0;
+    for (const [k, e] of edges) {
+      const [a, b] = k.split("|");
+      if (!comp.has(a) || !comp.has(b) || e.stories.size < minWeight) continue;
+      const x = e.stories.size;
+      (w.get(a) || w.set(a, new Map()).get(a)).set(b, x);
+      (w.get(b) || w.set(b, new Map()).get(b)).set(a, x);
+      m2 += 2 * x;
+    }
+    const deg = new Map([...comp].map((n) => [n, [...(w.get(n) || new Map()).values()].reduce((a, b) => a + b, 0)]));
+    const com = new Map([...comp].map((n) => [n, n]));
+    const tot = new Map([...comp].map((n) => [n, deg.get(n)]));
+    for (let pass = 0, moved = true; moved && pass < 20; pass++) {
+      moved = false;
+      for (const n of comp) {
+        const cur = com.get(n), kn = deg.get(n);
+        const links = new Map();
+        for (const [nb, x] of w.get(n) || []) links.set(com.get(nb), (links.get(com.get(nb)) || 0) + x);
+        tot.set(cur, tot.get(cur) - kn);
+        let best = cur, gain = (links.get(cur) || 0) - (tot.get(cur) * kn) / m2;
+        for (const [c, kin] of links) {
+          const g = kin - (tot.get(c) * kn) / m2;
+          if (g > gain) (gain = g), (best = c);
+        }
+        tot.set(best, tot.get(best) + kn);
+        if (best !== cur) (com.set(n, best), (moved = true));
+      }
+    }
+    const groups = new Map();
+    for (const [n, c] of com) (groups.get(c) || groups.set(c, new Set()).get(c)).add(n);
+    communities.push(...groups.values());
+  }
   const out = [];
-  for (const sites of comps.values()) {
+  for (const sites of communities) {
     const storiesShared = new Set(),
       gaps = [];
     for (const [k, e] of edges) {
@@ -889,7 +930,7 @@ export async function buildCountry(cc, build) {
     put("graph", c.code, {
       nodes: [...nodeStories].map(([id, ss]) => ({ id, cluster_id: siteCluster.get(id) || null, stories: ss.size, lang: nodeLang.get(id) || null, documented: docs.lists.some((l) => l.domains.has(id) || l.registrables.has(registrable(id))), publisher: all_publishers.has(id) })),
       edges: [...full].map(([k, ss]) => ({ a: k.split("|")[0], b: k.split("|")[1], w: ss.size })),
-      method: `Edge weight = stories two sites published near-identical text for within ${T.edgeMinutes} minutes. Clusters = connected components among non-publisher sites with at least ${T.clusterMinSites} sites and ${T.clusterMinStories} shared stories.`,
+      method: `Edge weight = stories two sites published near-identical text for within ${T.edgeMinutes} minutes. Clusters = Louvain communities within connected components among non-publisher sites with at least ${T.clusterMinSites} sites and ${T.clusterMinStories} shared stories.`,
       computed_at: computed_at(),
     });
     const before = get("country", c.code);
