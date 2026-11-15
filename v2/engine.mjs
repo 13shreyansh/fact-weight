@@ -1,7 +1,7 @@
 // Engine v2: starts from no list of actors. Sites reveal themselves by publishing
 // near-identical text about a country's top stories within minutes of each other.
 import dns from "node:dns/promises";
-import { call, llm, pool, put, get, all, hash, setContext, db, CapReached } from "./db.mjs";
+import { call, llm, pool, put, get, all, hash, setContext, db, CapReached, addEvent } from "./db.mjs";
 import { country as countryInfo } from "./countries.mjs";
 import { tokens, shingles, jaccard, containment, windowJaccard, headlineSim, cleanTitle, mainText, sentences, site, registrable, median } from "./text.mjs";
 
@@ -54,6 +54,9 @@ async function step(build, name, fn) {
     s.ms = Date.now() - t0;
     const r = db.prepare("SELECT count(*) n, coalesce(sum(coalesce(credits,reserved)),0) c FROM calls WHERE build_id=? AND step=?").get(build.id, name);
     s.calls = r.n;
+    const per = db.prepare("SELECT provider, count(*) n FROM calls WHERE build_id=? AND step=? GROUP BY provider").all(build.id, name);
+    s.calls_context = per.find((x) => x.provider === "context")?.n || 0;
+    s.calls_exa = per.find((x) => x.provider === "exa")?.n || 0;
     s.credits = Math.round(r.c * 1000) / 1000;
     saveBuild(build);
   }
@@ -100,6 +103,29 @@ async function collectStories(c) {
       });
     }),
   );
+  // Exa news search adds articles the Context.dev index misses; they join a story when the headline matches.
+  if (process.env.EXA_API_KEY) {
+    const exaQ = [`${c.name} news this week`, `${c.name} politics government election`, `${c.name} technology business companies`, `${c.name} security defence Russia China`];
+    const ex = await pool(exaQ, 4, (query) =>
+      call("exa", "/search", { query, type: "auto", category: "news", numResults: 25, startPublishedDate: new Date(from).toISOString(), endPublishedDate: new Date(to).toISOString(), contents: { text: { maxCharacters: 1200 } } }).catch(() => ({ results: [] })),
+    );
+    const heads = [...byStory.entries()].map(([sid, arts]) => [sid, arts.map((a) => a.headline)]);
+    for (const r of ex)
+      for (const x of r?.results || []) {
+        if (!x.url || seen.has(normUrl(x.url)) || SKIP_HOSTS.test(site(x.url) || "")) continue;
+        const text = x.text || "";
+        if (!c.about.test((x.title || "") + " " + text)) continue;
+        seen.add(normUrl(x.url));
+        const art = { outlet: site(x.url), domain: site(x.url), url: x.url, published_at: iso(x.publishedDate), headline: cleanTitle(x.title), description: text.slice(0, 600), lang: null, direct: false, via: "exa" };
+        const hit = heads.find(([, hs]) => hs.some((h) => headlineSim(h, art.headline) >= 0.45));
+        const sid = hit ? hit[0] : "x" + hash(x.url);
+        if (!byStory.has(sid)) {
+          byStory.set(sid, []);
+          heads.push([sid, [art.headline]]);
+        } else if (hit) hit[1].push(art.headline);
+        byStory.get(sid).push(art);
+      }
+  }
   const stories = [...byStory.entries()]
     .map(([sid, articles]) => {
       articles.sort((a, b) => String(a.published_at).localeCompare(String(b.published_at)));
@@ -184,6 +210,26 @@ async function findCopies(story, c) {
   const queries = [...frags.map((f) => ({ q: quote(f), quoted: true })), ...frags.slice(0, 2).map((f) => ({ q: tokens(f).slice(0, 12).join(" "), quoted: false }))];
   const results = await pool(queries, 3, (x) => call("context", "/web/search", { query: x.q + " -site:x.com -site:twitter.com", numResults: 20 }).then((r) => ({ ...r, quoted: x.quoted })));
   const known = new Set(story.articles.map((a) => normUrl(a.url)));
+  const exaPages = [];
+  let exaSearches = 0;
+  if (process.env.EXA_API_KEY) {
+    const sents = [...new Set(story.articles.flatMap((a) => sentences(a.description)).filter((x) => x.length >= 60))].sort((a, b) => b.length - a.length).slice(0, 2);
+    const head = story.articles.find((a) => c.langs.includes(a.lang))?.headline;
+    const qs = [...sents, ...(head ? [head] : [])].slice(0, 3);
+    const t0 = Date.parse(story.articles[0].published_at || Date.now());
+    const res = await pool(qs, 3, (q) => {
+      const w = tokens(q).filter((x) => x.length > 3);
+      const span = w.slice(Math.max(0, (w.length >> 1) - 2), (w.length >> 1) + 3).join(" ");
+      return call("exa", "/search", { query: q, type: "auto", numResults: 20, startPublishedDate: new Date(t0 - 864e5).toISOString(), endPublishedDate: new Date(t0 + 3 * 864e5).toISOString(), contents: { text: { maxCharacters: 2500 } } }).catch(() => ({ results: [] }));
+    });
+    exaSearches = qs.length;
+    for (const r of res)
+      for (const x of r?.results || []) {
+        const sx = site(x.url);
+        if (!sx || SKIP_HOSTS.test(sx) || known.has(normUrl(x.url)) || exaPages.some((p) => normUrl(p.url) === normUrl(x.url))) continue;
+        exaPages.push({ url: x.url, site: sx, title: cleanTitle(x.title || ""), text: x.text || "", published_at: iso(x.publishedDate), lang: null, origins: [], ids: [], template: null, wire: (WIRE.exec((x.text || "").slice(0, 2500)) || [])[0]?.replace(/[()]/g, "").trim() || null, via: "exa" });
+      }
+  }
   const cands = new Map();
   for (const r of results)
     for (const x of r?.results || []) {
@@ -192,14 +238,15 @@ async function findCopies(story, c) {
       const sim = Math.max(...frags.map((f) => Math.max(headlineSim(f, x.title || ""), windowJaccard(f, (x.title || "") + " " + (x.description || ""), 3))));
       if (sim >= (r.quoted ? 0.3 : 0.2)) cands.set(normUrl(x.url), { url: x.url, sim });
     }
-  const picked = [...cands.values()].sort((a, b) => b.sim - a.sim).slice(0, T.scrapesPerStory);
+  const exaSet = new Set(exaPages.map((p) => normUrl(p.url)));
+  const picked = [...cands.values()].filter((x) => !exaSet.has(normUrl(x.url))).sort((a, b) => b.sim - a.sim).slice(0, exaPages.length ? 5 : T.scrapesPerStory);
   const pages = (
     await pool(picked, 6, async (p) => {
       const d = await call("context", "/web/scrape", { url: p.url, formats: { markdown: true, html: true }, sharedParams: { mainContentOnly: false } }, { maxAgeMs: 30 * 86400e3 });
       return scrapeInfo(d, p.url);
     })
   ).filter((p) => p && !p.error && p.text);
-  return { searches: queries.length, candidates: cands.size, pages };
+  return { searches: queries.length + exaSearches, candidates: cands.size, pages: [...pages, ...exaPages] };
 }
 
 // Groups of near-identical pages within one story (union-find over pairwise similarity).
@@ -353,6 +400,16 @@ async function who(cl, pagesBySite) {
     for (const [v, ss] of m) if (ss.size >= 2) shared.push({ type, value: v, sites: [...ss].sort() });
   };
   share("ip", ips.flatMap((x) => (x?.ips || []).map((ip) => [x.site, ip])));
+  for (const s of cl.sites) {
+    const ps = pagesBySite.get(s) || [];
+    if (ps.length && ps.every((p) => p.via === "exa")) {
+      try {
+        const d = await call("context", "/web/scrape", { url: ps[0].url, formats: { markdown: true, html: true }, sharedParams: { mainContentOnly: false } }, { maxAgeMs: 30 * 86400e3 });
+        const info = scrapeInfo(d, ps[0].url);
+        Object.assign(ps[0], { origins: info.origins, ids: info.ids, template: info.template, lang: info.lang, published_at: ps[0].published_at || info.published_at });
+      } catch {}
+    }
+  }
   const pages = cl.sites.flatMap((s) => pagesBySite.get(s) || []);
   share("analytics_id", pages.flatMap((p) => p.ids.map((i) => [p.site, i])));
   share("template", pages.filter((p) => p.template).map((p) => [p.site, p.template]));
@@ -694,7 +751,43 @@ export async function buildCountry(cc, build) {
       build_id: build.id,
       computed_at: computed_at(),
     };
+    // Site graph (all near-identical, timed pairs) for the graph view.
+    const full = new Map();
+    for (const st of stories)
+      for (const g of st.groups) {
+        const timed = g.filter((n) => n.t);
+        for (let i = 0; i < timed.length; i++)
+          for (let j = i + 1; j < timed.length; j++) {
+            const [a, b] = [timed[i].site, timed[j].site].sort();
+            if (a === b || Math.abs(minutes(timed[i].t, timed[j].t)) > T.edgeMinutes) continue;
+            const k = a + "|" + b;
+            if (!full.has(k)) full.set(k, new Set());
+            full.get(k).add(st.id);
+          }
+      }
+    const nodeStories = new Map(), nodeLang = new Map();
+    for (const st of stories) for (const n of st.groups.flat()) {
+      (nodeStories.get(n.site) || nodeStories.set(n.site, new Set()).get(n.site)).add(st.id);
+      if (n.page?.lang) nodeLang.set(n.site, n.page.lang);
+    }
+    const docs = await documentedLists();
+    const siteCluster = new Map(clusters.flatMap((cl) => cl.sites.map((x) => [x, cl.id])));
+    put("graph", c.code, {
+      nodes: [...nodeStories].map(([id, ss]) => ({ id, cluster_id: siteCluster.get(id) || null, stories: ss.size, lang: nodeLang.get(id) || null, documented: docs.lists.some((l) => l.domains.has(id) || l.registrables.has(registrable(id))), publisher: all_publishers.has(id) })),
+      edges: [...full].map(([k, ss]) => ({ a: k.split("|")[0], b: k.split("|")[1], w: ss.size })),
+      method: `Edge weight = stories two sites published near-identical text for within ${T.edgeMinutes} minutes. Clusters = connected components among non-publisher sites with at least ${T.clusterMinSites} sites and ${T.clusterMinStories} shared stories.`,
+      computed_at: computed_at(),
+    });
+    const before = get("country", c.code);
+    const oldStories = new Set(before?.story_ids || []);
+    const oldCopies = new Set((before?.story_ids || []).flatMap((id) => (get("story", id)?.copies || []).map((x) => x.url)));
+    for (const st of stories) if (!oldStories.has(st.id)) addEvent("new_story", c.code, { country: c.code, story_id: st.id, headline: st.title, url: st.articles[0].url, site: st.articles[0].domain, source: st.articles.some((a) => a.via === "exa") ? "Exa" : "Context.dev news search", at: st.articles[0].published_at || computed_at() });
+    for (const cl of clusters)
+      for (const n of cl._nodes)
+        if (!oldCopies.has(n.url))
+          addEvent("copy_detected", c.code, { country: c.code, site: n.site, url: n.url, headline: n.headline, story_id: n.story.id, cluster_id: cl.id, lag_min: n.t && n.story.articles[0].published_at ? Math.round(minutes(n.story.articles[0].published_at, n.t)) : null, source: n.page?.via === "exa" ? "Exa" : "Context.dev search", at: n.t || computed_at() });
     put("country", c.code, result);
+    addEvent("build_done", c.code, { country: c.code, source: "scheduler", headline: `${c.name}: ${stories.length} stories checked, ${clusters.filter((x) => x.verdict.startsWith("Looks coordinated")).length} coordinated groups`, at: computed_at() });
     build.status = "done";
     return result;
   } catch (e) {

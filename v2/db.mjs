@@ -14,11 +14,13 @@ db.exec(`PRAGMA busy_timeout=20000; PRAGMA journal_mode=WAL;
 CREATE TABLE IF NOT EXISTS calls(id TEXT PRIMARY KEY, provider TEXT, at TEXT, endpoint TEXT, params TEXT, status INTEGER, ms INTEGER, credits REAL, reserved REAL, cache_key TEXT, build_id TEXT, step TEXT, response TEXT);
 CREATE INDEX IF NOT EXISTS calls_cache ON calls(cache_key);
 CREATE TABLE IF NOT EXISTS kv(kind TEXT, id TEXT, data TEXT, at TEXT, PRIMARY KEY(kind,id));
+CREATE TABLE IF NOT EXISTS events(id INTEGER PRIMARY KEY AUTOINCREMENT, at TEXT, type TEXT, country TEXT, data TEXT);
 CREATE TABLE IF NOT EXISTS builds(id TEXT PRIMARY KEY, cc TEXT, status TEXT, requested_at TEXT, started_at TEXT, finished_at TEXT, source TEXT, steps TEXT, error TEXT);`);
 
 export const CAPS = {
   context: Number(process.env.V2_CONTEXT_CAP || 15000),
   router: Number(process.env.V2_ROUTER_CAP || 800),
+  exa: Number(process.env.V2_EXA_CAP || 60), // US dollars
 };
 export const hash = (x) =>
   crypto.createHash("sha256").update(typeof x === "string" ? x : JSON.stringify(x)).digest("hex");
@@ -53,6 +55,7 @@ const routerPrices = {
   "gemini-3.5-flash-lite": [0.000036, 0.0003],
 };
 function reserve(provider, endpoint, params) {
+  if (provider === "exa") return 0.005 + 0.0015 * (params.numResults || 10);
   if (provider === "context") return endpoint === "/news/search" ? 10 : endpoint === "/web/search" ? 3 : 2;
   const p = routerPrices[params.model] || [0.0003, 0.0015];
   const input = Buffer.byteLength(JSON.stringify(params.messages || []), "utf8") / 3 + 200;
@@ -103,19 +106,19 @@ export async function call(provider, endpoint, params = {}, opts = {}) {
     const start = Date.now();
     let status = 0;
     try {
-      const token = process.env[provider === "context" ? "CONTEXT_DEV_API_KEY" : "HOSTINGER_AI_ROUTER_API_KEY"];
+      const token = process.env[{ context: "CONTEXT_DEV_API_KEY", router: "HOSTINGER_AI_ROUTER_API_KEY", exa: "EXA_API_KEY" }[provider]];
       if (!token) throw Error("Provider key unavailable");
-      const r = await fetch((provider === "context" ? "https://api.context.dev/v1" : "https://router.hostinger.com/v1") + endpoint, {
+      const r = await fetch({ context: "https://api.context.dev/v1", router: "https://router.hostinger.com/v1", exa: "https://api.exa.ai" }[provider] + endpoint, {
         method: "POST",
-        headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+        headers: provider === "exa" ? { "x-api-key": token, "Content-Type": "application/json" } : { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
         body: JSON.stringify(params),
         signal: AbortSignal.timeout(opts.timeout || 60000),
       });
       status = r.status;
       const response = await r.json().catch(() => ({}));
-      let credits = provider === "context" ? response.key_metadata?.credits_consumed : response.usage?.credits_charged ?? response.usage?.cost;
+      let credits = provider === "context" ? response.key_metadata?.credits_consumed : provider === "exa" ? response.costDollars?.total : response.usage?.credits_charged ?? response.usage?.cost;
       if (!Number.isFinite(credits)) credits = null;
-      if (provider === "context" && credits === null && status >= 400) credits = 0;
+      if (provider !== "router" && credits === null && status >= 400) credits = 0;
       const stored = { ...response };
       if (stored.html?.data) stored.html = { ...stored.html, data: stored.html.data.slice(0, 150000) };
       db.prepare("UPDATE calls SET status=?,ms=?,credits=?,response=? WHERE id=?").run(status, Date.now() - start, credits, JSON.stringify(stored), id);
@@ -179,4 +182,8 @@ export async function pool(items, n, fn) {
     }),
   );
   return out;
+}
+
+export function addEvent(type, country, data) {
+  db.prepare("INSERT INTO events(at,type,country,data) VALUES(?,?,?,?)").run(data.at || new Date().toISOString(), type, country, JSON.stringify(data));
 }

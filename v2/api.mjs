@@ -82,7 +82,7 @@ const visitors = new Map();
 export function requestBuild(cc, source, ip) {
   const info = countryInfo(cc);
   if (!info) return { status: 404, body: { error: "That is not a country code we recognise." } };
-  if (spent("context") >= CAPS.context - 300 || spent("router") >= CAPS.router - 5)
+  if (spent("context") >= CAPS.context - 300 || spent("router") >= CAPS.router - 5 || spent("exa") >= CAPS.exa - 1)
     return { status: 429, body: { error: "Tonight's research budget is used up. Builds resume tomorrow." } };
   const b = latestBuild(info.code);
   if (b && (b.status === "queued" || b.status === "running")) return { status: 200, body: { id: b.id, status: b.status } };
@@ -131,7 +131,7 @@ export async function handleV2(req, res, url) {
       requested_at: b.requested_at,
       started_at: b.started_at,
       finished_at: b.finished_at,
-      steps: b.steps.map((s) => ({ name: s.name, label: s.name, status: s.status, ms: s.ms, calls: { context_dev: s.calls, exa: 0 }, calls_total: s.calls, credits: s.credits, detail: s.note, started_at: s.started_at })),
+      steps: b.steps.map((s) => ({ name: s.name, label: s.name, status: s.status, ms: s.ms, calls: { context_dev: s.calls_context ?? s.calls, exa: s.calls_exa ?? 0 }, calls_total: s.calls, credits: s.credits, detail: s.note, started_at: s.started_at })),
       computed_at: now(),
     });
   }
@@ -161,14 +161,54 @@ export async function handleV2(req, res, url) {
     if (!s) return send(res, 404, { error: "That story could not be found." });
     return send(res, 200, { ...s, back_country: s.country });
   }
+  m = p.match(/^\/api\/countries\/([A-Za-z]{2})\/graph$/);
+  if (m && req.method === "GET") {
+    const g = get("graph", m[1].toUpperCase());
+    return g ? send(res, 200, g) : send(res, 404, { error: "This country has not been read yet." });
+  }
+  if (p === "/api/live" && req.method === "GET") {
+    const limit = Math.min(100, Number(url.searchParams.get("limit")) || 20);
+    const cc = (url.searchParams.get("country") || "").toUpperCase();
+    const rows = cc
+      ? db.prepare("SELECT * FROM events WHERE country=? ORDER BY at DESC LIMIT ?").all(cc, limit)
+      : db.prepare("SELECT * FROM events ORDER BY at DESC LIMIT ?").all(limit);
+    return send(res, 200, rows.map((r) => ({ id: r.id, type: r.type, country: r.country, ...JSON.parse(r.data), at: r.at })));
+  }
+  if (p === "/api/stats" && req.method === "GET") {
+    const cs = all("country");
+    const stories = all("story");
+    const pages = db.prepare("SELECT count(*) n FROM calls WHERE status=200 AND (endpoint='/web/scrape' OR provider='exa')").get().n;
+    const exaPages = db.prepare("SELECT coalesce(sum(json_array_length(json_extract(response,'$.results'))),0) n FROM calls WHERE provider='exa' AND status=200").get().n;
+    const copies = stories.reduce((n, s) => n + s.copies.length, 0);
+    const sites = new Set(stories.flatMap((s) => s.copies.map((c) => c.site)));
+    const langs = new Set(stories.flatMap((s) => [...s.copies.map((c) => c.lang), ...s.mainstream.map((m) => m.lang)]).filter(Boolean));
+    const sp = Object.fromEntries(spendSummary().map((r) => [r.provider, r]));
+    const last = db.prepare("SELECT max(at) a FROM events").get().a;
+    return send(res, 200, {
+      computed_at: now(),
+      stories_read: stories.length,
+      pages_fetched: db.prepare("SELECT count(*) n FROM calls WHERE status=200 AND endpoint='/web/scrape'").get().n + exaPages,
+      copies_confirmed: copies,
+      sites_seen: sites.size,
+      groups: cs.reduce((n, c) => n + c.clusters.length, 0),
+      groups_coordinated: cs.reduce((n, c) => n + c.clusters.filter((x) => x.verdict.startsWith("Looks coordinated")).length, 0),
+      monitors_live: 0,
+      monitors_note: "Context.dev monitors for engine v2 are not set up yet; countries refresh every 6 hours",
+      hook_events_24h: 0,
+      languages: langs.size,
+      countries_ready: cs.length,
+      last_event_at: last,
+      spend: { exa_usd: Math.round((sp.exa?.charged_or_reserved || 0) * 100) / 100, exa_cap_usd: CAPS.exa, context_dev_credits: Math.round(sp.context?.charged_or_reserved || 0), context_dev_cap: CAPS.context, router_calls: sp.router?.calls || 0, router_credits: Math.round((sp.router?.charged_or_reserved || 0) * 100) / 100, router_cap: CAPS.router },
+    });
+  }
   if (p === "/api/method" && req.method === "GET") {
     const builds = db.prepare("SELECT status,count(*) n FROM builds GROUP BY status").all();
     const countries = all("country");
-    const spend = Object.fromEntries(spendSummary().map((r) => [r.provider === "context" ? "context_dev" : "hostinger_router", { used: r.charged_or_reserved, measured: r.measured, calls: r.calls, cap: r.cap }]));
+    const spend = Object.fromEntries(spendSummary().map((r) => [{ context: "context_dev", router: "hostinger_router", exa: "exa" }[r.provider], { used: r.charged_or_reserved, measured: r.measured, calls: r.calls, cap: r.cap }]));
     return send(res, 200, {
       computed_at: now(),
       thresholds: { jaccard: T.copyThreshold, window_min: T.edgeMinutes, min_sites: T.clusterMinSites, min_stories: T.clusterMinStories, stories_per_country: T.maxStories, days: T.days, strong: T.strong, organic_min_outlets: T.organicMinOutlets },
-      spend: { exa: { used: 0, cap: 60, note: "No Exa key was available; Exa is not used" }, ...spend },
+      spend: Object.fromEntries(Object.entries(spend).map(([k, v]) => [k === "exa" ? "exa" : k, k === "exa" ? { ...v, unit: "USD" } : { ...v, unit: "credits" }])),
       counts: { countries_built: countries.length, stories_checked: countries.reduce((n, c) => n + c.stories_checked, 0), clusters: countries.reduce((n, c) => n + c.clusters.length, 0), builds },
       documented_lists: get("meta", "documented_lists"),
       eval: get("meta", "must_surface") || { note: "Held-out evaluation has not been run for engine v2 yet" },
