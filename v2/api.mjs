@@ -204,6 +204,7 @@ export async function handleV2(req, res, url) {
         copies: s.copies.length,
         countries_reached: reach(s).length,
         countries_reached_list: reach(s),
+        watched: !!s.watched,
         verdict: s.verdict,
         cluster_id: s.copies.find((c) => c.cluster_id)?.cluster_id || null,
         computed_at: s.computed_at,

@@ -5,6 +5,13 @@ import { call, llm, pool, put, get, all, hash, setContext, db, CapReached, addEv
 import { country as countryInfo } from "./countries.mjs";
 import { tokens, shingles, jaccard, containment, windowJaccard, headlineSim, cleanTitle, mainText, sentences, site, registrable, median } from "./text.mjs";
 
+// Stories the owner asked to always follow, by country (searched, never invented).
+const WATCHED = {
+  US: ["Jensen Huang resigns Nvidia CEO", "midterm election integrity", "Will DePue Blackwell fingerprint report"],
+  FI: ["Bild Russia demands Finland leave NATO"],
+};
+// Known sources checked for every story beside open search: state outlets, plus the documented network list fetched at runtime.
+const STATE_OUTLETS = ["rt.com", "sputnikglobe.com", "tass.com", "tass.ru", "ria.ru", "presstv.ir", "irna.ir", "tasnimnews.com", "globaltimes.cn", "cgtn.com"];
 export const T = {
   days: 7,
   maxStories: 40,
@@ -128,6 +135,33 @@ async function collectStories(c) {
         byStory.get(sid).push(art);
       }
   }
+  // Watched stories: always searched and kept, even outside the top stories (owner's list plus the
+  // week's most obvious influence stories for the country).
+  const watchedIds = new Set();
+  if (process.env.EXA_API_KEY) {
+    const wq = [...(WATCHED[c.code] || []), `${c.name} disinformation influence campaign this week`, `Pravda network ${c.name}`, `${c.name} Russian state media claims this week`];
+    const wr = await pool(wq, 4, (query) =>
+      call("exa", "/search", { query, type: "auto", numResults: 15, startPublishedDate: new Date(from - 2 * 864e5).toISOString(), endPublishedDate: new Date(to).toISOString(), contents: { text: { maxCharacters: 1200 } } }).catch(() => ({ results: [] })),
+    );
+    const heads = [...byStory.entries()].map(([sid, arts]) => [sid, arts.map((a) => a.headline)]);
+    wr.forEach((r, qi) => {
+      const rows = (r?.results || []).filter((x) => x.url && !SKIP_HOSTS.test(site(x.url) || ""));
+      if (!rows.length) return;
+      const lead = cleanTitle(rows[0].title);
+      let sid = heads.find(([, hs]) => hs.some((h) => headlineSim(h, lead) >= 0.45))?.[0];
+      if (!sid) {
+        sid = "w" + hash(wq[qi] + rows[0].url);
+        byStory.set(sid, []);
+        heads.push([sid, [lead]]);
+      }
+      for (const x of rows.slice(0, 8)) {
+        if (seen.has(normUrl(x.url))) continue;
+        seen.add(normUrl(x.url));
+        byStory.get(sid).push({ outlet: site(x.url), domain: site(x.url), url: x.url, published_at: preciseIso(x.publishedDate), headline: cleanTitle(x.title), description: (x.text || "").slice(0, 600), lang: null, direct: false, via: "exa" });
+      }
+      if (byStory.get(sid).length) watchedIds.add(sid.slice(0, 16));
+    });
+  }
   const stories = [...byStory.entries()]
     .map(([sid, articles]) => {
       articles.sort((a, b) => String(a.published_at).localeCompare(String(b.published_at)));
@@ -144,8 +178,11 @@ async function collectStories(c) {
   ).catch(() => null);
   const dropped = new Set(Array.isArray(drop?.drop) ? drop.drop : []);
   const kept = pool80.filter((_, i) => !dropped.has(i));
+  const watched = stories.filter((st) => watchedIds.has(st.id));
+  for (const w of watched) w.watched = true;
+  const top = kept.filter((st) => !st.watched).slice(0, T.maxStories - Math.min(watched.length, 10));
   for (const s of indexedPublishers) all_publishers.add(s);
-  return { stories: kept.slice(0, T.maxStories), indexed: seen.size, queries: reqs.length, filtered: pool80.length - kept.length };
+  return { stories: [...watched.slice(0, 10), ...top], indexed: seen.size, queries: reqs.length, filtered: pool80.length - kept.length };
 }
 
 function scrapeInfo(d, url) {
@@ -228,11 +265,16 @@ async function findCopies(story, c) {
       return call("exa", "/search", { query: q, type: "auto", numResults: 20, startPublishedDate: new Date(t0 - 864e5).toISOString(), endPublishedDate: new Date(t0 + 3 * 864e5).toISOString(), contents: { text: { maxCharacters: 2500 } } }).catch(() => ({ results: [] }));
     });
     exaSearches = qs.length;
+    const docs = await documentedLists();
+    const known = [...new Set([...STATE_OUTLETS, ...docs.lists.flatMap((l) => [...l.registrables])])].slice(0, 200);
+    const ks = await call("exa", "/search", { query: story.title, type: "auto", numResults: 15, includeDomains: known, startPublishedDate: new Date(t0 - 864e5).toISOString(), endPublishedDate: new Date(t0 + 3 * 864e5).toISOString(), contents: { text: { maxCharacters: 2500 } } }).catch(() => ({ results: [] }));
+    exaSearches++;
+    res.push({ ...ks, knownSource: true });
     for (const r of res)
       for (const x of r?.results || []) {
         const sx = site(x.url);
         if (!sx || SKIP_HOSTS.test(sx) || known.has(normUrl(x.url)) || exaPages.some((p) => normUrl(p.url) === normUrl(x.url))) continue;
-        exaPages.push({ url: x.url, site: sx, title: cleanTitle(x.title || ""), text: x.text || "", published_at: preciseIso(x.publishedDate), lang: null, origins: [], ids: [], template: null, wire: (WIRE.exec((x.text || "").slice(0, 2500)) || [])[0]?.replace(/[()]/g, "").trim() || null, via: "exa" });
+        exaPages.push({ url: x.url, site: sx, title: cleanTitle(x.title || ""), text: x.text || "", published_at: preciseIso(x.publishedDate), lang: null, origins: [], ids: [], template: null, wire: (WIRE.exec((x.text || "").slice(0, 2500)) || [])[0]?.replace(/[()]/g, "").trim() || null, via: "exa", known_source: !!r.knownSource });
       }
   }
   const cands = new Map();
@@ -872,6 +914,7 @@ export async function buildCountry(cc, build) {
       });
       s.note = `${cos.size} copies embedded with text-embedding-3-small; median cosine ${[...cos.values()].sort()[cos.size >> 1] ?? "n/a"}`;
     });
+    const docsNow = await documentedLists();
     // Persist stories and the country record.
     for (const st of stories) {
       const nodes = st.groups.flat();
@@ -885,9 +928,10 @@ export async function buildCountry(cc, build) {
       put("story", st.id, {
         id: st.id,
         title: st.title,
+        watched: !!st.watched,
         country: c.code,
         mainstream: st.articles.map(({ outlet, url, published_at, headline, lang }) => ({ outlet, url, published_at, headline, lang })),
-        copies: copies.map((n) => ({ site: n.site, cluster_id: n.cluster_id || null, url: n.url, published_at: n.t || null, published_reason: n.t ? null : "The page carries no machine-readable publication time", headline: n.headline, lang: n.page?.lang || null, country: c.code, similarity: Math.round(n.similarity * 100) / 100, jaccard: Math.round(n.similarity * 100) / 100, cosine: cos.get(n.url) ?? null, time_source: n.page?.time_source || (n.t ? (n.page?.via === "exa" ? "Exa index" : n.kind === "mainstream" ? "news index" : "page metadata") : null), found_by: n.page?.via === "exa" ? "Exa" : n.kind === "mainstream" ? "Context.dev news search" : "Context.dev search + scrape", credits_agency: n.page?.wire || null })),
+        copies: copies.map((n) => ({ site: n.site, cluster_id: n.cluster_id || null, url: n.url, published_at: n.t || null, published_reason: n.t ? null : "The page carries no machine-readable publication time", headline: n.headline, lang: n.page?.lang || null, country: c.code, similarity: Math.round(n.similarity * 100) / 100, jaccard: Math.round(n.similarity * 100) / 100, cosine: cos.get(n.url) ?? null, time_source: n.page?.time_source || (n.t ? (n.page?.via === "exa" ? "Exa index" : n.kind === "mainstream" ? "news index" : "page metadata") : null), documented_network: docsNow.lists.find((l) => l.domains.has(n.site) || l.registrables.has(registrable(n.site)))?.name || null, found_by: n.page?.known_source ? "Known-source check (Exa)" : n.page?.via === "exa" ? "Exa" : n.kind === "mainstream" ? "Context.dev news search" : "Context.dev search + scrape", credits_agency: n.page?.wire || null })),
         first_mainstream_at,
         first_copy_at,
         lag_minutes: first_mainstream_at && first_copy_at ? Math.round(minutes(first_mainstream_at, first_copy_at)) : null,
