@@ -48,3 +48,15 @@ export function passages(text, query, sourceId) {
     .sort((a, b) => a.index - b.index)
     .map(({ relevance, ...p }) => p);
 }
+
+export function judgeSources(sources) {
+  return sources
+    .map(({ id, url, name, publishedAt, passages }) => ({
+      id,
+      url,
+      name,
+      publishedAt,
+      passages,
+    }))
+    .sort((a, b) => a.url.localeCompare(b.url));
+}

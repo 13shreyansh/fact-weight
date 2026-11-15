@@ -138,6 +138,11 @@ export const server = http.createServer(async (req, res) => {
       }
       return json(res, outcome.status, { error: outcome.error });
     }
+    if (api === "/method.html") {
+      res.writeHead(302, { Location: "/method" });
+      res.end();
+      return;
+    }
     if (api === "/api/health")
       return json(res, 200, {
         app: "Signal Fire",

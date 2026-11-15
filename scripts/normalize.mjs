@@ -126,7 +126,7 @@ for (const { id: recordId } of db
           url: v.url,
           platform: "NW",
           handle: v.source?.name || new URL(v.url).hostname,
-          accountId: "nw-" + v.source?.domain,
+          accountId: "nw-" + (v.source?.domain || new URL(v.url).hostname),
           postedAt: v.published_at,
           language: v.language,
           sourceStory: v.story_id,

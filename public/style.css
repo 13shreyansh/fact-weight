@@ -1711,3 +1711,26 @@ textarea {
   background: #e8f3eb;
   color: #23613b;
 }
+.finding .fragment {
+  position: relative;
+}
+.mini-unit {
+  position: absolute;
+  right: 0;
+  bottom: 1px;
+  font-size: 11px;
+  background: var(--surface);
+}
+.live-dot.sweeping {
+  animation: reading-pulse 2s ease-in-out infinite;
+}
+@keyframes reading-pulse {
+  50% {
+    opacity: 0.4;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .live-dot.sweeping {
+    animation: none;
+  }
+}

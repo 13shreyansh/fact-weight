@@ -4,7 +4,7 @@ import { verifyEvidence } from "./verify.mjs";
 import { judge, search, scrape, put, hash, all, db } from "./providers.mjs";
 import { embedPosts, similarity } from "./embeddings.mjs";
 import { measure } from "./detect.mjs";
-import { plainText, passages } from "./passages.mjs";
+import { plainText, passages, judgeSources } from "./passages.mjs";
 import { lookalike, inspectDomain } from "./domains.mjs";
 const domainsFor = {
   "ISW daily assessments": "understandingwar.org",
@@ -113,6 +113,18 @@ export async function enrich(candidate, watch) {
         );
         check.calls.push(result._call);
         for (const r of result.results || []) {
+          let host;
+          try {
+            host = new URL(r.url).hostname;
+          } catch {
+            continue;
+          }
+          if (
+            !group.some(
+              (domain) => host === domain || host.endsWith("." + domain),
+            )
+          )
+            continue;
           if (sources.some((s) => s.url === r.url)) continue;
           try {
             const s = await scrape(
@@ -120,13 +132,14 @@ export async function enrich(candidate, watch) {
               null,
               {
                 formats: { markdown: true },
+                ...(watch.recheck ? { maxAgeMs: 0 } : {}),
                 sharedParams: { mainContentOnly: true },
               },
               { fresh: !!watch.recheck },
             );
             if (s.markdown?.data?.length > 300) {
               sources.push({
-                id: "s" + sources.length,
+                id: "s-" + hash(r.url).slice(0, 12),
                 name: r.title,
                 url: r.url,
                 text: plainText(s.markdown.data).slice(0, 24000),
@@ -155,7 +168,16 @@ export async function enrich(candidate, watch) {
       check.calls.push(result._call);
       const cases = [];
       for (const r of result.results || []) {
-        if (!r.url.includes("/report/")) continue;
+        try {
+          if (
+            new URL(r.url).hostname.replace(/^www\./, "") !==
+              "euvsdisinfo.eu" ||
+            !new URL(r.url).pathname.startsWith("/report/")
+          )
+            continue;
+        } catch {
+          continue;
+        }
         try {
           const d = await scrape(r.url, null, {
             formats: { markdown: true },
@@ -222,7 +244,7 @@ export async function enrich(candidate, watch) {
     );
   const judgement = await judge({
     posts: sample,
-    sources: sources.map(({ text, markdown, ...s }) => s),
+    sources: judgeSources(sources),
     signals: candidate.signals,
     task: "Confirm the same narrative and weigh each exact claim against the provided trusted sources. Include ordinary syndication/translation as an innocent explanation where applicable.",
   });

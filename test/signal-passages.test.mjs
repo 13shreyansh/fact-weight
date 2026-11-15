@@ -14,3 +14,16 @@ test("source passages retain adjacent sentences with the attribution and its sub
     "Bild reported far reaching demands. They include Finland leaving NATO. An official denied the demand.";
   assert.ok(passages(text, "Finland NATO", "s1").some((p) => p.text === text));
 });
+test("unchanged source passages reuse judging inputs despite fresh collection call IDs", async () => {
+  const { judgeSources } = await import("../signal/passages.mjs");
+  const base = {
+    id: "s1",
+    url: "https://example.org/",
+    name: "Source",
+    passages: [{ id: "s1-p0", text: "An exact source passage." }],
+  };
+  assert.deepEqual(
+    judgeSources([{ ...base, call: "earlier", text: "raw", markdown: "raw" }]),
+    judgeSources([{ ...base, call: "later", text: "raw", markdown: "raw" }]),
+  );
+});
