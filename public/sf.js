@@ -258,6 +258,8 @@ ${nodes.map((n) => { const r = 5 + Math.sqrt(n.stories || 1) * 2.6; return `<g c
   async function landing() {
     let countries = [];
     try { countries = list(await api("/api/countries"), "countries"); } catch { /* shown below */ }
+    // The v2 API calls a completed country "built"; cached results stay usable during refresh.
+    countries = countries.map(c => ({...c,status:["built","refreshing"].includes(c.status)?"ready":c.status}));
     const ready = new Map(countries.map((c) => [c.code, c]));
     picker($("#pick"), ready);
     $("#pick input").placeholder = "Type a country, e.g. Finland";
@@ -522,7 +524,7 @@ ${x ? `<div class="pgrid"><div><span class="k">What news outlets reported</span>
     if (br && hotRest.length) out.push(`<section class="block"><div class="wrap"><h2>More coordinated pushes</h2><div class="pushes">${hotRest.map((s) => pushCard(s, details[hot.indexOf(s)], clusters)).join("")}</div></div></section>`);
     if (!br && hot.length) out.push(`<section class="block"><div class="wrap"><h2>Being pushed at ${esc(name)} now</h2><p class="intro">Stories that many sites republished almost word for word within minutes of each other. Left: what news outlets reported. Right: what the copies added.</p><div class="pushes">${hot.map((s, i) => pushCard(s, details[i], clusters)).join("")}</div></div></section>`);
     if (watched.length) out.push(`<section class="block"><div class="wrap"><h2>The stories everyone is talking about in ${esc(name)}</h2><p class="intro">The week's most obvious stories about ${esc(name)}, checked every time we read the country, with every copy we could find. Open one to see who copied it and when.</p>${storyRows(watched)}</div></section>`);
-    if (narratives.length) out.push(`<section class="block"><div class="wrap"><h2>What they want ${esc(name)} to believe</h2><p class="intro">The lines these networks keep repeating about ${esc(name)}, and how often. A line is only shown when two independent AI models agree on it.</p><div class="narr">${narratives.map((n) => narrative(n, clusters)).join("")}</div></div></section>`);
+    if (narratives.length) out.push(`<section class="block"><div class="wrap"><h2>What they want ${esc(name)} to believe</h2><p class="intro">The lines these networks keep repeating about ${esc(name)}, and how often. A line is only shown when all configured evidence checks agree on it.</p><div class="narr">${narratives.map((n) => narrative(n, clusters)).join("")}</div></div></section>`);
     if (clusters.length) out.push(`<section class="block"><div class="wrap"><h2>Who is behind it</h2><p class="intro">The sites that did the copying, grouped by how often they copy together. Nobody is on a list in advance; a network is only named when published research has documented it.</p><div class="clusters">${clusters.map(cluster).join("")}</div><div class="net" id="net"></div></div></section>`);
 
     const more = [];

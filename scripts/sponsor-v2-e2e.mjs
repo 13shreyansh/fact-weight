@@ -8,10 +8,10 @@ try{for(const width of [1440,390]){
  const context=await browser.newContext({viewport:{width,height:width===1440?900:844},reducedMotion:'reduce'}),page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
  const shot=async name=>{await page.evaluate(()=>document.fonts.ready);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true,name+' overflow');assert(!/\bundefined\b|\bnull\b/.test(await page.locator('body').innerText()),name+' raw values');await page.screenshot({path:out+'/'+name+'-'+width+'.png'});};
  try{
-  await page.goto(origin);await page.locator('a[href="/country?cc=FI"]').first().waitFor();await shot('home');
+  await page.goto(origin);await page.locator('a[href="/country?cc=FI"]').first().waitFor();await page.getByRole('link',{name:'Open the Story X-ray',exact:true}).waitFor();assert(!(await page.locator('#rackcount').innerText()).startsWith('0 of'));await shot('home');
   await page.locator('a[href="/country?cc=FI"]').first().click();await page.locator('.dossier').first().waitFor();await shot('finland');
   await page.locator('.dossier summary').first().click();await page.locator('.dossier .evid[open]').first().waitFor();await shot('evidence');
-  await page.getByRole('link',{name:'Every copy and the timeline',exact:true}).first().click();await page.locator('#lanes .lane.copy .pm').first().waitFor();await shot('story');
+  await page.getByRole('link',{name:'Every copy and the timeline',exact:true}).first().click();await page.locator(width<=680?'#lanes .sheet .pm':'#lanes .lane.copy .pm').first().waitFor();await shot('story');
   await page.getByRole('link',{name:'Signal Fire',exact:true}).first().click();await page.locator('a[href="/country?cc=IR"]').first().waitFor();await page.locator('a[href="/country?cc=IR"]').first().click();
   await page.locator('.narr .nrow').first().waitFor();await page.getByText('Summary checked with NVIDIA Nemotron on Verda',{exact:true}).first().waitFor();await page.getByText(/Tiger Data.*linked examples/).first().waitFor();await page.locator('.narr').scrollIntoViewIfNeeded();await shot('nemotron-tiger');
   const charts=await page.locator('.narr svg[role="img"]').all();assert.equal(charts.length,narratives.length);for(const [i,chart]of charts.entries())assert((await chart.getAttribute('aria-label')).startsWith(narratives[i].trend_30d.reduce((a,b)=>a+b,0)+' retrieved source pages'));
