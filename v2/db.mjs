@@ -63,21 +63,25 @@ function reserve(provider, endpoint, params) {
   return Math.max(0.05, 1.5 * (input * p[0] + (params.max_tokens || 2000) * p[1]));
 }
 
-let ctx = { build: null, step: null };
+import { AsyncLocalStorage } from "node:async_hooks";
+// Per-build attribution of provider calls; each build runs in its own async context.
+export const als = new AsyncLocalStorage();
+const fallbackCtx = { build: null, step: null };
+const ctxNow = () => als.getStore() || fallbackCtx;
 // Context.dev allows 100 request units per minute per key; stay under it across this process.
 const stamps = [];
 async function throttle() {
   for (;;) {
     const now = Date.now();
     while (stamps.length && now - stamps[0] > 60000) stamps.shift();
-    if (stamps.length < Number(process.env.V2_CONTEXT_RPM || 80)) {
+    if (stamps.length < Number(process.env.V2_CONTEXT_RPM || 90)) {
       stamps.push(now);
       return;
     }
     await new Promise((r) => setTimeout(r, 60000 - (now - stamps[0]) + 50));
   }
 }
-export const setContext = (c) => (ctx = { ...ctx, ...c });
+export const setContext = (c) => Object.assign(ctxNow(), c);
 const inflight = new Map();
 
 export async function call(provider, endpoint, params = {}, opts = {}) {
@@ -97,7 +101,7 @@ export async function call(provider, endpoint, params = {}, opts = {}) {
     try {
       if (spent(provider) + reserved > CAPS[provider]) throw new CapReached(`${provider} cap reached`);
       db.prepare("INSERT INTO calls(id,provider,at,endpoint,params,status,ms,credits,reserved,cache_key,build_id,step,response) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)").run(
-        id, provider, new Date().toISOString(), endpoint, JSON.stringify(params).slice(0, 4000), 0, 0, null, reserved, key, ctx.build, ctx.step, "{}",
+        id, provider, new Date().toISOString(), endpoint, JSON.stringify(params).slice(0, 4000), 0, 0, null, reserved, key, ctxNow().build, ctxNow().step, "{}",
       );
       db.exec("COMMIT");
     } catch (e) {
