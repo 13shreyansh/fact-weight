@@ -849,7 +849,7 @@ export async function buildCountry(cc, build) {
         narr.push(...ns);
         const lab = ns.find((n) => n.label);
         cl.label = lab ? lab.label : null;
-        cl.label_reason = lab ? null : "No narrative label was accepted by both checking models";
+        cl.label_reason = lab ? null : "No narrative label was accepted by all configured checking models";
       }
       const history = get("copies", c.code) || [];
       const nowCopies = clusters.flatMap((cl) => cl._nodes.map((n) => ({ url: n.url, cluster_id: cl.id, t: n.t })));

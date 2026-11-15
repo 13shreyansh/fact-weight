@@ -26,7 +26,7 @@ export async function reviewNarratives(payload, options = {}) {
   db.exec('BEGIN IMMEDIATE');
   try {
     const daily = db.prepare("SELECT count(*) n FROM calls WHERE provider='verda' AND at>=?").get(at.slice(0, 10)).n;
-    if (daily >= Number(process.env.VERDA_DAILY_CALL_CAP || 100)) throw Error("The additional evidence check has reached today's limit.");
+    if (daily >= Math.max(1,Number.parseInt(process.env.VERDA_DAILY_CALL_CAP)||100)) throw Error("The additional evidence check has reached today's limit.");
     db.prepare('INSERT INTO calls(id,provider,at,endpoint,params,status,ms,credits,reserved,cache_key,build_id,step,response) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)').run(id, 'verda', at, '/chat/completions', JSON.stringify({model:NEMOTRON_MODEL,prompt_version:1,count:narratives.length}), 0, 0, null, null, key, null, 'Nemotron narrative confirmation', '{}');
     db.exec('COMMIT');
   } catch (error) { db.exec('ROLLBACK'); throw error; }

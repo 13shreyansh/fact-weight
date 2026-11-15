@@ -56,9 +56,11 @@ export async function saveMentions(country, narratives, pool = tigerPool()) {
 export async function readTimelines(country, ids, pool = tigerPool()) {
   if (!pool || !ids.length) return null;
   await ensureTiger(pool);
-  const {rows}=await pool.query("SELECT narrative_id,time_bucket('1 day',published_at)::date AS day,count(DISTINCT url)::int AS articles FROM sf_mentions WHERE country=$1 AND narrative_id=ANY($2::text[]) AND published_at>=now()-INTERVAL '30 days' GROUP BY narrative_id,day ORDER BY day",[country,ids]);
+  const {rows}=await pool.query("SELECT narrative_id,to_char(time_bucket('1 day',published_at) AT TIME ZONE 'UTC','YYYY-MM-DD') AS day,count(DISTINCT url)::int AS articles FROM sf_mentions WHERE country=$1 AND narrative_id=ANY($2::text[]) AND published_at>=(date_trunc('day',now() AT TIME ZONE 'UTC') AT TIME ZONE 'UTC')-INTERVAL '29 days' GROUP BY narrative_id,day ORDER BY day",[country,ids]);
   const grouped=new Map(ids.map(id=>[id,[]]));
   for(const r of rows)grouped.get(r.narrative_id)?.push({date:typeof r.day==='string'?r.day.slice(0,10):r.day.toISOString().slice(0,10),articles:Number(r.articles)});
+  const today=Math.floor(Date.now()/86400e3)*86400e3;
+  for(const [id,values] of grouped){if(!values.length)continue;const counts=new Map(values.map(v=>[v.date,v.articles]));grouped.set(id,Array.from({length:30},(_,i)=>{const date=new Date(today-(29-i)*86400e3).toISOString().slice(0,10);return {date,articles:counts.get(date)||0};}));}
   return grouped;
 }
 export async function closeTiger(){if(livePool)await livePool.end();livePool=null;ready=null;}

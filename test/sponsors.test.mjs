@@ -33,9 +33,14 @@ test('public country view withholds labels that a configured checker rejected',a
  assert.deepEqual(result.narratives.map(n=>n.id),['accepted']);
 });
 test('Tiger timeline uses parameterized storage and native time_bucket, never TLS downgrade',async()=>{
- let writes=0,queries=[];const pool={query:async(sql,args)=>{queries.push({sql,args});if(sql.startsWith('INSERT')){writes++;return{rowCount:1};}if(sql.startsWith('SELECT narrative_id'))return{rows:[{narrative_id:'n1',day:'2026-11-15',articles:2}]};return{rows:[]};}};
+ let writes=0,queries=[];const pool={query:async(sql,args)=>{queries.push({sql,args});if(sql.startsWith('INSERT')){writes++;return{rowCount:1};}if(sql.startsWith('SELECT narrative_id'))return{rows:[{narrative_id:'n1',day:new Date().toISOString().slice(0,10),articles:2}]};return{rows:[]};}};
  await saveMentions('FI',[{id:'n1',examples:[{url:'https://a.example/x',published_at:'2026-11-15T01:00:00Z'}]}],pool);
- const rows=await readTimelines('FI',['n1'],pool);assert.equal(writes,1);assert.equal(rows.get('n1')[0].articles,2);
+ const rows=await readTimelines('FI',['n1'],pool);assert.equal(writes,1);assert.equal(rows.get('n1').length,30);assert.equal(rows.get('n1').at(-1).articles,2);assert.equal(rows.get('n1')[0].articles,0);
  assert.ok(queries.some(q=>q.sql.includes("time_bucket('1 day'")&&q.args[0]==='FI'));
  assert.ok(queries.find(q=>q.sql.startsWith('INSERT')).sql.includes('$1'));
+});
+test('the method page counts Verda requests without inventing a zero price or an undefined provider',async()=>{
+ const {handleV2}=await import('../v2/api.mjs');let result;
+ await handleV2({method:'GET'},{writeHead(){},end(text){result=JSON.parse(text);}},new URL('https://example.com/api/method'));
+ assert.equal(result.spend.verda?.unit,'requests');assert.equal(result.spend.verda?.cost_usd,null);assert.equal(Object.hasOwn(result.spend,'undefined'),false);
 });

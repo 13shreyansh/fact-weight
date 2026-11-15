@@ -287,12 +287,15 @@ export async function handleV2(req, res, url) {
   if (p === "/api/method" && req.method === "GET") {
     const builds = db.prepare("SELECT status,count(*) n FROM builds GROUP BY status").all();
     const countries = all("country");
-    const spend = Object.fromEntries(spendSummary().map((r) => [{ context: "context_dev", router: "hostinger_router", exa: "exa" }[r.provider], { used: r.charged_or_reserved, measured: r.measured, calls: r.calls, cap: r.cap }]));
+    const spend = Object.fromEntries(spendSummary().map((r) => {
+      if(r.provider==='verda'){const calls=db.prepare("SELECT count(*) n FROM calls WHERE provider='verda' AND at>=?").get(now().slice(0,10)).n;return ['verda',{used:calls,measured:calls,calls,calls_total:r.calls,cap:Math.max(1,Number.parseInt(process.env.VERDA_DAILY_CALL_CAP)||100),unit:'requests',cost_usd:null,cost_note:'The endpoint did not report a price.'}];}
+      return [{ context: "context_dev", router: "hostinger_router", exa: "exa" }[r.provider]||r.provider,{used:r.charged_or_reserved,measured:r.measured,calls:r.calls,cap:r.cap}];
+    }));
     return send(res, 200, {
       computed_at: now(),
       sponsor_integrations:{nemotron:{configured:!!process.env.VERDA_INFERENCE_KEY,model:NEMOTRON_MODEL,last_success:get('meta','nemotron_last_success')},tiger_data:{configured:tigerConfigured(),last_success:get('meta','tiger_last_success')}},
       thresholds: { jaccard: T.copyThreshold, window_min: T.edgeMinutes, min_sites: T.clusterMinSites, min_stories: T.clusterMinStories, stories_per_country: T.maxStories, days: T.days, strong: T.strong, organic_min_outlets: T.organicMinOutlets },
-      spend: Object.fromEntries(Object.entries(spend).map(([k, v]) => [k === "exa" ? "exa" : k, k === "exa" ? { ...v, unit: "USD" } : { ...v, unit: "credits" }])),
+      spend: Object.fromEntries(Object.entries(spend).map(([k, v]) => [k === "exa" ? "exa" : k, k === "exa" ? { ...v, unit: "USD" } : { ...v, unit: v.unit || "credits" }])),
       counts: { countries_built: countries.length, stories_checked: countries.reduce((n, c) => n + c.stories_checked, 0), clusters: countries.reduce((n, c) => n + c.clusters.length, 0), builds },
       documented_lists: get("meta", "documented_lists"),
       eval: get("meta", "must_surface") || { note: "Held-out evaluation has not been run for engine v2 yet" },
@@ -310,7 +313,7 @@ export async function handleV2(req, res, url) {
         { step: "Confirm copies", how: "Shingle Jaccard >= 0.6 on the best-matching window, plus an embedding cosine second check (text-embedding-3-small); timestamps from page metadata first" },
         { step: "Group sites that copy together", how: "Site graph, edge = stories two sites published near-identically within 60 min; groups need >= 3 sites and >= 3 shared stories; established publishers profiled separately" },
         { step: "Who", how: "RDAP registration dates (IANA bootstrap), DNS A -> IP -> ASN (ipinfo.io), shared analytics/tag IDs, shared templates, cited origins incl. Telegram channels, match against published lists (CheckFirst Pravda dataset)" },
-        { step: "What they want", how: "Gemini 3.5 Flash groups headlines into narratives; a label is kept only if GPT-4.1 mini and Claude Haiku 4.5 both accept it; spin = sentences the copy adds that the closest mainstream article lacks" },
+        { step: "What they want", how: "Gemini 3.5 Flash groups headlines into narratives; labels require GPT-4.1 mini and Claude Haiku 4.5 agreement, plus NVIDIA Nemotron 3.5 Super VL on Verda when configured; all configured checks must accept. Spin = sentences the copy adds that the closest mainstream article lacks" },
         { step: "Organic control", how: "Agency credit, established-publisher share, republication of an outside original, or long-established domains turn a group into Looks organic with the reason shown" },
         { step: "Pickup", how: "Context.dev parsers: TikTok hashtag feed, Instagram post, Reddit search; Exa for YouTube; samples, not totals" },
         { step: "Real time", how: "Context.dev monitors (60 min) on country news searches and the top sites of each coordinated group; signed webhooks confirm new copies with the same check; newsroom alerts via POST /api/watch" },

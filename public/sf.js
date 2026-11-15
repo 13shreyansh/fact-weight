@@ -360,19 +360,19 @@ ${nodes.map((n) => { const r = 5 + Math.sqrt(n.stories || 1) * 2.6; return `<g c
 ${(c.reasons || []).length ? `<ul class="reasons">${c.reasons.map((r) => `<li>${esc(r)}</li>`).join("")}</ul>` : ""}
 </article>`;
   }
-  function trend(arr, first) {
+  function trend(arr, dates) {
     const v = (arr || []).map((x) => (typeof x === "object" ? x.count ?? x.n ?? 0 : x));
     if (!v.length) return `<span class="none">No trend yet</span>`;
     const max = Math.max(1, ...v), w = 300, h = 84, bw = w / v.length;
-    const bars = v.map((n, i) => { const bh = Math.max(n ? 3 : 1, (n / max) * (h - 14)); return `<rect x="${(i * bw + 1).toFixed(1)}" y="${(h - bh).toFixed(1)}" width="${(bw - 2).toFixed(1)}" height="${bh.toFixed(1)}" fill="${n ? "var(--ink)" : "var(--hair)"}"/>`; }).join("");
+    const bars = v.map((n, i) => { const bh = Math.max(n ? 3 : 1, (n / max) * (h - 14)); return `<rect x="${(i * bw + 1).toFixed(1)}" y="${(h - bh).toFixed(1)}" width="${(bw - 2).toFixed(1)}" height="${bh.toFixed(1)}" fill="${n ? "var(--ink)" : "var(--hair)"}"><title>${esc(dates?.[i] || "Day " + (i + 1))}: ${num(n)} retrieved source pages</title></rect>`; }).join("");
     const total = v.reduce((a, b) => a + b, 0);
-    return `<div class="chart"><svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" role="img" aria-label="${total} articles over 30 days, peak ${max} in one day">${bars}<text x="${w}" y="9" text-anchor="end" font-size="10" font-family="JetBrains Mono" fill="var(--ink-3)">peak ${max}/day</text></svg><div class="axis"><span>30 days ago</span><span>today</span></div></div>`;
+    return `<div class="chart"><svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" role="img" aria-label="${total} retrieved source pages over 30 days, peak ${max} in one day">${bars}<text x="${w}" y="9" text-anchor="end" font-size="10" font-family="JetBrains Mono" fill="var(--ink-3)">peak ${max}/day</text></svg><div class="axis"><span>Past 30 days</span><span>today</span></div></div>`;
   }
   function narrative(n, clusters) {
     const c = clusters.find((x) => x.id === n.cluster_id);
     const ex = (n.examples || []).map((e) => (typeof e === "string" ? { headline: e } : e));
     return `<div class="nrow"><div><h3>${esc(n.label)}</h3><p class="sub">${plural(n.articles, "article")}${c ? ` from <a href="#${esc(c.id)}">${esc(c.label)}</a>` : ""}${n.first_seen ? ` · first seen ${esc(dmy(n.first_seen))}` : ""}</p></div>
-<div>${trend(n.trend_30d)}${n.timeline_store?`<p class="sub">${esc(n.timeline_store)} · ${n.timeline_cached?"cached source counts":n.timeline_scope==="linked_examples"?"linked examples by publication day":"source counts by publication day"}</p>`:""}${n.models?.verda?`<p class="sub">Summary checked with NVIDIA Nemotron on Verda</p>`:""}</div>
+<div>${trend(n.trend_30d,n.trend_dates)}${n.timeline_store?`<p class="sub">${esc(n.timeline_store)} · ${n.timeline_cached?"cached source counts":n.timeline_scope==="linked_examples"?"linked examples by publication day":"source counts by publication day"}</p>`:""}${n.models?.verda?`<p class="sub">Summary checked with NVIDIA Nemotron on Verda</p>`:""}</div>
 <div><span class="k">Examples</span><ul class="ex">${ex.slice(0, 3).map((e) => `<li>${e.url ? `<a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.headline || e.title || host(e.url))}</a>` : esc(e.headline || e.title)}</li>`).join("") || `<li class="none">No examples stored</li>`}</ul></div></div>`;
   }
   function storyRows(stories) {
@@ -666,7 +666,7 @@ curl ${esc(location.origin)}/api/live?country=${esc(cc)}</code></pre></div></div
       add("Copy window", th.window_min != null ? `${th.window_min} minutes` : null);
       add("Group size", th.min_sites != null ? `≥ ${th.min_sites} sites and ≥ ${th.min_stories} shared stories` : null);
       const sp = m.spend || m.credits || {};
-      Object.entries(sp).forEach(([k, v]) => add(`Spent: ${k}`, typeof v === "object" ? `${v.used ?? "?"} of ${v.cap ?? "?"}` : v));
+      Object.entries(sp).forEach(([k, v]) => add(k === "verda" ? "Verda request attempts" : `Spent: ${k}`, k === "verda" ? `${v.calls} today, limit ${v.cap}/day; price not reported` : typeof v === "object" ? `${v.used ?? "?"} of ${v.cap ?? "?"}` : v));
       const ev = m.eval || m.evaluation || {};
       Object.entries(ev).forEach(([k, v]) => add(`Eval: ${k.replace(/_/g, " ")}`, typeof v === "object" ? JSON.stringify(v) : v));
       if (rows.length) $("#live").innerHTML = `<h2>Live numbers</h2><p>Read from the running system${m.computed_at ? ` at ${esc(stamp(m.computed_at))}` : ""}.</p><table class="facts"><tbody>${rows.join("")}</tbody></table>`;

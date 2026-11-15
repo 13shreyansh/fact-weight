@@ -31,7 +31,7 @@ The Node.js service and durable scheduler run on a Hostinger VPS. The live produ
 
 The country engine confirms copies with word-sequence overlap and another embedding check. Its configured graph rules include a 60-minute window and groups of at least three sites and three stories. Those values are rule settings, not measured accuracy. Cited origins and infrastructure information support investigation.
 
-Separate model families through Hostinger AI Router must accept narrative labels. Gemini 3.5 participates in grouping/filtering; GPT-4.1 mini and Claude Haiku support label checks. Exact provider routing can change with configuration. These models help describe evidence; agreement between them does not prove coordination.
+Separate model families through Hostinger AI Router must accept narrative labels. With the Verda credential configured, NVIDIA Nemotron 3.5 Super VL must also accept each proposed label; unavailable or malformed output withholds it. Gemini 3.5 participates in grouping/filtering; GPT-4.1 mini and Claude Haiku support label checks. Exact provider routing can change with configuration. These models help describe evidence; agreement between them does not prove coordination.
 
 ## Sponsor use and planned additions
 
@@ -42,12 +42,12 @@ Separate model families through Hostinger AI Router must accept narrative labels
 | Exa | Implemented for candidate-page discovery. |
 | Gemini | Implemented through Hostinger AI Router. This is routed model access, not a claimed direct Google API connection. |
 | Codex | Used to develop, debug and verify the product. |
-| CRACI | **Planned, not implemented.** Run the existing tests and contracts on CRACI. |
-| NVIDIA Nemotron | **Planned, not implemented.** Add a bounded evidence-label step using the required Nemotron 3.5 Super VL model. |
-| Verda | **Planned, not implemented.** Host the Nemotron inference step on Verda compute. Model availability and deployment are not yet proven. |
-| Tiger Data | **Planned, not implemented.** Store the mention timeline in time-series PostgreSQL and compute time buckets for the analyst view. SQLite is still the current store. |
+| CRACI | Implemented workflow configuration in `.github/workflows/sponsor-ci.yml`, running the real regression suite on `runs-on: craci`. Successful runner execution is required as verification. |
+| NVIDIA Nemotron | Implemented. `nemotron-3.5-super-vl` checks whether proposed narrative labels are neutral and supported by the supplied headlines. A configured check must accept the label before publication. |
+| Verda | Implemented. The organizer-provided Verda-hosted event endpoint runs the Nemotron check. Model identity, verdicts, latency and returned token usage are retained; a price is not inferred. |
+| Tiger Data | Implemented. A TLS-verified PostgreSQL connection persists narrative-specific source mentions in a TimescaleDB hypertable. Native `time_bucket` queries supply the 30-day timeline. SQLite continues to store the rest of the evidence and cached views. |
 
-Sponsor selections are saved on both main-entry drafts. Planned selections still need working implementation and evidence before they can support a prize claim.
+Sponsor verification is separate from selection. The code includes real-provider receipts and deployment acceptance checks. An actual successful CRACI job is required in addition to its workflow configuration.
 
 ## Run locally
 
@@ -78,18 +78,24 @@ An older watch-engine replay caught 7 of 32 known-network publication sets, miss
 
 See the [evaluation ledger](eval/LEDGER.md) and `artifacts/benchmark/` for recorded experiments. Do not present older content-screening or seeded results as current country-engine performance.
 
-## Planned architecture and completion checks
+## Sponsor implementation and verification
 
 ```mermaid
 flowchart LR
-    E[Existing evidence graph] -. planned .-> N[Nemotron 3.5 Super VL on Verda]
-    N -. checked labels .-> V[Analyst evidence view]
-    E -. planned .-> T[Tiger Data mention timeline]
-    T -. time buckets .-> V
-    C[CRACI CI] -. planned test execution .-> Q[Existing regression suite]
+    E[Existing evidence graph] --> N[Nemotron 3.5 Super VL on Verda]
+    N --> V[Analyst evidence view]
+    E --> T[Tiger Data mention timeline]
+    T --> V
+    C[CRACI CI] --> Q[Existing regression suite]
 ```
 
-After implementation approval, each addition needs a real receipt. CRACI needs a successful `runs-on: craci` job. Nemotron/Verda needs a visible core model step, recorded model identity, a frozen comparison against the current labels and its runtime/cost. Tiger Data needs persisted timestamps and reproducible time-bucket queries that power the timeline. None of these checks has run for the planned services.
+`v2/nemotron.mjs` calls the required event model, validates one boolean verdict per input label, caches exact inputs and bounds daily attempts. It records the model and token counts without inventing a dollar price. Measured canary checks accepted two existing public narrative labels in 675 ms and rejected two deliberately unsupported labels in a separate 522 ms controlled probe. This is a narrow regression check, not population accuracy or the missing country-engine benchmark.
+
+`v2/tiger.mjs` persists each narrative's own source membership, deduplicates retries and replaces corrected timestamps. `time_bucket` supplies 30 UTC daily positions so sparse observations cannot shift dates on the chart. Older records contain only linked examples, so their timeline explicitly says so. A real canary ingestion retained six distinct source pages in two narrative buckets, with PostgreSQL confirming TLS 1.3. These are measured operational receipts, not a claim of full publishing coverage.
+
+Provider credentials remain encrypted at rest and load into server memory. Configure `VERDA_INFERENCE_KEY` and `TIGER_DATABASE_URL` securely, with `TIGER_CA_CERT_B64` only if a trusted custom CA is necessary. TLS verification is never disabled. Run `scripts/upgrade-sponsors.mjs --country=IR` on the existing evidence dataset to add real checks and timelines without rebuilding web searches.
+
+`SIGNAL_URL=<deployed URL> EXPECTED_COMMIT=<commit> node scripts/sponsor-v2-e2e.mjs` follows the current briefing, evidence and copy timeline, then verifies the visible Nemotron/Tiger output at desktop and phone sizes. CRACI requires a successful real `runs-on: craci` job. No portal or submission description is changed by these checks.
 
 ## Code map
 
