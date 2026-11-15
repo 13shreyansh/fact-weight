@@ -11,3 +11,7 @@ Prior P1s were resolved: unknown baselines no longer fire; duplicate publisher v
 Limits accepted in the revised brief: no measured young-account or follow graph, no verified cloned site in the current three pushes, no EUvsDisinfo match above threshold, no live strong push. Job 05 selects an actual live moderate Push A. The benchmark is conditional candidate-set verification of Pravda publication sets, not end-to-end discovery or a general accuracy claim. Other campaign families and debunk lead time are unmeasured.
 
 No reviewer provider calls, source changes, deployments or report edits were made during the final pass. Root recorded the received verdict here.
+
+## Last visual delta
+
+The final visual check found Home unit captions overlapping the last time tick. Commit `8724c86` places captions in normal flow below the canvas and adds a deployed geometry assertion at both widths. The same independent Astra reviewer returned **spec fit PASS / build quality PASS** for this delta, with no further fix identified. Root independently verified both deployed widths and reran all 58 unit tests. The final generated acceptance report records the complete release run; its extra two checks bring the total to 21.

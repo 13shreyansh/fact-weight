@@ -1,6 +1,6 @@
 # Deployed taste gate
 
-Checked at 1440 × 900 and 390 × 844 using real loaded content, source commit 165a9ea; final documentation release reruns the same acceptance. All 51 acceptance screenshots were visually inspected, plus all 13 rendered PDF pages. Final Astra review: spec fit PASS / build quality PASS against Jobs 03–05.
+Checked at 1440 × 900 and 390 × 844 using real loaded content, application reviewed at 165a9ea plus caption fix 8724c86; final documentation release reruns the acceptance. All 51 acceptance screenshots were visually inspected, plus all 13 rendered PDF pages. Final Astra review: spec fit PASS / build quality PASS against Jobs 03–05.
 
 | Item | Result and evidence |
 |---|---|
@@ -16,10 +16,12 @@ Checked at 1440 × 900 and 390 × 844 using real loaded content, source commit 1
 | 10. Calm hierarchy | Yes — [Home](../e2e/01-home-desktop.png), [trail](../e2e/15-trail-step1-desktop.png); long evidence lives in sections and explicit details. |
 | 11. No default AI styling | Yes — [Home](../e2e/01-home-desktop.png); no serif, glow, gradients, emoji, metric tiles or chat. |
 | 12. Themed and responsive | Yes — [phone](../e2e/01-home-phone.png), [phone push](../e2e/04-push-top-phone.png); no horizontal page overflow in acceptance. |
-| 13. Entire deployed video flow | Yes — [acceptance report](../e2e/acceptance-report.json), 19 checks/51 screenshots/zero errors; both sizes plus [Context.dev cut](../e2e/contextdev/). |
+| 13. Entire deployed video flow | Yes — [acceptance report](../e2e/acceptance-report.json), 21 checks/51 screenshots/zero errors; both sizes plus [Context.dev cut](../e2e/contextdev/). |
 | 14. Visible evidence moments | Yes — [peak](../e2e/05-push-peak-desktop.png), [text copies](../e2e/08-push-same-text-desktop.png); the shown coordination is measured moderate, not invented strong. |
 | 15. Stable interaction | Yes — [lanes](../e2e/06-push-lanes-desktop.png), [trail](../e2e/16-trail-step3-desktop.png); loaded-state captures, separate collection worker, reduced-motion support. |
 | Fresh data/no test leftovers | Yes — [Home](../e2e/01-home-desktop.png), [first sweep](../e2e/03-home-first-sweep-desktop.png); private watch deleted, public active watch count remains one. Expired tombstones retain cleanup history, not public rows. |
 | No exposed internals | Yes (the answer to “is any raw internal text visible?” is No) — [claims](../e2e/10-push-claims-desktop.png); real request JSON appears only after explicit request disclosure in trail. |
 | Fully loaded screenshots | Yes — [pack](../e2e/17-pack-phone.png), [Method](../e2e/20-method-replay-phone.png); every capture waits for real content. |
 | Mac-independent | Yes — [Speed](../e2e/27-method-speed-desktop.png), [runtime audit](runtime-audit.json); local app stopped, VPS scheduler/worker and persistent database, no tunnel. |
+
+Final visual delta: Home chart unit captions moved below the canvas after an overlap was observed. The separate reviewer passed the tiny delta; a deployed bounding-box regression checks separation at both widths.

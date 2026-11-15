@@ -4,12 +4,12 @@ Live collection uses Context.dev; shown narrative and claim judgements use Hosti
 The app, signed webhooks, durable worker and safety-net scheduler run on the Hostinger VPS.
 Acceptance covers real findings, frozen measurements, exports, deployed desktop/mobile flows and independent review.
 
-SIGNAL FIRE / 15 Nov 2026, 03:25 Helsinki / final HEAD verified against deployed health / https://signal-fire.72.61.22.106.sslip.io
+SIGNAL FIRE / 15 Nov 2026, 03:30 Helsinki / final HEAD verified against deployed health / https://signal-fire.72.61.22.106.sslip.io
 
 DONE:
 - Shipped three live moderate coordination findings, source traces, matching public pickup, claim evidence, New watch, Method and downloadable evidence packs.
 - Deployed 31 Context.dev monitors with verified webhooks, durable change processing, measured trail/Speed and a VPS polling safety net. Repository: https://github.com/13shreyansh/signal-fire.
-- Passed 58 tests and deployed acceptance: 19 checks, 51 screenshots, both 1440×900 and 390×844, Context.dev cut, zero console errors. Export: 13 PDF pages, no detected clipping or replacement glyphs. Test watches were deleted.
+- Passed 58 tests and deployed acceptance: 21 checks, 51 screenshots, both 1440×900 and 390×844, Context.dev cut, zero console errors. Export: 13 PDF pages, no detected clipping or replacement glyphs. Test watches were deleted.
 
 NUMBERS (measured): coordination development caught 6/16, false flags 0/16; held out caught 7/32 (21.875%), false flags 0/32, misses 25. Strong-only caught 0/32. Content-only held out caught 8/16, false flags 3/16 (18.75%), with two failed outputs retained in denominators. Historical source baseline remains unknown; no early-warning lead is claimed.
 
