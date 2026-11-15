@@ -207,7 +207,7 @@ async function findCopies(story, c) {
   };
   // Quoted phrases find verbatim copies; one plain-keyword search per headline widens the pool so
   // pages that copy each other (rather than the mainstream wording) can be compared pairwise.
-  const queries = [...frags.map((f) => ({ q: quote(f), quoted: true })), ...frags.slice(0, 2).map((f) => ({ q: tokens(f).slice(0, 12).join(" "), quoted: false }))];
+  const queries = [...frags.slice(0, process.env.EXA_API_KEY ? 2 : 3).map((f) => ({ q: quote(f), quoted: true })), ...(process.env.EXA_API_KEY ? [] : frags.slice(0, 2).map((f) => ({ q: tokens(f).slice(0, 12).join(" "), quoted: false })))];
   const results = await pool(queries, 3, (x) => call("context", "/web/search", { query: x.q + " -site:x.com -site:twitter.com", numResults: 20 }).then((r) => ({ ...r, quoted: x.quoted })));
   const known = new Set(story.articles.map((a) => normUrl(a.url)));
   const exaPages = [];
@@ -215,7 +215,8 @@ async function findCopies(story, c) {
   if (process.env.EXA_API_KEY) {
     const sents = [...new Set(story.articles.flatMap((a) => sentences(a.description)).filter((x) => x.length >= 60))].sort((a, b) => b.length - a.length).slice(0, 2);
     const head = story.articles.find((a) => c.langs.includes(a.lang))?.headline;
-    const qs = [...sents, ...(head ? [head] : [])].slice(0, 3);
+    const qs = [...sents.slice(0, 1), ...(head ? [head] : []), ...(story.translations || [])].slice(0, 3);
+    if (sents.length > 1 && qs.length < 3) qs.push(sents[1]);
     const t0 = Date.parse(story.articles[0].published_at || Date.now());
     const res = await pool(qs, 3, (q) => {
       const w = tokens(q).filter((x) => x.length > 3);
@@ -239,7 +240,7 @@ async function findCopies(story, c) {
       if (sim >= (r.quoted ? 0.3 : 0.2)) cands.set(normUrl(x.url), { url: x.url, sim });
     }
   const exaSet = new Set(exaPages.map((p) => normUrl(p.url)));
-  const picked = [...cands.values()].filter((x) => !exaSet.has(normUrl(x.url))).sort((a, b) => b.sim - a.sim).slice(0, exaPages.length ? 5 : T.scrapesPerStory);
+  const picked = [...cands.values()].filter((x) => !exaSet.has(normUrl(x.url))).sort((a, b) => b.sim - a.sim).slice(0, exaPages.length ? 3 : T.scrapesPerStory);
   const pages = (
     await pool(picked, 6, async (p) => {
       const d = await call("context", "/web/scrape", { url: p.url, formats: { markdown: true, html: true }, sharedParams: { mainContentOnly: false } }, { maxAgeMs: 30 * 86400e3 });
@@ -568,6 +569,16 @@ export async function buildCountry(cc, build) {
       return r;
     });
     await step(build, "Search the web for near-identical copies", async (s) => {
+      const tl = c.langs.filter((l) => l !== "en").slice(0, 2);
+      if (tl.length) {
+        const tr = await llm(
+          "gemini-3.5-flash-lite",
+          `Translate each news headline into these languages: ${tl.join(", ")}. Keep names. Return JSON {"items":[{"i":int,"t":{"<lang>":string}}]}.`,
+          { headlines: stories.map((st, i) => ({ i, h: st.title })) },
+          3000,
+        ).catch(() => null);
+        for (const it of tr?.items || []) if (stories[it.i]) stories[it.i].translations = Object.values(it.t || {}).filter((x) => typeof x === "string" && x.length > 10);
+      }
       const res = await pool(stories, 4, (st) => findCopies(st, c));
       let searches = 0,
         pages = 0;
@@ -605,7 +616,20 @@ export async function buildCountry(cc, build) {
         reasons.push(`${g.sites.length} sites published near-identical text (shingle Jaccard ≥ ${T.copyThreshold}) on ${g.stories.length} of the ${stories.length} stories checked, within ${T.edgeMinutes} minutes of each other`);
         if (medGap !== null) reasons.push(`Median gap between sites: ${Math.round(medGap)} min`);
         const pubShare = g.sites.filter((x) => all_publishers.has(x)).length / g.sites.length;
-        if (pubShare >= 0.5 && wireShare < 0.5) {
+        // Copies whose near-identical group was first published by an established publisher outside the group.
+        const origin = new Map();
+        for (const st of stories)
+          for (const grp of st.groups) {
+            const first = grp.filter((n) => n.t).sort((a, b) => a.t.localeCompare(b.t))[0];
+            if (first && all_publishers.has(first.site) && !g.sites.includes(first.site)) for (const n of grp) origin.set(n.url, first.site);
+          }
+        const republished = nodes.filter((n) => origin.has(n.url));
+        const repShare = nodes.length ? republished.length / nodes.length : 0;
+        if (repShare >= 0.6 && wireShare < 0.5 && pubShare < 0.5) {
+          verdict = "Looks organic";
+          const srcs = [...new Set(republished.map((n) => origin.get(n.url)))].slice(0, 3).join(", ");
+          reasons.push(`${Math.round(repShare * 100)}% of the copies follow an original first published by an established outlet (${srcs}); automated republication or licensing explains the identical text`);
+        } else if (pubShare >= 0.5 && wireShare < 0.5) {
           verdict = "Looks organic";
           reasons.push(`${Math.round(pubShare * 100)}% of these sites are established publishers in the news index; shared or licensed copy explains identical text`);
         } else if (wireShare >= 0.5) {
