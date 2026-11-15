@@ -291,7 +291,12 @@ try {
     await shot(page, "22-method-wrong-" + suffix, "#wrong");
     await shot(page, "27-method-speed-" + suffix, "#speed");
     await page.locator("#switcher").click();
-    await page.locator('#watch-dropdown a[href^="/watches/new"]').click();
+    if (width === 1440) {
+      await page.keyboard.press("ArrowDown");
+      await page.keyboard.press("Enter");
+      checks.push("Watch switcher keyboard navigation");
+    } else
+      await page.locator('#watch-dropdown a[href^="/watches/new"]').click();
     await ready(page, "#watch-form");
     await page.locator("input[name=conflict]").fill("Sudan civil war");
     await page.locator('[data-token-field="countries"] input').fill("Sudan");

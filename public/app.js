@@ -181,12 +181,32 @@ function renderShell() {
         .map((w) => `<a href="/w/${w.id}">${esc(w.name)}</a>`)
         .join("") +
       `<hr><a href="/watches/new?from=${w.id}">${icon("plus")}New watch</a><a href="/w/${w.id}">Pushes</a><a href="/method">Method</a><p class="small secondary">${last ? "Last sweep " + relative(last) : "First sweep is running"}</p>`;
+    menu.onkeydown = (event) => {
+      if (!["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) return;
+      event.preventDefault();
+      const links = $$("a", menu),
+        index = links.indexOf(document.activeElement),
+        next =
+          event.key === "Home"
+            ? 0
+            : event.key === "End"
+              ? links.length - 1
+              : (index + (event.key === "ArrowDown" ? 1 : -1) + links.length) %
+                links.length;
+      links[next]?.focus();
+    };
     $("#shell").append(menu);
     $("#switcher").setAttribute("aria-expanded", "true");
     $("a", menu).focus();
     icons();
   };
   $("#switcher").onclick = toggle;
+  $("#switcher").onkeydown = (event) => {
+    if (event.key === "ArrowDown" && !$("#watch-dropdown")) {
+      event.preventDefault();
+      toggle();
+    }
+  };
   $(".mobile-menu").onclick = toggle;
 }
 function quote(p, { diff = false, phrase = "" } = {}) {
@@ -1469,7 +1489,12 @@ async function boot() {
 }
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
-    $("#watch-dropdown")?.remove();
+    if ($("#watch-dropdown")) {
+      $("#watch-dropdown").remove();
+      $("#switcher").setAttribute("aria-expanded", "false");
+      $("#switcher").focus();
+      return;
+    }
     $("#slice-clear")?.click();
   }
   if (e.target.closest("input,textarea,select")) return;
