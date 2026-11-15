@@ -53,6 +53,7 @@ const routerPrices = {
   "claude-haiku-4.5": [0.000132, 0.00066],
   "gemini-3.5-flash": [0.000198, 0.001188],
   "gemini-3.5-flash-lite": [0.000036, 0.0003],
+  "text-embedding-3-small": [0.000003, 0],
 };
 function reserve(provider, endpoint, params) {
   if (provider === "exa") return 0.005 + 0.0015 * (params.numResults || 10);
@@ -187,3 +188,17 @@ export async function pool(items, n, fn) {
 export function addEvent(type, country, data) {
   db.prepare("INSERT INTO events(at,type,country,data) VALUES(?,?,?,?)").run(data.at || new Date().toISOString(), type, country, JSON.stringify(data));
 }
+
+export async function embed(texts) {
+  const d = await call("router", "/embeddings", { model: "text-embedding-3-small", input: texts.map((t) => String(t).slice(0, 2000)) }, { maxAgeMs: 30 * 86400e3 });
+  return (d.data || []).sort((a, b) => a.index - b.index).map((x) => x.embedding);
+}
+export const cosine = (a, b) => {
+  let d = 0, x = 0, y = 0;
+  for (let i = 0; i < a.length; i++) {
+    d += a[i] * b[i];
+    x += a[i] * a[i];
+    y += b[i] * b[i];
+  }
+  return d / Math.sqrt(x * y);
+};

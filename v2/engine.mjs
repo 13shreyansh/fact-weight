@@ -1,7 +1,7 @@
 // Engine v2: starts from no list of actors. Sites reveal themselves by publishing
 // near-identical text about a country's top stories within minutes of each other.
 import dns from "node:dns/promises";
-import { call, llm, pool, put, get, all, hash, setContext, db, CapReached, addEvent } from "./db.mjs";
+import { call, llm, pool, put, get, all, hash, setContext, db, CapReached, addEvent, embed, cosine } from "./db.mjs";
 import { country as countryInfo } from "./countries.mjs";
 import { tokens, shingles, jaccard, containment, windowJaccard, headlineSim, cleanTitle, mainText, sentences, site, registrable, median } from "./text.mjs";
 
@@ -420,6 +420,21 @@ async function who(cl, pagesBySite) {
     for (const [v, ss] of m) if (ss.size >= 2) shared.push({ type, value: v, sites: [...ss].sort() });
   };
   share("ip", ips.flatMap((x) => (x?.ips || []).map((ip) => [x.site, ip])));
+  const uniqIps = [...new Set(ips.map((x) => x?.ips?.[0]).filter(Boolean))].slice(0, 25);
+  const asn = new Map(
+    await pool(uniqIps, 5, async (ip) => {
+      const c = get("asn", ip);
+      if (c) return [ip, c.org];
+      try {
+        const d = await (await fetch(`https://ipinfo.io/${ip}/json`, { signal: AbortSignal.timeout(8000), headers: { Accept: "application/json" } })).json();
+        put("asn", ip, { org: d.org || null, country: d.country || null });
+        return [ip, d.org || null];
+      } catch {
+        return [ip, null];
+      }
+    }),
+  );
+  share("network (ASN)", ips.filter((x) => x?.ips?.[0] && asn.get(x.ips[0])).map((x) => [x.site, asn.get(x.ips[0])]));
   for (const s of cl.sites) {
     const ps = pagesBySite.get(s) || [];
     if (ps.length && ps.every((p) => p.via === "exa")) {
@@ -457,8 +472,8 @@ async function who(cl, pagesBySite) {
     origins_top,
     languages: langs,
     documented_by,
-    asn: null,
-    asn_reason: "ASN lookup is not run; shared IP addresses are reported instead",
+    asn: Object.fromEntries(ips.filter((x) => x?.ips?.[0]).map((x) => [x.site, asn.get(x.ips[0]) || null])),
+    asn_reason: "IP addresses from DNS A records; network owner (ASN) from ipinfo.io",
   };
 }
 
@@ -796,6 +811,18 @@ export async function buildCountry(cc, build) {
       for (const p of pick) by[p.platform] = (by[p.platform] || 0) + 1;
       s.note = `${pick.length} matching public posts across ${top.length} stories (${Object.entries(by).map(([k, v]) => `${k} ${v}`).join(", ") || "none"}); samples from public search pages, not totals`;
     });
+    // Second similarity check: embedding cosine between each copy and the story's first mainstream text.
+    const cos = new Map();
+    await step(build, "Second check: embedding similarity", async (s) => {
+      const withCopies = stories.filter((st) => st.groups.flat().some((n) => n.kind === "copy"));
+      await pool(withCopies, 4, async (st) => {
+        const copies = st.groups.flat().filter((n) => n.kind === "copy").slice(0, 30);
+        const ref = st.articles[0].headline + ". " + st.articles[0].description;
+        const v = await embed([ref, ...copies.map((n) => (n.headline || "") + ". " + n.text.slice(0, 1200))]);
+        copies.forEach((n, i) => v[i + 1] && cos.set(n.url, Math.round(cosine(v[0], v[i + 1]) * 100) / 100));
+      });
+      s.note = `${cos.size} copies embedded with text-embedding-3-small; median cosine ${[...cos.values()].sort()[cos.size >> 1] ?? "n/a"}`;
+    });
     // Persist stories and the country record.
     for (const st of stories) {
       const nodes = st.groups.flat();
@@ -811,7 +838,7 @@ export async function buildCountry(cc, build) {
         title: st.title,
         country: c.code,
         mainstream: st.articles.map(({ outlet, url, published_at, headline, lang }) => ({ outlet, url, published_at, headline, lang })),
-        copies: copies.map((n) => ({ site: n.site, cluster_id: n.cluster_id || null, url: n.url, published_at: n.t || null, published_reason: n.t ? null : "The page carries no machine-readable publication time", headline: n.headline, lang: n.page?.lang || null, country: c.code, similarity: Math.round(n.similarity * 100) / 100, credits_agency: n.page?.wire || null })),
+        copies: copies.map((n) => ({ site: n.site, cluster_id: n.cluster_id || null, url: n.url, published_at: n.t || null, published_reason: n.t ? null : "The page carries no machine-readable publication time", headline: n.headline, lang: n.page?.lang || null, country: c.code, similarity: Math.round(n.similarity * 100) / 100, jaccard: Math.round(n.similarity * 100) / 100, cosine: cos.get(n.url) ?? null, time_source: n.page?.time_source || (n.t ? (n.page?.via === "exa" ? "Exa index" : n.kind === "mainstream" ? "news index" : "page metadata") : null), found_by: n.page?.via === "exa" ? "Exa" : n.kind === "mainstream" ? "Context.dev news search" : "Context.dev search + scrape", credits_agency: n.page?.wire || null })),
         first_mainstream_at,
         first_copy_at,
         lag_minutes: first_mainstream_at && first_copy_at ? Math.round(minutes(first_mainstream_at, first_copy_at)) : null,

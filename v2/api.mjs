@@ -3,6 +3,7 @@ import crypto from "node:crypto";
 import { db, get, all, put, spendSummary, CAPS, spent } from "./db.mjs";
 import { country as countryInfo, PRECOMPUTED } from "./countries.mjs";
 import { T, saveBuild, loadBuild } from "./engine.mjs";
+import { receiveHook, addWatch, monitors } from "./live.mjs";
 
 const send = (res, status, d) => {
   res.writeHead(status, {
@@ -57,7 +58,7 @@ function clusterOut(c) {
     domain_ages: ages.length
       ? { median_days: c.domain_ages.median_age_days, min_days: Math.min(...ages), registered_last_year: c.domain_ages.registered_last_year, domains: c.domain_ages.domains }
       : { reason: "No registry published a creation date for these domains", domains: c.domain_ages?.domains || [] },
-    shared_infra: (c.shared_infra || []).map((x) => `${x.type.replace("_", " ")} ${x.value} (${x.sites.length} sites)`),
+    shared_infra: (c.shared_infra || []).map((x) => `${x.sites.length} sites share the same ${x.type.replace("_", " ")}: ${x.value} (${x.sites.slice(0, 4).join(", ")}${x.sites.length > 4 ? ", …" : ""})`),
     shared_infra_detail: c.shared_infra || [],
   };
 }
@@ -121,6 +122,38 @@ export function requestBuild(cc, source, ip) {
 export async function handleV2(req, res, url) {
   const p = url.pathname;
   if (req.method === "OPTIONS" && p.startsWith("/api/")) return send(res, 204, {});
+  let hm = p.match(/^\/api\/hooks\/contextdev\/([a-f0-9]{32})$/);
+  if (hm && req.method === "POST") {
+    const chunks = [];
+    let size = 0;
+    for await (const ch of req) {
+      size += ch.length;
+      if (size > 2 * 1048576) return send(res, 413, { error: "Too large." });
+      chunks.push(ch);
+    }
+    const r = receiveHook(hm[1], Buffer.concat(chunks), req.headers);
+    if (r.status === 204) {
+      res.writeHead(204);
+      res.end();
+      return true;
+    }
+    return send(res, r.status, { error: r.error });
+  }
+  if (p === "/api/watch" && req.method === "POST") {
+    let b = "";
+    for await (const ch of req) {
+      b += ch;
+      if (b.length > 4000) return send(res, 413, { error: "Too large." });
+    }
+    let j;
+    try {
+      j = JSON.parse(b || "{}");
+    } catch {
+      return send(res, 400, { error: "Send JSON {country, webhook_url}." });
+    }
+    const r = addWatch(String(j.country || "").toUpperCase(), String(j.webhook_url || ""));
+    return send(res, r.status, r.body);
+  }
   if (p === "/api/countries" && req.method === "GET") {
     const built = all("country").map((c) => c.code);
     const codes = [...new Set([...PRECOMPUTED, ...built])];
@@ -214,9 +247,10 @@ export async function handleV2(req, res, url) {
       sites_seen: sites.size,
       groups: cs.reduce((n, c) => n + c.clusters.length, 0),
       groups_coordinated: cs.reduce((n, c) => n + c.clusters.filter((x) => x.verdict.startsWith("Looks coordinated")).length, 0),
-      monitors_live: 0,
-      monitors_note: "Context.dev monitors for engine v2 are not set up yet; countries refresh every 6 hours",
-      hook_events_24h: 0,
+      monitors_live: monitors().filter((m) => m.status !== "failed").length,
+      monitors: monitors().map((m) => ({ country: m.country, kind: m.kind, target: m.target.url || m.target.query, every_min: 60, last_event_at: m.last_event_at || null })),
+      hook_events_24h: db.prepare("SELECT count(*) n FROM hooks WHERE received_at>?").get(new Date(Date.now() - 864e5).toISOString()).n,
+      watches: db.prepare("SELECT count(*) n FROM watches").get().n,
       languages: langs.size,
       countries_ready: cs.length,
       last_event_at: last,

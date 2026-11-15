@@ -3,6 +3,11 @@ import { db, get, CapReached } from "./db.mjs";
 import { PRECOMPUTED } from "./countries.mjs";
 import { buildCountry, loadBuild, saveBuild } from "./engine.mjs";
 import { requestBuild } from "./api.mjs";
+import { ensureMonitors, processHooks, deliverWatches } from "./live.mjs";
+
+setInterval(() => processHooks().catch(() => {}), 15000);
+setInterval(() => deliverWatches().catch(() => {}), 5000);
+ensureMonitors().catch((e) => console.error("v2 monitors", e.message));
 
 db.prepare("UPDATE builds SET status='queued', steps='[]' WHERE status='running'").run();
 let stopping = false;
@@ -33,6 +38,7 @@ for (;;) {
   try {
     await buildCountry(b.cc, b);
     console.log("v2 build done", b.cc, b.id);
+    ensureMonitors().catch((e) => console.error("v2 monitors", e.message));
   } catch (e) {
     console.error("v2 build failed", b.cc, e.message);
     if (e instanceof CapReached) await new Promise((r) => setTimeout(r, 600000));
