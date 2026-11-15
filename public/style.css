@@ -1715,11 +1715,10 @@ textarea {
   position: relative;
 }
 .mini-unit {
-  position: absolute;
-  right: 0;
-  bottom: 1px;
+  display: block;
+  margin-top: 4px;
+  text-align: right;
   font-size: 11px;
-  background: var(--surface);
 }
 .live-dot.sweeping {
   animation: reading-pulse 2s ease-in-out infinite;

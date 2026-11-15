@@ -230,6 +230,13 @@ try {
     await page.locator("#plot-table").click();
     await page.locator(".brand").click();
     await ready(page, "tr[data-push]");
+    for (const fragment of await page.locator(".finding .fragment:has(canvas)").all()) {
+      const chart = await fragment.locator("canvas").boundingBox();
+      const caption = await fragment.locator(".mini-unit").boundingBox();
+      assert.ok(chart && caption && caption.y >= chart.y + chart.height,
+        "Home chart unit caption must stay below time-axis labels");
+    }
+    checks.push("Home time axis and unit caption do not overlap " + width);
     await shot(page, "01-home-" + suffix);
     if (width === 1440) {
       await page.keyboard.press("j");
