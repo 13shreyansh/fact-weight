@@ -289,7 +289,7 @@ function identicalGroups(story) {
 }
 
 // 3. Site graph and clusters.
-function cluster(stories, keepSite = () => true, minWeight = 1) {
+export function cluster(stories, keepSite = () => true, minWeight = 1) {
   const edges = new Map();
   const ek = (a, b) => (a < b ? a + "|" + b : b + "|" + a);
   for (const s of stories)
