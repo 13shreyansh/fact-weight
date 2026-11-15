@@ -18,7 +18,7 @@ export const T = {
 };
 const SPORT = /\b(hockey|football|soccer|nhl|nba|nfl|uefa|fifa|league|olympic|grand prix|tennis|golf|cricket|rugby|semifinal|quarterfinal|match report|stats & head-to-head|vs\.? )\b/i;
 const SKIP_HOSTS = /(^|\.)(x\.com|twitter\.com|facebook\.com|instagram\.com|tiktok\.com|youtube\.com|youtu\.be|reddit\.com|wikipedia\.org|google\.[a-z.]+|bing\.com|msn\.com|yahoo\.com|news\.google\.com|linkedin\.com|t\.me|telegram\.me|vk\.com|ok\.ru)$/i;
-const WIRE = /\((AP|Reuters|AFP|dpa|STT|TT|NTB|Ritzau|ANSA|EFE|PAP|ČTK|CTK|MTI|Kyodo|Yonhap|PTI|ANI|IANS|Bernama|Xinhua|TASS|Interfax|Ukrinform|Agerpres|LETA|BNS|ERR|AAP|CP|PA|UNI|IANS|ANI)\)|\bAssociated Press\b|\bReuters\b|Agence France-Presse|Canadian Press|PA Media|Press Association|Press Trust of India|Asian News International|Bloomberg News|\bAFP\b|\b(STT|NTB|Ritzau|dpa|ANSA|PAP)\b\s*[-–—:]/;
+const WIRE = /\((AP|Reuters|AFP|dpa|STT|TT|NTB|Ritzau|ANSA|EFE|PAP|ČTK|CTK|MTI|Kyodo|Yonhap|PTI|ANI|IANS|Bernama|Xinhua|TASS|Interfax|Ukrinform|Agerpres|LETA|BNS|ERR|AAP|CP|PA|UNI|IANS|ANI)\)|\bAssociated Press\b|\bReuters\b|Agence France-Presse|Canadian Press|PA Media|Press Association|Press Trust of India|Asian News International|Bloomberg News|\bAFP\b|PR Newswire|PRNewswire|Business Wire|GlobeNewswire|EIN Presswire|Cision|press release|Pressemitteilung|tiedote|pressmeddelande|\b(STT|NTB|Ritzau|dpa|ANSA|PAP)\b\s*[-–—:]/;
 const normUrl = (u) => {
   try {
     const x = new URL(u);
@@ -154,7 +154,7 @@ function scrapeInfo(d, url) {
     meta = d.metadata || {};
   const text = mainText(md);
   let published =
-    iso(meta.publishedTime) ||
+    preciseIso(meta.publishedTime) ||
     iso(meta.additionalMeta?.["article:published_time"]) ||
     iso((html.match(/"datePublished"\s*:\s*"([^"]+)"/) || [])[1]) ||
     iso((html.match(/<time[^>]+datetime="([^"]+)"/) || [])[1]);
@@ -382,6 +382,10 @@ export function cluster(stories, keepSite = () => true, minWeight = 1) {
   return { clusters: out, edges: edges.size };
 }
 
+const oldShare = (w) => {
+  const d = w.domain_ages.domains.filter((x) => x.age_days !== null);
+  return d.length >= 3 ? d.filter((x) => x.age_days >= 15 * 365).length / d.length : 0;
+};
 // 4. Who: registration age, shared hosting and tracking IDs, cited origins.
 let documented = null;
 async function documentedLists() {
@@ -563,11 +567,14 @@ async function spinFor(story) {
     mainstreamText += "\n" + mainText(d.markdown?.data || "");
   } catch {}
   const M = shingles(tokens(mainstreamText), 3);
+  const ents = [...entities(story.title), ...story.title.split(/\s+/).filter((w) => w.length > 6)].map((e) => e.toLowerCase());
   return copies.slice(0, 3).map((c) => ({
     copy_url: c.url,
     compared_with: ms.url,
-    added_phrases: sentences(c.text.slice(0, 3000))
+    added_phrases: sentences(c.text.slice(0, 4000))
       .filter((s) => containment(shingles(tokens(s), 3), M) < 0.15)
+      .filter((s) => tokens(s).length >= 8 && (s.match(/\//g) || []).length < 2 && !BOILER.test(s))
+      .filter((s) => { const low = s.toLowerCase(); return ents.some((e) => low.includes(e)); })
       .slice(0, 3),
     labels: [],
   }));
@@ -600,6 +607,7 @@ function walk(o, out = []) {
   }
   return out;
 }
+const BOILER = /cookie|sign up|signing up|subscribe|newsletter|terms of service|privacy policy|all rights reserved|©|published:|updated?:|read more|advertis|click here|follow us|share this|download the app|log in|javascript/i;
 const STOP = new Set("The A An In On Of For To And But After Before Over With From As At By Is Are Was Says Say Report Reports New Why How What Who".split(" "));
 function entities(headline) {
   return [...new Set((headline.match(/\b[\p{Lu}][\p{L}\p{N}'-]{1,}/gu) || []).filter((w) => !STOP.has(w)).map((w) => w.replace(/'s$/, "")))].slice(0, 5);
@@ -749,9 +757,9 @@ export async function buildCountry(cc, build) {
           verdict = "Looks organic";
           const agencies = [...new Set(wireCredits.map((n) => n.page.wire))].slice(0, 3).join(", ");
           reasons.push(`${Math.round(wireShare * 100)}% of the copies credit a news agency (${agencies}); licensed wire copy explains identical text`);
-        } else if (w.domain_ages.median_age_days !== null && w.domain_ages.median_age_days >= 15 * 365 && !w.domain_ages.domains.some((d) => d.age_days !== null && d.age_days < 3 * 365) && w.domain_ages.domains.filter((d) => d.age_days !== null).length >= Math.ceil(g.sites.length / 2)) {
+        } else if (oldShare(w) >= 0.6) {
           verdict = "Looks organic";
-          reasons.push(`Long-established outlets (median domain age ${Math.round(w.domain_ages.median_age_days / 365)} years, none newer than 3 years); a shared news agency feed or common ownership is the likely explanation`);
+          reasons.push(`${Math.round(oldShare(w) * 100)}% of the dated domains are long-established outlets (15+ years old); a shared news agency feed or common ownership is the likely explanation`);
         } else if (g.sites.length >= T.strong.sites && g.stories.length >= T.strong.stories && medGap !== null && medGap <= T.strong.medianGapMin) verdict = "Looks coordinated: strong";
         else verdict = "Looks coordinated: moderate";
         if (w.domain_ages.registered_last_year) reasons.push(`${w.domain_ages.registered_last_year} of ${w.domain_ages.domains.length} domains were registered in the last 12 months`);
