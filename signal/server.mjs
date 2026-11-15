@@ -31,6 +31,7 @@ import { config } from "./detect.mjs";
 import { pdf, zip } from "./export.mjs";
 import { ensurePack } from "./packs.mjs";
 import { fork } from "node:child_process";
+import { handleV2 } from "../v2/api.mjs";
 import { enqueueWatch } from "./jobs.mjs";
 import { runtimeMetrics } from "./runtime-metrics.mjs";
 import {
@@ -116,6 +117,7 @@ export const server = http.createServer(async (req, res) => {
     owner = cookies.sf_owner;
   const api = url.pathname;
   try {
+    if (await handleV2(req, res, url)) return;
     if (
       req.method === "POST" &&
       /^\/webhooks\/context\/[a-f0-9]{32}$/.test(api)
@@ -471,13 +473,8 @@ export const server = http.createServer(async (req, res) => {
     }
     if (api.startsWith("/api/"))
       return json(res, 404, { error: "That record could not be found." });
-    let file =
-      api === "/" ||
-      api.startsWith("/w/") ||
-      api === "/method" ||
-      api.startsWith("/watches/")
-        ? "index.html"
-        : decodeURIComponent(api.slice(1));
+    const pages = { "/": "index.html", "/country": "country.html", "/story": "story.html", "/method": "method.html" };
+    let file = pages[api] || decodeURIComponent(api.slice(1));
     if (file.includes("..") || file.startsWith("/"))
       return json(res, 404, { error: "Page not found." });
     let data;
@@ -497,9 +494,13 @@ export const server = http.createServer(async (req, res) => {
               ? "font/ttf"
               : file.endsWith(".svg")
                 ? "image/svg+xml"
-                : "text/html",
+                : file.endsWith(".png")
+                  ? "image/png"
+                  : file.endsWith(".json")
+                    ? "application/json"
+                    : "text/html",
       "Cache-Control": file.includes("fonts/")
-        ? "public, max-age=31536000"
+        ? "public, max-age=31536000, immutable"
         : "no-cache",
     });
     res.end(data);
@@ -531,9 +532,19 @@ if (process.argv[1]?.endsWith("/server.mjs")) {
       });
     };
     startWorker();
+    let v2;
+    const startV2 = () => {
+      if (stopping) return;
+      v2 = fork(new URL("../v2/scheduler.mjs", import.meta.url), [], { stdio: "inherit" });
+      v2.on("exit", () => {
+        if (!stopping) setTimeout(startV2, 5000);
+      });
+    };
+    if (process.env.V2_SCHEDULER !== "0") startV2();
     process.on("SIGTERM", () => {
       stopping = true;
       worker?.kill("SIGTERM");
+      v2?.kill("SIGTERM");
       server.close(() => process.exit(0));
       setTimeout(() => process.exit(0), 5000).unref();
     });

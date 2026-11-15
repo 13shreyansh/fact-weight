@@ -5,6 +5,7 @@ RUN npm ci --omit=dev --ignore-scripts && npm rebuild onnxruntime-node protobufj
 COPY --chown=node:node signal ./signal
 COPY --chown=node:node scripts ./scripts
 COPY --chown=node:node public ./public
+COPY --chown=node:node v2 ./v2
 USER node
 ENV HOST=0.0.0.0 PORT=4321 NODE_ENV=production SIGNAL_DATA=/data SIGNAL_SCHEDULER=1 CONTEXT_DAILY_CAP=1500
 EXPOSE 4321
