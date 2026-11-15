@@ -1,0 +1,446 @@
+/* Signal Fire front end. Plain JS, no build step. Reads the JSON API only. */
+(() => {
+  "use strict";
+  const API = window.SF_API || "";
+  const $ = (s, el = document) => el.querySelector(s);
+  const esc = (v) =>
+    String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  async function api(path, opts) {
+    const r = await fetch(API + path, { headers: { Accept: "application/json" }, ...opts });
+    let body = null;
+    try { body = await r.json(); } catch { /* not JSON */ }
+    if (!r.ok) {
+      const e = new Error((body && (body.error || body.message)) || `Request failed (${r.status})`);
+      e.status = r.status; e.body = body; throw e;
+    }
+    return body;
+  }
+  const list = (v, key) => (Array.isArray(v) ? v : (v && Array.isArray(v[key]) ? v[key] : []));
+
+  /* ---------- formatting ---------- */
+  const ts = (v) => (v ? new Date(v) : null);
+  const valid = (d) => d && !isNaN(d);
+  const hhmm = (v) => { const d = ts(v); return valid(d) ? d.toISOString().slice(11, 16) : "--:--"; };
+  const MON = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+  const dmy = (v) => { const d = ts(v); return valid(d) ? `${d.getUTCDate()} ${MON[d.getUTCMonth()]}` : ""; };
+  const stamp = (v) => (valid(ts(v)) ? `${dmy(v)} ${hhmm(v)} UTC` : "time unknown");
+  function ago(v) {
+    const d = ts(v); if (!valid(d)) return "";
+    const m = Math.round((Date.now() - d) / 60000);
+    if (m < 2) return "just now";
+    if (m < 90) return `${m} min ago`;
+    const h = Math.round(m / 60);
+    return h < 36 ? `${h} h ago` : `${Math.round(h / 24)} days ago`;
+  }
+  const mins = (a, b) => Math.round((ts(b) - ts(a)) / 60000);
+  const num = (v) => (v == null || v === "" ? "–" : Number(v).toLocaleString("en"));
+  const host = (u) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return String(u || ""); } };
+  const short = (s, n) => (s && s.length > n ? s.slice(0, n - 1) + "…" : s || "");
+  const plural = (n, w, p) => `${num(n)} ${Number(n) === 1 ? w : p || w + "s"}`;
+
+  function verdictOf(v) {
+    const s = String(v || "").toLowerCase();
+    if (s.includes("coordinated")) return { cls: "co", text: v };
+    if (s.includes("organic")) return { cls: "org", text: v };
+    return { cls: "nd", text: v || "Not enough data" };
+  }
+  const vstamp = (v, big) => { const x = verdictOf(v); return `<span class="stamp ${x.cls}${big ? " big" : ""}">${esc(x.text)}</span>`; };
+
+  /* ---------- country names ---------- */
+  const CODES = "AF AX AL DZ AD AO AG AR AM AU AT AZ BS BH BD BB BY BE BZ BJ BT BO BA BW BR BN BG BF BI KH CM CA CV CF TD CL CN CO KM CG CD CR CI HR CU CY CZ DK DJ DM DO EC EG SV GQ ER EE SZ ET FJ FI FR GA GM GE DE GH GR GD GT GN GW GY HT HN HK HU IS IN ID IR IQ IE IL IT JM JP JO KZ KE KI XK KW KG LA LV LB LS LR LY LI LT LU MO MG MW MY MV ML MT MH MR MU MX FM MD MC MN ME MA MZ MM NA NR NP NL NZ NI NE NG KP MK NO OM PK PW PS PA PG PY PE PH PL PT PR QA RO RU RW KN LC VC WS SM ST SA SN RS SC SL SG SK SI SB SO ZA KR SS ES LK SD SR SE CH SY TW TJ TZ TH TL TG TO TT TN TR TM TV UG UA AE GB US UY UZ VU VA VE VN YE ZM ZW".split(" ");
+  let dn = null; try { dn = new Intl.DisplayNames(["en"], { type: "region" }); } catch { /* old browser */ }
+  const cname = (c) => { try { return (dn && dn.of(c)) || c; } catch { return c; } };
+  const ALL = CODES.map((c) => ({ code: c, name: cname(c) })).sort((a, b) => a.name.localeCompare(b.name));
+
+  /* ---------- postmark ---------- */
+  let uid = 0;
+  function hash(s) { let h = 7; for (const c of String(s)) h = (h * 31 + c.charCodeAt(0)) | 0; return h; }
+  function postmark({ top, bottom, mid, sub, kind = "copy", seed = "" }) {
+    const id = "pm" + ++uid;
+    const r = (hash(seed + top) % 15) - 7;
+    const t = esc(String(top || "").toUpperCase().slice(0, 22));
+    const b = esc(String(bottom || "").toUpperCase().slice(0, 20));
+    const fs = t.length > 16 ? 9.4 : 11;
+    return `<div class="pm ${kind}" style="--r:${r}deg;transform:rotate(${r}deg)"><svg viewBox="-60 -60 120 120" aria-hidden="true" filter="url(#ink)">
+<defs><path id="${id}t" d="M -41 0 A 41 41 0 0 1 41 0"/><path id="${id}b" d="M -48.5 0 A 48.5 48.5 0 0 0 48.5 0"/></defs>
+<circle class="ring" r="56" stroke-width="3.2"/><circle class="ring" r="33" stroke-width="1.6"/>
+<circle r="2.6" cx="-45" cy="0" fill="currentColor"/><circle r="2.6" cx="45" cy="0" fill="currentColor"/>
+<text font-size="${fs}" letter-spacing="1.1"><textPath href="#${id}t" startOffset="50%" text-anchor="middle">${t}</textPath></text>
+<text font-size="10.5" letter-spacing="1.6"><textPath href="#${id}b" startOffset="50%" text-anchor="middle">${b}</textPath></text>
+<text y="3" font-size="${String(mid).length > 6 ? 15 : 19}" text-anchor="middle" font-weight="800">${esc(mid)}</text>
+<text y="17" font-size="9" text-anchor="middle" letter-spacing=".8">${esc(sub)}</text></svg></div>`;
+  }
+  // one shared ink filter
+  document.body.insertAdjacentHTML("afterbegin", `<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="ink" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="4" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.4 1.75" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in" result="s"/><feDisplacementMap in="s" in2="n" scale="1.4" xChannelSelector="R" yChannelSelector="G"/></filter></svg>`);
+
+  function stampIn(container, sel = ".pm", gap = 140) {
+    if (reduce) return;
+    const els = [...container.querySelectorAll(sel)];
+    els.forEach((el) => { el.style.opacity = "0"; });
+    els.forEach((el, i) => setTimeout(() => {
+      el.style.opacity = "";
+      el.animate(
+        [{ opacity: 0, transform: `scale(1.4) rotate(${el.style.getPropertyValue("--r")})`, filter: "blur(4px)" },
+         { opacity: 1, transform: `scale(.96) rotate(${el.style.getPropertyValue("--r")})`, filter: "blur(0)", offset: 0.6 },
+         { opacity: 1, transform: `scale(1) rotate(${el.style.getPropertyValue("--r")})` }],
+        { duration: 520, easing: "cubic-bezier(.16,1,.3,1)" });
+    }, 250 + i * gap));
+  }
+
+  /* densest window of copies: max copies inside 60 minutes */
+  function burst(copies) {
+    const t = copies.map((c) => +ts(c.published_at)).filter((x) => !isNaN(x)).sort((a, b) => a - b);
+    let best = { n: 0, a: null, b: null };
+    for (let i = 0, j = 0; i < t.length; i++) {
+      while (t[i] - t[j] > 3600e3) j++;
+      if (i - j + 1 > best.n) best = { n: i - j + 1, a: t[j], b: t[i] };
+    }
+    return best;
+  }
+  const countriesOf = (copies) => new Set(copies.map((c) => c.country).filter(Boolean)).size;
+
+  /* ---------- country search ---------- */
+  function picker(root, ready) {
+    const input = $("input", root), box = $(".suggest", root.parentNode) || null;
+    const sug = document.createElement("div");
+    sug.className = "suggest"; sug.hidden = true; sug.setAttribute("role", "listbox"); sug.id = "sug" + ++uid;
+    input.setAttribute("aria-controls", sug.id); input.setAttribute("aria-autocomplete", "list"); input.setAttribute("role", "combobox"); input.setAttribute("aria-expanded", "false");
+    root.parentNode.appendChild(sug);
+    const status = (c) => { const r = ready.get(c); return r ? (r.status === "ready" ? `ready · ${plural(r.clusters ?? 0, "group")}` : r.status === "building" ? "building" : "precomputing") : "build live"; };
+    let items = [], sel = 0;
+    const go = (c) => { location.href = `/country?cc=${encodeURIComponent(c)}`; };
+    function draw() {
+      const q = input.value.trim().toLowerCase();
+      if (!q) { sug.hidden = true; input.setAttribute("aria-expanded", "false"); return; }
+      items = ALL.filter((c) => c.name.toLowerCase().includes(q) || c.code.toLowerCase() === q)
+        .sort((a, b) => (a.name.toLowerCase().startsWith(q) ? -1 : 0) - (b.name.toLowerCase().startsWith(q) ? -1 : 0)).slice(0, 8);
+      sel = 0;
+      sug.innerHTML = items.length
+        ? items.map((c, i) => `<button type="button" role="option" aria-selected="${i === sel}" data-c="${c.code}"><span>${esc(c.name)}</span><span>${status(c.code)}</span></button>`).join("")
+        : `<button type="button" disabled><span>No country matches “${esc(input.value)}”</span></button>`;
+      sug.hidden = false; input.setAttribute("aria-expanded", "true");
+    }
+    input.addEventListener("input", draw);
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        e.preventDefault(); if (!items.length) return;
+        sel = (sel + (e.key === "ArrowDown" ? 1 : -1) + items.length) % items.length;
+        [...sug.children].forEach((b, i) => b.setAttribute("aria-selected", i === sel));
+      } else if (e.key === "Escape") { sug.hidden = true; }
+    });
+    sug.addEventListener("click", (e) => { const b = e.target.closest("button[data-c]"); if (b) go(b.dataset.c); });
+    root.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (items[sel] && !sug.hidden) return go(items[sel].code);
+      const q = input.value.trim().toLowerCase();
+      const hit = ALL.find((c) => c.name.toLowerCase() === q || c.code.toLowerCase() === q) || ALL.find((c) => c.name.toLowerCase().startsWith(q));
+      if (hit) go(hit.code); else { input.focus(); draw(); }
+    });
+    document.addEventListener("click", (e) => { if (!root.parentNode.contains(e.target)) sug.hidden = true; });
+  }
+
+  /* =============== LANDING =============== */
+  async function landing() {
+    let countries = [];
+    try { countries = list(await api("/api/countries"), "countries"); } catch { /* shown below */ }
+    const ready = new Map(countries.map((c) => [c.code, c]));
+    picker($("#pick"), ready);
+    $("#pick input").placeholder = "Type a country, e.g. Finland";
+
+    // chips: ready countries with most groups
+    const rdy = countries.filter((c) => c.status === "ready").sort((a, b) => (b.clusters || 0) - (a.clusters || 0));
+    $("#chips").innerHTML = rdy.slice(0, 6).map((c) => `<a class="chip" href="/country?cc=${c.code}"><b>${esc(c.code)}</b>${esc(c.name || cname(c.code))}</a>`).join("");
+
+    // rack
+    const rack = $("#rack");
+    if (countries.length) {
+      rack.innerHTML = countries.map((c) => {
+        const st = c.status === "ready"
+          ? (c.clusters ? `${plural(c.clusters, "group")} copying<br>${esc(ago(c.built_at))}` : `No coordinated group<br>${esc(ago(c.built_at))}`)
+          : c.status === "building" ? "Building now" : "Queued for precompute";
+        return `<a class="cell ${esc(c.status)}${c.clusters ? " hot" : ""}" href="/country?cc=${esc(c.code)}"><span class="cc">${esc(c.code)}</span><span class="nm">${esc(c.name || cname(c.code))}</span><span class="st">${st}</span></a>`;
+      }).join("");
+      const n = rdy.length;
+      $("#rackcount").textContent = `${n} of ${countries.length} countries are ready now. The rest refresh every 6 hours.`;
+    } else {
+      rack.outerHTML = `<p class="intro">The country list could not load. Reload the page in a moment.</p>`;
+    }
+    picker($("#any"), ready);
+
+    // specimen slip
+    const slip = $("#slip");
+    try {
+      const cands = rdy.filter((c) => c.clusters > 0);
+      const pick = cands.find((c) => c.code === "FI") || cands[0];
+      if (!pick) throw new Error("none");
+      const stories = list(await api(`/api/stories?country=${pick.code}`), "stories");
+      const top = stories.filter((s) => verdictOf(s.verdict).cls === "co").sort((a, b) => (b.copies || 0) - (a.copies || 0))[0];
+      if (!top) throw new Error("none");
+      const x = await api(`/api/stories/${encodeURIComponent(top.id)}`);
+      const copies = list(x.copies, "copies").filter((c) => c.published_at).sort((a, b) => ts(a.published_at) - ts(b.published_at));
+      const b = burst(copies);
+      const first = copies[0];
+      const marks = copies.slice(0, 12).map((c) => postmark({ top: host(c.url) || c.site, bottom: c.country || c.lang, mid: hhmm(c.published_at), sub: `+${mins(first.published_at, c.published_at)} MIN`, seed: c.url }));
+      slip.innerHTML = `<div class="label-head"><span>Copied story · ${esc(pick.name || cname(pick.code))}</span><span class="code">${esc(dmy(first.published_at))} UTC</span></div>
+<div class="slip-body"><h2>${esc(x.title)}</h2>
+<p class="from">First copy ${esc(stamp(first.published_at))}</p>
+<div class="marks inked">${marks.join("")}</div></div>
+<div class="tally"><div><b>${num(copies.length)}</b><span>copies</span></div><div><b>${num(x.countries_reached ?? countriesOf(copies))}</b><span>countries</span></div><div><b>${b.n > 1 ? num(Math.round((b.b - b.a) / 60000)) : "–"}</b><span>min for ${num(b.n)} copies</span></div></div>
+<div class="slip-foot">${vstamp(x.verdict)}<a href="/story?id=${encodeURIComponent(top.id)}">Open the Story X-ray</a></div>`;
+      stampIn(slip);
+    } catch {
+      slip.innerHTML = `<div class="label-head"><span>Copied story</span></div><div class="slip-empty"><p><strong>Countries are being read right now.</strong></p><p>The most-copied story of the week appears here as soon as the first country finishes. Pick a country to see its progress.</p></div>`;
+    }
+  }
+
+  /* =============== COUNTRY =============== */
+  function sitesList(sites, count) {
+    const names = (sites || []).map((s) => (typeof s === "string" ? s : s.domain || s.site || host(s.url)));
+    const show = names.slice(0, 9);
+    const more = (count || names.length) - show.length;
+    return `<ul class="sites">${show.map((s) => `<li>${esc(s)}</li>`).join("")}${more > 0 ? `<li class="more">+${num(more)} more</li>` : ""}</ul>`;
+  }
+  function ages(a) {
+    if (a == null) return `<span class="none">Not measured</span>`;
+    if (typeof a === "object" && !Array.isArray(a)) {
+      if (a.median_days != null) return `<span class="bignum">${num(Math.round(a.median_days / 30.4))}<small>months, median domain age${a.min_days != null ? `; youngest ${num(a.min_days)} days` : ""}</small></span>`;
+      if (a.reason) return `<span class="none">${esc(a.reason)}</span>`;
+    }
+    if (Array.isArray(a) && a.length) {
+      const d = a.map((x) => x.days ?? x.age_days).filter((x) => x != null).sort((p, q) => p - q);
+      if (d.length) return `<span class="bignum">${num(Math.round(d[d.length >> 1] / 30.4))}<small>months, median domain age</small></span>`;
+    }
+    return `<span class="none">Not measured</span>`;
+  }
+  function docBy(d) {
+    const arr = (d || []).map((x) => (typeof x === "string" ? { name: x } : x));
+    if (!arr.length) return `<span class="none">Not named in published research</span>`;
+    return `<div class="doc">${arr.map((x) => (x.url ? `<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.name || host(x.url))}</a>` : `<span>${esc(x.name)}</span>`)).join("<span>·</span>")}</div>`;
+  }
+  function origins(o) {
+    const arr = (o || []).map((x) => (typeof x === "string" ? { name: x } : x));
+    if (!arr.length) return `<span class="none">No shared source found</span>`;
+    return `<ul class="plain">${arr.slice(0, 5).map((x) => `<li><span>${esc(x.name || x.url || x.source)}</span>${x.count != null ? `<span class="mono">${plural(x.count, "cite")}</span>` : ""}</li>`).join("")}</ul>`;
+  }
+  function infra(s) {
+    const arr = (s || []).map((x) => (typeof x === "string" ? x : x.label || x.value || JSON.stringify(x)));
+    if (!arr.length) return `<span class="none">Nothing shared that we could resolve</span>`;
+    return `<ul class="plain">${arr.map((x) => `<li><span>${esc(x)}</span></li>`).join("")}</ul>`;
+  }
+  function cluster(c, i) {
+    return `<article class="label cl" id="${esc(c.id)}">
+<div class="label-head"><h3>${esc(c.label || `Group ${i + 1}`)}</h3>${vstamp(c.verdict)}<span class="code">GROUP ${esc(c.id)}</span></div>
+<div class="cl-body">
+<section><span class="k">${plural(c.site_count ?? (c.sites || []).length, "site")}</span>${sitesList(c.sites, c.site_count)}
+<dl style="margin-top:18px"><div><dt class="k">Documented by</dt><dd>${docBy(c.documented_by)}</dd></div></dl></section>
+<section><dl>
+<div><dt class="k">Copied together</dt><dd><span class="bignum">${num(c.stories_copied)}<small>stories</small></span></dd></div>
+<div><dt class="k">Typical copy delay</dt><dd>${c.median_copy_lag_min != null ? `<span class="bignum">${num(c.median_copy_lag_min)}<small>min, median</small></span>` : `<span class="none">Not measured</span>`}</dd></div>
+<div><dt class="k">Domain age</dt><dd>${ages(c.domain_ages)}</dd></div></dl></section>
+<section><dl>
+<div><dt class="k">Most-cited origins</dt><dd>${origins(c.origins_top)}</dd></div>
+<div><dt class="k">Shared infrastructure</dt><dd>${infra(c.shared_infra)}</dd></div></dl></section>
+</div>
+${(c.reasons || []).length ? `<ul class="reasons">${c.reasons.map((r) => `<li>${esc(r)}</li>`).join("")}</ul>` : ""}
+</article>`;
+  }
+  function trend(arr, first) {
+    const v = (arr || []).map((x) => (typeof x === "object" ? x.count ?? x.n ?? 0 : x));
+    if (!v.length) return `<span class="none">No trend yet</span>`;
+    const max = Math.max(1, ...v), w = 300, h = 84, bw = w / v.length;
+    const bars = v.map((n, i) => { const bh = Math.max(n ? 3 : 1, (n / max) * (h - 14)); return `<rect x="${(i * bw + 1).toFixed(1)}" y="${(h - bh).toFixed(1)}" width="${(bw - 2).toFixed(1)}" height="${bh.toFixed(1)}" fill="${n ? "var(--ink)" : "var(--hair)"}"/>`; }).join("");
+    const total = v.reduce((a, b) => a + b, 0);
+    return `<div class="chart"><svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" role="img" aria-label="${total} articles over 30 days, peak ${max} in one day">${bars}<text x="${w}" y="9" text-anchor="end" font-size="10" font-family="JetBrains Mono" fill="var(--ink-3)">peak ${max}/day</text></svg><div class="axis"><span>30 days ago</span><span>today</span></div></div>`;
+  }
+  function narrative(n, clusters) {
+    const c = clusters.find((x) => x.id === n.cluster_id);
+    const ex = (n.examples || []).map((e) => (typeof e === "string" ? { headline: e } : e));
+    return `<div class="nrow"><div><h3>${esc(n.label)}</h3><p class="sub">${plural(n.articles, "article")}${c ? ` from <a href="#${esc(c.id)}">${esc(c.label)}</a>` : ""}${n.first_seen ? ` · first seen ${esc(dmy(n.first_seen))}` : ""}</p></div>
+<div>${trend(n.trend_30d)}</div>
+<div><span class="k">Examples</span><ul class="ex">${ex.slice(0, 3).map((e) => `<li>${e.url ? `<a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.headline || e.title || host(e.url))}</a>` : esc(e.headline || e.title)}</li>`).join("") || `<li class="none">No examples stored</li>`}</ul></div></div>`;
+  }
+  function storyRows(stories) {
+    return `<table class="ledger"><thead><tr><th>Story</th><th style="text-align:right">Copies</th><th style="text-align:right">Countries</th><th>Verdict</th></tr></thead><tbody>${stories.map((s) => {
+      const href = `/story?id=${encodeURIComponent(s.id)}`;
+      return `<tr data-href="${href}"><td class="t"><a href="${href}">${esc(s.title || s.headline)}</a><span class="mono">${esc(s.outlet || host(s.url))} · ${esc(stamp(s.published_at))}</span></td><td class="n">${num(s.copies ?? s.copy_count)}</td><td class="n">${num(s.countries_reached)}</td><td>${vstamp(s.verdict)}</td></tr>`;
+    }).join("")}</tbody></table>`;
+  }
+
+  async function country() {
+    const cc = (new URLSearchParams(location.search).get("cc") || "").toUpperCase().replace(/[^A-Z]/g, "").slice(0, 2);
+    const name = cname(cc);
+    document.title = `${name} · Signal Fire`;
+    $("#cc").textContent = cc || "??";
+    $("#cname").textContent = name;
+    if (!cc || !CODES.includes(cc)) {
+      $("#summary").innerHTML = `That is not a country code we know. <a href="/">Pick a country</a>.`;
+      return;
+    }
+    let d = null, err = null;
+    try { d = await api(`/api/countries/${cc}`); } catch (e) { err = e; }
+    if (!d || d.status === "building" || d.status === "not_built" || (err && err.status === 404)) return buildPanel(cc, name, d);
+    if (err) { $("#summary").textContent = `This country could not load (${err.message}). Reload in a moment.`; return; }
+
+    const clusters = list(d.clusters, "clusters");
+    const narratives = list(d.narratives, "narratives");
+    const big = clusters.slice().sort((a, b) => (b.site_count || 0) - (a.site_count || 0))[0];
+    $("#summary").innerHTML = clusters.length
+      ? `<strong>${plural(clusters.length, "group")} of sites copied ${esc(name)}’s news in coordinated bursts this week.</strong> The largest, ${esc(big.label || "")}, copied ${plural(big.stories_copied, "story", "stories")}${big.median_copy_lag_min != null ? ` with a typical delay of ${num(big.median_copy_lag_min)} minutes` : ""}.${narratives[0] ? ` Its main line: “${esc(narratives[0].label)}”.` : ""}`
+      : `<strong>No coordinated copying found for ${esc(name)} this week.</strong> We checked ${plural(d.stories_checked, "story", "stories")}; the copies we found came from outlets with their own wording and timing.`;
+    $("#meta").innerHTML = `<div><b>${num(d.stories_checked)}</b><span>stories checked</span></div><div><b>${num(d.copies_found ?? clusters.reduce((a, c) => a + (c.stories_copied || 0), 0))}</b><span>${d.copies_found != null ? "copies found" : "copied stories"}</span></div><div><b>${num(clusters.length)}</b><span>groups</span></div><div><b>${esc(hhmm(d.built_at || d.computed_at))}</b><span>built ${esc(dmy(d.built_at || d.computed_at))} UTC</span></div>`;
+    $("#meta").hidden = false;
+
+    const out = [];
+    out.push(`<section class="block"><div class="wrap"><h2>Who is influencing ${esc(name)}</h2><p class="intro">Sites that copied the same ${esc(name)} stories within an hour of each other, again and again. Nobody is on a list in advance; known networks are only named when published research documents them.</p>
+${clusters.length ? `<div class="clusters">${clusters.map(cluster).join("")}</div>` : `<div class="label notice" style="margin-top:28px"><strong>No coordinated group found</strong>Copies of ${esc(name)}’s top stories exist, but no set of sites copied three or more of the same stories within 60 minutes of each other.</div>`}</div></section>`);
+    if (narratives.length) out.push(`<section class="block"><div class="wrap"><h2>What they want</h2><p class="intro">The lines these groups push about ${esc(name)}, how often, and since when. Labels are only shown when two independent AI model families agree on them.</p><div class="narr">${narratives.map((n) => narrative(n, clusters)).join("")}</div></div></section>`);
+
+    let stories = [];
+    try { stories = list(await api(`/api/stories?country=${cc}`), "stories"); } catch { /* optional */ }
+    if (stories.length) out.push(`<section class="block"><div class="wrap"><h2>Stories checked</h2><p class="intro">Open any story to see the original coverage and every copy, stamped in the order it appeared.</p>${storyRows(stories)}</div></section>`);
+
+    const org = list(d.organic_examples, "organic_examples");
+    if (org.length) out.push(`<section class="block"><div class="wrap"><h2>Looks organic</h2><p class="intro">Widely covered stories where outlets used their own words on their own schedule. This is what normal news looks like.</p><div class="organic">${org.map((o) => `<div class="label">${vstamp("Looks organic")}<h3>${o.story_id ? `<a href="/story?id=${encodeURIComponent(o.story_id)}">${esc(o.title)}</a>` : esc(o.title)}</h3><ul>${o.outlets != null ? `<li>${plural(o.outlets, "outlet")}</li>` : ""}${(o.reasons || []).map((r) => `<li>${esc(r)}</li>`).join("")}</ul></div>`).join("")}</div></div></section>`);
+
+    const pick = list(d.pickup || d.social_pickup, "items");
+    if (pick.length) out.push(`<section class="block"><div class="wrap"><h2>Where it travels next</h2><p class="intro">The same stories picked up on TikTok, Instagram, YouTube and Reddit. X is not covered.</p><div class="pickup">${pick.map((p) => `<a href="${esc(p.url)}" target="_blank" rel="noopener"><span class="pf">${esc(p.platform)}</span><span class="tt">${esc(p.title || host(p.url))}</span><span class="mono">${esc(stamp(p.published_at))}${p.views != null ? ` · ${num(p.views)} views` : ""}</span></a>`).join("")}</div></div></section>`);
+
+    $("#body").innerHTML = out.join("");
+    document.querySelectorAll("tr[data-href]").forEach((tr) => tr.addEventListener("click", (e) => { if (!e.target.closest("a")) location.href = tr.dataset.href; }));
+    if (location.hash) { const el = document.getElementById(location.hash.slice(1)); if (el) el.scrollIntoView(); }
+  }
+
+  const STEP_NAMES = { stories: "Read the week’s top stories", copies: "Search the open web for copies", clusters: "Group sites that copy together", who: "Look up who runs them", narratives: "Find what they push", organic: "Check organic coverage" };
+  async function buildPanel(cc, name, d) {
+    $("#summary").innerHTML = `<strong>${esc(name)} has not been read yet.</strong> Signal Fire can read it now: about ${d && d.eta_min ? num(d.eta_min) : "5 to 10"} minutes, from the open web, with nothing prepared in advance.`;
+    $("#body").innerHTML = `<section class="block"><div class="wrap"><div class="label build"><div class="label-head"><span>Read ${esc(name)} now</span><span class="code">${esc(cc)}</span></div><div id="bstate" class="notice"><button class="btn" id="go">Start reading ${esc(name)}</button></div><ol class="steps" id="steps" hidden></ol></div></div></section>`;
+    const go = $("#go");
+    const poll = async (id) => {
+      const steps = $("#steps"); steps.hidden = false;
+      for (;;) {
+        let b;
+        try { b = await api(`/api/builds/${encodeURIComponent(id)}`); } catch (e) { $("#bstate").innerHTML = `<strong>Lost track of the build</strong>${esc(e.message)}. Reload to check again.`; return; }
+        const st = list(b.steps, "steps");
+        steps.innerHTML = st.map((s) => `<li class="${esc(s.status || "")}"><span class="dot"></span><span>${esc(s.label || STEP_NAMES[s.name] || s.name)}${s.detail ? ` <span class="mono">${esc(s.detail)}</span>` : ""}</span><span class="mono">${s.ms != null ? (s.ms / 1000).toFixed(1) + " s" : ""}${s.calls ? ` · ${esc(Object.entries(s.calls).map(([k, v]) => `${k} ${v}`).join(", "))}` : ""}</span></li>`).join("");
+        if (b.status === "done" || b.status === "ready") { $("#bstate").innerHTML = `<strong>Done</strong>Loading ${esc(name)}…`; setTimeout(() => location.reload(), 700); return; }
+        if (b.status === "failed" || b.status === "error") { $("#bstate").innerHTML = `<strong>The build stopped</strong>${esc(b.error || "One of the steps failed.")} <button class="btn ghost" onclick="location.reload()">Try again</button>`; return; }
+        $("#bstate").innerHTML = `<strong>Reading ${esc(name)}</strong>${esc(b.message || "Searching the open web. You can leave this page; the result is kept.")}`;
+        await new Promise((r) => setTimeout(r, 2000));
+      }
+    };
+    const existing = d && (d.build_id || (d.build && d.build.id));
+    if (existing) return poll(existing);
+    go.addEventListener("click", async () => {
+      go.disabled = true; go.textContent = "Starting…";
+      try {
+        const r = await api(`/api/countries/${cc}/build`, { method: "POST" });
+        poll(r.id || r.build_id || (r.build && r.build.id));
+      } catch (e) {
+        const cap = e.status === 429 || /cap|budget|limit/i.test(e.message);
+        $("#bstate").innerHTML = cap ? `<strong>Today’s build budget is used up</strong>${esc(e.message)}. New countries can be read again tomorrow; the 30 ready countries still work.` : `<strong>Could not start</strong>${esc(e.message)}`;
+      }
+    });
+  }
+
+  /* =============== STORY X-RAY =============== */
+  function lanePos(t, a, b) { return 6 + ((t - a) / Math.max(1, b - a)) * 88; }
+  function laneMarks(items, a, b, kind, origin, opts = {}) {
+    const near = opts.near || 7, groups = [];
+    items.forEach((c) => {
+      const x = lanePos(+ts(c.published_at), a, b);
+      const g = groups[groups.length - 1];
+      if (g && x - g.x < near) g.items.push(c); else groups.push({ x, items: [c] });
+    });
+    const mark = (c) => postmark({ top: c.outlet || host(c.url) || c.site, bottom: c.country || c.lang || "", mid: hhmm(c.published_at), sub: origin ? `+${mins(origin, c.published_at)} MIN` : dmy(c.published_at), kind, seed: c.url });
+    return groups.map((g) => {
+      if (g.items.length >= 3 && opts.pile) {
+        const span = mins(g.items[0].published_at, g.items[g.items.length - 1].published_at);
+        return `<div class="at" style="left:${g.x.toFixed(2)}%;top:50%">${g.items.slice(0, 4).map((c, i) => `<div class="at" style="left:${i * 9}px;top:${(i % 2 ? 1 : -1) * i * 5}px">${mark(c)}</div>`).join("")}<a class="pile" href="#burst">${plural(g.items.length, "copy", "copies")} in ${num(span)} min</a></div>`;
+      }
+      return g.items.map((c, i) => {
+        const x = lanePos(+ts(c.published_at), a, b);
+        const dy = g.items.length > 1 ? (i % 2 ? 1 : -1) * (opts.dy || 34) : 0;
+        return `<div class="at" style="left:${x.toFixed(2)}%;top:calc(50% + ${dy}px)">${mark(c)}</div>`;
+      }).join("");
+    }).join("");
+  }
+  function sheet(main, copies, origin) {
+    const all = [...main.map((m) => ({ ...m, k: "main" })), ...copies.map((c) => ({ ...c, k: "copy" }))].sort((p, q) => ts(p.published_at) - ts(q.published_at));
+    return `<div class="sheet">${all.map((c) => postmark({ top: c.outlet || host(c.url) || c.site, bottom: c.country || c.lang || "", mid: hhmm(c.published_at), sub: c.k === "copy" && origin ? `+${mins(origin, c.published_at)} MIN` : dmy(c.published_at), kind: c.k, seed: c.url })).join("")}</div>`;
+  }
+  function scale(a, b) {
+    const span = b - a, steps = 5;
+    return Array.from({ length: steps + 1 }, (_, i) => { const t = a + (span * i) / steps; return `<span style="left:${lanePos(t, a, b)}%">${hhmm(new Date(t).toISOString())}</span>`; }).join("");
+  }
+  async function story() {
+    const id = new URLSearchParams(location.search).get("id");
+    if (!id) { $("#title").textContent = "No story selected"; return; }
+    let x;
+    try { x = await api(`/api/stories/${encodeURIComponent(id)}`); } catch (e) {
+      $("#title").textContent = e.status === 404 ? "This story is no longer stored" : "The story could not load";
+      $("#xbody").innerHTML = `<section class="block"><div class="wrap"><p class="intro">${esc(e.message)}. <a href="/">Back to countries</a>.</p></div></section>`; return;
+    }
+    document.title = `${x.title} · Story X-ray · Signal Fire`;
+    $("#title").textContent = x.title;
+    $("#verdict").innerHTML = vstamp(x.verdict, true);
+    const main = list(x.mainstream, "mainstream").filter((m) => m.published_at).sort((p, q) => ts(p.published_at) - ts(q.published_at));
+    const copies = list(x.copies, "copies").filter((c) => c.published_at).sort((p, q) => ts(p.published_at) - ts(q.published_at));
+    const all = [...main, ...copies].map((m) => +ts(m.published_at));
+    const a = Math.min(...all), b = Math.max(...all);
+    const origin = main[0] ? main[0].published_at : copies[0] && copies[0].published_at;
+    const bu = burst(copies);
+    const cc = x.countries_reached ?? countriesOf(copies);
+    if (x.back_country) $("#back").href = `/country?cc=${encodeURIComponent(x.back_country)}`;
+
+    const gap = `<div class="gap"><div><b>${esc(hhmm(x.first_mainstream_at || origin))}</b><span>first mainstream, ${esc(dmy(x.first_mainstream_at || origin))} UTC</span></div><div><b>${esc(hhmm(x.first_copy_at || (copies[0] && copies[0].published_at)))}</b><span>first copy</span></div><div><b>${bu.n > 1 ? num(Math.round((bu.b - bu.a) / 60000)) : "–"}<small style="font-size:18px"> min</small></b><span>for ${plural(bu.n, "copy", "copies")} to appear</span></div><div><b>${num(cc)}</b><span>countries reached</span></div></div>`;
+
+    let lanes = "";
+    if (all.length) {
+      lanes = `<div class="lanes" id="lanes"><div class="label-head"><span>Route sheet · all times UTC</span><button class="btn" id="replay" type="button">Replay</button></div>
+<div class="lane main"><h3>Mainstream<small>${plural(main.length, "outlet")}</small></h3><div class="track">${laneMarks(main, a, b, "main", null)}</div></div>
+<div class="lane copy"><h3>Copies<small>${plural(copies.length, "site")}</small></h3><div class="track">${laneMarks(copies, a, b, "copy", origin, { pile: true })}</div></div>
+<div class="ticks"><div></div><div class="scale">${scale(a, b)}</div></div>${sheet(main, copies, origin)}</div>`;
+      if (bu.n >= 3 && (bu.b - bu.a) < (b - a) * 0.4) {
+        const pad = Math.max(60e3, (bu.b - bu.a) * 0.08);
+        const inb = copies.filter((c) => +ts(c.published_at) >= bu.a && +ts(c.published_at) <= bu.b);
+        lanes += `<div class="lanes" id="burst" style="margin-top:20px"><div class="label-head"><span>Zoom on the burst · ${plural(bu.n, "copy", "copies")} in ${num(Math.round((bu.b - bu.a) / 60000))} minutes</span><span class="code">${esc(hhmm(new Date(bu.a).toISOString()))} to ${esc(hhmm(new Date(bu.b).toISOString()))}</span></div>
+<div class="lane copy"><h3>Burst<small>${esc(dmy(new Date(bu.a).toISOString()))}</small></h3><div class="track" style="min-height:250px">${laneMarks(inb, bu.a - pad, bu.b + pad, "copy", inb[0].published_at, { near: 9.5, dy: 50 })}</div></div>
+<div class="ticks"><div></div><div class="scale">${scale(bu.a - pad, bu.b + pad)}</div></div></div>`;
+      }
+    }
+
+    const spin = list(x.spin, "spin");
+    const spinHtml = spin.length ? `<section class="block"><div class="wrap"><h2>What the copies added</h2><p class="intro">Phrases present in the copy and absent from the closest mainstream article. Labels come from the DISARM and EUvsDisinfo vocabularies, shown only when two AI model families agree.</p><div class="spin">${spin.map((s) => `<div class="label"><div class="src">${esc(s.copy_url)}</div><div class="ins">${(s.added_phrases || []).map((p) => `<mark>${esc(p)}</mark>`).join("") || `<span class="none">No added phrases</span>`}</div>${(s.labels || []).length ? `<div class="tags">${s.labels.map((l) => `<span>${esc(typeof l === "string" ? l : l.name)}</span>`).join("")}</div>` : ""}</div>`).join("")}</div></div></section>` : "";
+
+    const rows = (arr, kind) => arr.map((c) => `<tr><td class="mono">${esc(stamp(c.published_at))}</td><td class="t"><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.headline || c.title || c.url)}</a><span class="mono">${esc(c.outlet || c.site || host(c.url))}${c.country ? " · " + esc(c.country) : ""}${c.lang ? " · " + esc(c.lang) : ""}</span></td><td class="n">${kind === "copy" && origin ? "+" + num(mins(origin, c.published_at)) : ""}</td></tr>`).join("");
+    $("#xbody").innerHTML = `<section class="block"><div class="wrap">${gap}${lanes}</div></section>${spinHtml}
+<section class="block"><div class="wrap"><h2>Every copy</h2><p class="intro">Each copy links to the page itself. The number is minutes after the first mainstream report.</p><table class="ledger"><thead><tr><th>Published</th><th>Headline</th><th style="text-align:right">Min</th></tr></thead><tbody>${rows(copies, "copy")}</tbody></table></div></section>
+<section class="block"><div class="wrap"><h2>Mainstream coverage</h2><table class="ledger"><thead><tr><th>Published</th><th>Headline</th><th></th></tr></thead><tbody>${rows(main, "main")}</tbody></table>${x.method_note ? `<p class="intro" style="margin-top:20px">${esc(x.method_note)} <a href="/method">How it works</a>.</p>` : ""}</div></section>`;
+    const run = () => { stampIn($("#lanes"), innerWidth <= 680 ? ".sheet .pm" : ".lane .pm", 110); const z = $("#burst"); if (z) setTimeout(() => stampIn(z, ".pm", 220), 300); };
+    const rp = $("#replay"); if (rp) rp.addEventListener("click", run);
+    run();
+  }
+
+  /* =============== METHOD =============== */
+  async function method() {
+    try {
+      const m = await api("/api/method");
+      const rows = [];
+      const add = (k, v) => { if (v != null && v !== "") rows.push(`<tr><th>${esc(k)}</th><td>${esc(v)}</td></tr>`); };
+      const th = m.thresholds || {};
+      add("Copy match", th.jaccard != null ? `Shingle overlap ≥ ${th.jaccard}` : null);
+      add("Copy window", th.window_min != null ? `${th.window_min} minutes` : null);
+      add("Group size", th.min_sites != null ? `≥ ${th.min_sites} sites and ≥ ${th.min_stories} shared stories` : null);
+      const sp = m.spend || m.credits || {};
+      Object.entries(sp).forEach(([k, v]) => add(`Spent: ${k}`, typeof v === "object" ? `${v.used ?? "?"} of ${v.cap ?? "?"}` : v));
+      const ev = m.eval || m.evaluation || {};
+      Object.entries(ev).forEach(([k, v]) => add(`Eval: ${k.replace(/_/g, " ")}`, typeof v === "object" ? JSON.stringify(v) : v));
+      if (rows.length) $("#live").innerHTML = `<h2>Live numbers</h2><p>Read from the running system${m.computed_at ? ` at ${esc(stamp(m.computed_at))}` : ""}.</p><table class="facts"><tbody>${rows.join("")}</tbody></table>`;
+    } catch { /* static text stands */ }
+  }
+
+  const page = document.body.dataset.page;
+  ({ landing, country, story, method }[page] || (() => {}))();
+})();

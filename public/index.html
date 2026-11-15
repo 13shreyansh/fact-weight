@@ -1,1 +1,51 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0F1A20"><title>Signal Fire</title><link rel="icon" href="/mark.svg" type="image/svg+xml"><link rel="preload" as="font" href="/fonts/golos-text-latin-wght-normal.woff2" type="font/woff2" crossorigin><link rel="stylesheet" href="/style.css"><script defer src="/lucide.js"></script><script defer src="/app.js"></script></head><body><a class="skip" href="#main">Skip to evidence</a><header id="shell"></header><main id="main"><p class="loading">Reading the watch…</p></main><div id="notice" role="status"></div></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffcc00">
+<link rel="preload" href="/fonts/barlow-condensed-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/barlow-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="/mark-v2.svg" type="image/svg+xml"><link rel="stylesheet" href="/sf.css">
+<title>Signal Fire</title>
+<meta name="description" content="Know who is influencing your country, and what they want. Signal Fire finds the sites that copy your country's news in coordinated bursts.">
+</head><body data-page="landing">
+<header class="bar"><div class="wrap"><a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12.5" fill="none" stroke="currentColor" stroke-width="2.6"/><circle cx="16" cy="16" r="7.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16 9.6c2.6 2.4 3.9 4.6 3.9 6.6a3.9 3.9 0 0 1-7.8 0c0-1.3.6-2.6 1.6-3.7.2 1.2.8 1.9 1.6 2.2-.5-1.6-.3-3.3.7-5.1z" fill="#c8231b"/></svg>Signal Fire</a><nav aria-label="Main"><a href="#countries">Countries</a><a href="/method">Method</a></nav></div></header>
+<main>
+<section class="hero"><div class="wrap">
+<div>
+<h1>Know who is influencing your country, <em>and what they want.</em></h1>
+<p class="lede">Signal Fire reads your country’s biggest stories of the week, finds every near-identical copy on the open web, and groups the sites that copy together within minutes. <strong>Nobody is on a list in advance. The copying gives them away.</strong></p>
+<div class="pick pickbox"><form id="pick" class="field" role="search"><label class="sr" for="q">Your country</label><input id="q" name="q" autocomplete="off" spellcheck="false"><button class="btn" type="submit">Open</button></form></div>
+<div class="chips" id="chips" aria-label="Ready countries"></div>
+</div>
+<aside class="slip" id="slip" aria-live="polite"><div class="label-head"><span>Copied story</span></div><div class="slip-body"><div class="skel" style="height:72px"></div><div class="skel" style="height:14px;width:50%;margin-top:12px"></div><div class="skel" style="height:120px;margin-top:16px"></div></div></aside>
+</div></section>
+
+<section class="section"><div class="wrap">
+<h2>The copying gives them away</h2>
+<p class="intro">Real outlets write their own words on their own schedule. Coordinated sites publish the same text within minutes, story after story. That rhythm is the evidence.</p>
+<ol class="route">
+<li><b>STEP 1</b><h3>Read the week’s top stories</h3><p>About 40 stories per country from the open web, in the country’s own languages and English.</p></li>
+<li><b>STEP 2</b><h3>Search for copies</h3><p>Distinctive sentences from each story are searched across the web. A copy must match at least 60% of the wording.</p></li>
+<li><b>STEP 3</b><h3>Group sites that copy together</h3><p>Sites that copy three or more of the same stories within 60 minutes of each other form a group.</p></li>
+<li><b>STEP 4</b><h3>Show who and what</h3><p>Domain ages, shared hosting and code, cited sources, and the lines they add that mainstream coverage does not have.</p></li>
+</ol>
+</div></section>
+
+<section class="section rack-wrap" id="countries"><div class="wrap">
+<h2>Pick a country</h2>
+<p class="intro" id="rackcount">Countries refresh every 6 hours.</p>
+<div class="rack" id="rack"></div>
+<div class="anyc"><div class="pickbox" style="flex:1 1 360px;max-width:560px"><form id="any" class="field" role="search"><label class="sr" for="q2">Any other country</label><input id="q2" placeholder="Any other country" autocomplete="off" spellcheck="false"><button class="btn" type="submit">Read it</button></form></div><p>Not in the rack? Any country can be read live, from scratch, in about 5 to 10 minutes.</p></div>
+</div></section>
+
+<section class="section"><div class="wrap">
+<h2>Three verdicts, no accusations</h2>
+<p class="intro">Signal Fire describes behaviour it can measure. It never calls anything fake, propaganda or bots.</p>
+<div class="vocab">
+<div><span class="stamp co big">Looks coordinated</span><p>Three or more sites copied the same stories within an hour, repeatedly. Marked strong or moderate by how often and how fast.</p></div>
+<div><span class="stamp org big">Looks organic</span><p>Many outlets covered it, each with its own wording and timing. The control: what normal news looks like.</p></div>
+<div><span class="stamp nd big">Not enough data</span><p>Too few copies or timestamps to say either way. We say so instead of guessing.</p></div>
+</div>
+<p class="notcovered"><strong>Not covered</strong>X (Twitter). We do not buy or scrape X data. TikTok, Instagram, YouTube and Reddit pickup is shown where we find it.</p>
+</div></section>
+</main>
+<footer class="foot"><div class="wrap"><a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12.5" fill="none" stroke="currentColor" stroke-width="2.6"/><circle cx="16" cy="16" r="7.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16 9.6c2.6 2.4 3.9 4.6 3.9 6.6a3.9 3.9 0 0 1-7.8 0c0-1.3.6-2.6 1.6-3.7.2 1.2.8 1.9 1.6 2.2-.5-1.6-.3-3.3.7-5.1z" fill="#c8231b"/></svg>Signal Fire</a><span>Reads the open web with Context.dev and Exa. Labels by two model families on the Hostinger AI Router. Runs on a Hostinger VPS.</span><a href="/method">How it works</a></div></footer>
+<script src="/sf.js" defer></script>
+</body></html>
