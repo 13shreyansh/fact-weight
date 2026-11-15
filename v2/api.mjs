@@ -276,6 +276,19 @@ export async function handleV2(req, res, url) {
         "ASN lookups are not run; shared IP addresses are shown instead",
         "Platform pickup is a sample from public search pages, not a total",
       ],
+      pipeline: [
+        { step: "Read the week's top stories", how: "Context.dev news search (story-grouped index, source-country and language filters) plus Exa news search, in the country's languages and English; a Gemini Flash Lite pass sets aside sport, entertainment and unrelated stories" },
+        { step: "Search for copies", how: "Exact-phrase searches of distinctive sentences (Context.dev web search, Exa) within story date -1/+3 days, translated headlines, entity queries; pages read with Context.dev scrape" },
+        { step: "Confirm copies", how: "Shingle Jaccard >= 0.6 on the best-matching window, plus an embedding cosine second check (text-embedding-3-small); timestamps from page metadata first" },
+        { step: "Group sites that copy together", how: "Site graph, edge = stories two sites published near-identically within 60 min; groups need >= 3 sites and >= 3 shared stories; established publishers profiled separately" },
+        { step: "Who", how: "RDAP registration dates (IANA bootstrap), DNS A -> IP -> ASN (ipinfo.io), shared analytics/tag IDs, shared templates, cited origins incl. Telegram channels, match against published lists (CheckFirst Pravda dataset)" },
+        { step: "What they want", how: "Gemini 3.5 Flash groups headlines into narratives; a label is kept only if GPT-4.1 mini and Claude Haiku 4.5 both accept it; spin = sentences the copy adds that the closest mainstream article lacks" },
+        { step: "Organic control", how: "Agency credit, established-publisher share, republication of an outside original, or long-established domains turn a group into Looks organic with the reason shown" },
+        { step: "Pickup", how: "Context.dev parsers: TikTok hashtag feed, Instagram post, Reddit search; Exa for YouTube; samples, not totals" },
+        { step: "Real time", how: "Context.dev monitors (60 min) on country news searches and the top sites of each coordinated group; signed webhooks confirm new copies with the same check; newsroom alerts via POST /api/watch" },
+      ],
+      techniques_labelled: ["Added claim", "Added attribution", "Loaded language", "Fear appeal", "Added context", "Boilerplate"],
+      earlier_benchmark: { source: "Signal Fire v1 frozen coordination replay (job 02), measured", held_out_caught: "7/32", held_out_false_flags: "0/32", note: "Measures v1 conditional verification of retrieved Pravda sets, not v2 discovery" },
       models: { story_filter: "gemini-3.5-flash-lite", narrative_grouping: "gemini-3.5-flash", label_check: ["gpt-4.1-mini", "claude-haiku-4.5"], spin_labels: "gpt-4.1-mini" },
     });
   }
