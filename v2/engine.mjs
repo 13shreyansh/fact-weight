@@ -14,7 +14,7 @@ const WATCHED = {
 const STATE_OUTLETS = ["rt.com", "sputnikglobe.com", "tass.com", "tass.ru", "ria.ru", "presstv.ir", "irna.ir", "tasnimnews.com", "globaltimes.cn", "cgtn.com"];
 export const T = {
   days: 7,
-  maxStories: 40,
+  maxStories: 60,
   copyThreshold: 0.6,
   edgeMinutes: 60,
   clusterMinSites: 3,
@@ -169,7 +169,7 @@ async function collectStories(c) {
     })
     .filter((s) => !SPORT.test(s.articles.map((a) => a.headline).join(" ")));
   stories.sort((a, b) => b.outlets - a.outlets || String(b.articles.at(-1).published_at).localeCompare(String(a.articles.at(-1).published_at)));
-  const pool80 = stories.slice(0, 110);
+  const pool80 = stories.slice(0, 150);
   const drop = await llm(
     "gemini-3.5-flash-lite",
     `From these news stories found for ${c.name}, list the ones to SET ASIDE: sports results and sports business, entertainment, celebrity, lifestyle, recipes, local crime, and stories with no connection to ${c.name}. Keep politics, government, elections, security, defence, foreign relations, war, economy, companies, technology, health and society. Return JSON {"drop":[int]}.`,
