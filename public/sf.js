@@ -447,7 +447,9 @@ ${x ? `<div class="pgrid"><div><span class="k">What news outlets reported</span>
     // Lead with pushes by a network that published research has documented, then strong, then most copied.
     const hot = stories.filter((s) => verdictOf(s.verdict).cls === "co")
       .sort((p, q) => (isDoc(q) - isDoc(p)) || (strong(q) - strong(p)) || (q.copies || 0) - (p.copies || 0)).slice(0, 4);
-    const rest = stories.filter((s) => !hot.includes(s));
+    // Watched stories: the obvious stories for this country, always fetched and always shown near the top.
+    const watched = stories.filter((s) => s.watched && !hot.includes(s));
+    const rest = stories.filter((s) => !hot.includes(s) && !watched.includes(s));
     const details = await Promise.all(hot.map((s) => api(`/api/stories/${encodeURIComponent(s.id)}`).catch(() => null)));
 
     const lead = hot[0], ld = details[0];
@@ -465,6 +467,7 @@ ${x ? `<div class="pgrid"><div><span class="k">What news outlets reported</span>
 
     const out = [];
     if (hot.length) out.push(`<section class="block"><div class="wrap"><h2>Being pushed at ${esc(name)} now</h2><p class="intro">Stories that many sites republished almost word for word within minutes of each other. Left: what news outlets reported. Right: what the copies added.</p><div class="pushes">${hot.map((s, i) => pushCard(s, details[i], clusters)).join("")}</div></div></section>`);
+    if (watched.length) out.push(`<section class="block"><div class="wrap"><h2>The stories everyone is talking about in ${esc(name)}</h2><p class="intro">The week's most obvious stories about ${esc(name)}, checked every time we read the country, with every copy we could find. Open one to see who copied it and when.</p>${storyRows(watched)}</div></section>`);
     if (narratives.length) out.push(`<section class="block"><div class="wrap"><h2>What they want ${esc(name)} to believe</h2><p class="intro">The lines these networks keep repeating about ${esc(name)}, and how often. A line is only shown when two independent AI models agree on it.</p><div class="narr">${narratives.map((n) => narrative(n, clusters)).join("")}</div></div></section>`);
     if (clusters.length) out.push(`<section class="block"><div class="wrap"><h2>Who is behind it</h2><p class="intro">The sites that did the copying, grouped by how often they copy together. Nobody is on a list in advance; a network is only named when published research has documented it.</p><div class="clusters">${clusters.map(cluster).join("")}</div><div class="net" id="net"></div></div></section>`);
 
