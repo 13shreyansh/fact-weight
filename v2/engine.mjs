@@ -27,6 +27,8 @@ const normUrl = (u) => {
     return u;
   }
 };
+// Exa gives date-only values as midnight UTC; those cannot be used for minute-level timing.
+const preciseIso = (t) => (/T00:00:00(\.000)?Z$/.test(String(t)) ? null : iso(t));
 const iso = (t) => {
   const d = Date.parse(t);
   return Number.isFinite(d) ? new Date(d).toISOString() : null;
@@ -116,7 +118,7 @@ async function collectStories(c) {
         const text = x.text || "";
         if (!c.about.test((x.title || "") + " " + text)) continue;
         seen.add(normUrl(x.url));
-        const art = { outlet: site(x.url), domain: site(x.url), url: x.url, published_at: iso(x.publishedDate), headline: cleanTitle(x.title), description: text.slice(0, 600), lang: null, direct: false, via: "exa" };
+        const art = { outlet: site(x.url), domain: site(x.url), url: x.url, published_at: preciseIso(x.publishedDate), headline: cleanTitle(x.title), description: text.slice(0, 600), lang: null, direct: false, via: "exa" };
         const hit = heads.find(([, hs]) => hs.some((h) => headlineSim(h, art.headline) >= 0.45));
         const sid = hit ? hit[0] : "x" + hash(x.url);
         if (!byStory.has(sid)) {
@@ -228,7 +230,7 @@ async function findCopies(story, c) {
       for (const x of r?.results || []) {
         const sx = site(x.url);
         if (!sx || SKIP_HOSTS.test(sx) || known.has(normUrl(x.url)) || exaPages.some((p) => normUrl(p.url) === normUrl(x.url))) continue;
-        exaPages.push({ url: x.url, site: sx, title: cleanTitle(x.title || ""), text: x.text || "", published_at: iso(x.publishedDate), lang: null, origins: [], ids: [], template: null, wire: (WIRE.exec((x.text || "").slice(0, 2500)) || [])[0]?.replace(/[()]/g, "").trim() || null, via: "exa" });
+        exaPages.push({ url: x.url, site: sx, title: cleanTitle(x.title || ""), text: x.text || "", published_at: preciseIso(x.publishedDate), lang: null, origins: [], ids: [], template: null, wire: (WIRE.exec((x.text || "").slice(0, 2500)) || [])[0]?.replace(/[()]/g, "").trim() || null, via: "exa" });
       }
   }
   const cands = new Map();
