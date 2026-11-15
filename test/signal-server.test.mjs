@@ -5,7 +5,7 @@ test("brand mark is served as SVG, not HTML", async () => {
   await new Promise((r) => server.listen(0, "127.0.0.1", r));
   try {
     const r = await fetch(
-      "http://127.0.0.1:" + server.address().port + "/mark.svg",
+      "http://127.0.0.1:" + server.address().port + "/mark-v2.svg",
     );
     assert.equal(r.headers.get("content-type"), "image/svg+xml");
     assert.match(await r.text(), /<svg/);

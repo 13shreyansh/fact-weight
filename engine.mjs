@@ -329,7 +329,7 @@ export async function analyze(text, sources, opts) {
         claims: verifyClaims,
         sources: sources.map(({ id, text }) => ({ id, text })),
       },
-      { ...opts, model: process.env.VERIFIER_MODEL || "claude-fable-5.2" },
+      { ...opts, model: process.env.VERIFIER_MODEL || "claude-opus-5.5" },
     );
     const verdicts = new Map(
       (Array.isArray(audit.data?.claims) ? audit.data.claims : []).map((v) => [

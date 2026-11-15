@@ -3,12 +3,12 @@ import assert from "node:assert/strict";
 import { reserveRouter } from "../signal/pricing.mjs";
 test("Router reservations grow with input and output bounds for expensive judging", () => {
   let small = reserveRouter({
-      model: "claude-fable-5.2",
+      model: "claude-opus-5.5",
       max_tokens: 6000,
       messages: [{ content: "small" }],
     }),
     large = reserveRouter({
-      model: "claude-fable-5.2",
+      model: "claude-opus-5.5",
       max_tokens: 6000,
       messages: [{ content: "x".repeat(100000) }],
     });

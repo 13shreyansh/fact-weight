@@ -3,6 +3,7 @@
 export const routerPrices = {
   "gpt-4.1-mini": { prompt: 0.000048, completion: 0.000192 },
   "gpt-4.1": { prompt: 0.000264, completion: 0.001056 },
+  "claude-opus-5.5": { prompt: 0.000528, completion: 0.00264 },
   "claude-fable-5.2": { prompt: 0.00096, completion: 0.0048 },
 };
 export function reserveRouter(params) {

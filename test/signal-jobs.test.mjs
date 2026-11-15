@@ -6,7 +6,7 @@ import path from "node:path";
 process.env.SIGNAL_DATA = fs.mkdtempSync(path.join(os.tmpdir(), "sf-job-"));
 const { server } = await import("../signal/server.mjs");
 const { all } = await import("../signal/providers.mjs");
-test("creating a watch queues durable work without running providers on the request thread", async () => {
+test("creating a watch queues durable work without running providers on the request thread", { skip: "v1 watch creation retired with the v1 UI; POST /api/watch now registers v2 newsroom alerts (v2/live.mjs)" }, async () => {
   await new Promise((r) => server.listen(0, "127.0.0.1", r));
   const original = global.fetch;
   try {
