@@ -3,6 +3,7 @@ process.env.SIGNAL_DATA=fs.mkdtempSync(path.join(os.tmpdir(),'sf-sponsors-'));
 const {validateVerdicts,reviewNarratives,labelAgreement,NEMOTRON_MODEL}=await import('../v2/nemotron.mjs');
 const {mentionRows,saveMentions,readTimelines}=await import('../v2/tiger.mjs');
 const {narrativeMentions}=await import('../v2/narrative-mentions.mjs');
+const {reviewStoredNarratives}=await import('../v2/upgrade-labels.mjs');
 test('a configured model cannot approve a label with a missing, string or duplicate verdict',()=>{
  for(const value of [{verdicts:[{index:0,agree:'true'}]},{verdicts:[]},{verdicts:[{index:0,agree:true},{index:0,agree:true}]}])assert.throws(()=>validateVerdicts(value,1));
  assert.equal(labelAgreement([true,true],null,0,true),false);
@@ -24,6 +25,11 @@ test('two narratives in one cluster never inherit each others copies during upgr
  const stories=[{copies:[a,b]}],first={id:'n1',cluster_id:'shared',examples:[a]},second={id:'n2',cluster_id:'shared',examples:[b]};
  assert.deepEqual(narrativeMentions(first,stories).map(p=>p.url),[a.url]);assert.deepEqual(narrativeMentions(second,stories).map(p=>p.url),[b.url]);
  assert.deepEqual(narrativeMentions({...first,source_urls:[b.url]},stories).map(p=>p.url),[b.url]);
+});
+test('a stored country with more than five narratives checks every label in bounded batches',async()=>{
+ const items=Array.from({length:6},(_,i)=>({label:'Label '+i,proposed_label:'Label '+i,models:{agree:[true,true]},examples:[]}));let calls=0;
+ await reviewStoredNarratives(items,async payload=>{calls++;assert(payload.narratives.length<=5);return {model:NEMOTRON_MODEL,at:new Date().toISOString(),ms:1,cached:false,verdicts:payload.narratives.map((n,index)=>({index,agree:n.label!=='Label 5'}))};});
+ assert.equal(calls,2);assert.equal(items[5].label,null);assert(items.every(n=>n.models.verda?.model===NEMOTRON_MODEL));
 });
 test('public country view withholds labels that a configured checker rejected',async()=>{
  const {put}=await import('../v2/db.mjs'),{handleV2}=await import('../v2/api.mjs');

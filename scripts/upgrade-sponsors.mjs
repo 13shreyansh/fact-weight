@@ -2,7 +2,7 @@
 import {get,put,all} from '../v2/db.mjs';
 import {loadSponsorSecrets} from '../signal/sponsor-secrets.mjs';
 loadSponsorSecrets();
-import {reviewNarratives,labelAgreement,NEMOTRON_MODEL} from '../v2/nemotron.mjs';
+import {reviewStoredNarratives} from '../v2/upgrade-labels.mjs';
 import {saveMentions,readTimelines,tigerConfigured,closeTiger} from '../v2/tiger.mjs';
 import {narrativeMentions} from '../v2/narrative-mentions.mjs';
 
@@ -10,20 +10,15 @@ const requested=process.argv.find(x=>/^--country=/.test(x))?.split('=')[1]?.toUp
 const countries=requested?[get('country',requested)].filter(Boolean):all('country');
 const report=[];
 for(const c of countries){
- const narratives=(c.narratives||[]).filter(n=>n.proposed_label||n.label).slice(0,5);
+ const narratives=(c.narratives||[]).filter(n=>n.proposed_label||n.label);
  if(!narratives.length)continue;
  const stories=(c.story_ids||[]).map(id=>get('story',id)).filter(Boolean);
  const enriched=narratives.map(n=>({...n,timeline_mentions:narrativeMentions(n,stories)}));
  let review=null;
  if(process.env.VERDA_INFERENCE_KEY){
-  review=await reviewNarratives({narratives:narratives.map(n=>({label:n.proposed_label||n.label,headlines:(n.examples||[]).map(e=>e.headline)}))});
-  for(const [i,n]of narratives.entries()){
-   const former=n.models?.agree?.slice(0,2)||[!!n.label,!!n.label];
-   const agreed=labelAgreement(former,review,i,true);
-   n.label=agreed?n.proposed_label||n.label:null;
-   n.label_reason=agreed?null:'The configured checking models did not all accept the proposed label';
-   n.models={...n.models,checked_by:[...(n.models?.checked_by||[]).filter(x=>x!==NEMOTRON_MODEL),NEMOTRON_MODEL],agree:[...former,review.verdicts.find(v=>v.index===i)?.agree===true],verda:{model:NEMOTRON_MODEL,at:review.at,ms:review.ms,cached:review.cached}};
-  }
+  review=await reviewStoredNarratives(narratives);
+  for(const cluster of c.clusters||[]){const checked=narratives.filter(n=>n.cluster_id===cluster.id);if(checked.length){cluster.label=checked.find(n=>n.label)?.label||null;cluster.label_reason=cluster.label?null:'The configured checking models did not accept a label';}}
+
  }
  let inserted=0;
  if(tigerConfigured()){

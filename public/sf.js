@@ -363,8 +363,8 @@ ${(c.reasons || []).length ? `<ul class="reasons">${c.reasons.map((r) => `<li>${
   function trend(arr, dates) {
     const v = (arr || []).map((x) => (typeof x === "object" ? x.count ?? x.n ?? 0 : x));
     if (!v.length) return `<span class="none">No trend yet</span>`;
-    const max = Math.max(1, ...v), w = 300, h = 84, bw = w / v.length;
-    const bars = v.map((n, i) => { const bh = Math.max(n ? 3 : 1, (n / max) * (h - 14)); return `<rect x="${(i * bw + 1).toFixed(1)}" y="${(h - bh).toFixed(1)}" width="${(bw - 2).toFixed(1)}" height="${bh.toFixed(1)}" fill="${n ? "var(--ink)" : "var(--hair)"}"><title>${esc(dates?.[i] || "Day " + (i + 1))}: ${num(n)} retrieved source pages</title></rect>`; }).join("");
+    const max = Math.max(0, ...v), scaleMax = Math.max(1, max), w = 300, h = 84, bw = w / v.length;
+    const bars = v.map((n, i) => { const bh = Math.max(n ? 3 : 1, (n / scaleMax) * (h - 14)); return `<rect x="${(i * bw + 1).toFixed(1)}" y="${(h - bh).toFixed(1)}" width="${(bw - 2).toFixed(1)}" height="${bh.toFixed(1)}" fill="${n ? "var(--ink)" : "var(--hair)"}"><title>${esc(dates?.[i] || "Day " + (i + 1))}: ${num(n)} retrieved source pages</title></rect>`; }).join("");
     const total = v.reduce((a, b) => a + b, 0);
     return `<div class="chart"><svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" role="img" aria-label="${total} retrieved source pages over 30 days, peak ${max} in one day">${bars}<text x="${w}" y="9" text-anchor="end" font-size="10" font-family="JetBrains Mono" fill="var(--ink-3)">peak ${max}/day</text></svg><div class="axis"><span>Past 30 days</span><span>today</span></div></div>`;
   }
