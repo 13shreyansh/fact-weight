@@ -64,7 +64,7 @@ export async function pdf(p) {
   const text = (s) =>
     doc
       .fontSize(10)
-      .text(String(s || ""), { width: 499, lineGap: 3 })
+      .text(String(s || ""), 48, doc.y, { width: 499, lineGap: 3 })
       .moveDown(0.4);
   h("Signal Fire evidence pack");
   doc.fontSize(21).text(p.title);
