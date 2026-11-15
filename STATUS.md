@@ -64,3 +64,22 @@ Hostinger 72.61.22.106: isolated signal-fire container, one CPU, 2GiB memory, pe
 - Historical waiting and overlapping processing are included in latency accounting. Raw request details are visible only on explicit disclosure.
 
 Taste gate: **all applicable items yes under the revised brief**, each with screenshots and every data-dependent difference listed in the [gate matrix](artifacts/job02/TASTE_GATE.md).
+
+## ENGINE V2 (Sun 15 Nov 05:10 Helsinki, commit 14b8e39, https://signal-fire.72.61.22.106.sslip.io)
+
+Done (all measured on the deployed VPS unless marked):
+- Engine v2 in `v2/` (no list of actors; Context.dev news search + Exa news/phrase search → Context.dev scrape → shingle Jaccard ≥0.6 groups → site graph, edge = near-identical within 60 min → clusters ≥3 sites/≥3 stories among sites that are not established publishers in the news index; publisher syndication profiled separately). Who: RDAP (IANA bootstrap), DNS A shared IPs, GA/GTM/AdSense/Metrica IDs, WordPress theme/generator, cited origins incl. t.me. What: Gemini 3.5 Flash groups headlines; label kept only if gpt-4.1-mini AND claude-haiku-4.5 both accept. Spin: copy sentences absent from closest mainstream text, labelled by gpt-4.1-mini. Organic rules: wire credit ≥50%, established publishers ≥50%, copies of an outside established original ≥60%, or long-established domains (median ≥15 y, none <3 y). Pickup: Reddit parser, YouTube/TikTok via site search (samples).
+- API live: /api/countries, /api/countries/<cc>, /graph, /build, /api/builds/<id>, /api/stories?country=, /api/stories/<id>, /api/method, /api/stats, /api/live. CORS open. Scheduler on the VPS (own process beside the v1 worker), 6-hour refresh, per-IP 3 builds/hour, caps Context.dev 15,000 / Router 800 / Exa $60.
+- UI v2 (ui-v2 up to 5f412b4) merged and served. Screenshots: artifacts/ui-v2/ (home, country-FI, country-US, story, method × desktop 1440 / phone 390). Playwright: no console errors, no horizontal overflow, no internal values.
+
+Countries (measured 05:07): 12 built of 29 (FI US SE NO DK EE LV LT PL DE FR IT), ES building, rest queued. FI: 30 stories, 0 coordinated clusters after the date-precision fix (date-only Exa timestamps no longer create timed links). US: 30 stories, 0 coordinated clusters (all copy groups are AP/agency syndication → organic). Coordinated clusters found: LV 1, LT 4, PL 2, DE 1, IT 1 (mostly aggregator/content-farm sites; none matches the CheckFirst Pravda list).
+
+Must-surface (via general pipeline, no special-casing):
+- FI BILD "Russia demands Finland leave NATO": SURFACED as a story (6 copies, 5 countries, first copy 08:59 UTC 13 Nov vs first indexed mainstream 11:39), verdict Looks organic (copies trace to AA/agency text). Pravda-network copies NOT found: neither Context.dev nor Exa phrase search returned *.news-pravda.com pages for it.
+- US Jensen Huang resignation (12 Nov): MISSED (not among top 30 US stories from the news indexes).
+- US midterm "integrity" coverage (9 Nov): MISSED (only "historic firsts of the 2026 midterms" surfaced, no copies).
+- Will DePue Blackwell report: MISSED.
+
+Spend (measured, VPS ledger): Context.dev 4,927 credits, Router 36.95 credits (77 calls), Exa $10.36. Plus local development runs on the Mac ledger: Context.dev ~1,320, Router ~9, Exa ~$1.
+
+Problems / not done: Context.dev monitors + webhook events, /api/watch, embeddings cosine second check, ASN lookup, Louvain, held-out eval — not built. Pravda-type networks are invisible to the two search indexes for these stories, so FI shows no coordinated push.
