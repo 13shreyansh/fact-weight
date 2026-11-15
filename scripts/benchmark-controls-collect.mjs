@@ -81,11 +81,33 @@ else {
   );
   fs.writeFileSync(seedfile, JSON.stringify(seeds));
 }
+if (split === "heldout") {
+  const inventory = JSON.parse(
+    fs.readFileSync("artifacts/benchmark/heldout-manifest.json"),
+  ).filter((r) => r.class === "trustworthy" && normal(r.article_url));
+  seeds.push(
+    ...inventory
+      .sort((a, b) => hash(a.article_url).localeCompare(hash(b.article_url)))
+      .map((r) => ({ url: r.article_url, title: "", datasetId: r.article_id })),
+  );
+}
+const canonical = (u) => {
+  const x = new URL(u);
+  return x.hostname.replace(/^www\./, "") + x.pathname.replace(/\/$/, "");
+};
 const limit = split === "dev" ? 16 : 32,
   earlier =
     split === "heldout"
       ? JSON.parse(fs.readFileSync(folder + "/dev-controls.json"))
       : [];
+if (split === "heldout") {
+  const urls = new Set(
+    earlier.flatMap((c) => c.posts.map((p) => canonical(p.url))),
+  );
+  cases = cases.filter((c) => !c.posts.some((p) => urls.has(canonical(p.url))));
+  fs.writeFileSync(out, JSON.stringify(cases));
+  seeds = seeds.filter((s) => !urls.has(canonical(s.url)));
+}
 async function read(u) {
   let d = await scrape(u, null, {
     formats: { markdown: true, html: true },
@@ -140,8 +162,9 @@ for (let seed of seeds) {
     if (!main || !/ukrain|украин|ukrain|venäj|nato|russia/i.test(main.text))
       continue;
     let query =
-      seed.title.replace(/\s*[|–—]\s*(ERR|LRT|LSM|Yle).*$/i, "").slice(0, 160) +
-      " -site:x.com -site:twitter.com";
+      (seed.title || main.title)
+        .replace(/\s*[|–—]\s*(ERR|LRT|LSM|Yle).*$/i, "")
+        .slice(0, 160) + " -site:x.com -site:twitter.com";
     let d = await search(query, 30);
     let urls = [
       ...new Set([
@@ -156,7 +179,14 @@ for (let seed of seeds) {
         if (r.status === "fulfilled" && r.value) posts.push(r.value);
     }
     posts = [...new Map(posts.map((p) => [p.url, p])).values()];
-    if ([...earlier, ...cases].some((c) => sameCopiedStory(c.posts, posts)))
+    if (
+      [...earlier, ...cases].some(
+        (c) =>
+          c.posts.some((p) =>
+            posts.some((q) => canonical(p.url) === canonical(q.url)),
+          ) || sameCopiedStory(c.posts, posts),
+      )
+    )
       continue;
     cases.push({
       id: hash(seed.url).slice(0, 12),

@@ -21,15 +21,20 @@ export function passages(text, query, sourceId) {
         "ukraine",
       ].includes(w),
   );
-  const sentences = [
+  const segments = [
     ...new Intl.Segmenter("en", { granularity: "sentence" }).segment(text),
-  ]
-    .map((s, i) => ({
-      id: sourceId + "-p" + i,
-      text: s.segment.trim(),
-      index: s.index,
-    }))
-    .filter((s) => s.text.length >= 30 && s.text.length < 1500);
+  ];
+  const sentences = segments
+    .map((s, i) => {
+      const end = segments[Math.min(segments.length - 1, i + 2)],
+        stop = end.index + end.segment.length;
+      return {
+        id: sourceId + "-p" + i,
+        text: text.slice(s.index, stop).trim(),
+        index: s.index,
+      };
+    })
+    .filter((s) => s.text.length >= 30 && s.text.length < 1800);
   return sentences
     .map((s) => ({
       ...s,

@@ -118,7 +118,11 @@ export function metrics(w = defaultId) {
     models: [
       ...new Set(
         pushes(w)
-          .flatMap((p) => [p.reading?.model, p.judgement?.model])
+          .flatMap((p) => [
+            p.reading?.model,
+            p.judgement?.model,
+            p.judgement?.verification?.model,
+          ])
           .filter(Boolean),
       ),
     ],

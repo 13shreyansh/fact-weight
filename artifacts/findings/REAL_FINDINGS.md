@@ -1,8 +1,8 @@
 # REAL FINDINGS
 
-Updated 2026-11-14T23:43:54.826Z. Source observations, not an attribution of intent. Publishing domains are counted as publishing identities; they are not people or new social accounts.
+Updated 2026-11-14T23:58:20.226Z. Source observations, not an attribution of intent. Publishing domains are counted as publishing identities; they are not people or new social accounts.
 
-## a6b0d22b1d61: Russia's alleged demands for a new European security agreement including Finland leaving…
+## a6b0d22b1d61: BILD reports Russia proposed Finland leave NATO in peace talks
 
 Verdict: moderate. Measured 17 posts, 11 publishing identities. Peak: 17 posts in 10 minutes, starting 2026-11-14T13:02:06.000Z. Same-minute signal is withheld where a comparable historical collection baseline is unavailable.
 
@@ -53,13 +53,13 @@ Verdict: moderate. Measured 17 posts, 11 publishing identities. Peak: 17 posts i
 - Matching claim on TT: https://www.tiktok.com/@thescribenews/video/7707677081194237206. Direct copying or exposure caused by the network was not established.
 
 ### Claim and tracker evidence
-According to the German newspaper BILD, Russian negotiators have proposed that Finland should withdraw from NATO, NATO military bases should be removed from the Baltic states, and Ukraine should be militarily neutral and not join NATO, as part of a new European security system proposal discussed informally.
-- for; report:bild; quote: They include that Finland withdraw from Nato and that the alliance be barred from having military bases in the Baltic states.
+The German newspaper BILD reported that Russia proposed Finland withdraw from NATO as part of unofficial Ukraine peace talks.
+- for; report:bild; quote: 14:36 German newspaper Bild reports that Russian negotiators have put forward far-reaching demands in talks in Abu Dhabi aimed at ending the war in Ukraine.
   https://yle.fi/a/74-20256829
-- for; yle.fi; quote: Ett annat krav är att Natos militärbaser i de baltiska länderna förbjuds, och att Ukraina permanent förblir utanför militära allianser.
+- not reported; yle.fi; quote: Kremls talesperson Dmitrij Peskov förnekar dock att Ryssland skulle ha krävt att Finland lämnar Nato.
   https://yle.fi/a/7-10108681
-- against; yle.fi; quote: Öppna bildvisare Rysslands delegationschef Vladimir Medinskij talar under trilaterala samtal mellan Ryssland och Ukraina, förmedlade av USA, i Abu Dhabi den 10 november 2026.
-  https://yle.fi/a/7-10108681
+- not reported; nato.int; quote: • In December 2021, Russian authorities proposed a legally binding treaty to NATO and the US, demanding NATO to redraw the European Security Architecture by not enlarging further to the East as well as by prohibiting NATO from deploying military forces or weaponry in member states that joined after 1997.
+  https://www.nato.int/content/dam/nato/legacy-wcm/media_pdf/2022/2/pdf/220214-factsheet_NATO-Russia_Relations_e.pdf
 
 ### Wording
 No technique was established from an exact phrase.
@@ -68,9 +68,9 @@ No technique was established from an exact phrase.
 No close match among the retrieved EUvsDisinfo cases. This does not mean the claim is new.
 No verified cloned Baltic news site was found in this push.
 
-Judgement: gpt-4.1-mini, sf-judge-v3, 2026-11-14T23:29:59.102Z.
+Judgement: gpt-4.1, sf-judge-v5, 2026-11-14T23:58:09.984Z.
 
-## aa9426e2b5e6: Russian delegation head Medinsky asserts territorial claims and buffer zone control in…
+## aa9426e2b5e6: Medinsky and Putin statements on buffer zone and European troops in Ukraine
 
 Verdict: moderate. Measured 20 posts, 14 publishing identities. Peak: 20 posts in 10 minutes, starting 2026-11-14T20:51:08.000Z. Same-minute signal is withheld where a comparable historical collection baseline is unavailable.
 
@@ -124,9 +124,13 @@ Verdict: moderate. Measured 20 posts, 14 publishing identities. Peak: 20 posts i
 
 
 ### Claim and tracker evidence
-Vladimir Medinsky, head of the Russian delegation at Abu Dhabi talks, stated that "where the foot of a Russian soldier has set foot, it is ours," Russia will not accept territorial exchanges with Ukraine, and any buffer zone in Ukraine will be exclusively under Russian control without European troops.
-- for; understandingwar.org; quote: 1] Medinsky also asserted that “wherever a Russian soldier has set foot belongs to Russia” — mirroring Russian President Vladimir Putin’s statement from June 2025.[
-  https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-november-11-2026/
+Ivan Mezyuho stated that after the Abu Dhabi talks, Medinsky and Putin made clear to the West that no European troops could be on Ukrainian territory after hostilities end.
+- not reported; lsm.lv; quote: Russia is in no position to make demands, he explained, and in fact "We are the guarantee for the future security, it is our geographical area [which] is in the future with Ukraine and so I think that should be the position in the discussions," he added.
+  https://eng.lsm.lv/article/politics/diplomacy/13.11.2026-we-have-to-grow-some-bigger-balls-recommends-latvian-prime-minister.a671886/
+- not reported; lrt.lt; quote: “There are various ways of looking at it,” he said about the ongoing negotiations between the US and Russia over ending the war in Ukraine, “but until there is a final agreement, I would still classify it as speculation.”
+  https://www.lrt.lt/en/news-in-english/19/2545065/recognising-russian-annexation-of-crimea-would-open-a-hell-lithuanian-fm
+- not reported; nato.int; quote: NATO MULTIMEDIA ACCOUNT Access NATO’s broadcast-quality video content free of charge Create an account Already have an account?
+  https://www.nato.int/en/about-us/official-texts-and-resources/official-texts/2021/12/16/statement-by-the-north-atlantic-council-on-the-situation-in-and-around-ukraine?selectedLocale=ic
 
 ### Wording
 No technique was established from an exact phrase.
@@ -135,9 +139,9 @@ No technique was established from an exact phrase.
 No close match among the retrieved EUvsDisinfo cases. This does not mean the claim is new.
 No verified cloned Baltic news site was found in this push.
 
-Judgement: gpt-4.1-mini, sf-judge-v3, 2026-11-14T23:30:13.127Z.
+Judgement: gpt-4.1, sf-judge-v5, 2026-11-14T23:58:13.845Z.
 
-## nab032987aff: Russia demands NATO close bases in Eastern Europe and Finland leave NATO in Ukraine…
+## nab032987aff: Claim that Russia demands NATO close bases in Eastern Europe in truce talks
 
 Verdict: moderate. Measured 9 posts, 8 publishing identities. Peak: 9 posts in 10 minutes, starting 2026-11-14T17:10:05.000Z. Same-minute signal is withheld where a comparable historical collection baseline is unavailable.
 
@@ -174,9 +178,9 @@ Verdict: moderate. Measured 9 posts, 8 publishing identities. Peak: 9 posts in 1
 
 
 ### Claim and tracker evidence
-Russian negotiators reportedly demand NATO withdraw troops and close bases in Eastern Europe, including Baltic states and Finland, and that Ukraine remain outside military alliances, as part of peace talks in Abu Dhabi.
-- for; report:bild; quote: They include that Finland withdraw from Nato and that the alliance be barred from having military bases in the Baltic states.
-  https://yle.fi/a/74-20256829
+Russia is demanding that NATO close its bases in Eastern Europe as part of truce terms in Ukraine, reportedly put forward at closed-door talks in Abu Dhabi.
+- for; understandingwar.org; quote: 5] The Kremlin’s current negotiating position on the war in Ukraine continues to include Moscow’s longstanding demand from before the full-scale invasion that NATO change its charter and roll back its membership to NATO’s former 1997 borders.
+  https://understandingwar.org/research/russia-ukraine/russian-offensive-campaign-assessment-october-26-2026/
 - for; lrt.lt; quote: Russia is reportedly seeking a ban on NATO military bases in Estonia, Latvia and Lithuania.
   https://www.lrt.lt/en/news-in-english/19/3113194/russia-s-demands-for-ukraine-war-end-include-ban-on-nato-bases-in-baltics-german-media
 - for; nato.int; quote: • In December 2021, Russian authorities proposed a legally binding treaty to NATO and the US, demanding NATO to redraw the European Security Architecture by not enlarging further to the East as well as by prohibiting NATO from deploying military forces or weaponry in member states that joined after 1997.
@@ -189,22 +193,22 @@ No technique was established from an exact phrase.
 No close match among the retrieved EUvsDisinfo cases. This does not mean the claim is new.
 No verified cloned Baltic news site was found in this push.
 
-Judgement: gpt-4.1-mini, sf-judge-v3, 2026-11-14T23:30:29.193Z.
+Judgement: gpt-4.1, sf-judge-v5, 2026-11-14T23:58:18.842Z.
 
 ## Recorded provider spend
 
 [
   {
     "provider": "context",
-    "calls": 925,
-    "measured": 891,
-    "charged_or_reserved": 911
+    "calls": 1171,
+    "measured": 1162,
+    "charged_or_reserved": 1192
   },
   {
     "provider": "router",
-    "calls": 73,
-    "measured": 42.92496,
-    "charged_or_reserved": 42.92496
+    "calls": 86,
+    "measured": 71.998488,
+    "charged_or_reserved": 106.998488
   }
 ]
 Unknown billed amounts retain reservations. Monitor runs are reconciled by authenticated provider events.

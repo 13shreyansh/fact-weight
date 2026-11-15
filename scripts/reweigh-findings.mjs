@@ -1,8 +1,16 @@
+import { passages } from "../signal/passages.mjs";
+import { verifyEvidence } from "../signal/verify.mjs";
 import { get, put, judge } from "../signal/providers.mjs";
 import { finalize } from "../signal/store.mjs";
 import { ensurePack } from "../signal/packs.mjs";
 for (const id of ["a6b0d22b1d61", "aa9426e2b5e6", "nab032987aff"]) {
   let c = get("assessed", id);
+  for (const source of c.sources)
+    source.passages = passages(
+      source.text,
+      c.claim || c.judgement.data.claim,
+      source.id,
+    );
   const start = performance.now(),
     at = new Date().toISOString();
   const judgement = await judge({
@@ -21,6 +29,9 @@ for (const id of ["a6b0d22b1d61", "aa9426e2b5e6", "nab032987aff"]) {
       ?.passages?.find((p) => p.id === e.passageId);
     if (span) e.quote = span.text;
   }
+  await verifyEvidence(judgement, c.posts, c.sources);
+  if (judgement.verification?.call)
+    c.enrichment.calls.push(judgement.verification.call);
   c = {
     ...c,
     judgement,

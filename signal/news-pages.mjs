@@ -1,4 +1,4 @@
-import { scrape, put, hash } from "./providers.mjs";
+import { scrape, put, hash, get } from "./providers.mjs";
 import { load } from "cheerio";
 export function storeArticle(d, url, persist = true) {
   const $ = load(d.html?.data || ""),
@@ -79,10 +79,12 @@ export async function collectNewsPage(d, url) {
             /news-pravda\.com\/.*\/\d{4}\/\d{2}\/\d{2}\/\d+\.html/.test(u),
           ),
       ),
-    ].slice(0, 1);
+    ]
+      .filter((u) => !get("post", "nw-" + hash(u).slice(0, 16)))
+      .slice(0, 3);
   for (const article of links) {
     try {
-      const page = await scrape(article, null, {}, { fresh: true });
+      const page = await scrape(article);
       storeArticle(page, article);
       const html = load(page.html?.data || "");
       const alternates = html('link[rel="alternate"][hreflang]')
@@ -99,7 +101,7 @@ export async function collectNewsPage(d, url) {
           .slice(0, 3),
       ];
       for (const a of chosen) {
-        const variant = await scrape(a.url, null, {}, { fresh: true });
+        const variant = await scrape(a.url);
         storeArticle(variant, a.url);
       }
     } catch {}

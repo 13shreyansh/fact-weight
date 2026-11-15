@@ -1,0 +1,949 @@
+{
+  "split": "dev",
+  "at": "2026-11-15T00:00:59.274Z",
+  "configHash": "fc0090d65a031bc71924f65ddfe5021a2d8020d7f319c77ff92a0ba66cf46cc9",
+  "n": 32,
+  "contentItems": 245,
+  "eligible": 13,
+  "positiveEligible": 6,
+  "negativeEligible": 7,
+  "failed": 0,
+  "both": {
+    "tp": 6,
+    "fn": 10,
+    "fp": 0,
+    "tn": 16,
+    "positive": 16,
+    "negative": 16,
+    "catchRate": 0.375,
+    "falseFlagRate": 0,
+    "precision": 1
+  },
+  "strong": {
+    "tp": 0,
+    "fn": 16,
+    "fp": 0,
+    "tn": 16,
+    "positive": 16,
+    "negative": 16,
+    "catchRate": 0,
+    "falseFlagRate": 0,
+    "precision": null
+  },
+  "leadSubset": 0,
+  "limitations": "Conditional candidate-verification replay. Article sets were discovered through declared publication alternates or a Baltic news headline search, not recovered by end-to-end network discovery. Missing baselines, account ages and mutuals cannot fire. English-edition and search-retrieval selection limit generalisation. Some reporting controls do not meet the minimum sample. Only Pravda is replayed; the other documented families lack retrievable timestamped post sets. No public-debunk lead pairs verified.",
+  "cases": [
+    {
+      "id": "093e504e24f6",
+      "seed": "https://finland.news-pravda.com/en/world/2026/11/14/26312.html",
+      "label": "coordinated",
+      "family": "Pravda / Portal Kombat",
+      "selection": "Hash order of mapped article seeds. Publisher-declared language alternates retrieved; copy signal measured from bodies, not from these declarations.",
+      "posts": 4,
+      "accounts": 4,
+      "eligible": false,
+      "firstPostAt": "2026-11-14T11:30:13Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "0a85d181d531",
+      "seed": "https://finland.news-pravda.com/en/world/2026/11/14/26311.html",
+      "label": "coordinated",
+      "family": "Pravda / Portal Kombat",
+      "selection": "Hash order of mapped article seeds. Publisher-declared language alternates retrieved; copy signal measured from bodies, not from these declarations.",
+      "posts": 3,
+      "accounts": 3,
+      "eligible": false,
+      "firstPostAt": "2026-11-14T10:43:00Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "110a76c1da58",
+      "seed": "https://finland.news-pravda.com/en/russia/2026/11/14/26310.html",
+      "label": "coordinated",
+      "family": "Pravda / Portal Kombat",
+      "selection": "Hash order of mapped article seeds. Publisher-declared language alternates retrieved; copy signal measured from bodies, not from these declarations.",
+      "posts": 12,
+      "accounts": 12,
+      "eligible": true,
+      "firstPostAt": "2026-11-14T10:25:28Z",
+      "flag": {
+        "verdict": "moderate",
+        "at": "2026-11-14T10:27:36Z",
+        "posts": 8,
+        "signals": [
+          {
+            "key": "timing",
+            "fired": false,
+            "measured": 8,
+            "baseline": null,
+            "reason": "A same-hour and weekday baseline for these collection sources is still being collected.",
+            "name": "Same minute"
+          },
+          {
+            "key": "new_accounts",
+            "fired": false,
+            "measured": 0,
+            "known": 0,
+            "reason": "Account creation dates could not be measured on these public pages.",
+            "name": "New accounts"
+          },
+          {
+            "key": "same_text",
+            "fired": true,
+            "measured": 8,
+            "reason": "8 of 8 posts repeat near-identical wording in 1 text variants, measured with four-word shingles.",
+            "name": "Same text"
+          },
+          {
+            "key": "shared_links",
+            "fired": true,
+            "measured": 8,
+            "url": "https://qr.nspk.ru/BS1A0068ID10D33B9IBAQRQ4M9T0NIFN?type=01&bank=100000000008&crc=36CB",
+            "reason": "8 posts share https://qr.nspk.ru/BS1A0068ID10D33B9IBAQRQ4M9T0NIFN?type=01&bank=100000000008&crc=36CB. A shared link alone can also reflect ordinary reporting.",
+            "name": "Same links"
+          },
+          {
+            "key": "ties",
+            "fired": false,
+            "reason": "Mutual follower lists could not be measured on these public pages.",
+            "name": "Linked accounts"
+          }
+        ]
+      },
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": [
+        {
+          "model": "gpt-4.1-mini",
+          "promptVersion": "sf-judge-v5",
+          "promptHash": "b3ff0f81789f7de0e538727f215c822621d58bf0b4557689ac94bda97301350d",
+          "at": "2026-11-15T00:00:30.157Z",
+          "call": "b9f3f70d-bd2f-4567-a9a4-b766abe4aaa0",
+          "sameNarrative": true,
+          "usage": {
+            "completion_tokens": 235,
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "credits_charged": 0.244512,
+            "prompt_tokens": 4154,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 4389
+          }
+        }
+      ]
+    },
+    {
+      "id": "29eefafa7e89",
+      "seed": "https://finland.news-pravda.com/en/world/2026/11/14/26332.html",
+      "label": "coordinated",
+      "family": "Pravda / Portal Kombat",
+      "selection": "Hash order of mapped article seeds. Publisher-declared language alternates retrieved; copy signal measured from bodies, not from these declarations.",
+      "posts": 7,
+      "accounts": 7,
+      "eligible": false,
+      "firstPostAt": "2026-11-14T18:39:31Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "31ddd46c48f4",
+      "seed": "https://finland.news-pravda.com/en/russia/2026/11/14/26330.html",
+      "label": "coordinated",
+      "family": "Pravda / Portal Kombat",
+      "selection": "Hash order of mapped article seeds. Publisher-declared language alternates retrieved; copy signal measured from bodies, not from these declarations.",
+      "posts": 5,
+      "accounts": 5,
+      "eligible": false,
+      "firstPostAt": "2026-11-14T17:22:30Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "3440d9a9bcc2",
+      "seed": "https://finland.news-pravda.com/en/world/2026/11/14/26323.html",
+      "label": "coordinated",
+      "family": "Pravda / Portal Kombat",
+      "selection": "Hash order of mapped article seeds. Publisher-declared language alternates retrieved; copy signal measured from bodies, not from these declarations.",
+      "posts": 12,
+      "accounts": 12,
+      "eligible": true,
+      "firstPostAt": "2026-11-14T13:45:54Z",
+      "flag": {
+        "verdict": "moderate",
+        "at": "2026-11-14T13:48:10Z",
+        "posts": 8,
+        "signals": [
+          {
+            "key": "timing",
+            "fired": false,
+            "measured": 8,
+            "baseline": null,
+            "reason": "A same-hour and weekday baseline for these collection sources is still being collected.",
+            "name": "Same minute"
+          },
+          {
+            "key": "new_accounts",
+            "fired": false,
+            "measured": 0,
+            "known": 0,
+            "reason": "Account creation dates could not be measured on these public pages.",
+            "name": "New accounts"
+          },
+          {
+            "key": "same_text",
+            "fired": true,
+            "measured": 8,
+            "reason": "8 of 8 posts repeat near-identical wording in 1 text variants, measured with four-word shingles.",
+            "name": "Same text"
+          },
+          {
+            "key": "shared_links",
+            "fired": true,
+            "measured": 7,
+            "url": "mailto:www.youtube.com/@capitalsports3.0",
+            "reason": "7 posts share mailto:www.youtube.com/@capitalsports3.0. A shared link alone can also reflect ordinary reporting.",
+            "name": "Same links"
+          },
+          {
+            "key": "ties",
+            "fired": false,
+            "reason": "Mutual follower lists could not be measured on these public pages.",
+            "name": "Linked accounts"
+          }
+        ]
+      },
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": [
+        {
+          "model": "gpt-4.1-mini",
+          "promptVersion": "sf-judge-v5",
+          "promptHash": "b3ff0f81789f7de0e538727f215c822621d58bf0b4557689ac94bda97301350d",
+          "at": "2026-11-15T00:00:35.998Z",
+          "call": "9735d184-3f86-409e-96ce-e134702d2bb1",
+          "sameNarrative": true,
+          "usage": {
+            "completion_tokens": 659,
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "credits_charged": 0.59928,
+            "prompt_tokens": 9849,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 10508
+          }
+        }
+      ]
+    },
+    {
+      "id": "3bff25f5a0fd",
+      "seed": "https://finland.news-pravda.com/en/world/2026/11/14/26305.html",
+      "label": "coordinated",
+      "family": "Pravda / Portal Kombat",
+      "selection": "Hash order of mapped article seeds. Publisher-declared language alternates retrieved; copy signal measured from bodies, not from these declarations.",
+      "posts": 3,
+      "accounts": 3,
+      "eligible": false,
+      "firstPostAt": "2026-11-14T00:24:47Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "4b6e7ff0fade",
+      "seed": "https://finland.news-pravda.com/en/world/2026/11/14/26307.html",
+      "label": "coordinated",
+      "family": "Pravda / Portal Kombat",
+      "selection": "Hash order of mapped article seeds. Publisher-declared language alternates retrieved; copy signal measured from bodies, not from these declarations.",
+      "posts": 3,
+      "accounts": 3,
+      "eligible": false,
+      "firstPostAt": "2026-11-14T05:24:13Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "4c733170a882",
+      "seed": "https://finland.news-pravda.com/en/world/2026/11/14/26304.html",
+      "label": "coordinated",
+      "family": "Pravda / Portal Kombat",
+      "selection": "Hash order of mapped article seeds. Publisher-declared language alternates retrieved; copy signal measured from bodies, not from these declarations.",
+      "posts": 12,
+      "accounts": 12,
+      "eligible": true,
+      "firstPostAt": "2026-11-13T23:51:07Z",
+      "flag": {
+        "verdict": "moderate",
+        "at": "2026-11-13T23:52:46Z",
+        "posts": 8,
+        "signals": [
+          {
+            "key": "timing",
+            "fired": false,
+            "measured": 8,
+            "baseline": null,
+            "reason": "A same-hour and weekday baseline for these collection sources is still being collected.",
+            "name": "Same minute"
+          },
+          {
+            "key": "new_accounts",
+            "fired": false,
+            "measured": 0,
+            "known": 0,
+            "reason": "Account creation dates could not be measured on these public pages.",
+            "name": "New accounts"
+          },
+          {
+            "key": "same_text",
+            "fired": true,
+            "measured": 8,
+            "reason": "8 of 8 posts repeat near-identical wording in 1 text variants, measured with four-word shingles.",
+            "name": "Same text"
+          },
+          {
+            "key": "shared_links",
+            "fired": true,
+            "measured": 7,
+            "url": "https://telegra.ph/From-the-Baltic-to-the-Atlantic-How-the-JEF-Links-the-Northern-Fleets-11-13",
+            "reason": "7 posts share https://telegra.ph/From-the-Baltic-to-the-Atlantic-How-the-JEF-Links-the-Northern-Fleets-11-13. A shared link alone can also reflect ordinary reporting.",
+            "name": "Same links"
+          },
+          {
+            "key": "ties",
+            "fired": false,
+            "reason": "Mutual follower lists could not be measured on these public pages.",
+            "name": "Linked accounts"
+          }
+        ]
+      },
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": [
+        {
+          "model": "gpt-4.1-mini",
+          "promptVersion": "sf-judge-v5",
+          "promptHash": "b3ff0f81789f7de0e538727f215c822621d58bf0b4557689ac94bda97301350d",
+          "at": "2026-11-15T00:00:41.628Z",
+          "call": "0bc7669d-2729-47ae-a937-666916d9724b",
+          "sameNarrative": true,
+          "usage": {
+            "completion_tokens": 642,
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "credits_charged": 0.540576,
+            "prompt_tokens": 8694,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 9336
+          }
+        }
+      ]
+    },
+    {
+      "id": "50aaa1481914",
+      "seed": "https://finland.news-pravda.com/en/eu/2026/11/14/26333.html",
+      "label": "coordinated",
+      "family": "Pravda / Portal Kombat",
+      "selection": "Hash order of mapped article seeds. Publisher-declared language alternates retrieved; copy signal measured from bodies, not from these declarations.",
+      "posts": 5,
+      "accounts": 5,
+      "eligible": false,
+      "firstPostAt": "2026-11-14T21:15:12Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "50c32e113fe4",
+      "seed": "https://finland.news-pravda.com/en/russia/2026/11/14/26329.html",
+      "label": "coordinated",
+      "family": "Pravda / Portal Kombat",
+      "selection": "Hash order of mapped article seeds. Publisher-declared language alternates retrieved; copy signal measured from bodies, not from these declarations.",
+      "posts": 8,
+      "accounts": 8,
+      "eligible": true,
+      "firstPostAt": "2026-11-14T17:15:48Z",
+      "flag": {
+        "verdict": "moderate",
+        "at": "2026-11-14T17:17:21Z",
+        "posts": 8,
+        "signals": [
+          {
+            "key": "timing",
+            "fired": false,
+            "measured": 8,
+            "baseline": null,
+            "reason": "A same-hour and weekday baseline for these collection sources is still being collected.",
+            "name": "Same minute"
+          },
+          {
+            "key": "new_accounts",
+            "fired": false,
+            "measured": 0,
+            "known": 0,
+            "reason": "Account creation dates could not be measured on these public pages.",
+            "name": "New accounts"
+          },
+          {
+            "key": "same_text",
+            "fired": true,
+            "measured": 8,
+            "reason": "8 of 8 posts repeat near-identical wording in 1 text variants, measured with four-word shingles.",
+            "name": "Same text"
+          },
+          {
+            "key": "shared_links",
+            "fired": true,
+            "measured": 8,
+            "url": "https://max.ru/lomovka",
+            "reason": "8 posts share https://max.ru/lomovka. A shared link alone can also reflect ordinary reporting.",
+            "name": "Same links"
+          },
+          {
+            "key": "ties",
+            "fired": false,
+            "reason": "Mutual follower lists could not be measured on these public pages.",
+            "name": "Linked accounts"
+          }
+        ]
+      },
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": [
+        {
+          "model": "gpt-4.1-mini",
+          "promptVersion": "sf-judge-v5",
+          "promptHash": "b3ff0f81789f7de0e538727f215c822621d58bf0b4557689ac94bda97301350d",
+          "at": "2026-11-15T00:00:46.312Z",
+          "call": "ae259b29-8274-4771-bb62-58e4cdfedcb4",
+          "sameNarrative": true,
+          "usage": {
+            "completion_tokens": 567,
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "credits_charged": 0.236784,
+            "prompt_tokens": 2665,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 3232
+          }
+        }
+      ]
+    },
+    {
+      "id": "679f9af27f81",
+      "seed": "https://finland.news-pravda.com/en/russia/2026/11/14/26331.html",
+      "label": "coordinated",
+      "family": "Pravda / Portal Kombat",
+      "selection": "Hash order of mapped article seeds. Publisher-declared language alternates retrieved; copy signal measured from bodies, not from these declarations.",
+      "posts": 2,
+      "accounts": 2,
+      "eligible": false,
+      "firstPostAt": "2026-11-14T18:15:08Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "6904def65dfc",
+      "seed": "https://finland.news-pravda.com/en/world/2026/11/14/26324.html",
+      "label": "coordinated",
+      "family": "Pravda / Portal Kombat",
+      "selection": "Hash order of mapped article seeds. Publisher-declared language alternates retrieved; copy signal measured from bodies, not from these declarations.",
+      "posts": 11,
+      "accounts": 11,
+      "eligible": true,
+      "firstPostAt": "2026-11-14T13:48:05Z",
+      "flag": {
+        "verdict": "moderate",
+        "at": "2026-11-14T13:52:54Z",
+        "posts": 8,
+        "signals": [
+          {
+            "key": "timing",
+            "fired": false,
+            "measured": 8,
+            "baseline": null,
+            "reason": "A same-hour and weekday baseline for these collection sources is still being collected.",
+            "name": "Same minute"
+          },
+          {
+            "key": "new_accounts",
+            "fired": false,
+            "measured": 0,
+            "known": 0,
+            "reason": "Account creation dates could not be measured on these public pages.",
+            "name": "New accounts"
+          },
+          {
+            "key": "same_text",
+            "fired": true,
+            "measured": 8,
+            "reason": "8 of 8 posts repeat near-identical wording in 1 text variants, measured with four-word shingles.",
+            "name": "Same text"
+          },
+          {
+            "key": "shared_links",
+            "fired": true,
+            "measured": 7,
+            "url": "https://telegra.ph/BREAKING-A-power-outage-has-just-occurred-in-Casablanca-the-largest-city-in-Morocco-11-14",
+            "reason": "7 posts share https://telegra.ph/BREAKING-A-power-outage-has-just-occurred-in-Casablanca-the-largest-city-in-Morocco-11-14. A shared link alone can also reflect ordinary reporting.",
+            "name": "Same links"
+          },
+          {
+            "key": "ties",
+            "fired": false,
+            "reason": "Mutual follower lists could not be measured on these public pages.",
+            "name": "Linked accounts"
+          }
+        ]
+      },
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": [
+        {
+          "model": "gpt-4.1-mini",
+          "promptVersion": "sf-judge-v5",
+          "promptHash": "b3ff0f81789f7de0e538727f215c822621d58bf0b4557689ac94bda97301350d",
+          "at": "2026-11-15T00:00:52.867Z",
+          "call": "8a66202f-e538-4e39-8b65-4047edeee52f",
+          "sameNarrative": true,
+          "usage": {
+            "completion_tokens": 776,
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "credits_charged": 0.482544,
+            "prompt_tokens": 6949,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 7725
+          }
+        }
+      ]
+    },
+    {
+      "id": "69c1f6f743f4",
+      "seed": "https://finland.news-pravda.com/en/russia/2026/11/14/26319.html",
+      "label": "coordinated",
+      "family": "Pravda / Portal Kombat",
+      "selection": "Hash order of mapped article seeds. Publisher-declared language alternates retrieved; copy signal measured from bodies, not from these declarations.",
+      "posts": 8,
+      "accounts": 8,
+      "eligible": true,
+      "firstPostAt": "2026-11-14T13:06:36Z",
+      "flag": {
+        "verdict": "moderate",
+        "at": "2026-11-14T13:11:11Z",
+        "posts": 8,
+        "signals": [
+          {
+            "key": "timing",
+            "fired": false,
+            "measured": 8,
+            "baseline": null,
+            "reason": "A same-hour and weekday baseline for these collection sources is still being collected.",
+            "name": "Same minute"
+          },
+          {
+            "key": "new_accounts",
+            "fired": false,
+            "measured": 0,
+            "known": 0,
+            "reason": "Account creation dates could not be measured on these public pages.",
+            "name": "New accounts"
+          },
+          {
+            "key": "same_text",
+            "fired": true,
+            "measured": 8,
+            "reason": "8 of 8 posts repeat near-identical wording in 1 text variants, measured with four-word shingles.",
+            "name": "Same text"
+          },
+          {
+            "key": "shared_links",
+            "fired": true,
+            "measured": 8,
+            "url": "https://skandinavia.infodefense.press/",
+            "reason": "8 posts share https://skandinavia.infodefense.press/. A shared link alone can also reflect ordinary reporting.",
+            "name": "Same links"
+          },
+          {
+            "key": "ties",
+            "fired": false,
+            "reason": "Mutual follower lists could not be measured on these public pages.",
+            "name": "Linked accounts"
+          }
+        ]
+      },
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": [
+        {
+          "model": "gpt-4.1-mini",
+          "promptVersion": "sf-judge-v5",
+          "promptHash": "b3ff0f81789f7de0e538727f215c822621d58bf0b4557689ac94bda97301350d",
+          "at": "2026-11-15T00:00:58.906Z",
+          "call": "0d827ed5-a59b-4cf2-8fb8-eab8db7fa8bf",
+          "sameNarrative": true,
+          "usage": {
+            "completion_tokens": 777,
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "credits_charged": 0.342048,
+            "prompt_tokens": 4018,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 4795
+          }
+        }
+      ]
+    },
+    {
+      "id": "6ec8fa7360ce",
+      "seed": "https://finland.news-pravda.com/en/russia/2026/11/14/26321.html",
+      "label": "coordinated",
+      "family": "Pravda / Portal Kombat",
+      "selection": "Hash order of mapped article seeds. Publisher-declared language alternates retrieved; copy signal measured from bodies, not from these declarations.",
+      "posts": 4,
+      "accounts": 4,
+      "eligible": false,
+      "firstPostAt": "2026-11-14T13:36:35Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "a2c80c7c9b68",
+      "seed": "https://finland.news-pravda.com/en/world/2026/11/14/26318.html",
+      "label": "coordinated",
+      "family": "Pravda / Portal Kombat",
+      "selection": "Hash order of mapped article seeds. Publisher-declared language alternates retrieved; copy signal measured from bodies, not from these declarations.",
+      "posts": 6,
+      "accounts": 6,
+      "eligible": false,
+      "firstPostAt": "2026-11-14T12:58:24Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "073d024686b6",
+      "seed": "https://www.lrt.lt/en/news-in-english/19/3063137/amid-warnings-over-possible-attack-europe-mulls-contingency-plans",
+      "label": "normal_reporting",
+      "family": "Normal Baltic war reporting",
+      "selection": "Hash-order Baltic public-service headline seeds. Search results restricted to named established news outlets; all retrieved results retained including undersized or mixed-claim groups. No threshold-based selection.",
+      "posts": 9,
+      "accounts": 4,
+      "eligible": true,
+      "firstPostAt": "2023-05-05T08:10:00.000Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "143bd46ce42a",
+      "seed": "https://www.lrt.lt/en/news-in-english/19/2929087/nato-military-chief-says-us-troop-moves-pose-no-threat-ukraine-strikes-give-kyiv-leverage",
+      "label": "normal_reporting",
+      "family": "Normal Baltic war reporting",
+      "selection": "Hash-order Baltic public-service headline seeds. Search results restricted to named established news outlets; all retrieved results retained including undersized or mixed-claim groups. No threshold-based selection.",
+      "posts": 8,
+      "accounts": 7,
+      "eligible": true,
+      "firstPostAt": "2024-02-27T11:24:51.000Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "18903f75a5b5",
+      "seed": "https://www.lrt.lt/en/news-in-english/19/3073267/russian-large-scale-attack-on-nato-not-likely-german-intelligence-chief",
+      "label": "normal_reporting",
+      "family": "Normal Baltic war reporting",
+      "selection": "Hash-order Baltic public-service headline seeds. Search results restricted to named established news outlets; all retrieved results retained including undersized or mixed-claim groups. No threshold-based selection.",
+      "posts": 12,
+      "accounts": 8,
+      "eligible": true,
+      "firstPostAt": "2024-10-15T10:50:45.000Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "19eb239e34e1",
+      "seed": "https://www.lrt.lt/en/news-in-english/19/2539178/the-death-of-frozen-conflicts-opinion",
+      "label": "normal_reporting",
+      "family": "Normal Baltic war reporting",
+      "selection": "Hash-order Baltic public-service headline seeds. Search results restricted to named established news outlets; all retrieved results retained including undersized or mixed-claim groups. No threshold-based selection.",
+      "posts": 2,
+      "accounts": 1,
+      "eligible": false,
+      "firstPostAt": "2024-11-29T07:46:00.000Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "3708f10da67d",
+      "seed": "https://www.lrt.lt/en/news-in-english/19/3034302/baltic-states-arm-for-russian-threat-as-leaked-letter-shows-growing-fears",
+      "label": "normal_reporting",
+      "family": "Normal Baltic war reporting",
+      "selection": "Hash-order Baltic public-service headline seeds. Search results restricted to named established news outlets; all retrieved results retained including undersized or mixed-claim groups. No threshold-based selection.",
+      "posts": 11,
+      "accounts": 4,
+      "eligible": true,
+      "firstPostAt": "2023-05-01T07:00:00.000Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "3bc4e1abfb35",
+      "seed": "https://www.lrt.lt/en/news-in-english/19/3113117/hybrid-warfare-in-europe-sabotage-cyberattacks-agents-at-the-service-of-rival-powers",
+      "label": "normal_reporting",
+      "family": "Normal Baltic war reporting",
+      "selection": "Hash-order Baltic public-service headline seeds. Search results restricted to named established news outlets; all retrieved results retained including undersized or mixed-claim groups. No threshold-based selection.",
+      "posts": 1,
+      "accounts": 1,
+      "eligible": false,
+      "firstPostAt": "2026-11-14T10:00:00.000Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "675cc334b2e0",
+      "seed": "https://www.lrt.lt/en/news-in-english/19/3113194/russia-s-demands-for-ukraine-war-end-include-ban-on-nato-bases-in-baltics-german-media",
+      "label": "normal_reporting",
+      "family": "Normal Baltic war reporting",
+      "selection": "Hash-order Baltic public-service headline seeds. Search results restricted to named established news outlets; all retrieved results retained including undersized or mixed-claim groups. No threshold-based selection.",
+      "posts": 2,
+      "accounts": 2,
+      "eligible": false,
+      "firstPostAt": "2026-11-13T11:25:00.000Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "78b96d440a2a",
+      "seed": "https://www.lrt.lt/en/news-in-english/19/2506356/lithuania-s-intelligence-plays-up-russia-threat-in-annual-report",
+      "label": "normal_reporting",
+      "family": "Normal Baltic war reporting",
+      "selection": "Hash-order Baltic public-service headline seeds. Search results restricted to named established news outlets; all retrieved results retained including undersized or mixed-claim groups. No threshold-based selection.",
+      "posts": 14,
+      "accounts": 2,
+      "eligible": false,
+      "firstPostAt": "2020-02-04T08:56:00.000Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "813fc04bcfaa",
+      "seed": "https://www.lrt.lt/en/news-in-english/19/3031330/what-s-behind-russia-s-threats-against-baltics-and-poland",
+      "label": "normal_reporting",
+      "family": "Normal Baltic war reporting",
+      "selection": "Hash-order Baltic public-service headline seeds. Search results restricted to named established news outlets; all retrieved results retained including undersized or mixed-claim groups. No threshold-based selection.",
+      "posts": 16,
+      "accounts": 7,
+      "eligible": true,
+      "firstPostAt": "2023-05-01T07:00:00.000Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "874e1270a89a",
+      "seed": "https://www.lrt.lt/en/news-in-english/19/2112516/former-uk-intelligence-officer-west-will-not-help-ukraine-take-back-crimea-interview",
+      "label": "normal_reporting",
+      "family": "Normal Baltic war reporting",
+      "selection": "Hash-order Baltic public-service headline seeds. Search results restricted to named established news outlets; all retrieved results retained including undersized or mixed-claim groups. No threshold-based selection.",
+      "posts": 7,
+      "accounts": 4,
+      "eligible": false,
+      "firstPostAt": "2014-04-13T14:31:12.000Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "9c5fe76e6013",
+      "seed": "https://www.lrt.lt/en/news-in-english/19/3112075/nauseda-doubts-prospects-for-ukraine-ceasefire-as-us-envoys-head-from-abu-dhabi-to-dublin",
+      "label": "normal_reporting",
+      "family": "Normal Baltic war reporting",
+      "selection": "Hash-order Baltic public-service headline seeds. Search results restricted to named established news outlets; all retrieved results retained including undersized or mixed-claim groups. No threshold-based selection.",
+      "posts": 12,
+      "accounts": 6,
+      "eligible": true,
+      "firstPostAt": "2023-06-28T06:01:00.000Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "a78e04d32528",
+      "seed": "https://www.lrt.lt/en/news-in-english/19/2031274/allies-agree-that-ukraine-will-be-nato-member-but-it-must-win-first-stoltenberg",
+      "label": "normal_reporting",
+      "family": "Normal Baltic war reporting",
+      "selection": "Hash-order Baltic public-service headline seeds. Search results restricted to named established news outlets; all retrieved results retained including undersized or mixed-claim groups. No threshold-based selection.",
+      "posts": 7,
+      "accounts": 5,
+      "eligible": false,
+      "firstPostAt": "2023-04-20T12:37:00.000Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "ba8436ce3f10",
+      "seed": "https://www.lrt.lt/en/news-in-english/19/3110211/russia-must-have-no-say-over-nato-deployments-lithuanian-fm-says-amid-abu-dhabi-talks",
+      "label": "normal_reporting",
+      "family": "Normal Baltic war reporting",
+      "selection": "Hash-order Baltic public-service headline seeds. Search results restricted to named established news outlets; all retrieved results retained including undersized or mixed-claim groups. No threshold-based selection.",
+      "posts": 13,
+      "accounts": 2,
+      "eligible": false,
+      "firstPostAt": "2021-11-26T14:00:00.000Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "d55f6d04a34c",
+      "seed": "https://www.lrt.lt/en/news-in-english/19/2859104/lithuanian-intelligence-says-russia-won-t-threaten-nato-while-ukraine-war-continues",
+      "label": "normal_reporting",
+      "family": "Normal Baltic war reporting",
+      "selection": "Hash-order Baltic public-service headline seeds. Search results restricted to named established news outlets; all retrieved results retained including undersized or mixed-claim groups. No threshold-based selection.",
+      "posts": 16,
+      "accounts": 2,
+      "eligible": false,
+      "firstPostAt": "2023-11-24T07:45:00.000Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "d91510d03c10",
+      "seed": "https://www.lrt.lt/en/news-in-english/19/3070215/latvian-defense-minister-russia-s-hybrid-attacks-not-nuclear-rhetoric-main-concern",
+      "label": "normal_reporting",
+      "family": "Normal Baltic war reporting",
+      "selection": "Hash-order Baltic public-service headline seeds. Search results restricted to named established news outlets; all retrieved results retained including undersized or mixed-claim groups. No threshold-based selection.",
+      "posts": 9,
+      "accounts": 5,
+      "eligible": true,
+      "firstPostAt": "2021-07-29T08:50:00.000Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    },
+    {
+      "id": "eaf0400071ca",
+      "seed": "https://www.lrt.lt/en/news-in-english/19/3098101/pentagon-urges-baltic-states-to-tone-down-rhetoric-on-russia-media",
+      "label": "normal_reporting",
+      "family": "Normal Baltic war reporting",
+      "selection": "Hash-order Baltic public-service headline seeds. Search results restricted to named established news outlets; all retrieved results retained including undersized or mixed-claim groups. No threshold-based selection.",
+      "posts": 1,
+      "accounts": 1,
+      "eligible": false,
+      "firstPostAt": "2026-10-30T08:01:00.000Z",
+      "flag": null,
+      "firstPublicDebunkAt": null,
+      "failed": false,
+      "judgements": []
+    }
+  ],
+  "wrong": {
+    "id": "093e504e24f6",
+    "label": "coordinated",
+    "title": "Zelensky responded to Putin's proposal to evacuate residents of Konstantinovka",
+    "url": "https://finland.news-pravda.com/en/world/2026/11/14/26312.html",
+    "posts": 4,
+    "accounts": 4,
+    "signals": [
+      {
+        "key": "timing",
+        "fired": false,
+        "measured": 4,
+        "baseline": null,
+        "reason": "A same-hour and weekday baseline for these collection sources is still being collected.",
+        "name": "Same minute"
+      },
+      {
+        "key": "new_accounts",
+        "fired": false,
+        "measured": 0,
+        "known": 0,
+        "reason": "Account creation dates could not be measured on these public pages.",
+        "name": "New accounts"
+      },
+      {
+        "key": "same_text",
+        "fired": false,
+        "measured": 4,
+        "reason": "4 of 4 posts repeat near-identical wording in 1 text variants, measured with four-word shingles.",
+        "name": "Same text"
+      },
+      {
+        "key": "shared_links",
+        "fired": false,
+        "measured": 3,
+        "url": "https://telegra.ph/Zelensky-responded-to-Putins-proposal-to-evacuate-residents-of-Konstantinovka-11-14",
+        "reason": "3 posts share https://telegra.ph/Zelensky-responded-to-Putins-proposal-to-evacuate-residents-of-Konstantinovka-11-14. A shared link alone can also reflect ordinary reporting.",
+        "name": "Same links"
+      },
+      {
+        "key": "ties",
+        "fired": false,
+        "reason": "Mutual follower lists could not be measured on these public pages.",
+        "name": "Linked accounts"
+      }
+    ],
+    "verdict": "not-enough"
+  }
+}

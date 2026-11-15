@@ -6,7 +6,7 @@ const lines = readline.createInterface({
   crlfDelay: Infinity,
 });
 const call = db.prepare(
-  "INSERT OR IGNORE INTO calls(id,provider,at,endpoint,params,status,ms,credits,reserved,response,cache_key) VALUES(?,?,?,?,?,?,?,?,?,?,?)",
+  "INSERT INTO calls(id,provider,at,endpoint,params,status,ms,credits,reserved,response,cache_key) VALUES(?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET status=excluded.status,ms=excluded.ms,credits=excluded.credits,reserved=excluded.reserved,response=excluded.response WHERE (calls.status=0 AND excluded.status>0) OR (calls.credits IS NULL AND excluded.credits IS NOT NULL)",
 );
 const record = db.prepare(
   "INSERT OR REPLACE INTO records(kind,id,data) VALUES(?,?,?)",

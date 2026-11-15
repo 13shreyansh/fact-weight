@@ -868,7 +868,7 @@ async function trail() {
     }
     if (step === 2) {
       sentence = `The Hostinger AI Router checked whether these posts carry the same narrative.`;
-      content = `<table class="facts"><tr><td>Model for reading</td><td>${esc((push.reading || push.judgement).model)}</td></tr><tr><td>Model for claim checking</td><td>${esc(push.judgement.model)}</td></tr><tr><td>Prompt version</td><td>${esc(push.judgement.promptVersion)}</td></tr><tr><td>Checked at</td><td>${date(push.judgement.at, true)}</td></tr><tr><td>Same narrative</td><td>${push.judgement.data.sameNarrative ? "agreed" : "not agreed"}</td></tr><tr><td>Router credits</td><td>${push.judgement.usage?.credits_charged ?? "not measured"}</td></tr></table>`;
+      content = `<table class="facts"><tr><td>Model for reading</td><td>${esc((push.reading || push.judgement).model)}</td></tr><tr><td>Model for claim checking</td><td>${esc(push.judgement.model)}</td></tr>${push.judgement.verification?.model ? `<tr><td>Evidence relation check</td><td>${esc(push.judgement.verification.model)} · ${esc(push.judgement.verification.promptVersion)}</td></tr>` : ""}<tr><td>Prompt version</td><td>${esc(push.judgement.promptVersion)}</td></tr><tr><td>Checked at</td><td>${date(push.judgement.at, true)}</td></tr><tr><td>Same narrative</td><td>${push.judgement.data.sameNarrative ? "agreed" : "not agreed"}</td></tr><tr><td>Router credits</td><td>${push.judgement.usage?.credits_charged ?? "not measured"}</td></tr></table>`;
     }
     if (step === 3) {
       sentence = `${push.signals.filter((s) => s.fired).length} of 5 signals fired. The verdict is "${labels[push.verdict]}".`;

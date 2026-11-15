@@ -9,3 +9,8 @@ test("linked source text becomes exact rendered words before quotation checks", 
   for (const p of passages(text, "Finland NATO withdrawal", "s1"))
     assert.ok(text.includes(p.text));
 });
+test("source passages retain adjacent sentences with the attribution and its substance", () => {
+  const text =
+    "Bild reported far reaching demands. They include Finland leaving NATO. An official denied the demand.";
+  assert.ok(passages(text, "Finland NATO", "s1").some((p) => p.text === text));
+});

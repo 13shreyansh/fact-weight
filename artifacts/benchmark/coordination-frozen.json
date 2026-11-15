@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-15T00:00:59.274Z",
+  "config": {
+    "minPosts": 8,
+    "minAccounts": 3,
+    "burstWindowMinutes": 10,
+    "burstRatio": 5,
+    "minBurstPosts": 6,
+    "newAccountDays": 30,
+    "newAccountShare": 0.6,
+    "newAccountRatio": 3,
+    "textJaccard": 0.72,
+    "minCopies": 6,
+    "minCopyShare": 0.5,
+    "minLinkedPosts": 6,
+    "minLinkShare": 0.6,
+    "minMutualAccounts": 6,
+    "minMutualRatio": 3,
+    "embeddingSimilarity": 0.88,
+    "seenClose": 0.88,
+    "seenLoose": 0.78
+  },
+  "configHash": "fc0090d65a031bc71924f65ddfe5021a2d8020d7f319c77ff92a0ba66cf46cc9",
+  "devResultsHash": "7b871a1c9d04cafaa315f447c2058428e0ed050b73fd61ed78cc7137b8b37280",
+  "readerPromptVersion": "sf-judge-v5",
+  "model": "gpt-4.1-mini",
+  "rule": "Retain the provisional thresholds unchanged. No threshold selected after development. Held-out sets use different dates and are deduplicated against development by measured text overlap."
+}

@@ -24,7 +24,8 @@ import {
 import { config } from "./detect.mjs";
 import { pdf, zip } from "./export.mjs";
 import { ensurePack } from "./packs.mjs";
-import { sweep } from "./sweep.mjs";
+import { fork } from "node:child_process";
+import { enqueueWatch } from "./jobs.mjs";
 import { runtimeMetrics } from "./runtime-metrics.mjs";
 import {
   receiveWebhook,
@@ -253,13 +254,7 @@ export const server = http.createServer(async (req, res) => {
         `sf_owner=${token}; HttpOnly; SameSite=Lax; Path=/; Max-Age=86400${process.env.NODE_ENV === "production" ? "; Secure" : ""}`,
       );
       json(res, 201, { id });
-      setImmediate(async () => {
-        try {
-          await sweep(w);
-          if (process.env.SIGNAL_PUBLIC_URL)
-            await setupMonitors(w, process.env.SIGNAL_PUBLIC_URL);
-        } catch {}
-      });
+      enqueueWatch(w.id);
       return;
     }
     if (api.startsWith("/api/watch/") && req.method === "DELETE") {
@@ -406,6 +401,7 @@ export const server = http.createServer(async (req, res) => {
         const ids = new Set(
           [
             p.judgement.call,
+            p.judgement.verification?.call,
             ...p.sources.map((s) => s.call),
             ...p.posts.map((x) => x.call),
             p.reading?.call,
@@ -500,26 +496,23 @@ if (process.argv[1]?.endsWith("/server.mjs")) {
     process.env.HOST || "127.0.0.1",
   );
   if (process.env.SIGNAL_SCHEDULER === "1") {
-    for (const e of all("webhook").filter((e) => e.status === "processing"))
-      put("webhook", e.id, { ...e, status: "pending" });
-    const poll = async () => {
-      for (const w of all("watch").filter(
-        (w) => w.public || Date.parse(w.expiresAt) > Date.now(),
-      )) {
-        const platformSources = w.sources.filter((u) =>
-          /tiktok\.com|instagram\.com|youtube\.com|reddit\.com/.test(u),
-        );
-        await sweep({
-          ...w,
-          sources: platformSources,
-          news: false,
-          trigger: "Platform safety-net sweep",
-        });
-      }
+    let worker,
+      stopping = false;
+    const startWorker = () => {
+      if (stopping) return;
+      worker = fork(new URL("./worker.mjs", import.meta.url), [], {
+        stdio: "inherit",
+      });
+      worker.on("exit", () => {
+        if (!stopping) setTimeout(startWorker, 2000);
+      });
     };
-    setInterval(() => poll().catch(() => {}), 30 * 60000);
-    setInterval(() => processInbox(sweep).catch(() => {}), 15000);
-    setInterval(() => monitorBudgetGuard().catch(() => {}), 60000);
-    setTimeout(() => poll().catch(() => {}), 10000);
+    startWorker();
+    process.on("SIGTERM", () => {
+      stopping = true;
+      worker?.kill("SIGTERM");
+      server.close(() => process.exit(0));
+      setTimeout(() => process.exit(0), 5000).unref();
+    });
   }
 }

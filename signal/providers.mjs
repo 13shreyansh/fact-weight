@@ -59,6 +59,16 @@ export async function call(provider, endpoint, params = {}, opts = {}) {
     .get(cachedId, cachedId);
   if (cached && !opts.fresh)
     return { ...JSON.parse(cached.response), _call: cached.id, _cached: true };
+  if (provider === "context" && !opts.management) {
+    while (
+      db
+        .prepare(
+          "SELECT count(*) n FROM calls WHERE provider='context' AND at>=?",
+        )
+        .get(new Date(Date.now() - 60000).toISOString()).n >= 70
+    )
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+  }
   const reserved =
       provider === "context"
         ? endpoint === "/batch/submit"

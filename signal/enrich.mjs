@@ -1,3 +1,4 @@
+import { verifyEvidence } from "./verify.mjs";
 import { judge, search, scrape, put, hash, all, db } from "./providers.mjs";
 import { embedPosts, similarity } from "./embeddings.mjs";
 import { measure } from "./detect.mjs";
@@ -198,6 +199,9 @@ export async function enrich(candidate, watch) {
       span = source?.passages?.find((p) => p.id === item.passageId);
     if (span) item.quote = span.text;
   }
+  await verifyEvidence(judgement, candidate.posts, sources);
+  if (judgement.verification?.call)
+    check.calls.push(judgement.verification.call);
   check.finishedAt = new Date().toISOString();
   const collectionCalls = [
     ...new Set(candidate.posts.map((p) => p.call).filter(Boolean)),

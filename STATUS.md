@@ -4,7 +4,7 @@ Context.dev collection stays within 30,000 credits; shown judgements use Router 
 Deployment is an isolated Hostinger container; original Fact Weight, Traefik, Spread and Parallax are preserved.
 Acceptance requires deployed desktop/mobile tests, real exports, a frozen benchmark and independent review.
 
-SIGNAL FIRE / 2026-11-14T23:43:54.832Z / release in progress / https://signal-fire.72.61.22.106.sslip.io
+SIGNAL FIRE / 2026-11-14T23:58:20.231Z / release in progress / https://signal-fire.72.61.22.106.sslip.io
 DONE:
 - Isolated Hostinger deployment is live; current verified runtime commit b4e05d51251f529136c6d4692fa7ef5777432e3d.
 - Three live network copy chains now meet the moderate rule, with measured text variants and links.
@@ -20,9 +20,9 @@ BLOCKED: no infrastructure blocker. Required acceptance work remains in progress
 
 The three strongest verified live pushes are below. Complete posts, publishing identities, dates, source quotes and limits: [REAL_FINDINGS.md](artifacts/findings/REAL_FINDINGS.md).
 
-- [Russia's alleged demands for a new European security agreement including Finland leaving…](https://signal-fire.72.61.22.106.sslip.io/w/baltics/p/a6b0d22b1d61): moderate; 17 posts, 11 publishing identities; peak 17 per 10 minutes. Origin: https://t.me/InfodefSpectrum/31483. 4 matching public items; a causal copy connection is not assumed. Accounts ages unavailable. No verified cloned site. 3 exact tracker passages.
-- [Russian delegation head Medinsky asserts territorial claims and buffer zone control in…](https://signal-fire.72.61.22.106.sslip.io/w/baltics/p/aa9426e2b5e6): moderate; 20 posts, 14 publishing identities; peak 20 per 10 minutes. Origin: https://svpressa.ru/politic/article/540809/. 0 matching public items; a causal copy connection is not assumed. Accounts ages unavailable. No verified cloned site. 1 exact tracker passages.
-- [Russia demands NATO close bases in Eastern Europe and Finland leave NATO in Ukraine…](https://signal-fire.72.61.22.106.sslip.io/w/baltics/p/nab032987aff): moderate; 9 posts, 8 publishing identities; peak 9 per 10 minutes. Origin: https://t.me/lomovkaa/146592. 0 matching public items; a causal copy connection is not assumed. Accounts ages unavailable. No verified cloned site. 3 exact tracker passages.
+- [BILD reports Russia proposed Finland leave NATO in peace talks](https://signal-fire.72.61.22.106.sslip.io/w/baltics/p/a6b0d22b1d61): moderate; 17 posts, 11 publishing identities; peak 17 per 10 minutes. Origin: https://t.me/InfodefSpectrum/31483. 4 matching public items; a causal copy connection is not assumed. Accounts ages unavailable. No verified cloned site. 3 exact tracker passages.
+- [Medinsky and Putin statements on buffer zone and European troops in Ukraine](https://signal-fire.72.61.22.106.sslip.io/w/baltics/p/aa9426e2b5e6): moderate; 20 posts, 14 publishing identities; peak 20 per 10 minutes. Origin: https://svpressa.ru/politic/article/540809/. 0 matching public items; a causal copy connection is not assumed. Accounts ages unavailable. No verified cloned site. 3 exact tracker passages.
+- [Claim that Russia demands NATO close bases in Eastern Europe in truce talks](https://signal-fire.72.61.22.106.sslip.io/w/baltics/p/nab032987aff): moderate; 9 posts, 8 publishing identities; peak 9 per 10 minutes. Origin: https://t.me/lomovkaa/146592. 0 matching public items; a causal copy connection is not assumed. Accounts ages unavailable. No verified cloned site. 3 exact tracker passages.
 
 ## Benchmark
 
@@ -33,15 +33,15 @@ CIKM base: measured 18,249 article records. Ukraine keyword subset: measured 4,5
 [
   {
     "provider": "context",
-    "calls": 925,
-    "measured": 891,
-    "charged_or_reserved": 911
+    "calls": 1171,
+    "measured": 1162,
+    "charged_or_reserved": 1192
   },
   {
     "provider": "router",
-    "calls": 73,
-    "measured": 42.92496,
-    "charged_or_reserved": 42.92496
+    "calls": 86,
+    "measured": 71.998488,
+    "charged_or_reserved": 106.998488
   }
 ]
 Measured is the sum of returned request charges. Charged-or-reserved includes unknown amounts. Initial failed attempts and concurrent preparation are being reconciled with the VPS ledger before the final report.
