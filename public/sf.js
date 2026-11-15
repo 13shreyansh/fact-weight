@@ -431,27 +431,38 @@ ${x ? `<div class="pgrid"><div><span class="k">What news outlets reported</span>
   const srcLinks = (arr) => list(arr, "sources").map((x) => `<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.outlet || host(x.url))}</a>`).join(", ");
   function dossier(p, i, stories, clusters) {
     const s = stories.find((x) => x.id === p.story_id) || {};
-    const sp = p.spread || {}, bh = p.behind || {};
+    const sp = p.spread || {}, bh = p.behind || {}, pl = p.plain || {};
     const cl = clusters.find((c) => c.id === bh.cluster_id);
     const href = `/story?id=${encodeURIComponent(p.story_id)}`;
     const conf = list(p.confirmed, "confirmed"), claims = list(p.claims, "claims");
     const tg = list(sp.telegram, "telegram");
     const pf = Object.entries(sp.platforms || {}).filter(([, n]) => n);
-    const facts = [[sp.sites, "sites copied it"], [sp.countries, "countries reached"], ...(sp.minutes_to_spread >= 120 ? [[Math.round(sp.minutes_to_spread / 60), "hours to spread"]] : [[sp.minutes_to_spread, "minutes to spread"]]), [tg.length || null, "Telegram channels"]].filter(([n]) => n != null);
+    const PF = { tiktok: "TikTok", youtube: "YouTube", reddit: "Reddit", instagram: "Instagram", telegram: "Telegram" };
+    const dur = (m) => (m == null ? "" : m < 120 ? `${num(m)} minutes` : m < 2880 ? `${num(Math.round(m / 60))} hours` : `${num(Math.round(m / 1440))} days`);
+    const docs = list(bh.documented_by, "documented_by").map((d) => (typeof d === "string" ? d : d.name));
+    const bad = claims.filter((c) => claimOf(c.status)[1] === "no"), only = claims.filter((c) => claimOf(c.status)[1] === "only");
+    const wrong = pl.wrong || (bad.length ? `News outlets contradict this: “${bad[0].text}”` : only.length ? `No news outlet reports this: “${only[0].text}”` : "Nothing false found. The facts are real, but a network is re-pushing them to steer how readers see them.");
+    const message = pl.message || p.want || "";
+    const why = pl.why || [sp.sites ? `${num(sp.sites)} linked sites reposted it${sp.minutes_to_spread != null ? ` within ${dur(sp.minutes_to_spread)}` : ""}` : "", sp.countries > 1 ? `in ${num(sp.countries)} countries` : "", tg.length ? `plus ${plural(tg.length, "Telegram channel")}` : ""].filter(Boolean).join(", ") + ".";
+    const who = pl.who || `${bh.network || (cl && cl.label) || "An unnamed group of sites"}${docs.length ? `, documented by ${docs.slice(0, 2).join(" and ")}` : ""}.`;
+    const truth = pl.true || (conf[0] ? conf[0].text : "");
+    const rows = [["wrong", "✕ What’s wrong", wrong], ["msg", "The message being pushed", message], ["true", "✓ What’s actually true", truth], ["why", "Why it’s spreading", why], ["who", "Who is behind it", who]].filter(([, , t]) => t && t !== ".");
     return `<article class="dossier label">
-<div class="label-head"><span class="rank">${String(i + 1).padStart(2, "0")}</span>${s.verdict ? vstamp(s.verdict) : ""}<span class="code">${esc(stamp(sp.first_copy_at || s.published_at))}</span></div>
+<div class="label-head"><span class="rank">${String(i + 1).padStart(2, "0")}</span><span>Pushed at this country</span><span class="code">${esc(stamp(sp.first_copy_at || s.published_at))}</span></div>
 <div class="dbody"><h3><a href="${href}">${esc(p.headline || s.title)}</a></h3>
-${facts.length ? `<div class="dfacts">${facts.map(([n, l]) => `<div><b>${num(n)}</b><span>${esc(l)}</span></div>`).join("")}</div>` : ""}
+<dl class="plain">${rows.map(([k, l, t]) => `<div class="pr pr-${k}"><dt>${esc(l)}</dt><dd>${esc(t)}</dd></div>`).join("")}</dl>
+<details class="evid"><summary>Show the evidence</summary>
+<p class="vline">${s.verdict ? vstamp(s.verdict) : ""} <span>Sites copied it almost word for word, minutes apart. That timing is what gives a network away.</span></p>
 <div class="dgrid">
-<div class="dcol"><span class="k">What is confirmed</span>${conf.length ? `<ul class="conf">${conf.map((c) => `<li><p>${esc(c.text)}</p>${list(c.sources, "sources").length ? `<cite>${srcLinks(c.sources)}</cite>` : ""}</li>`).join("")}</ul>` : `<p class="none">No established outlet reported this story.</p>`}</div>
-<div class="dcol"><span class="k">What the copies add, checked</span>${claims.length ? `<ul class="claims">${claims.map((c) => { const [lab, cls] = claimOf(c.status); const ev = list(c.evidence, "evidence"); return `<li class="cl-${cls}"><span class="cstamp">${esc(lab)}</span><p>${esc(c.text)}</p>${ev.map((e) => `${e.quote ? `<blockquote>${esc(e.quote)}</blockquote>` : ""}<cite><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.outlet || host(e.url))}</a></cite>`).join("")}</li>`; }).join("")}</ul>` : `<p class="none">The copies add nothing beyond the original report.</p>`}</div>
+<div class="dcol"><span class="k">Each claim in the copies, checked</span>${claims.length ? `<ul class="claims">${[...bad, ...only, ...claims.filter((c) => !bad.includes(c) && !only.includes(c))].map((c) => { const [lab, cls] = claimOf(c.status); const ev = list(c.evidence, "evidence"); return `<li class="cl-${cls}"><span class="cstamp">${esc(lab)}</span><p>${esc(c.text)}</p>${ev.map((e) => `${e.quote ? `<blockquote>${esc(e.quote)}</blockquote>` : ""}<cite><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.outlet || host(e.url))}</a></cite>`).join("")}</li>`; }).join("")}</ul>` : `<p class="none">The copies add nothing beyond the original report.</p>`}</div>
+<div class="dcol"><span class="k">What news outlets confirm</span>${conf.length ? `<ul class="conf">${conf.map((c) => `<li><p>${esc(c.text)}</p>${list(c.sources, "sources").length ? `<cite>${srcLinks(c.sources)}</cite>` : ""}</li>`).join("")}</ul>` : `<p class="none">No established outlet reported this story.</p>`}</div>
 </div>
-${p.want ? `<div class="want"><span class="k">What they want you to believe</span><p>${esc(p.want)}</p></div>` : ""}
 <div class="dgrid small">
-<div class="dcol"><span class="k">Who is behind it</span><p><strong>${cl ? `<a href="#${esc(cl.id)}">${esc(bh.network || cl.label)}</a>` : esc(bh.network || "Not attributed")}</strong></p>${list(bh.documented_by, "documented_by").length ? `<p class="mono">Documented by ${esc(list(bh.documented_by, "documented_by").map((d) => (typeof d === "string" ? d : d.name)).join(", "))}</p>` : ""}${list(bh.infra, "infra").map((t) => `<p>${esc(t)}</p>`).join("")}</div>
-<div class="dcol"><span class="k">Where it spread</span>${tg.length ? `<p>${tg.map((t) => `<a href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.channel || host(t.url))}</a>`).join(", ")}</p>` : ""}${pf.length ? `<p class="mono">${pf.map(([k, n]) => `${esc(({ tiktok: "TikTok", youtube: "YouTube", reddit: "Reddit", instagram: "Instagram", telegram: "Telegram" })[k] || k)} ${num(n)}`).join(" · ")}</p>` : ""}${!tg.length && !pf.length ? `<p class="none">No pickup outside news sites found.</p>` : ""}</div>
+<div class="dcol"><span class="k">How we know who</span>${cl ? `<p><a href="#${esc(cl.id)}">${esc(bh.network || cl.label)}</a></p>` : ""}${list(bh.infra, "infra").map((t) => `<p>${esc(t)}</p>`).join("")}</div>
+<div class="dcol"><span class="k">Where it spread</span>${tg.length ? `<p>${tg.map((t) => `<a href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.channel || host(t.url))}</a>`).join(", ")}</p>` : ""}${pf.length ? `<p class="mono">${pf.map(([k, n]) => `${esc(PF[k] || k)} ${num(n)}`).join(" · ")}</p>` : ""}${!tg.length && !pf.length ? `<p class="none">No pickup outside news sites found.</p>` : ""}</div>
 </div>
-<a class="btn ghost" href="${href}">Open the X-ray: every copy and the timeline</a></div></article>`;
+<a class="btn ghost" href="${href}">Every copy and the timeline</a>
+</details></div></article>`;
   }
 
   async function country() {
@@ -502,8 +513,9 @@ ${p.want ? `<div class="want"><span class="k">What they want you to believe</spa
     const out = [];
     const br = d.briefing && list(d.briefing.pushes, "pushes").length ? d.briefing : null;
     if (br) {
-      if (br.summary) $("#summary").innerHTML = `<strong>${esc(br.summary.split(/(?<=\.)\s/)[0])}</strong> ${esc(br.summary.split(/(?<=\.)\s/).slice(1).join(" "))}`;
-      out.push(`<section class="block brief"><div class="wrap"><h2>The briefing: ${esc(name)} this week</h2><p class="intro">The stories pushed hardest at ${esc(name)}. For each one: what news outlets confirm, what the copies add, who is behind it and where it spread. Every line links to its source. Written ${esc(dmy(br.generated_at))} ${esc(hhmm(br.generated_at))} UTC from the evidence below.</p><div class="dossiers">${list(br.pushes, "pushes").map((p, i) => dossier(p, i, stories, clusters)).join("")}</div></div></section>`);
+      const sm = br.plain_summary || br.summary;
+      if (sm) $("#summary").innerHTML = `<strong>${esc(sm.split(/(?<=\.)\s/)[0])}</strong> ${esc(sm.split(/(?<=\.)\s/).slice(1).join(" "))}`;
+      out.push(`<section class="block brief"><div class="wrap"><h2>The briefing: ${esc(name)} this week</h2><p class="intro">The stories pushed hardest at ${esc(name)} this week, in four lines each. Every line comes from real pages we read; open “Show the evidence” for the sources. Updated ${esc(dmy(br.generated_at))} ${esc(hhmm(br.generated_at))} UTC.</p><div class="dossiers">${list(br.pushes, "pushes").map((p, i) => dossier(p, i, stories, clusters)).join("")}</div></div></section>`);
     }
     const briefed = new Set(br ? list(br.pushes, "pushes").map((p) => p.story_id) : []);
     const hotRest = hot.filter((s) => !briefed.has(s.id));
