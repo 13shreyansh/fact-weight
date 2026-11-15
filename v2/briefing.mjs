@@ -152,7 +152,26 @@ export async function briefCountry(cc) {
       want: p.want || cluster?.label || null,
     });
   }
-  const out = { country: cc, summary: draft.summary, generated_at: new Date().toISOString(), pushes, method: "Summary and claims drafted by claude-opus-5.5 from stored evidence; each claim checked with Exa against outlets outside the copying group and judged by gpt-4.1; quotes are kept only if they appear verbatim in the fetched page.", computed_at: new Date().toISOString() };
+  // At a glance: four plain lines per push, written after the claim checks so "what's wrong" rests on them.
+  if (pushes.length) {
+    const g = await llm(
+      "claude-opus-5.5",
+      `For a reader with ten seconds, write four plain lines per pushed story, each max 18 words, from the JSON only. Never use the words fake, propaganda, bot or disinformation.
+"wrong": what is false or unsupported, based ONLY on claims with status contradicted (say what the outlets say instead) or only_copies (say "Only the copying sites say …"). If none, write "Nothing false found: the copies repeat what news outlets report."
+"pushed": the message the copies push, in plain words.
+"why": why it spreads, from the evidence (e.g. "7 linked sites reposted it within minutes, cited Telegram channels, reached 3 countries").
+"who": who is behind it (network name and documented-by, or the group of sites), plus one fingerprint that is not CDN hosting.
+Also "country_line": one sentence for the whole country. Return JSON {"country_line":string,"items":[{"story_id":string,"wrong":string,"pushed":string,"why":string,"who":string}]}.`,
+      { pushes: pushes.map((p) => ({ story_id: p.story_id, headline: p.headline, claims: p.claims.map((c) => ({ text: c.text, status: c.status, evidence: c.evidence.map((e) => e.outlet + ": " + e.quote) })), spread: p.spread, behind: p.behind, want: p.want })) },
+      1500,
+    );
+    for (const p of pushes) {
+      const x = g?.items?.find((i) => i.story_id === p.story_id);
+      if (x) p.at_a_glance = { wrong: x.wrong, pushed: x.pushed, why: x.why, who: x.who };
+    }
+    if (g?.country_line) draft.country_line = g.country_line;
+  }
+  const out = { country: cc, summary: draft.summary, country_line: draft.country_line || null, generated_at: new Date().toISOString(), pushes, method: "Summary and claims drafted by claude-opus-5.5 from stored evidence; each claim checked with Exa against outlets outside the copying group and judged by gpt-4.1; quotes are kept only if they appear verbatim in the fetched page.", computed_at: new Date().toISOString() };
   put("briefing", cc, out);
   return out;
 }
