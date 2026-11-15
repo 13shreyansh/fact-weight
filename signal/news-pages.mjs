@@ -1,7 +1,8 @@
+import { recordPost, inWatch } from "./scopes.mjs";
 import { instant } from "./dates.mjs";
 import { scrape, put, hash, get } from "./providers.mjs";
 import { load } from "cheerio";
-export function storeArticle(d, url, persist = true) {
+export function storeArticle(d, url, persist = true, watchId = "baltics") {
   const $ = load(d.html?.data || ""),
     json = $('script[type="application/ld+json"]')
       .map((i, e) => {
@@ -58,7 +59,7 @@ export function storeArticle(d, url, persist = true) {
     call: d._call,
   };
   if (persist) {
-    put("post", id, p);
+    recordPost(p, watchId);
     put("account", p.accountId, {
       id: p.accountId,
       handle: host,
@@ -71,7 +72,7 @@ export function storeArticle(d, url, persist = true) {
   }
   return p;
 }
-export async function collectNewsPage(d, url) {
+export async function collectNewsPage(d, url, watchId = "baltics") {
   if (!new URL(url).hostname.endsWith("news-pravda.com")) return;
   const $ = load(d.html?.data || ""),
     links = [
@@ -84,12 +85,14 @@ export async function collectNewsPage(d, url) {
           ),
       ),
     ]
-      .filter((u) => !get("post", "nw-" + hash(u).slice(0, 16)))
+      .filter(
+        (u) => !inWatch(get("post", "nw-" + hash(u).slice(0, 16)), watchId),
+      )
       .slice(0, 3);
   for (const article of links) {
     try {
       const page = await scrape(article);
-      storeArticle(page, article);
+      storeArticle(page, article, true, watchId);
       const html = load(page.html?.data || "");
       const alternates = html('link[rel="alternate"][hreflang]')
         .map((i, e) => ({
@@ -106,7 +109,7 @@ export async function collectNewsPage(d, url) {
       ];
       for (const a of chosen) {
         const variant = await scrape(a.url);
-        storeArticle(variant, a.url);
+        storeArticle(variant, a.url, true, watchId);
       }
     } catch {}
   }

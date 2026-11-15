@@ -1,3 +1,4 @@
+import { inWatch } from "./scopes.mjs";
 import { collapseDuplicates } from "./duplicates.mjs";
 import { scrape, call, get, put, all, hash, judge } from "./providers.mjs";
 import { defaultWatch, finalize } from "./store.mjs";
@@ -29,6 +30,11 @@ async function performSweep(w) {
   put("sweep", run.id, run);
   try {
     for (const url of w.sources.slice(0, 25)) {
+      if (
+        get("watch", w.id)?.expiresAt &&
+        Date.parse(get("watch", w.id).expiresAt) <= Date.now()
+      )
+        break;
       try {
         const parser = url.includes("tiktok.com/tag")
           ? "tiktok-feed"
@@ -45,10 +51,14 @@ async function performSweep(w) {
         )
           throw Error("The public source could not be read.");
         const ch = url.match(/t\.me\/(?:s\/)?([^/?]+)/)?.[1];
-        if (ch) put("telegram", ch, { ...d, channel: ch });
-        else put("discovery", "watch-" + w.id + "-" + hash(url), d);
-        await collectNewsPage(d, url);
-        if (!parser && !url.includes("t.me/")) storeArticle(d, url);
+        if (ch) put("telegram", ch, { ...d, channel: ch, watchId: w.id });
+        else
+          put("discovery", "watch-" + w.id + "-" + hash(url), {
+            ...d,
+            watchId: w.id,
+          });
+        await collectNewsPage(d, url, w.id);
+        if (!parser && !url.includes("t.me/")) storeArticle(d, url, true, w.id);
         run.read++;
         put("sweep", run.id, run);
         const video = d.parsed?.data?.videos?.[0];
@@ -67,7 +77,10 @@ async function performSweep(w) {
                 { maxAgeMs: 86400000 },
                 { fresh: true },
               );
-              put("discovery", "detail-" + hash(u), detail);
+              put("discovery", "watch-" + w.id + "-detail-" + hash(u), {
+                ...detail,
+                watchId: w.id,
+              });
             } catch (e) {
               run.errors.push({
                 source: "Public TikTok detail",
@@ -80,7 +93,7 @@ async function performSweep(w) {
           try {
             put(
               "discovery",
-              "detail-" + hash(post.url),
+              "watch-" + w.id + "-detail-" + hash(post.url),
               await scrape(
                 post.url,
                 "instagram-post",
@@ -111,7 +124,7 @@ async function performSweep(w) {
           },
           { fresh: true },
         );
-        put("discovery", "watch-" + w.id + "-news", d);
+        put("discovery", "watch-" + w.id + "-news", { ...d, watchId: w.id });
         run.read++;
       } catch (e) {
         run.errors.push({ source: "News search", message: e.message });
@@ -137,7 +150,10 @@ async function performSweep(w) {
             { formats: { markdown: true } },
             { fresh: true },
           );
-          put("discovery", "youtube-" + hash(r.url), video);
+          put("discovery", "watch-" + w.id + "-youtube-" + hash(r.url), {
+            ...video,
+            watchId: w.id,
+          });
         } catch {}
     } catch (e) {
       run.errors.push({ source: "Public YouTube search", message: e.message });
@@ -145,7 +161,10 @@ async function performSweep(w) {
     // The same durable normalizer is used in backfill and scheduled collection.
     await import("../scripts/normalize.mjs?run=" + Date.now());
     const allPosts = all("post").filter(
-      (p) => p.postedAt && Date.parse(p.postedAt) > Date.now() - 14 * 86400000,
+      (p) =>
+        inWatch(p, w.id) &&
+        p.postedAt &&
+        Date.parse(p.postedAt) > Date.now() - 14 * 86400000,
     );
     const keys = Object.values(w.keywords)
       .flat()
@@ -198,8 +217,20 @@ async function performSweep(w) {
       )
         continue;
       try {
-        const candidate = { ...previous, id, posts, accounts, ...measured };
+        const candidate = {
+          ...previous,
+          id,
+          posts,
+          accounts,
+          ...measured,
+          watchId: w.id,
+        };
         const result = await enrich(candidate, w);
+        if (
+          get("watch", w.id)?.expiresAt &&
+          Date.parse(get("watch", w.id).expiresAt) <= Date.now()
+        )
+          continue;
         put("assessed", id, result);
         const published = finalize({ ...result, trigger: w.trigger }, w.id);
         if (published) await ensurePack(published);

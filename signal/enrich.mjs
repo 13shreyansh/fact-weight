@@ -1,3 +1,4 @@
+import { inWatch } from "./scopes.mjs";
 import { instant } from "./dates.mjs";
 import { verifyEvidence } from "./verify.mjs";
 import { judge, search, scrape, put, hash, all, db } from "./providers.mjs";
@@ -46,7 +47,7 @@ export async function enrich(candidate, watch) {
     ...candidate,
     ...measure(
       candidate.posts,
-      all("post").filter((p) => topic.test(p.text)),
+      all("post").filter((p) => inWatch(p, watch.id) && topic.test(p.text)),
       candidate.accounts,
     ),
   };

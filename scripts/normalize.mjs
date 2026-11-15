@@ -1,3 +1,4 @@
+import { recordPost } from "../signal/scopes.mjs";
 import { all, get, put, hash, db } from "../signal/providers.mjs";
 import { load } from "cheerio";
 const dbCallURL = (id) => {
@@ -24,24 +25,32 @@ export const language = (s) =>
         : /[õ]/i.test(s)
           ? "et"
           : "en";
+let activeWatchId = "baltics";
 const store = (p) => {
   if (!p.text?.trim() || !p.url) return;
-  put("post", p.id || hash(p.url), {
-    ...p,
-    id: p.id || hash(p.url),
-    language: p.language || language(p.text),
-    links: [
-      ...new Set(
-        (p.text.match(/https?:\/\/[^\s<>]+/g) || []).concat(p.links || []),
-      ),
-    ],
-    collectedAt: p.collectedAt || new Date().toISOString(),
-  });
+  recordPost(
+    {
+      ...p,
+      id: p.id || hash(p.url),
+      language: p.language || language(p.text),
+      links: [
+        ...new Set(
+          (p.text.match(/https?:\/\/[^\s<>]+/g) || []).concat(p.links || []),
+        ),
+      ],
+      collectedAt: p.collectedAt || new Date().toISOString(),
+    },
+    activeWatchId,
+  );
 };
 for (const { id: recordId } of db
   .prepare("SELECT id FROM records WHERE kind='discovery'")
   .all()) {
   const d = get("discovery", recordId);
+  activeWatchId =
+    d.watchId ||
+    recordId.match(/^watch-([a-f0-9]{16}|baltics)(?:-|$)/)?.[1] ||
+    "baltics";
   const p = d.parsed?.data;
   if (p?.comments) {
     const parent = dbCallURL(d._call);
@@ -137,6 +146,7 @@ for (const { id: recordId } of db
   .prepare("SELECT id FROM records WHERE kind='telegram'")
   .all()) {
   const d = get("telegram", recordId);
+  activeWatchId = d.watchId || "baltics";
   const $ = load(d.html?.data || "");
   $(".tgme_widget_message").each((i, el) => {
     const e = $(el),

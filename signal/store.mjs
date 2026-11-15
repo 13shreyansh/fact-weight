@@ -1,3 +1,4 @@
+import { inWatch } from "./scopes.mjs";
 import { all, get, put, db, spend, hash } from "./providers.mjs";
 import { techniqueName } from "./techniques.mjs";
 import { networkSites, networkEvidence } from "./network.mjs";
@@ -93,11 +94,16 @@ export function metrics(w = defaultId) {
     .sort((a, b) => Date.parse(a.startedAt) - Date.parse(b.startedAt));
   return {
     asOf: new Date().toISOString(),
-    posts: db.prepare("SELECT count(*) n FROM records WHERE kind='post'").get()
-      .n,
+    posts: db
+      .prepare(
+        "SELECT count(*) n FROM records WHERE kind='post' AND EXISTS(SELECT 1 FROM json_each(coalesce(json_extract(data,'$.watchIds'),'[\"baltics\"]')) WHERE value=?)",
+      )
+      .get(w).n,
     accounts: db
-      .prepare("SELECT count(*) n FROM records WHERE kind='account'")
-      .get().n,
+      .prepare(
+        "SELECT count(distinct json_extract(data,'$.accountId')) n FROM records WHERE kind='post' AND EXISTS(SELECT 1 FROM json_each(coalesce(json_extract(data,'$.watchIds'),'[\"baltics\"]')) WHERE value=?)",
+      )
+      .get(w).n,
     sources: (get("watch", w)?.sources || []).filter((url) =>
       db
         .prepare(
@@ -136,6 +142,12 @@ export function metrics(w = defaultId) {
 }
 const candidateText = (c) => c.posts.map((p) => p.text.slice(0, 400)).join(" ");
 export function finalize(c, watchId = defaultId) {
+  if (
+    watchId !== defaultId &&
+    get("watch", watchId)?.expiresAt &&
+    Date.parse(get("watch", watchId).expiresAt) <= Date.now()
+  )
+    return null;
   const j = c.judgement;
   if (!j?.data.sameNarrative) {
     const old = get("push", c.id);
@@ -248,6 +260,7 @@ export function finalize(c, watchId = defaultId) {
   p.backgroundPosts = all("post")
     .filter(
       (x) =>
+        inWatch(x, watchId) &&
         !pushIds.has(x.id) &&
         x.postedAt &&
         Date.parse(x.postedAt) >= Date.parse(p.firstSeen) - 2 * 3600000 &&

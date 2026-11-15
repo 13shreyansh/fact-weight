@@ -290,16 +290,10 @@ try {
       await page
         .locator("input[name=name]")
         .fill("E2E test watch — delete after acceptance");
-      const response = page.waitForResponse(
-        (r) =>
-          r.url() === base + "/api/watch" && r.request().method() === "POST",
-      );
-      await page.locator("button[type=submit].primary").click();
-      let result = await (await response).json();
-      assert.ok(result.id, result.error);
-      privateId = result.id;
       ownerContext = context;
-      await page.waitForURL("**/w/" + privateId);
+      await page.locator("button[type=submit].primary").click();
+      await page.waitForURL((u) => /\/w\/[a-f0-9]{16}$/.test(u.pathname));
+      privateId = new URL(page.url()).pathname.split("/").at(-1);
       await ready(page, "h1");
       await shot(page, "03-home-first-sweep-desktop");
       let denied = await client.request.get(

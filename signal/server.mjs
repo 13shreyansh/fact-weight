@@ -1,4 +1,5 @@
 import http from "node:http";
+import { purgeWatch, safeWatch } from "./scopes.mjs";
 import { reconcileTiming } from "./timing.mjs";
 import { gzipSync } from "node:zlib";
 import { collapseDuplicates } from "./duplicates.mjs";
@@ -162,7 +163,7 @@ export const server = http.createServer(async (req, res) => {
         });
       const list = pushes(w.id);
       return json(res, 200, {
-        watch: w,
+        watch: safeWatch(w),
         pushes: list.map(summaryPush),
         metrics: {
           ...metrics(w.id),
@@ -171,7 +172,8 @@ export const server = http.createServer(async (req, res) => {
         },
         watches: all("watch")
           .filter((w) => w.public || w.owner === owner)
-          .filter((w) => !w.expiresAt || Date.parse(w.expiresAt) > Date.now()),
+          .filter((w) => !w.expiresAt || Date.parse(w.expiresAt) > Date.now())
+          .map(safeWatch),
         benchmark: get("benchmark", "latest") || { status: "not measured" },
         config,
         startedAt,
@@ -272,7 +274,7 @@ export const server = http.createServer(async (req, res) => {
         w = watch(id, owner);
       if (!w || w.public)
         return json(res, 403, { error: "This watch cannot be deleted." });
-      put("watch", id, { ...w, expiresAt: new Date(0).toISOString() });
+      purgeWatch(id);
       return json(res, 200, { deleted: true });
     }
     if (api === "/api/source-check" && req.method === "POST") {
