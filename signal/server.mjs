@@ -1,4 +1,5 @@
 import http from "node:http";
+import { reconcileTiming } from "./timing.mjs";
 import { gzipSync } from "node:zlib";
 import { collapseDuplicates } from "./duplicates.mjs";
 import { summaryPush } from "./summary.mjs";
@@ -448,6 +449,9 @@ export const server = http.createServer(async (req, res) => {
           pack: p.pack || null,
           firstPostToPackMs: p.pack
             ? Math.max(0, Date.parse(p.pack.builtAt) - Date.parse(p.firstSeen))
+            : null,
+          timing: p.pack
+            ? reconcileTiming(p.firstSeen, p.pack.builtAt, p.pipeline)
             : null,
           collectionLatency: null,
           reason:

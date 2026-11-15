@@ -29,6 +29,7 @@ export async function setupMonitors(watch, baseURL) {
     "https://news.err.ee/",
     "https://www.lrt.lt/en/news-in-english",
     "https://eng.lsm.lv/",
+    "https://yle.fi/news",
   ])
     targets.push({
       kind: "Trusted tracker pages",
@@ -226,7 +227,11 @@ export async function processInbox(sweep) {
           sources: urls,
           news: configs.some((c) => c.target.type === "search"),
           trigger: "Context.dev webhook",
-          recheck: configs.some((c) => c.kind === "Trusted tracker pages"),
+          recheck: configs.some(
+            (c) =>
+              c.kind === "Trusted tracker pages" ||
+              c.kind === "Documented look-alike domains",
+          ),
           webhookIds: events.map((e) => e.id),
         });
         if (result?.status !== "complete") throw Error("Collection incomplete");

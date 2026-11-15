@@ -134,7 +134,11 @@ async function api(path, body, method) {
     ...(method && !body ? { method } : {}),
   });
   const d = await r.json();
-  if (!r.ok) throw Error(d.error || "This request could not finish.");
+  if (!r.ok) {
+    const error = Error(d.error || "This request could not finish.");
+    error.userFacing = true;
+    throw error;
+  }
   return d;
 }
 function notice(s) {
@@ -537,8 +541,31 @@ function pushPage() {
           .map((x) => x.platform),
       ),
     ];
+    const firstTimes = ps
+      .map((platform) => ({
+        platform,
+        at: Math.min(
+          ...p.posts
+            .filter((x) => x.platform === platform)
+            .map((x) => Date.parse(x.postedAt)),
+        ),
+      }))
+      .sort((a, b) => a.at - b.at);
     $("#lane-order").textContent =
-      "First observed on " + ps.map((x) => platforms[x]).join(", then ") + ".";
+      "Started on " +
+      platforms[firstTimes[0].platform] +
+      "." +
+      firstTimes
+        .slice(1)
+        .map(
+          (x) =>
+            " " +
+            platforms[x.platform] +
+            " followed " +
+            duration(x.at - firstTimes[0].at) +
+            " later.",
+        )
+        .join("");
   };
   $("#together").onclick = () => {
     setQuery("lanes", null);
@@ -741,13 +768,55 @@ function drawPlot(canvas, p, options = {}) {
       ctx.stroke();
       ctx.font = '11px "JetBrains Mono Variable"';
       ctx.fillStyle = "#5C6A73";
-      [0, 0.5, 1].forEach((f) => {
-        let label = clock(
-            new Date(box.min + f * (box.max - box.min)).toISOString(),
-          ).slice(0, 5),
-          x = f * (box.w - 40);
-        ctx.fillText(label, x, box.h - 8);
-      });
+      const tickMs =
+        opts.zoom === "10min" ? 60000 : opts.zoom === "hour" ? 600000 : 3600000;
+      const labelEvery = Math.max(
+        1,
+        Math.ceil(48 / ((tickMs / (box.max - box.min)) * box.w)),
+      );
+      let tickIndex = 0;
+      for (
+        let at = Math.ceil(box.min / tickMs) * tickMs;
+        at <= box.max;
+        at += tickMs
+      ) {
+        const x = ((at - box.min) / (box.max - box.min)) * box.w;
+        ctx.strokeStyle = "#D5DBDF";
+        ctx.beginPath();
+        ctx.moveTo(x, box.plotH);
+        ctx.lineTo(x, box.plotH + 4);
+        ctx.stroke();
+        if (tickIndex++ % labelEvery === 0) {
+          ctx.fillText(
+            clock(new Date(at).toISOString()).slice(0, 5),
+            Math.min(box.w - 38, Math.max(0, x)),
+            box.h - 8,
+          );
+        }
+      }
+      if (!opts.mini) {
+        const events = [
+          { at: p.firstSeen, label: "first post " + clock(p.firstSeen) },
+          { at: p.flaggedAt, label: "flagged " + clock(p.flaggedAt) },
+        ];
+        for (const event of events) {
+          const at = Date.parse(event.at);
+          if (at < box.min || at > box.max || !Number.isFinite(at)) continue;
+          const x = ((at - box.min) / (box.max - box.min)) * box.w;
+          ctx.strokeStyle = "#132026";
+          ctx.beginPath();
+          ctx.moveTo(x, 16);
+          ctx.lineTo(x, box.plotH);
+          ctx.stroke();
+          ctx.fillStyle = "#132026";
+          const width = ctx.measureText(event.label).width;
+          ctx.fillText(
+            event.label,
+            Math.max(0, Math.min(box.w - width, x + 4)),
+            11,
+          );
+        }
+      }
       if (opts.lanes)
         box.lanes.forEach((l, i) =>
           ctx.fillText(l, 0, (i + 0.5) * box.laneHeight),
@@ -897,7 +966,7 @@ async function trail() {
       content = `<table class="facts"><tr><td>PDF</td><td>${external("/api/push/" + push.id + "/pdf", "Download evidence pack")}</td></tr><tr><td>Source data</td><td>${external("/api/push/" + push.id + "/zip", "Download data")}</td></tr></table>`;
     }
     $("#main").innerHTML =
-      `<div class="trail-head"><a class="text-button" href="${pathPush(push)}">${icon("chevron-left")}Back to the push</a><div class="row between"><h1>How Signal Fire found this push</h1><p class="title">${d.firstPostToPackMs === null ? "First-post-to-pack time is not measured." : Math.ceil(d.firstPostToPackMs / 60000) + " min from first post to evidence pack"}</p></div></div><div class="trail-chain">${names.map((n, i) => `<button class="station" data-step="${i + 1}" aria-pressed="${step === i + 1}"><strong>${n}</strong><i class="circle"></i><time>${d.pipeline?.[pipelineKeys[i]]?.finishedAt ? clock(d.pipeline[pipelineKeys[i]].finishedAt) : ""}</time></button>`).join("")}</div><div class="trail-body"><div><h2 class="title">${sentence}</h2><p class="small secondary" style="margin-bottom:16px">Step time: ${duration(d.pipeline?.[pipelineKeys[step - 1]]?.ms)}</p>${content}${step === 5 && d.pack ? `<p class="small secondary">PDF: ${fmt(d.pack.size)} bytes · built ${date(d.pack.builtAt, true)}</p><p class="mono" style="overflow-wrap:anywhere">SHA-256 ${esc(d.pack.sha256)}</p>` : ""}</div><div><h2>The actual requests</h2>${calls.length ? calls.map((c) => `<details><summary><time>${clock(c.at)}</time> · ${esc(c.provider === "context" ? "context.dev" : "Hostinger AI Router")} ${esc(c.endpoint === "/web/scrape" ? "Page retrieval" : c.endpoint === "/web/search" ? "Web search" : c.endpoint === "/chat/completions" ? "Narrative or claim check" : "Source request")} · ${c.ms} ms · ${c.status}</summary><pre>${esc(c.endpoint + "\n" + JSON.stringify(c.params, null, 2) + "\n\n" + c.response)}</pre><button class="quiet copy-record">Copy</button></details>`).join("") : '<p class="small secondary">This step runs locally. No external request was made.</p>'}</div></div>`;
+      `<div class="trail-head"><a class="text-button" href="${pathPush(push)}">${icon("chevron-left")}Back to the push</a><div class="row between"><h1>How Signal Fire found this push</h1><p class="title">${d.firstPostToPackMs === null ? "First-post-to-pack time is not measured." : Math.ceil(d.firstPostToPackMs / 60000) + " min from first post to evidence pack"}</p></div>${d.timing ? `<p class="small secondary">The recorded steps span ${duration(d.timing.workMs)} in total. ${duration(d.timing.beforeCollectionMs)} elapsed before collection, ${duration(d.timing.betweenStepsMs)} between steps, and ${duration(d.timing.overlapMs)} of steps overlap. These measured intervals account for the full first-post delay.</p>` : ""}</div><div class="trail-chain">${names.map((n, i) => `<button class="station" data-step="${i + 1}" aria-pressed="${step === i + 1}"><strong>${n}</strong><i class="circle"></i><time>${d.pipeline?.[pipelineKeys[i]]?.finishedAt ? clock(d.pipeline[pipelineKeys[i]].finishedAt) : ""}</time></button>`).join("")}</div><div class="trail-body"><div><h2 class="title">${sentence}</h2><p class="small secondary" style="margin-bottom:16px">Step time: ${duration(d.pipeline?.[pipelineKeys[step - 1]]?.ms)}</p>${content}${step === 5 && d.pack ? `<p class="small secondary">PDF: ${fmt(d.pack.size)} bytes · built ${date(d.pack.builtAt, true)}</p><p class="mono" style="overflow-wrap:anywhere">SHA-256 ${esc(d.pack.sha256)}</p>` : ""}</div><div><h2>The actual requests</h2>${calls.length ? calls.map((c) => `<details><summary><time>${clock(c.at)}</time> · ${esc(c.provider === "context" ? "context.dev" : "Hostinger AI Router")} ${esc(c.endpoint === "/web/scrape" ? "Page retrieval" : c.endpoint === "/web/search" ? "Web search" : c.endpoint === "/chat/completions" ? "Narrative or claim check" : "Source request")} · ${c.ms} ms · ${c.status}</summary><pre>${esc(c.endpoint + "\n" + JSON.stringify(c.params, null, 2) + "\n\n" + c.response)}</pre><button class="quiet copy-record">Copy</button></details>`).join("") : '<p class="small secondary">This step runs locally. No external request was made.</p>'}</div></div>`;
     $$("[data-step]").forEach(
       (b) =>
         (b.onclick = () => {
@@ -1295,12 +1364,16 @@ function method() {
     ["running", "Running now"],
     ["limits", "Where it fails"],
   ];
-  let replay =
-    b.status === "measured"
-      ? `<p>${b.description}</p>`
-      : "<p>Campaign replay catch rate and false-flag rate are not measured. The retrieved domain lists document networks, but domain membership is not proof that an individual post was coordinated. No campaign replay is presented as live detection.</p>";
+  const measured = b.coordination,
+    counts =
+      measured?.[
+        url.searchParams.get("count") === "strong" ? "strong" : "both"
+      ];
+  let replay = measured
+    ? `<p>The fixed rule was developed on ${b.development.n} publication sets, then frozen before a separate ${measured.n}-set replay: ${measured.both.positive} documented-network sets and ${measured.both.negative} normal-reporting controls.</p><p>${counts.tp} of ${counts.positive} documented-network sets were caught (${(counts.catchRate * 100).toFixed(1)}%). ${counts.fp} of ${counts.negative} reporting controls were falsely flagged (${(counts.falseFlagRate * 100).toFixed(1)}%).</p><p class="small secondary">Development caught ${b.development.both.tp} of ${b.development.both.positive} network sets (${(b.development.both.catchRate * 100).toFixed(1)}%), with ${b.development.both.fp} of ${b.development.both.negative} controls falsely flagged. Both splits had ${b.development.failed + measured.failed} failed checks in total.</p><p class="small secondary">${measured.positiveEligible} network sets and ${measured.negativeEligible} controls met the minimum sample. Small retrieved sets count as misses; unavailable account histories and baselines cannot fire. This is a test of supplied publication sets, not end-to-end discovery. Zero observed false flags in ${counts.negative} controls does not establish a general rate below 5%.</p><p class="small secondary">${esc(measured.limitations)}</p>`
+    : "<p>Campaign replay catch rate and false-flag rate are not measured. The retrieved domain lists document networks, but domain membership is not proof that an individual post was coordinated. No campaign replay is presented as live detection.</p>";
   $("#main").innerHTML =
-    `<div class="method-layout"><nav class="method-nav">${methodSections.map(([id, title]) => `<a href="#${id}">${title}</a>`).join("")}</nav><article class="method"><h1>How Signal Fire decides, and how often it is right</h1><p class="secondary">The rule behind every verdict, the evidence collected so far, and where it fails.</p><section id="replay"><h2>The replay</h2>${replay}<div class="row wrap"><span class="small secondary">Count as flagged:</span><div class="segmented"><button data-count="both" aria-pressed="${url.searchParams.get("count") !== "strong"}">Strong and moderate</button><button data-count="strong" aria-pressed="${url.searchParams.get("count") === "strong"}">Strong only</button></div></div><table class="confusion" style="margin-top:16px"><thead><tr><th></th><th>Flagged</th><th>Not flagged</th></tr></thead><tbody><tr><th>Documented as coordinated</th><td>not measured</td><td>not measured</td></tr><tr><th>Ordinary discussion</th><td>not measured</td><td>not measured</td></tr></tbody></table><p>Catch rate: not measured.<br>False-flag rate: not measured.<br>Precision: not measured.</p>${b.content ? `<p>Content inventory: ${fmt(b.content.war)} war-related article records from the CIKM 2024 dataset, with ${fmt(b.content.trustworthy)} labelled trustworthy and ${fmt(b.content.disinformation)} labelled as disputed by the source dataset. These labels do not establish coordination.</p><p class="small muted">${external(b.content.url, "Dataset and collection method")}</p>` : ""}${
+    `<div class="method-layout"><nav class="method-nav">${methodSections.map(([id, title]) => `<a href="#${id}">${title}</a>`).join("")}</nav><article class="method"><h1>How Signal Fire decides, and how often it is right</h1><p class="secondary">The rule behind every verdict, the evidence collected so far, and where it fails.</p><section id="replay"><h2>The replay</h2>${replay}<div class="row wrap"><span class="small secondary">Count as flagged:</span><div class="segmented"><button data-count="both" aria-pressed="${url.searchParams.get("count") !== "strong"}">Strong and moderate</button><button data-count="strong" aria-pressed="${url.searchParams.get("count") === "strong"}">Strong only</button></div></div><table class="confusion" style="margin-top:16px"><thead><tr><th></th><th>Flagged</th><th>Not flagged</th></tr></thead><tbody><tr><th>Documented as coordinated</th><td>${counts ? counts.tp : "not measured"}</td><td>${counts ? counts.fn : "not measured"}</td></tr><tr><th>Ordinary discussion</th><td>${counts ? counts.fp : "not measured"}</td><td>${counts ? counts.tn : "not measured"}</td></tr></tbody></table><p>Catch rate: ${counts ? (counts.catchRate * 100).toFixed(1) + "%" : "not measured"}.<br>False-flag rate: ${counts ? (counts.falseFlagRate * 100).toFixed(1) + "%" : "not measured"}.<br>Precision: ${counts?.precision === null || !counts ? "not measured" : (counts.precision * 100).toFixed(1) + "%"}.</p>${b.content ? `<p>Content inventory: ${fmt(b.content.war)} war-related article records from the CIKM 2024 dataset, with ${fmt(b.content.trustworthy)} labelled trustworthy and ${fmt(b.content.disinformation)} labelled as disputed by the source dataset. These labels do not establish coordination.</p><p class="small muted">${external(b.content.url, "Dataset and collection method")}</p>` : ""}${
       b.content?.heldoutExperiment
         ? `<h3 style="margin-top:24px">Content-only screening experiment</h3><p>This separate article task uses source labels, not coordination ground truth. It does not decide which pushes appear.</p><table><thead><tr><th>Split</th><th>Source-labelled disputed articles caught</th><th>Trustworthy articles falsely flagged</th><th>Failed outputs</th></tr></thead><tbody>${[
             "devExperiment",
@@ -1316,7 +1389,16 @@ function method() {
               "",
             )}</tbody></table><p class="small secondary">The held-out false-flag rate exceeds 5%. Retrieval attrition, balanced sampling and article-level source labels limit these results. Failed outputs remain in the denominator. Prompt and configuration were frozen before the held-out run.</p>`
         : ""
-    }</section><section id="lead"><h2>Hours before the first public debunk</h2><p>Not measured. ${b.leadSubset ?? 0} replay cases have both a verified first-post timestamp and a first public debunk date. Fetching an old post today does not show how early Signal Fire would have found it.</p></section><section id="cases"><h2>The cases</h2><p>Public campaign documentation is used to discover sources and check look-alike domains.</p><table><thead><tr><th>Campaign</th><th>Documented by</th><th>Replay</th></tr></thead><tbody><tr><td>Pravda / Portal Kombat</td><td>${external("https://dfrlab.org/2025/02/24/russia-pravda-network-expands-worldwide/", "DFRLab")}</td><td>not measured</td></tr><tr><td>Doppelganger</td><td>${external("https://www.disinfo.eu/doppelganger-hub/", "EU DisinfoLab")}</td><td>not measured</td></tr><tr><td>Operation Overload</td><td>${external("https://checkfirst.network/wp-content/uploads/2024/06/Operation_Overload_WEB.pdf", "CheckFirst")}</td><td>not measured</td></tr></tbody></table></section><section id="wrong"><h2>One it got wrong</h2><p>No campaign evaluation has been completed, so neither a false flag nor a miss is claimed. Missing timestamps and account histories currently prevent the requested campaign-level replay.</p></section><section id="rule"><h2>The rule</h2><p>Strong means three or more signals fired, including Same minute or Same text. Moderate means exactly two. One or none means Looks organic. Under ${state.config.minPosts} posts or ${state.config.minAccounts} accounts means Not enough data. A coordinated push is shown only after the Router agrees that the posts carry the same narrative.</p><table><thead><tr><th>Signal</th><th>Threshold and availability</th></tr></thead><tbody><tr><td>Same minute</td><td>At least ${state.config.minBurstPosts} posts in ${state.config.burstWindowMinutes} minutes and ${state.config.burstRatio} times the same-topic, same-hour and weekday baseline. At least 7 observed days are required.</td></tr><tr><td>New accounts</td><td>Public creation dates and a comparable baseline are required. Missing data cannot fire.</td></tr><tr><td>Same text</td><td>At least ${state.config.minCopies} copies and ${state.config.minCopyShare * 100}% of the cluster; four-word shingle overlap at least ${state.config.textJaccard * 100}%.</td></tr><tr><td>Same links</td><td>At least ${state.config.minLinkedPosts} posts and ${state.config.minLinkShare * 100}% share an external link.</td></tr><tr><td>Linked accounts</td><td>Public mutual-follower lists and a topic baseline are required. Missing data cannot fire.</td></tr></tbody></table><p class="small muted">These thresholds are provisional. They have not been tuned and frozen on a campaign development split. Treat the current watch as an evidence collection service.</p><p>Models read, translate and label posts. The verdict is counts against thresholds. Wording never changes it.</p><p>Wording names include Fear appeal, Loaded language, False attribution, Fabricated authority, Whataboutism and Claims of inevitable victory. An exact phrase is required for each label.</p></section><section id="speed"><h2>Speed</h2>${m.speed?.sampleSize ? `<p>Across ${m.speed.sampleSize} measured pushes, the median first-post-to-alert time is ${duration(m.speed.medianFirstPostToAlertMs)}. The slowest is ${duration(m.speed.slowestFirstPostToAlertMs)}.</p>` : "<p>First-post-to-alert time is not measured yet. It appears after a real evidence pack has been built.</p>"}<p class="small secondary">${esc(m.speed?.note || "Backfilled posts are not evidence of early detection.")}</p><table><thead><tr><th>Context.dev operation</th><th>Calls timed</th><th>Median call time</th></tr></thead><tbody>${(m.speed?.perEndpoint || []).map((row) => `<tr><td>${esc(row.endpoint === "/web/urls" ? "Site URL discovery" : row.endpoint === "/web/scrape" ? "Page retrieval and parsers" : row.endpoint === "/web/search" ? "Web search" : row.endpoint === "/news/search" ? "News search" : row.endpoint === "/batch/submit" ? "Batch submission" : row.endpoint.startsWith("/batch/") ? "Batch status and results" : row.endpoint === "/monitors/run" ? "Monitor run" : row.endpoint.startsWith("/monitors") ? "Monitor management" : "Context.dev account request")}</td><td>${row.calls}</td><td>${duration(row.medianMs)}</td></tr>`).join("")}</tbody></table></section><section id="live-web"><h2>Built on live web data</h2><p>Public TikTok feeds, comments and profiles, Instagram feeds and posts, Reddit search, and YouTube pages and available transcripts are read through Context.dev. Scrape and search retain the source records. Structured extraction checks origin fields; batches collect multiple site indexes together.</p><table><thead><tr><th>Feature</th><th>Requests</th><th>Billed credits</th><th>Reserved</th></tr></thead><tbody>${(m.features || []).map((f) => `<tr><td>${esc(f.name)}</td><td>${f.calls}</td><td>${f.credits.toFixed(3)}</td><td>${f.reserved.toFixed(3)}</td></tr>`).join("")}</tbody></table><p>${m.monitors?.registered || 0} monitors configured · ${m.monitors?.active || 0} enabled · ${m.monitors?.verifiedEvents || 0} signed updates verified · ${m.monitors?.changes || 0} changes received · ${m.monitors?.processed || 0} change notifications processed.</p><p class="small secondary">Changed page and search monitors notify the VPS by a signed webhook. The receiver verifies the timestamp and signature, stores each event once, and queues collection. Platform parsers keep a slower safety-net sweep. New watches are private to their creator and expire after 24 hours.</p></section><section id="network"><h2>The known network in this watch</h2><p>The shipped watch follows the Pravda network across the Baltics and Finland. Its membership and bulk republication are documented by the sources below. This does not establish the truth of any one claim or the identity of an individual poster.</p>${(state.watch.networkEvidence || []).map((e) => `<p class="small">${external(e.url, e.name)}</p>`).join("")}<p class="small secondary">The current public CheckFirst repository contains aggregated visualisation data. The November 2026 article describes the full article archive as a separate feed. Signal Fire retrieves article-level evidence directly and does not claim to have replayed 15 million articles.</p></section><section id="running"><h2>Running now</h2><table class="facts"><tr><td>Hosted on</td><td>${state.commit === "local" ? "Local development. VPS deployment pending." : "Hostinger VPS"}</td></tr><tr><td>Watches</td><td>${m.watches}</td></tr><tr><td>Sources read</td><td>${fmt(m.sources)}</td></tr><tr><td>Posts stored</td><td>${fmt(m.posts)}</td></tr><tr><td>Accounts stored</td><td>${fmt(m.accounts)}</td></tr><tr><td>Sweeps</td><td>${m.sweeps}</td></tr>${m.calls.map((c) => `<tr><td>${c.provider === "context" ? "Context.dev" : "AI Router"} calls today</td><td>${c.n}</td></tr>`).join("")}<tr><td>Models in use</td><td>${esc((m.models || []).join(" · "))} · multilingual MiniLM-L12-v2</td></tr><tr><td>Pushes flagged</td><td>${coordinated.length}</td></tr><tr><td>Disputed by a reviewer</td><td>${m.disputed}</td></tr></table><p class="small muted">As of ${date(m.asOf, true)} Vilnius time. Sweep interval: 30 minutes. ${m.coverage.filter((c) => c.complete).length} public channels have reached the start of the 14-day backfill window.</p>${m.credits.map((c) => `<p class="small">${c.provider === "context" ? "Context.dev" : "Hostinger AI Router"}: ${Number(c.measured || 0).toFixed(3)} measured credits; ${Number(c.charged_or_reserved || 0).toFixed(3)} charged or reserved for requests without returned usage.</p>`).join("")}</section><section id="limits"><h2>Where it fails</h2><ul><li>It reads public pages only. Private groups, closed channels and X are not covered.</li><li>Follower lists are not public on every platform. Missing lists mean Linked accounts cannot fire.</li><li>A real community reacting to real news can post fast and alike. The verdict says "looks", lists what could explain it, and a person decides.</li><li>A patient campaign that posts slowly with old accounts and varied wording will be missed.</li><li>Trusted sources can be wrong or silent. Weak evidence means none of them supports the claim, not that it is untrue.</li><li>English glosses, when available, are machine translations. Read the original before acting.</li><li>News search sometimes returns articles outside the requested language. Returned language labels and coverage need independent checks.</li><li>No campaign-level accuracy or early detection claim is supported by the current collection.</li></ul><h2>What Signal Fire never does</h2><p>It does not report, remove or block anything. It does not say who is behind a push. It does not judge opinions.</p></section>${strongest ? `<a class="primary" href="${pathPush(strongest)}">See the strongest push this week</a>` : ""}${footer()}</article></div>`;
+    }</section><section id="lead"><h2>Hours before the first public debunk</h2><p>Not measured. ${b.leadSubset ?? 0} replay cases have both a verified first-post timestamp and a first public debunk date. Fetching an old post today does not show how early Signal Fire would have found it.</p></section><section id="cases"><h2>The cases</h2><p>Public campaign documentation is used to discover sources and check look-alike domains.</p><table><thead><tr><th>Campaign</th><th>Documented by</th><th>Replay</th></tr></thead><tbody><tr><td>Pravda / Portal Kombat</td><td>${external("https://dfrlab.org/2025/02/24/russia-pravda-network-expands-worldwide/", "DFRLab")}</td><td>${measured ? measured.both.positive + " held-out publication sets" : "not measured"}</td></tr><tr><td>Doppelganger</td><td>${external("https://www.disinfo.eu/doppelganger-hub/", "EU DisinfoLab")}</td><td>not measured</td></tr><tr><td>Operation Overload</td><td>${external("https://checkfirst.network/wp-content/uploads/2024/06/Operation_Overload_WEB.pdf", "CheckFirst")}</td><td>not measured</td></tr></tbody></table></section><section id="wrong"><h2>One it got wrong</h2>${
+      measured?.wrong
+        ? `<h3>${external(measured.wrong.url, measured.wrong.title)}</h3><p>This documented-network set was missed. It contained ${measured.wrong.posts} retrieved posts from ${measured.wrong.accounts} publishing identities. The rule returned “${labels[measured.wrong.verdict]}”. ${esc(
+            measured.wrong.signals
+              .filter((s) => s.fired)
+              .map((s) => s.reason)
+              .join(" "),
+          )}</p><p class="small secondary">Sparse public retrieval is a real failure for a monitor. It is retained in the denominator.</p>`
+        : `<p>No campaign replay has finished, so neither a false flag nor a miss is claimed.</p>`
+    }</section><section id="rule"><h2>The rule</h2><p>Strong means three or more signals fired, including Same minute or Same text. Moderate means exactly two. One or none means Looks organic. Under ${state.config.minPosts} posts or ${state.config.minAccounts} accounts means Not enough data. A coordinated push is shown only after the Router agrees that the posts carry the same narrative.</p><table><thead><tr><th>Signal</th><th>Threshold and availability</th></tr></thead><tbody><tr><td>Same minute</td><td>At least ${state.config.minBurstPosts} posts in ${state.config.burstWindowMinutes} minutes and ${state.config.burstRatio} times the same-topic, same-hour and weekday baseline. At least 7 observed days are required.</td></tr><tr><td>New accounts</td><td>Public creation dates and a comparable baseline are required. Missing data cannot fire.</td></tr><tr><td>Same text</td><td>At least ${state.config.minCopies} copies and ${state.config.minCopyShare * 100}% of the cluster; four-word shingle overlap at least ${state.config.textJaccard * 100}%.</td></tr><tr><td>Same links</td><td>At least ${state.config.minLinkedPosts} posts and ${state.config.minLinkShare * 100}% share an external link.</td></tr><tr><td>Linked accounts</td><td>Public mutual-follower lists and a topic baseline are required. Missing data cannot fire.</td></tr></tbody></table><p class="small muted">These thresholds were retained unchanged after development and frozen before the held-out publication-set replay. Its retrieval and coverage limits apply to these results.</p><p>Models read, translate and label posts. The verdict is counts against thresholds. Wording never changes it.</p><p>Wording names include Fear appeal, Loaded language, False attribution, Fabricated authority, Whataboutism and Claims of inevitable victory. An exact phrase is required for each label.</p></section><section id="speed"><h2>Speed</h2>${m.speed?.sampleSize ? `<p>Across ${m.speed.sampleSize} measured pushes, the median first-post-to-alert time is ${duration(m.speed.medianFirstPostToAlertMs)}. The slowest is ${duration(m.speed.slowestFirstPostToAlertMs)}.</p>` : "<p>First-post-to-alert time is not measured yet. It appears after a real evidence pack has been built.</p>"}<p class="small secondary">${esc(m.speed?.note || "Backfilled posts are not evidence of early detection.")}</p><table><thead><tr><th>Context.dev operation</th><th>Successful calls timed</th><th>Median call time</th></tr></thead><tbody>${(m.speed?.perEndpoint || []).map((row) => `<tr><td>${esc(row.endpoint === "/web/urls" ? "Site URL discovery" : row.endpoint === "/web/scrape" ? "Page retrieval and parsers" : row.endpoint === "/web/search" ? "Web search" : row.endpoint === "/news/search" ? "News search" : row.endpoint === "/batch/submit" ? "Batch submission" : row.endpoint.startsWith("/batch/") ? "Batch status and results" : row.endpoint === "/monitors/run" ? "Monitor run" : row.endpoint.startsWith("/monitors") ? "Monitor management" : "Context.dev account request")}</td><td>${row.calls}</td><td>${duration(row.medianMs)}</td></tr>`).join("")}</tbody></table></section><section id="live-web"><h2>Built on live web data</h2><p>Public TikTok feeds, comments and profiles, Instagram feeds and posts, Reddit search, and YouTube pages and available transcripts are read through Context.dev. Scrape and search retain the source records. Structured extraction checks origin fields; batches collect multiple site indexes together.</p><table><thead><tr><th>Feature</th><th>Requests</th><th>Billed credits</th><th>Reserved</th></tr></thead><tbody>${(m.features || []).map((f) => `<tr><td>${esc(f.name)}</td><td>${f.calls}</td><td>${f.credits.toFixed(3)}</td><td>${f.reserved.toFixed(3)}</td></tr>`).join("")}</tbody></table><p>${m.monitors?.registered || 0} monitors configured · ${m.monitors?.active || 0} enabled · ${m.monitors?.verifiedEvents || 0} signed updates verified · ${m.monitors?.changes || 0} changes received · ${m.monitors?.processed || 0} change notifications processed.</p><p class="small secondary">Changed page and search monitors notify the VPS by a signed webhook. The receiver verifies the timestamp and signature, stores each event once, and queues collection. Platform parsers keep a slower safety-net sweep. New watches are private to their creator and expire after 24 hours.</p></section><section id="network"><h2>The known network in this watch</h2><p>The shipped watch follows the Pravda network across the Baltics and Finland. Its membership and bulk republication are documented by the sources below. This does not establish the truth of any one claim or the identity of an individual poster.</p>${(state.watch.networkEvidence || []).map((e) => `<p class="small">${external(e.url, e.name)}</p>`).join("")}<p class="small secondary">CheckFirst reports 15,046,455 articles as of 28 October 2026 across 88 sites and 47 languages, and about 18,000 new articles per day in the preceding month. These are CheckFirst’s figures, not Signal Fire’s collection. TigerWeb’s EU designation is dated 15 July 2025 in the linked official tracker. The current public CheckFirst repository contains aggregated visualisation data. The November 2026 article describes the full article archive as a separate feed. Signal Fire retrieves article-level evidence directly and does not claim to have replayed 15 million articles.</p></section><section id="running"><h2>Running now</h2><table class="facts"><tr><td>Hosted on</td><td>${state.commit === "local" ? "Local development. VPS deployment pending." : "Hostinger VPS"}</td></tr><tr><td>Watches</td><td>${m.watches}</td></tr><tr><td>Sources read</td><td>${fmt(m.sources)}</td></tr><tr><td>Posts stored</td><td>${fmt(m.posts)}</td></tr><tr><td>Accounts stored</td><td>${fmt(m.accounts)}</td></tr><tr><td>Sweeps</td><td>${m.sweeps}</td></tr>${m.calls.map((c) => `<tr><td>${c.provider === "context" ? "Context.dev" : "AI Router"} calls today</td><td>${c.n}</td></tr>`).join("")}<tr><td>Models in use</td><td>${esc((m.models || []).join(" · "))} · multilingual MiniLM-L12-v2</td></tr><tr><td>Pushes flagged</td><td>${coordinated.length}</td></tr><tr><td>Disputed by a reviewer</td><td>${m.disputed}</td></tr></table><p class="small muted">As of ${date(m.asOf, true)} Vilnius time. Sweep interval: 30 minutes. ${m.coverage.filter((c) => c.complete).length} public channels have reached the start of the 14-day backfill window.</p>${m.credits.map((c) => `<p class="small">${c.provider === "context" ? "Context.dev" : "Hostinger AI Router"}: ${Number(c.measured || 0).toFixed(3)} measured credits; ${Number(c.charged_or_reserved || 0).toFixed(3)} charged or reserved for requests without returned usage.</p>`).join("")}</section><section id="limits"><h2>Where it fails</h2><ul><li>It reads public pages only. Private groups, closed channels and X are not covered.</li><li>Follower lists are not public on every platform. Missing lists mean Linked accounts cannot fire.</li><li>A real community reacting to real news can post fast and alike. The verdict says "looks", lists what could explain it, and a person decides.</li><li>A patient campaign that posts slowly with old accounts and varied wording will be missed.</li><li>Trusted sources can be wrong or silent. Weak evidence means none of them supports the claim, not that it is untrue.</li><li>English glosses, when available, are machine translations. Read the original before acting.</li><li>News search sometimes returns articles outside the requested language. Returned language labels and coverage need independent checks.</li><li>The replay covers supplied publication sets from one documented network. End-to-end discovery, other campaign families and early-warning lead time remain unmeasured.</li></ul><h2>What Signal Fire never does</h2><p>It does not report, remove or block anything. It does not say who is behind a push. It does not judge opinions.</p></section>${strongest ? `<a class="primary" href="${pathPush(strongest)}">See the strongest push this week</a>` : ""}${footer()}</article></div>`;
   $$("[data-count]").forEach(
     (btn) =>
       (btn.onclick = () => {
@@ -1357,8 +1439,12 @@ async function boot() {
             ? "Method"
             : state.watch.name) + " · Signal Fire";
   } catch (e) {
+    if (!e.userFacing) console.error("Evidence page failed", e);
+    const message = e.userFacing
+      ? e.message
+      : "This evidence page could not be read.";
     $("#main").innerHTML =
-      `<div class="error-page"><h1>${esc(e.message)}</h1><p>Nothing is shown from memory. Try again in a moment.</p><button class="quiet" id="retry">Try again</button> <a class="text-button" href="/w/baltics">Back to the list</a></div>`;
+      `<div class="error-page"><h1>${esc(message)}</h1><p>Nothing is shown from memory. Try again in a moment.</p><button class="quiet" id="retry">Try again</button> <a class="text-button" href="/w/baltics">Back to the list</a></div>`;
     $("#retry").onclick = () => location.reload();
   }
 }

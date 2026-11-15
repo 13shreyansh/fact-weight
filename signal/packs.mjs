@@ -38,7 +38,9 @@ export async function ensurePack(input) {
     size: bytes.length,
     cacheKey,
   };
-  p.firstAlertAt = p.firstAlertAt || finishedAt;
+  p.firstAlertAt = ["moderate", "strong"].includes(p.verdict)
+    ? p.firstAlertAt || finishedAt
+    : null;
   p.ready = true;
   db.exec("BEGIN IMMEDIATE");
   const current = get("push", p.id);
@@ -54,10 +56,9 @@ export async function ensurePack(input) {
     firstPostAt: p.firstSeen,
     alertAt: p.firstAlertAt,
     packAt: finishedAt,
-    firstPostToAlertMs: Math.max(
-      0,
-      Date.parse(p.firstAlertAt) - Date.parse(p.firstSeen),
-    ),
+    firstPostToAlertMs: p.firstAlertAt
+      ? Math.max(0, Date.parse(p.firstAlertAt) - Date.parse(p.firstSeen))
+      : null,
     firstPostToPackMs: Math.max(
       0,
       Date.parse(finishedAt) - Date.parse(p.firstSeen),

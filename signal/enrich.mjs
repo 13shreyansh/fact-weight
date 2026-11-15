@@ -108,15 +108,21 @@ export async function enrich(candidate, watch) {
         const result = await search(
           query + " " + group.map((d) => "site:" + d).join(" OR "),
           3,
+          { fresh: !!watch.recheck },
         );
         check.calls.push(result._call);
         for (const r of result.results || []) {
           if (sources.some((s) => s.url === r.url)) continue;
           try {
-            const s = await scrape(r.url, null, {
-              formats: { markdown: true },
-              sharedParams: { mainContentOnly: true },
-            });
+            const s = await scrape(
+              r.url,
+              null,
+              {
+                formats: { markdown: true },
+                sharedParams: { mainContentOnly: true },
+              },
+              { fresh: !!watch.recheck },
+            );
             if (s.markdown?.data?.length > 300) {
               sources.push({
                 id: "s" + sources.length,

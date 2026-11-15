@@ -23,8 +23,16 @@ export function runtimeMetrics() {
     list.push(c.ms);
     timing.set(endpoint, list);
   }
+  const alerts = new Set(
+    all("push")
+      .filter((p) => !p.excluded && ["moderate", "strong"].includes(p.verdict))
+      .map((p) => p.id),
+  );
   const latencies = all("latency").filter(
-    (l) => l.mode !== "replay" && Number.isFinite(l.firstPostToAlertMs),
+    (l) =>
+      alerts.has(l.id) &&
+      l.mode !== "replay" &&
+      Number.isFinite(l.firstPostToAlertMs),
   );
   const features = new Map();
   for (const c of calls.filter((c) => c.provider === "context")) {

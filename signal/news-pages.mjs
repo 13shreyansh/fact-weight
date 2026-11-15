@@ -47,7 +47,10 @@ export function storeArticle(d, url, persist = true) {
     platform: host === "telegra.ph" ? "WB" : "NW",
     handle: host,
     accountId: "nw-" + host,
-    language: $("html").attr("lang")?.slice(0, 2) || "en",
+    language: new URL(url).pathname.startsWith("/en/")
+      ? "en"
+      : $("html").attr("lang")?.slice(0, 2) || "en",
+    declaredPageLanguage: $("html").attr("lang") || null,
     links: $("article a[href]")
       .map((i, e) => $(e).attr("href"))
       .get(),
