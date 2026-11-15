@@ -7,13 +7,13 @@ import { tokens, shingles, jaccard, containment, windowJaccard, headlineSim, cle
 
 export const T = {
   days: 7,
-  maxStories: 36,
+  maxStories: 30,
   copyThreshold: 0.6,
   edgeMinutes: 60,
   clusterMinSites: 3,
   clusterMinStories: 3,
-  scrapesPerStory: 8,
-  organicMinOutlets: 4,
+  scrapesPerStory: 9,
+  organicMinOutlets: 3,
   strong: { sites: 5, stories: 5, medianGapMin: 30 },
 };
 const SPORT = /\b(hockey|football|soccer|nhl|nba|nfl|uefa|fifa|league|olympic|grand prix|tennis|golf|cricket|rugby|semifinal|quarterfinal|match report|stats & head-to-head|vs\.? )\b/i;
@@ -107,14 +107,15 @@ async function collectStories(c) {
     })
     .filter((s) => !SPORT.test(s.articles.map((a) => a.headline).join(" ")));
   stories.sort((a, b) => b.outlets - a.outlets || String(b.articles.at(-1).published_at).localeCompare(String(a.articles.at(-1).published_at)));
-  const pool80 = stories.slice(0, 90);
-  const keep = await llm(
+  const pool80 = stories.slice(0, 110);
+  const drop = await llm(
     "gemini-3.5-flash-lite",
-    `You select news stories that matter for public opinion in ${c.name}: politics, government, elections, security, defence, foreign relations, war, economy, major companies and technology, society and public health. Exclude sports results, entertainment, celebrity, lifestyle, local crime and stories with no link to ${c.name}. Return JSON {"keep":[int]} with indexes in order of importance.`,
-    { stories: pool80.map((s, i) => ({ i, title: s.title, outlets: s.outlets })) },
-    600,
+    `From these news stories found for ${c.name}, list the ones to SET ASIDE: sports results and sports business, entertainment, celebrity, lifestyle, recipes, local crime, and stories with no connection to ${c.name}. Keep politics, government, elections, security, defence, foreign relations, war, economy, companies, technology, health and society. Return JSON {"drop":[int]}.`,
+    { stories: pool80.map((s, i) => ({ i, title: s.title })) },
+    800,
   ).catch(() => null);
-  const kept = Array.isArray(keep?.keep) ? [...new Set(keep.keep)].map((i) => pool80[i]).filter(Boolean) : pool80;
+  const dropped = new Set(Array.isArray(drop?.drop) ? drop.drop : []);
+  const kept = pool80.filter((_, i) => !dropped.has(i));
   for (const s of indexedPublishers) all_publishers.add(s);
   return { stories: kept.slice(0, T.maxStories), indexed: seen.size, queries: reqs.length, filtered: pool80.length - kept.length };
 }
@@ -178,7 +179,10 @@ async function findCopies(story, c) {
     const w = s.replace(/["“”«»]/g, "").split(/\s+/);
     return `"${w.slice(0, 14).join(" ")}"`;
   };
-  const results = await pool(frags, 3, (f) => call("context", "/web/search", { query: quote(f) + " -site:x.com -site:twitter.com", numResults: 20 }));
+  // Quoted phrases find verbatim copies; one plain-keyword search per headline widens the pool so
+  // pages that copy each other (rather than the mainstream wording) can be compared pairwise.
+  const queries = [...frags.map((f) => ({ q: quote(f), quoted: true })), ...frags.slice(0, 2).map((f) => ({ q: tokens(f).slice(0, 12).join(" "), quoted: false }))];
+  const results = await pool(queries, 3, (x) => call("context", "/web/search", { query: x.q + " -site:x.com -site:twitter.com", numResults: 20 }).then((r) => ({ ...r, quoted: x.quoted })));
   const known = new Set(story.articles.map((a) => normUrl(a.url)));
   const cands = new Map();
   for (const r of results)
@@ -186,7 +190,7 @@ async function findCopies(story, c) {
       const s = site(x.url);
       if (!s || SKIP_HOSTS.test(s) || known.has(normUrl(x.url)) || cands.has(normUrl(x.url))) continue;
       const sim = Math.max(...frags.map((f) => Math.max(headlineSim(f, x.title || ""), windowJaccard(f, (x.title || "") + " " + (x.description || ""), 3))));
-      if (sim >= 0.3) cands.set(normUrl(x.url), { url: x.url, sim });
+      if (sim >= (r.quoted ? 0.3 : 0.2)) cands.set(normUrl(x.url), { url: x.url, sim });
     }
   const picked = [...cands.values()].sort((a, b) => b.sim - a.sim).slice(0, T.scrapesPerStory);
   const pages = (
@@ -195,7 +199,7 @@ async function findCopies(story, c) {
       return scrapeInfo(d, p.url);
     })
   ).filter((p) => p && !p.error && p.text);
-  return { searches: frags.length, candidates: cands.size, pages };
+  return { searches: queries.length, candidates: cands.size, pages };
 }
 
 // Groups of near-identical pages within one story (union-find over pairwise similarity).
@@ -515,7 +519,7 @@ export async function buildCountry(cc, build) {
         searches += res[i]?.searches || 0;
         pages += st.pages.length;
       });
-      s.note = `${searches} phrase searches, ${pages} candidate pages read`;
+      s.note = `${searches} searches (quoted phrases and keywords), ${pages} candidate pages read`;
     });
     let graph;
     await step(build, "Confirm copies and build the site graph", async (s) => {

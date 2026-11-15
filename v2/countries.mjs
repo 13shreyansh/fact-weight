@@ -1,6 +1,6 @@
 // Country names and the languages searched for each. Any ISO 3166-1 alpha-2 code works;
 // codes outside this table fall back to the English name and English only.
-export const PRECOMPUTED = "FI SE NO DK EE LV LT PL DE FR IT ES NL GB IE US CA UA MD GE RO HU CZ SK CN TW JP KR IN SG".split(" ");
+export const PRECOMPUTED = "FI US SE NO DK EE LV LT PL DE FR IT ES NL GB IE CA UA MD GE RO HU CZ SK CN TW JP KR IN SG".split(" ");
 const LANGS = {
   FI: ["fi", "sv"], SE: ["sv"], NO: ["no"], DK: ["da"], EE: ["et", "ru"], LV: ["lv", "ru"], LT: ["lt", "ru"],
   PL: ["pl"], DE: ["de"], FR: ["fr"], IT: ["it"], ES: ["es"], NL: ["nl"], GB: [], IE: [], US: [], CA: ["fr"],
