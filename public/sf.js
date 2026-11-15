@@ -345,7 +345,7 @@ ${nodes.map((n) => { const r = 5 + Math.sqrt(n.stories || 1) * 2.6; return `<g c
   }
   function cluster(c, i) {
     return `<article class="label cl" id="${esc(c.id)}">
-<div class="label-head"><h3>${esc(c.label || `Group ${i + 1}`)}</h3>${vstamp(c.verdict)}<span class="code">GROUP ${esc(c.id)}</span></div>
+<div class="label-head"><h3>${esc(c.label || `Group ${i + 1}`)}</h3>${vstamp(c.verdict)}<span class="code">${plural(c.site_count ?? (c.sites || []).length, "site")}</span></div>
 <div class="cl-body">
 <section><span class="k">${plural(c.site_count ?? (c.sites || []).length, "site")}</span>${sitesList(c.sites, c.site_count)}
 <dl style="margin-top:18px"><div><dt class="k">Documented by</dt><dd>${docBy(c.documented_by)}</dd></div></dl></section>
@@ -382,6 +382,44 @@ ${(c.reasons || []).length ? `<ul class="reasons">${c.reasons.map((r) => `<li>${
     }).join("")}</tbody></table>`;
   }
 
+
+  function baseDomain(h) { const p = String(h || "").replace(/^www\./, "").split("."); return p.length > 2 ? p.slice(-2).join(".") : p.join("."); }
+  function groupName(c) {
+    const raw = String(c.label || "");
+    if (raw && !/^(group|cluster|network)?\s*[a-z]?\d+$/i.test(raw.trim()) && !/^group\b/i.test(raw.trim())) return raw;
+    const names = (c.sites || []).map((s) => (typeof s === "string" ? s : s.domain || s.site || host(s.url)));
+    const count = {}; names.forEach((n) => { const b = baseDomain(n); count[b] = (count[b] || 0) + 1; });
+    const top = Object.entries(count).sort((p, q) => q[1] - p[1])[0];
+    const n = c.site_count || names.length;
+    if (top && top[1] >= 2) return `${top[0]} network, ${n} sites`;
+    if (top) return `${n} sites incl. ${names[0]}`;
+    return `${n}-site network`;
+  }
+  function pushCard(s, x, clusters) {
+    const main = x ? list(x.mainstream, "mainstream").filter((m) => m.published_at).sort((p, q) => ts(p.published_at) - ts(q.published_at)) : [];
+    const cps = x ? list(x.copies, "copies").filter((c) => c.published_at).sort((p, q) => ts(p.published_at) - ts(q.published_at)) : [];
+    const bu = burst(cps);
+    const cid = s.cluster_id || (cps.find((c) => c.cluster_id) || {}).cluster_id;
+    const cl = clusters.find((c) => c.id === cid);
+    const spin = x ? list(x.spin, "spin") : [];
+    const added = [...new Set(spin.flatMap((p) => p.added_phrases || []))].slice(0, 5);
+    const labels = [...new Set(spin.flatMap((p) => (p.labels || []).map((l) => (typeof l === "string" ? l : l.name))))].slice(0, 4);
+    const m0 = main[0];
+    const twist = added.length
+      ? `<div class="ins">${added.map((p) => `<mark>${esc(p)}</mark>`).join("")}</div>${labels.length ? `<div class="tags">${labels.map((l) => `<span>${esc(l)}</span>`).join("")}</div>` : ""}`
+      : cps[0] ? `<blockquote>${esc(cps[0].headline || s.title)}</blockquote><cite>${esc(host(cps[0].url) || cps[0].site)}</cite><p class="none">No added wording found; the copies repeat the story as is.</p>` : `<p class="none">Copies not loaded.</p>`;
+    const href = `/story?id=${encodeURIComponent(s.id)}`;
+    const o = cps[0] && cps[0].published_at;
+    return `<article class="push label">
+<div class="label-head">${vstamp(s.verdict)}<span class="code">${esc(stamp(s.published_at || (m0 && m0.published_at)))}</span></div>
+<div class="pbody"><h3><a href="${href}">${esc(s.title)}</a></h3>
+<p class="pline"><strong>${plural(s.copies ?? cps.length, "copy", "copies")} in ${plural(s.countries_reached ?? countriesOf(cps), "country", "countries")}</strong>${bu.n > 2 ? `, ${num(bu.n)} of them within ${num(Math.round((bu.b - bu.a) / 60000))} minutes` : ""}${cl ? `, by the <a href="#${esc(cl.id)}">${esc(cl.label)}</a>${(cl.documented_by || []).length ? ` (documented by ${esc((cl.documented_by.map((d) => (typeof d === "string" ? d : d.name)))[0])})` : ""}` : ""}.</p>
+${cps.length ? `<div class="marks">${cps.slice(0, 9).map((c) => postmark({ top: host(c.url) || c.site, bottom: c.country || c.lang, mid: hhmm(c.published_at), sub: `+${mins(o, c.published_at)} MIN`, seed: c.url })).join("")}</div>` : ""}
+${x ? `<div class="pgrid"><div><span class="k">What news outlets reported</span>${m0 ? `<blockquote>${esc(m0.headline || s.title)}</blockquote><cite>${esc(m0.outlet || host(m0.url))}, ${esc(stamp(m0.published_at))}</cite>` : `<p class="none">No mainstream report matched.</p>`}</div>
+<div><span class="k">What the copies added</span>${twist}</div></div>` : ""}
+<a class="btn ghost" href="${href}">See every copy and the timeline</a></div></article>`;
+  }
+
   async function country() {
     const cc = (new URLSearchParams(location.search).get("cc") || "").toUpperCase().replace(/[^A-Z]/g, "").slice(0, 2);
     const name = cname(cc);
@@ -399,34 +437,46 @@ ${(c.reasons || []).length ? `<ul class="reasons">${c.reasons.map((r) => `<li>${
 
     const clusters = list(d.clusters, "clusters");
     const narratives = list(d.narratives, "narratives");
-    const big = clusters.slice().sort((a, b) => (b.site_count || 0) - (a.site_count || 0))[0];
-    $("#summary").innerHTML = clusters.length
-      ? `<strong>${plural(clusters.length, "group")} of sites copied ${esc(name)}’s news in coordinated bursts this week.</strong> The largest, ${esc(big.label || "")}, copied ${plural(big.stories_copied, "story", "stories")}${big.median_copy_lag_min != null ? ` with a typical delay of ${num(big.median_copy_lag_min)} minutes` : ""}.${narratives[0] ? ` Its main line: “${esc(narratives[0].label)}”.` : ""}`
-      : `<strong>No coordinated copying found for ${esc(name)} this week.</strong> We checked ${plural(d.stories_checked, "story", "stories")}; the copies we found came from outlets with their own wording and timing.`;
-    $("#meta").innerHTML = `<div><b>${num(d.stories_checked)}</b><span>stories checked</span></div><div><b>${num(d.copies_found ?? clusters.reduce((a, c) => a + (c.stories_copied || 0), 0))}</b><span>${d.copies_found != null ? "copies found" : "copied stories"}</span></div><div><b>${num(clusters.length)}</b><span>groups</span></div><div><b>${esc(dmy(d.built_at || d.computed_at))} ${esc(hhmm(d.built_at || d.computed_at))}</b><span>last built, UTC</span></div>`;
+    clusters.forEach((c) => { c.label = groupName(c); });
+    let stories = [];
+    try { stories = list(await api(`/api/stories?country=${cc}`), "stories"); } catch { /* optional */ }
+    const hot = stories.filter((s) => verdictOf(s.verdict).cls === "co")
+      .sort((p, q) => (verdictOf(q.verdict).text.includes("strong") - verdictOf(p.verdict).text.includes("strong")) || (q.copies || 0) - (p.copies || 0)).slice(0, 4);
+    const rest = stories.filter((s) => !hot.includes(s));
+    const details = await Promise.all(hot.map((s) => api(`/api/stories/${encodeURIComponent(s.id)}`).catch(() => null)));
+
+    const lead = hot[0], ld = details[0];
+    if (lead) {
+      const cps = ld ? list(ld.copies, "copies").filter((c) => c.published_at) : [];
+      const bu = burst(cps);
+      $("#summary").innerHTML = `<strong>${hot.length === 1 ? "One story" : `${num(hot.length)} stories`} about ${esc(name)} ${hot.length === 1 ? "was" : "were"} pushed in coordinated bursts this week.</strong> The biggest: “${esc(lead.title)}”, copied by ${plural(lead.copies ?? cps.length, "site")} in ${plural(lead.countries_reached ?? countriesOf(cps), "country", "countries")}${bu.n > 2 ? `, ${num(bu.n)} of them within ${num(Math.round((bu.b - bu.a) / 60000))} minutes` : ""}.`;
+    } else {
+      $("#summary").innerHTML = clusters.length
+        ? `<strong>${plural(clusters.length, "network")} copied ${esc(name)}’s news in coordinated bursts this week.</strong>`
+        : `<strong>Nothing about ${esc(name)} was pushed in coordinated bursts this week.</strong> We checked ${plural(d.stories_checked, "story", "stories")}; outlets covering them used their own wording and timing.`;
+    }
+    $("#meta").innerHTML = `<div><b>${num(hot.length)}</b><span>coordinated pushes</span></div><div><b>${num(clusters.length)}</b><span>networks behind them</span></div><div><b>${num(d.stories_checked)}</b><span>stories checked</span></div><div><b>${esc(dmy(d.built_at || d.computed_at))} ${esc(hhmm(d.built_at || d.computed_at))}</b><span>last read, UTC</span></div>`;
     $("#meta").hidden = false;
 
     const out = [];
-    out.push(`<section class="block"><div class="wrap"><h2>Who is influencing ${esc(name)}</h2><p class="intro">Sites that copied the same ${esc(name)} stories within an hour of each other, again and again. Nobody is on a list in advance; known networks are only named when published research documents them.</p>
-${clusters.length ? `<div class="clusters">${clusters.map(cluster).join("")}</div>` : `<div class="label notice" style="margin-top:28px"><strong>No coordinated group found</strong>Copies of ${esc(name)}’s top stories exist, but no set of sites copied three or more of the same stories within 60 minutes of each other.</div>`}<div class="net" id="net"></div></div></section>`);
-    if (narratives.length) out.push(`<section class="block"><div class="wrap"><h2>What they want</h2><p class="intro">The lines these groups push about ${esc(name)}, how often, and since when. Labels are only shown when two independent AI model families agree on them.</p><div class="narr">${narratives.map((n) => narrative(n, clusters)).join("")}</div></div></section>`);
+    if (hot.length) out.push(`<section class="block"><div class="wrap"><h2>Being pushed at ${esc(name)} now</h2><p class="intro">Stories that many sites republished almost word for word within minutes of each other. Left: what news outlets reported. Right: what the copies added.</p><div class="pushes">${hot.map((s, i) => pushCard(s, details[i], clusters)).join("")}</div></div></section>`);
+    if (narratives.length) out.push(`<section class="block"><div class="wrap"><h2>What they want ${esc(name)} to believe</h2><p class="intro">The lines these networks keep repeating about ${esc(name)}, and how often. A line is only shown when two independent AI models agree on it.</p><div class="narr">${narratives.map((n) => narrative(n, clusters)).join("")}</div></div></section>`);
+    if (clusters.length) out.push(`<section class="block"><div class="wrap"><h2>Who is behind it</h2><p class="intro">The sites that did the copying, grouped by how often they copy together. Nobody is on a list in advance; a network is only named when published research has documented it.</p><div class="clusters">${clusters.map(cluster).join("")}</div><div class="net" id="net"></div></div></section>`);
 
-    let stories = [];
-    try { stories = list(await api(`/api/stories?country=${cc}`), "stories"); } catch { /* optional */ }
-    if (stories.length) out.push(`<section class="block"><div class="wrap"><h2>Stories checked</h2><p class="intro">Open any story to see the original coverage and every copy, stamped in the order it appeared.</p>${storyRows(stories)}</div></section>`);
-
+    const more = [];
+    if (rest.length) more.push(`<h3 class="mh">${plural(rest.length, "other story", "other stories")} we checked</h3><p class="intro">Covered normally, or too few copies to tell. Open any story to see the evidence.</p>${storyRows(rest)}`);
     const org = list(d.organic_examples, "organic_examples");
-    if (org.length) out.push(`<section class="block"><div class="wrap"><h2>Looks organic</h2><p class="intro">Widely covered stories where outlets used their own words on their own schedule. This is what normal news looks like.</p><div class="organic">${org.map((o) => `<div class="label">${vstamp("Looks organic")}<h3>${o.story_id ? `<a href="/story?id=${encodeURIComponent(o.story_id)}">${esc(o.title)}</a>` : esc(o.title)}</h3><ul>${o.outlets != null ? `<li>${plural(o.outlets, "outlet")}</li>` : ""}${(o.reasons || []).map((r) => `<li>${esc(r)}</li>`).join("")}</ul></div>`).join("")}</div></div></section>`);
-
+    if (org.length) more.push(`<h3 class="mh">Looks organic</h3><p class="intro">Widely covered stories where outlets used their own words on their own schedule. This is what normal news looks like.</p><div class="organic">${org.map((o) => `<div class="label">${vstamp("Looks organic")}<h3>${o.story_id ? `<a href="/story?id=${encodeURIComponent(o.story_id)}">${esc(o.title)}</a>` : esc(o.title)}</h3><ul>${o.outlets != null ? `<li>${plural(o.outlets, "outlet")}</li>` : ""}${(o.reasons || []).map((r) => `<li>${esc(r)}</li>`).join("")}</ul></div>`).join("")}</div>`);
     const pick = list(d.pickup || d.social_pickup, "items");
-    if (pick.length) out.push(`<section class="block"><div class="wrap"><h2>Where it travels next</h2><p class="intro">The same stories picked up on TikTok, Instagram, YouTube and Reddit. X is not covered.</p><div class="pickup">${pick.map((p) => `<a href="${esc(p.url)}" target="_blank" rel="noopener"><span class="pf">${esc(p.platform)}</span><span class="tt">${esc(p.title || host(p.url))}</span><span class="mono">${esc(stamp(p.published_at))}${p.views != null ? ` · ${num(p.views)} views` : ""}</span></a>`).join("")}</div></div></section>`);
-
-    out.push(`<section class="block"><div class="wrap"><h2>Live for ${esc(name)}</h2><p class="intro">Pages of every group above stay under watch. New copies arrive here without a rebuild.</p><div class="wire label" style="margin-top:24px"><div class="label-head"><span class="livedot" aria-hidden="true"></span><span>Live wire · ${esc(name)}</span><span class="code" id="wiremeta">connecting</span></div><ol class="events" id="events"></ol></div>
+    if (pick.length) more.push(`<h3 class="mh">Where it travels next</h3><p class="intro">The same stories picked up on TikTok, Instagram, YouTube and Reddit. X is not covered.</p><div class="pickup">${pick.map((p) => `<a href="${esc(p.url)}" target="_blank" rel="noopener"><span class="pf">${esc(p.platform)}</span><span class="tt">${esc(p.title || host(p.url))}</span><span class="mono">${esc(stamp(p.published_at))}${p.views != null ? ` · ${num(p.views)} views` : ""}</span></a>`).join("")}</div>`);
+    more.push(`<h3 class="mh">Live for ${esc(name)}</h3><p class="intro">Pages of every network above stay under watch. New copies arrive here without a rebuild.</p><div class="wire label" style="margin-top:20px"><div class="label-head"><span class="livedot" aria-hidden="true"></span><span>Live wire · ${esc(name)}</span><span class="code" id="wiremeta">connecting</span></div><ol class="events" id="events"></ol></div>
 <div class="apigrid" style="margin-top:24px"><form class="label watch" id="watch"><div class="label-head"><span>Alert me about ${esc(name)}</span><span class="code">POST /api/watch</span></div><div class="wbody"><label for="wcc">Country</label><select id="wcc" required></select><label for="wurl">Your webhook (https)</label><input id="wurl" type="url" required placeholder="https://newsroom.example/hooks/signal-fire" pattern="https://.+"><button class="btn" type="submit">Start alerts</button><p class="wmsg" id="wmsg" role="status"></p></div></form>
 <div class="label code-card"><div class="label-head"><span>Same data as JSON</span><span class="code">GET</span></div><pre><code>curl ${esc(location.origin)}/api/countries/${esc(cc)}
 curl ${esc(location.origin)}/api/countries/${esc(cc)}/graph
-curl ${esc(location.origin)}/api/live?country=${esc(cc)}</code></pre></div></div></div></section>`);
+curl ${esc(location.origin)}/api/live?country=${esc(cc)}</code></pre></div></div>`);
+    out.push(`<section class="block"><div class="wrap"><details class="more"${hot.length ? "" : " open"}><summary>Everything else we checked</summary>${more.join("")}</details></div></section>`);
     $("#body").innerHTML = out.join("");
+    document.querySelectorAll(".push .marks").forEach((m) => stampIn(m, ".pm", 90));
     network(cc, clusters); liveWire(cc); watchForm(cc);
     document.querySelectorAll("tr[data-href]").forEach((tr) => tr.addEventListener("click", (e) => { if (!e.target.closest("a")) location.href = tr.dataset.href; }));
     if (location.hash) { const el = document.getElementById(location.hash.slice(1)); if (el) el.scrollIntoView(); }
