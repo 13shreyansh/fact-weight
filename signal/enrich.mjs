@@ -54,6 +54,31 @@ export async function enrich(candidate, watch) {
     finishedAt: new Date().toISOString(),
     ms: Math.round(performance.now() - checkStart),
   };
+  if (!["moderate", "strong"].includes(candidate.verdict)) {
+    return {
+      ...candidate,
+      reading,
+      judgement: reading,
+      sources: [],
+      seenBefore: [],
+      sites: [],
+      enrichment: {
+        ...check,
+        finishedAt: new Date().toISOString(),
+        trusted: "below sample",
+        seenBefore: "below sample",
+        sites: "below sample",
+      },
+      pipeline: {
+        read: {
+          startedAt: readStartedAt,
+          finishedAt: readFinishedAt,
+          ms: Date.parse(readFinishedAt) - Date.parse(readStartedAt),
+        },
+        checked: checkedStep,
+      },
+    };
+  }
   const weighStartedAt = new Date().toISOString(),
     weighStart = performance.now();
   const query = (reading.data.title || reading.data.claim).slice(0, 160),

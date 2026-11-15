@@ -2,7 +2,7 @@ import fs from "node:fs";
 import { db, get, all } from "../signal/providers.mjs";
 import { finalize } from "../signal/store.mjs";
 import { ensurePack } from "../signal/packs.mjs";
-const ids = ["a6b0d22b1d61", "aa9426e2b5e6", "nab032987aff"];
+const ids = ["a6b0d22b1d61", "aa9426e2b5e6", "nab032987aff", "a97b30b3019f"];
 for (const id of ids) {
   const c = get("assessed", id);
   for (const p of c.posts) {
@@ -41,7 +41,13 @@ for (const id of ids) {
   }
 }
 for (const p of all("push").filter((p) => p.excluded)) add("push", p.id);
-for (const kind of ["network-evidence", "network-index", "batch"])
+for (const kind of [
+  "network-evidence",
+  "network-index",
+  "network-map",
+  "map-coverage",
+  "batch",
+])
   for (const row of db
     .prepare("SELECT kind,id,data FROM records WHERE kind=?")
     .all(kind))

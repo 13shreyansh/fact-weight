@@ -16,10 +16,9 @@ export function runtimeMetrics() {
     (c) =>
       c.provider === "context" && c.status >= 200 && c.status < 300 && c.ms > 0,
   )) {
-    const endpoint = c.endpoint.replace(
-      /\/(?:mon_[a-zA-Z0-9_-]+|batch_[a-zA-Z0-9_-]+)/g,
-      "/:id",
-    );
+    const endpoint = c.endpoint
+      .split("?")[0]
+      .replace(/\/(?:mon_[a-zA-Z0-9_-]+|batch_[a-zA-Z0-9_-]+)/g, "/:id");
     const list = timing.get(endpoint) || [];
     list.push(c.ms);
     timing.set(endpoint, list);
@@ -35,8 +34,9 @@ export function runtimeMetrics() {
     } catch {
       p = {};
     }
-    let name =
-      c.endpoint === "/web/scrape"
+    let name = c.endpoint.startsWith("/web/urls")
+      ? "Site URL discovery"
+      : c.endpoint === "/web/scrape"
         ? p.parseParams?.parser
           ? "Public " + p.parseParams.parser + " parser"
           : p.formats?.json

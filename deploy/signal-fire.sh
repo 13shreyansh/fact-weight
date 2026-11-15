@@ -18,7 +18,7 @@ docker run -d --name signal-fire --restart unless-stopped --network bridge \
  --cpus 1 --memory 1536m --pids-limit 128 --read-only \
  --tmpfs /tmp:rw,noexec,nosuid,size=64m --cap-drop ALL --security-opt no-new-privileges:true \
  --env-file /etc/fact-weight.env -e PORT=4321 -e HOST=0.0.0.0 -e NODE_ENV=production \
- -e SIGNAL_DATA=/data -e SIGNAL_SCHEDULER=1 -e CONTEXT_DAILY_CAP=2500 -e SIGNAL_PUBLIC_URL=https://signal-fire.72.61.22.106.sslip.io -e "SIGNAL_COMMIT=$SIGNAL_SHA" \
+ -e SIGNAL_DATA=/data -e SIGNAL_SCHEDULER=1 -e CONTEXT_DAILY_CAP=6000 -e SIGNAL_PUBLIC_URL=https://signal-fire.72.61.22.106.sslip.io -e "SIGNAL_COMMIT=$SIGNAL_SHA" \
  --mount type=bind,src=/opt/signal-fire/data,dst=/data \
  --label traefik.enable=true \
  --label 'traefik.http.routers.signalfire.rule=Host(`signal-fire.72.61.22.106.sslip.io`)' \

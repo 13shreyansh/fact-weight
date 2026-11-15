@@ -1,5 +1,6 @@
 import http from "node:http";
 import { gzipSync } from "node:zlib";
+import { collapseDuplicates } from "./duplicates.mjs";
 import { summaryPush } from "./summary.mjs";
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -36,6 +37,7 @@ import {
   setupMonitors,
   monitorMetrics,
 } from "./monitors.mjs";
+collapseDuplicates(defaultId);
 const startedAt = new Date().toISOString(),
   commit = process.env.SIGNAL_COMMIT || "local";
 for (const c of all("assessed")) if (!get("push", c.id)) finalize(c);
@@ -47,7 +49,9 @@ if (!get("meta", "initialCollection"))
   });
 function json(res, status, d) {
   const content = Buffer.from(JSON.stringify(d));
-  const compressed = content.length > 2048;
+  const compressed =
+    content.length > 2048 &&
+    /\bgzip\b/.test(res.req?.headers["accept-encoding"] || "");
   res.writeHead(status, {
     ...(compressed ? { "Content-Encoding": "gzip" } : {}),
     "Content-Type": "application/json",

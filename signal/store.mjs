@@ -131,7 +131,17 @@ export function metrics(w = defaultId) {
 const candidateText = (c) => c.posts.map((p) => p.text.slice(0, 400)).join(" ");
 export function finalize(c, watchId = defaultId) {
   const j = c.judgement;
-  if (!j?.data.sameNarrative) return null;
+  if (!j?.data.sameNarrative) {
+    const old = get("push", c.id);
+    if (old)
+      put("push", c.id, {
+        ...old,
+        excluded: true,
+        excludedReason: "The latest reading did not confirm one narrative",
+        recheckedAt: new Date().toISOString(),
+      });
+    return null;
+  }
   if (
     watchId === defaultId &&
     !/ukrain|украин|україн|nato|нато|войн|війна|military|battlefield/i.test(

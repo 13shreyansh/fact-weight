@@ -1,3 +1,4 @@
+import { enqueueRegistration, registerPending } from "./registrations.mjs";
 import { all, get, put } from "./providers.mjs";
 import { sweep } from "./sweep.mjs";
 import {
@@ -10,11 +11,16 @@ for (const event of all("webhook").filter((e) => e.status === "processing"))
   put("webhook", event.id, { ...event, status: "pending" });
 for (const job of all("sweep-request").filter((e) => e.status === "processing"))
   put("sweep-request", job.id, { ...job, status: "pending" });
+for (const w of all("watch").filter(
+  (w) => !w.public && Date.parse(w.expiresAt) > Date.now(),
+))
+  enqueueRegistration(w.id);
 let busy = false;
 async function work() {
   if (busy) return;
   busy = true;
   try {
+    if (process.env.SIGNAL_PUBLIC_URL) await registerPending();
     for (const job of all("sweep-request").filter(
       (j) => j.status === "pending",
     )) {
@@ -41,14 +47,6 @@ async function work() {
         status: result?.status || "failed",
         finishedAt: new Date().toISOString(),
       });
-      const current = get("watch", w.id);
-      if (
-        job.trigger === "New watch" &&
-        current &&
-        (!current.expiresAt || Date.parse(current.expiresAt) > Date.now()) &&
-        process.env.SIGNAL_PUBLIC_URL
-      )
-        await setupMonitors(current, process.env.SIGNAL_PUBLIC_URL);
     }
     await processInbox(sweep);
   } catch (error) {

@@ -1,3 +1,4 @@
+import { collapseDuplicates } from "./duplicates.mjs";
 import { scrape, call, get, put, all, hash, judge } from "./providers.mjs";
 import { defaultWatch, finalize } from "./store.mjs";
 import { groups, measure } from "./detect.mjs";
@@ -37,6 +38,12 @@ async function performSweep(w) {
               ? "reddit-search"
               : null;
         const d = await scrape(url, parser, { maxAgeMs: 0 }, { fresh: true });
+        if (
+          !(d.parsed?.success && d.parsed.data) &&
+          !(d.markdown?.success && d.markdown.data) &&
+          !(d.html?.success && d.html.data)
+        )
+          throw Error("The public source could not be read.");
         const ch = url.match(/t\.me\/(?:s\/)?([^/?]+)/)?.[1];
         if (ch) put("telegram", ch, { ...d, channel: ch });
         else put("discovery", "watch-" + w.id + "-" + hash(url), d);
@@ -154,16 +161,22 @@ async function performSweep(w) {
       )
     ).slice(0, 12)) {
       const incomingIds = new Set(posts.map((p) => p.id));
-      const previous = all("push").find(
-        (p) =>
-          p.watchId === w.id &&
-          p.mode !== "replay" &&
-          !p.excluded &&
-          (p.posts.filter((x) => incomingIds.has(x.id)).length /
-            Math.max(1, Math.min(p.posts.length, posts.length)) >=
-            0.7 ||
-            sameCopiedStory(p.posts, posts)),
-      );
+      const previous = all("push")
+        .filter(
+          (p) =>
+            p.watchId === w.id &&
+            p.mode !== "replay" &&
+            !p.excluded &&
+            (p.posts.filter((x) => incomingIds.has(x.id)).length /
+              Math.max(1, Math.min(p.posts.length, posts.length)) >=
+              0.7 ||
+              sameCopiedStory(p.posts, posts)),
+        )
+        .sort(
+          (a, b) =>
+            (b.origins?.length || 0) - (a.origins?.length || 0) ||
+            b.posts.length - a.posts.length,
+        )[0];
       if (previous)
         posts = [
           ...new Map(
@@ -194,6 +207,7 @@ async function performSweep(w) {
         run.errors.push({ source: "Narrative check", message: e.message });
       }
     }
+    collapseDuplicates(w.id);
     run.status = run.errors.length ? "partial" : "complete";
   } catch (e) {
     run.status = "failed";

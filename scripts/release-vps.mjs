@@ -29,4 +29,20 @@ const command = `mkdir -p /opt/signal-fire/releases/${sha}\ntar -xzf /opt/signal
 execFileSync("ssh", ["-o", "BatchMode=yes", "root@72.61.22.106", command], {
   stdio: "inherit",
 });
-console.log("RELEASED_COMMIT", sha);
+let verified = false;
+for (let i = 0; i < 60; i++) {
+  try {
+    const r = await fetch(
+      "https://signal-fire.72.61.22.106.sslip.io/api/health",
+      { signal: AbortSignal.timeout(5000) },
+    );
+    if (r.ok && (await r.json()).commit === sha) {
+      verified = true;
+      break;
+    }
+  } catch {}
+  await new Promise((r) => setTimeout(r, 2000));
+}
+if (!verified)
+  throw Error("Release did not pass public HTTPS commit verification");
+console.log("VERIFIED_DEPLOYED_COMMIT", sha);
