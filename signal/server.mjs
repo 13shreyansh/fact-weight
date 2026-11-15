@@ -514,7 +514,7 @@ export const server = http.createServer(async (req, res) => {
     });
   }
 });
-if (process.argv[1]?.endsWith("/server.mjs")) {
+if (process.argv[1]?.endsWith("/server.mjs") || process.argv[1]?.endsWith("/sponsor-bootstrap.mjs")) {
   server.listen(
     Number(process.env.PORT || 4321),
     process.env.HOST || "127.0.0.1",
